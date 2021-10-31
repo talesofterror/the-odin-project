@@ -1,0 +1,35 @@
+body {
+    color: white;
+    margin: 0px;
+    background-color: rgb(62, 252, 62);
+}
+
+a {
+    color: red;
+}
+
+a:hover {
+    color: rgb(236, 143, 143);
+}
+
+img {
+    width: 500px;
+    height: auto;
+}
+
+.body {
+    background-color: black;
+    width: 800px;
+    height: 100%;
+    margin: auto;
+    padding: 10px;
+}
+
+.container {
+    background-color: rgb(75, 0, 126);
+    width: 500px;
+    height: auto;
+    margin: 0px auto;
+    padding: 10px;
+
+}
