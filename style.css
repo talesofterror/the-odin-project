@@ -1,71 +1,92 @@
 * {
-    border: 1px solid;
-    border-color: red;
+    /* border: 1px solid; */
+    /* border-color: red; */
     margin: 0px;
     padding: 0px;
 }
 
 body {
-    color: rgb(51, 255, 0);
-    background-color: rgb(62, 252, 62);
-    font-family: Helvetica, sans-serif;
-    
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    font-family: Garamond, serif;
 }
 
 a {
-    color: rgb(51, 255, 0);
+    color: rgb(251, 255, 0);
 }
 
 a:hover {
-    color: rgb(183, 143, 236);
+    color: rgb(0, 140, 254);
 }
 
 img {
-    width: 500px;
+    width: inherit;
     height: auto;
 }
 
 h1 {
-    color:rgb(183, 143, 236);
-    font-family: Garamond, Times New Roman;
+    color:rgb(238, 255, 0);
+    font-family: Garamond, Times;
     text-align: center;
+    padding: 10px;
+    margin: 0px;
+    text-shadow: 5px 5px 1px rgb(0,0,0);
+}
+
+h2 {
+    color: rgb(186, 199, 0);
+    font-family: Apple Chancery, cursive;
+    text-align: center;
+    /* padding: 10px; */
+}
+
+h3 {
+    /* width: inherit; */
+    text-align: center;
+    /* background-color: black; */
+    padding: 0px;
+    margin: 10px;
+    color:rgb(255, 255, 255);
+}
+
+li {
+    margin: 10px 40px;
+    padding: 2px;
+    border: 2px;
+    font-size: 22px;
+}
+
+ul {
+    color:rgb(228, 0, 228);
+}
+
+p {
+    margin: 20px;
 }
 
 .bodydiv {
     background-color: black;
+    background-image: url("images/black-sword-background.jpg");
     width: 800px;
     height: 100vh;
-    margin: auto;
-    padding: 0px;
-    text-justify:inter-word;
+    margin: 0px auto;
+    padding: 0px 0px;
 } 
 
 .container {
-    background-color: rgb(75, 0, 126);
+    background-color: rgb(0, 57, 126);
     width: 500px;
-    height: 100vh;
+    height: inherit;
     margin: 0px auto;
-    padding: 0px 10px;
+    padding: 0px 0px;
+    border-style: none solid none solid;
+    border:rgb(186, 199, 0);
+    border-width: 10px;
 
 }
 
-.description {
-    /* width: inherit; */
-    text-align: justify;
-    /* background-color: black; */
-    padding: 10px;
-    margin: auto;
-    color:rgb(62, 252, 62);
-
-}
-
-.list-item {
-    margin: 2px;
-    padding: 2px;
-    border: 2px;
-
-}
-
-#iddy.classy {
-    background-color: rgb(0, 162, 255);
+.item {
+    color: rgb(228, 0, 228);
+    text-decoration: solid;
+    font-weight: bold;
 }
