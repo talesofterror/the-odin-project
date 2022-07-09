@@ -22,6 +22,9 @@ a:hover {
 img {
     width: inherit;
     height: auto;
+    border-style: solid none solid none;
+    border-color: rgb(186, 199, 0);
+    border-width: 10px;
 }
 
 h1 {
@@ -37,27 +40,34 @@ h2 {
     color: rgb(186, 199, 0);
     font-family: Apple Chancery, cursive;
     text-align: center;
-    /* padding: 10px; */
+    text-transform: uppercase;
 }
 
 h3 {
     /* width: inherit; */
     text-align: center;
+    text-transform: uppercase;
     /* background-color: black; */
     padding: 0px;
     margin: 10px;
     color:rgb(255, 255, 255);
 }
 
-li {
+li.list-item {
     margin: 10px 40px;
     padding: 2px;
     border: 2px;
     font-size: 22px;
 }
 
+li {
+    margin: 10px 40px;
+    padding: 2px;
+    border: 2px;
+}
+
 ul {
-    color:rgb(228, 0, 228);
+    color:rgb(255, 255, 255);
 }
 
 p {
@@ -74,15 +84,14 @@ p {
 } 
 
 .container {
-    background-color: rgb(0, 57, 126);
+    background-color: rgb(0, 36, 79);
     width: 500px;
     height: inherit;
     margin: 0px auto;
     padding: 0px 0px;
     border-style: none solid none solid;
-    border:rgb(186, 199, 0);
+    border-color: rgb(186, 199, 0);
     border-width: 10px;
-
 }
 
 .item {
