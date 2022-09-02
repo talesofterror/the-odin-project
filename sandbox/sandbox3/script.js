@@ -8,3 +8,8 @@ const height = 75;
 const color = 'blue';
 
 // Add your code here
+
+ctx.fillStyle = color
+ctx.fillRect(x, y, width, height)
+
+
