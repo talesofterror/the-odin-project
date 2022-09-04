@@ -1,29 +1,80 @@
-const names = ['Chris', 'Li Kang', 'Anne', 'Francesca', 'Mustafa', 'Tina', 'Bert', 'Jada'];
-const para = document.createElement('p');
+// usestrict;
 
-// function isShort(name) {
-//   return name.length < 5;
+let test = (num) => num
+
+function checkAge(age) {
+    if (age > 18) {
+        return true
+    } else {
+        return confirm("Did your parents allow you?")
+    }
+}
+
+let checkAge1 = (age) => {
+    age > 18 ? true : confirm("Did your parents allow you?")
+}
+
+let checkAge2 = (age) => age > 18 || confirm("Did your parents allow you?")
+
+
+let pow = (x, n) => {
+    let result = x
+    for (i = 0; i < n; i++) {
+            result *= x
+        }
+    return result;     
+}
+
+// function ask(question, yes, no){
+//     if (confirm(question)) yes()
+//     else no()
 // }
 
-// let isShort = (name) => name.length < 5
+// ask("Confirm choice?",
+//     function() {alert("confirmed")},
+//     function() {alert("denied")}
+// )
 
-// const shortNames = names.filter(isShort);
-
-const shortNames = names.filter(name => name.length < 5)
-
-// this one took me some time and I ended up looking up a better answer in
-// discord. The final answer immediately above created a variable shortNames
-// uses it to call the names.filter() function, which takes an arrow
-// function variable which has a name parameter which the filter uses
-// to iterate through the indexes, checking each string to see if it's 
-// less exclusively less than 5 characters long. 
-
-para.textContent = shortNames;
-
-// Don't edit the code below here!
-
-const section = document.querySelector('section');
-
-section.appendChild(para);
+let sum = (a, b) => a + b
 
 
+
+let ask = (question, yes, no) => 
+    confirm(question) ? yes() 
+    : no()
+
+ask("confirm choice?",
+() => alert("confirmed."),
+() => alert("denied.")
+)
+
+
+
+
+
+/* 
+pow(3, 2)
+it takes a number in, x. assigns result to the original value of x, say 3 
+first iteration, i is 1. if i is less than 2, increment i by 1 
+i = 1
+    result = 3
+    3 * 3 = 9
+    i = 2
+i = 2
+    exit
+    return result 9
+
+WHAT I WAS DOING: 
+i = 0 
+    result = 3
+    3 * 3 = 9
+    i = 1
+i = 1
+    result = 9 
+    9 * 3 = 27
+    i = 2
+i = 2
+    exit 
+    return result 27
+
+*/
