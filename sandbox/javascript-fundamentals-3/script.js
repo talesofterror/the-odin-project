@@ -1,7 +1,7 @@
 const paraAdd7 = document.createElement('p');
 const input = document.querySelectorAll(".input")[0]
 
-paraAdd7.textContent = "Enter a number"
+paraAdd7.textContent = "Type in a number and press Enter"
 
 function add7(n) {
     if (isNaN(n) || n === '') {
@@ -17,8 +17,6 @@ function multiply(n1, n2) {
     return result
 }
 
-console.log(multiply(5, 5))
-
 function capitalize(input) {
     result = input.toUpperCase()
     return result
@@ -30,8 +28,13 @@ function lastLetter (input) {
     return result
 }
 
-let promptTest = prompt("Enter a Number")
-console.log(promptTest)
+function functionAdd7() {
+    console.log("Hello.")
+}
+
+// let promptTest = prompt("Enter a Number")
+// console.log(promptTest)
+
 
 
 input.addEventListener("change", 
