@@ -10,12 +10,34 @@
 <body>
   <div id="container">
     <div id="sidebar">
-      <div class="item" onclick="functionAdd7()">add7() <p>Add 7 to any number.</p></div>
+      <div class="item" id="buttonAdd7" onclick="buttonClick()"">add7() <p>Add 7 to any number.</p></div>
+      <div class="item" id="buttonMultiply">multiply() <p>Multiply two numbers.</p></div>
+      <div class="item" id="buttonCapitalize">capitalize() <p>Capitalize all characters in a string.</p></div>
+      <div class="item" id="buttonLastLetter">lastLetter() <p>Print the last letter of a string.</p></div>
     </div>
     <div id="content">
-      <section>
+      <section class="itemContent" id="idAdd7">
 
-        <input class="input" />
+        <input id="inputAdd7" class="" />
+
+      </section>
+
+      <section class="itemContent hidden" id="idMultiply">
+
+        <input id="multiply" class="" />
+        <input id="multiply2" class="" />
+
+      </section>
+
+      <section class="itemContent hidden" id="idCapitalize">
+
+        <input id="capitalize" class="" />
+
+      </section>
+
+      <section class="itemContent hidden" id="idLastLetter">
+
+        <input id="lastLetter" class="" />
 
       </section>
     </div>
