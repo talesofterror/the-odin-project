@@ -22,7 +22,7 @@ input {
     color: red;
 }
 
-input.focus {
+input:focus {
     border: 1px solid red;
     outline: none !important;
 }
