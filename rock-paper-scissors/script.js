@@ -14,6 +14,13 @@ let fighter = {
 
 addEventListener ("change", 
 () => {
+	computerChoice = choice[randomValue()]
+	playerChoice = input.value
+	switch (computerChoice) {
+		case playerChoice == computerChoice:
+			result.textContent = `Result: Tie`
+			break;
+	}
     result.textContent = `Result: ${input.value}` 
 
 })
