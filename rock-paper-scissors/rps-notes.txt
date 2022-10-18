@@ -1,0 +1,24 @@
+
+
+rock, paper, scissors 
+
+p == c
+	=> tie 
+
+p == rock && c == paper
+	=> c wins 
+
+p == rock && c == scissors
+	=> p wins 
+
+p == paper && c == rock
+	=> p wins
+
+p == paper && c == scissors
+	=> c wins 
+
+p == scissors && c == rock
+	=> c wins 
+
+p == scissors && c == paper
+	=> p wins
