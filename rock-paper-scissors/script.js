@@ -1,6 +1,6 @@
-let input = document.querySelector(".userInput").value;
+let input = document.querySelector(".userInput");
 let result = document.querySelector(".result") 
-result.textContent = input
+result.textContent = input.value
 
 let choice = ["rock", "paper", "scissors"]
 
@@ -12,6 +12,13 @@ let fighter = {
     computer : computerChoice
 }
 
+addEventListener ("change", 
+() => {
+    result.textContent = `Result: ${input.value}` 
+
+})
+
+console.log(input.value)
 
 let randomValue = () => Math.floor(Math.random() * 3)
 
