@@ -1,10 +1,10 @@
-let input = document.querySelector(".userInput");
+let userInput = document.querySelector(".userInput");
 let result = document.querySelector(".result") 
-result.textContent = input.value
+result.textContent = userInput.value
 
 let choice = ["rock", "paper", "scissors"]
 
-let playerChoice = input
+let playerChoice = userInput
 let computerChoice
 
 let fighter = {
@@ -15,17 +15,18 @@ let fighter = {
 addEventListener ("change", 
 () => {
 	computerChoice = choice[randomValue()]
-	playerChoice = input.value
+	playerChoice = userInput.value
 	switch (computerChoice) {
 		case playerChoice == computerChoice:
 			result.textContent = `Result: Tie`
 			break;
+		case playerChoice == rock && computerChoice == paper
 	}
-    result.textContent = `Result: ${input.value}` 
+    result.textContent = `Result: ${userInput.value}` 
 
 })
 
-console.log(input.value)
+console.log(userInput.value)
 
 let randomValue = () => Math.floor(Math.random() * 3)
 
