@@ -1,18 +1,24 @@
 body { 
+	font-family: Arial;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 2em;
 }
 
-input {
-    font-size: 1em;
-    color: pink;
-    border: 2px red solid;
-    padding: 5px;
-}
-
 div {
 
     padding: 10px;
+}
+
+.input {
+    font-size: 1em;
+    color: pink;
+    border: 3px red solid;
+    padding: 5px;
+}
+
+.fight-button {
+	color: white;
+	background: red;
 }

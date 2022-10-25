@@ -7,8 +7,22 @@
   </head>
     <body>
         <div>Enter rock, paper, or scissors </div>
-        <div><input type="text" class="userInput" placeholder="Enter rock, paper, or scissors"></div>
-        <div class="result"></div>
+        <div>
+		<select class="input" placeholder="What's it gonna be?">
+				<option value="default">What's it gonna be?</option>
+				<option value="default">-------------------</option>
+				<option value="rock">Rock</option>
+				<option value="paper">Paper</option>
+				<option value="scissors">Scissors</option>
+		</select>
+		</div>
+
+        <div class="prompt">
+		<!-- Result goes here -->
+		</div>
+
+		<div class="fight-button">Fight?</div>
+
         <script src="script.js"></script>
     </body>
 

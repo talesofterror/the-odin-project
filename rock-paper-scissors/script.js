@@ -1,34 +1,36 @@
-let userChoice = document.querySelector(".userInput");
-let result = document.querySelector(".result") 
-result.textContent = userChoice.value
+let userChoice = document.querySelector(".input")
+let prompt = document.querySelector(".prompt") 
+prompt.textContent = "Choose a fighter"
 
 let choice = ["rock", "paper", "scissors"]
 
 let playerChoice = userChoice
 let computerChoice
+let randomValue = () => Math.floor(Math.random() * 3)
 
 let fighter = {
     player : playerChoice,
     computer : computerChoice
 }
 
+
+
 addEventListener ("change", 
 () => {
-	computerChoice = choice[randomValue()]
-	playerChoice = userChoice.value
-	switch (computerChoice) {
-		case playerChoice == computerChoice:
-			result.textContent = `Result: Tie`
-			break;
-		case playerChoice == rock && computerChoice == paper
-	}
-    result.textContent = `Result: ${userInput.value}` 
+
+	prompt.textContent = choiceDeclarer()
 
 })
 
-console.log(userInput.value)
-
-let randomValue = () => Math.floor(Math.random() * 3)
+function choiceDeclarer() {
+	let promptText;
+	if (userChoice.value == "default") {
+		promptText = "What are you waiting for? Choose!"
+	}	else {
+		promptText = `You chose ${userChoice.value}`
+	}
+	return promptText
+}
 
 
 computerChoice = choice[randomValue()]
