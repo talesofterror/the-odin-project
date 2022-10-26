@@ -1,4 +1,17 @@
+:root {
+	--accentColor: rgb(255, 25, 50);
+}
+
+* {
+	margin: 10px;
+	padding: 0px;
+	font-family: "ConcertOne";
+	vertical-align: center;
+}
+
 body { 
+	color: white;
+	background-color: #121212;
 	font-family: Arial;
     display: flex;
     flex-direction: column;
@@ -7,18 +20,54 @@ body {
 }
 
 div {
-
     padding: 10px;
 }
 
+.title {
+	color: var(--accentColor);
+	font-size: 1.3em;
+}
+
+/*	
+the prompt text currently makes the div box grow, leaving to everything
+everything else on the page shifting as well. I need to go back and
+review the flexbox properties to see if those fix it.
+*/
+
+.prompt {
+	padding-left: 0px;
+	margin-left: 0px;
+}
+
+.prompt-container {
+	display: flex;
+	align-items: center;
+	justify-content: left;
+}
+
 .input {
-    font-size: 1em;
-    color: pink;
-    border: 3px red solid;
-    padding: 5px;
+	background-color: black;
+	font-family: "Arial";
+	text-transform: capitalize;
+    font-size: 0.5em;
+    color: var(--accentColor);
+    border: 3px var(--accentColor) solid;
+	margin: 0px;
+    padding: 0px;
 }
 
 .fight-button {
+	width: 100%;
+	line-height: 1.5em;
+	vertical-align: middle;
+	display: none;
 	color: white;
-	background: red;
+	background: var(--accentColor);
+	text-transform: uppercase;
 }
+
+@font-face {
+	font-family: "ConcertOne";
+	src: url(resources/ConcertOne-Regular.ttf)
+}
+
