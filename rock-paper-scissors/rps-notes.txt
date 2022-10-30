@@ -22,3 +22,24 @@ p == scissors && c == rock
 
 p == scissors && c == paper
 	=> p wins
+
+
+images: 
+
+b1p - rock		
+b1p - paper		
+b1p - scissors
+
+b1c - rock
+b1c - paper
+b1c - scissors 
+
+b2p - rock
+b2p - paper
+b2p - scissors
+
+b2c - rock 
+b2c - paper 
+b2c - scissors
+
+
