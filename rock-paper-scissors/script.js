@@ -3,38 +3,38 @@ let choice = document.querySelector(".choice-declaration")
 let fightButton = document.querySelector(".fight-button")
 let titleImage = document.querySelector(".title-image")
 
-// let choice = ["rock", "paper", "scissors"]
+let computerOptions = ["rock", "paper", "scissors"]
 
 let randomValue = () => Math.floor(Math.random() * 3)
-let computerChooser = () => choice[randomValue()]
+let computerChooser = () => computerOptions[randomValue()]
 let c
 let numberOfRounds = 5
 
 addEventListener ("change", 
 () => {
-	choice.textContent = choiceDeclarer()	
 
-	if (userChoice.value == "default") {
-		fightButton.style.display = "none"
-	} else {
-		fightButton.style.display = "block"
-		game()
-	}
+userChooser()
 
 })
 
 // DESIGN FUNCTIONS
 
-function choiceDeclarer() {
-	let choiceText;
+function userChooser () {
+
 	if (userChoice.value == "default") {
+		fightButton.style.display = "none"
 		choice.style.display ="none"
-	}	else {
-		choiceText = `You chose ${userChoice.value}`
+		titleImage.style = "flex"
+	} 
+	else if (userChoice.value != "default") {
+		fightButton.style.display = "block"
+		choice.textContent = `You chose ${userChoice.value}`
+		choice.style.display = "block"
 		titleImage.style.display = "none"
+		game()
 	}
-	return choiceText
 }
+
 
 // GAME FUNCTIONS
 

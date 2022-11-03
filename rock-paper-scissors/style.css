@@ -25,7 +25,7 @@ div {
 }
 
 img {
-	max-width: 100%;
+	max-width: 75%;
 }
 
 .landing-screen {
@@ -34,7 +34,6 @@ img {
 }
 
 .container {
-	width: 100%;
 	max-width: 600px;
 }
 
@@ -68,7 +67,6 @@ img {
 	display: inline;
 	background-color: black;
 	font-family: "Arial";
-	text-transform: capitalize;
     font-size: 0.5em;
     color: var(--accentColor);
     border: 3px var(--accentColor) solid;
@@ -78,8 +76,7 @@ img {
 
 .fight-button {
 	width: 100%;
-	line-height: 1.5em;
-	vertical-align: middle;
+	vertical-align: top;
 	display: none;
 	color: white;
 	background: var(--accentColor);
