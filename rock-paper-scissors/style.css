@@ -7,11 +7,12 @@
 	padding: 0px;
 	font-family: "ConcertOne";
 	vertical-align: center;
+	outline: 0px blue dotted;
 }
 
 body { 
 	color: white;
-	background-color: #121212;
+	background-color: #000000;
 	font-family: Arial;
     display: flex;
     flex-direction: column;
@@ -23,36 +24,55 @@ div {
     padding: 10px;
 }
 
+img {
+	max-width: 100%;
+}
+
+.landing-screen {
+	margin: 0px;
+	padding: 0px;
+}
+
+.container {
+	width: 100%;
+	max-width: 600px;
+}
+
 .title {
 	color: var(--accentColor);
 	font-size: 1.3em;
 }
 
-/*	
-the prompt text currently makes the div box grow, leaving to everything
-everything else on the page shifting as well. I need to go back and
-review the flexbox properties to see if those fix it.
-*/
-
-.prompt {
-	padding-left: 0px;
-	margin-left: 0px;
+.title-image {
+	display: flex;
+	justify-content: center;
+	z-index: -1;
 }
 
-.prompt-container {
-	display: flex;
+.choice-container {
 	align-items: center;
 	justify-content: left;
 }
 
+.choice-declaration {
+	padding-left: 0px;
+	margin-left: 0px;
+}
+
+.choice-box {
+	width: 100%;
+}
+
 .input {
+	position: absolute;
+	display: inline;
 	background-color: black;
 	font-family: "Arial";
 	text-transform: capitalize;
     font-size: 0.5em;
     color: var(--accentColor);
     border: 3px var(--accentColor) solid;
-	margin: 0px;
+	margin: 0px auto;
     padding: 0px;
 }
 

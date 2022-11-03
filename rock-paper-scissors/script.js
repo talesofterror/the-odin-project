@@ -1,7 +1,7 @@
 let userChoice = document.querySelector(".input")
-let prompt = document.querySelector(".prompt") 
-prompt.textContent = "Choose a fighter:"
+let choice = document.querySelector(".choice-declaration") 
 let fightButton = document.querySelector(".fight-button")
+let titleImage = document.querySelector(".title-image")
 
 // let choice = ["rock", "paper", "scissors"]
 
@@ -12,7 +12,7 @@ let numberOfRounds = 5
 
 addEventListener ("change", 
 () => {
-	prompt.textContent = choiceDeclarer()	
+	choice.textContent = choiceDeclarer()	
 
 	if (userChoice.value == "default") {
 		fightButton.style.display = "none"
@@ -22,6 +22,19 @@ addEventListener ("change",
 	}
 
 })
+
+// DESIGN FUNCTIONS
+
+function choiceDeclarer() {
+	let choiceText;
+	if (userChoice.value == "default") {
+		choice.style.display ="none"
+	}	else {
+		choiceText = `You chose ${userChoice.value}`
+		titleImage.style.display = "none"
+	}
+	return choiceText
+}
 
 // GAME FUNCTIONS
 
@@ -52,18 +65,6 @@ function rounds () {
 	for (i = 0; i < numberOfRounds; i ++) {
 		console.log("Round " + (i+ 1) + ": " + game())
 	}
-}
-
-// DESIGN FUNCTIONS
-
-function choiceDeclarer() {
-	let promptText;
-	if (userChoice.value == "default") {
-		promptText = "What are you waiting for? Choose!"
-	}	else {
-		promptText = `You chose ${userChoice.value}`
-	}
-	return promptText
 }
 
 
