@@ -1,0 +1,41 @@
+hexadcimal?? 
+values between 0 and F (0123456789abcdef). 
+01 through FF
+
+~
+
+00  0
+01  1
+02  2
+03  2
+04  4
+05  5
+06  6
+07  7
+08  8
+09  9
+0A  10
+0B  11
+0C  12
+0D  13
+0E  14
+0F  15
+10  16
+11  17
+12  19
+13  20
+14  21
+15  22
+16  23
+17  24
+18  25
+19  26
+1A  27
+1B  28
+
+
+~
+
+classes needing removal from html: 
+body anim-layer1
+div anim-layer2
