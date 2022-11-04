@@ -84,6 +84,8 @@ function game() {
 		result = "You lose!" 
 	} else if (userChoice.value == "scissors" && c == "paper") {
 		result = "You win!"
+	} else if (userChoice.value == "default") {
+		result = "You must choose rock, paper, or scissors!"
 	}
 
 	return result
