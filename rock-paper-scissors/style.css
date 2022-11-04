@@ -3,8 +3,8 @@
 }
 
 * {
-	margin: 10px;
 	padding: 0px;
+	margin: 0px;
 	font-family: "ConcertOne";
 	vertical-align: center;
 	outline: 0px blue dotted;
@@ -18,19 +18,15 @@ body {
     flex-direction: column;
     align-items: center;
     font-size: 2em;
+	margin-top: 10%;
 }
 
 div {
-    padding: 10px;
+    padding: 0px;
 }
 
 img {
 	max-width: 75%;
-}
-
-.landing-screen {
-	margin: 0px;
-	padding: 0px;
 }
 
 .container {
@@ -40,47 +36,70 @@ img {
 .title {
 	color: var(--accentColor);
 	font-size: 1.3em;
+	padding-bottom: 25px;
+	border-bottom: 1px solid white;
 }
 
-.title-image {
+.landing-screen {
+	margin: 0px;
+	padding: 0px;
+}
+
+.landing-image-container {
 	display: flex;
 	justify-content: center;
 	z-index: -1;
+	border-bottom: 1px solid var(--accentColor);
 }
 
-.choice-container {
+.choice-declaration-container {
 	align-items: center;
 	justify-content: left;
 }
 
 .choice-declaration {
-	padding-left: 0px;
-	margin-left: 0px;
+	padding-bottom: 25px;
 }
 
 .choice-box {
 	width: 100%;
+	margin-top: 10px;
 }
 
 .input {
-	position: absolute;
 	display: inline;
 	background-color: black;
 	font-family: "Arial";
     font-size: 0.5em;
-    color: var(--accentColor);
+    color: white;
     border: 3px var(--accentColor) solid;
 	margin: 0px auto;
     padding: 0px;
 }
 
 .fight-button {
-	width: 100%;
-	vertical-align: top;
+	width: 25%;
+	min-width: 25%;
 	display: none;
+	vertical-align: top;
+	text-align: center;
 	color: white;
 	background: var(--accentColor);
 	text-transform: uppercase;
+	-webkit-text-stroke: 1px white;
+	padding-bottom: 15px;
+	border-radius: 50px;
+}
+
+.fight-button:hover {
+	color: var(--accentColor);
+	background: black;
+	border: 1px var(--accentColor) solid;
+	-webkit-text-stroke: 1px var(--accentColor);
+}
+
+.fight-button span {
+	margin: auto auto;
 }
 
 @font-face {

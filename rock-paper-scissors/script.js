@@ -1,12 +1,13 @@
 let userChoice = document.querySelector(".input")
 let choice = document.querySelector(".choice-declaration") 
 let fightButton = document.querySelector(".fight-button")
-let titleImage = document.querySelector(".title-image")
+let landingImage = document.querySelector(".landing-image")
+landingImage.src = "images/rps-circle-ezgif.gif"
 
 let computerOptions = ["rock", "paper", "scissors"]
 
-let randomValue = () => Math.floor(Math.random() * 3)
-let computerChooser = () => computerOptions[randomValue()]
+let randomValue = (length) => Math.floor(Math.random() * length)
+let computerChooser = () => computerOptions[randomValue(3)]
 let c
 let numberOfRounds = 5
 
@@ -24,21 +25,49 @@ function userChooser () {
 	if (userChoice.value == "default") {
 		fightButton.style.display = "none"
 		choice.style.display ="none"
-		titleImage.style = "flex"
+		landingImage.src = "images/rps-circle-ezgif.gif"
 	} 
 	else if (userChoice.value != "default") {
 		fightButton.style.display = "block"
 		choice.textContent = `You chose ${userChoice.value}`
 		choice.style.display = "block"
-		titleImage.style.display = "none"
+		landingImage.src = "images/b1p-rock.png"
+		userChoiceVisualizer()
 		game()
 	}
 }
 
+function userChoiceVisualizer() {
+	if (userChoice.value == "rock") {
+		landingImage.src = uVisualizerRandomizer("rock") 
+	} else if (userChoice.value == "paper") {
+		landingImage.src = uVisualizerRandomizer("paper") 
+	} else if (userChoice.value == "scissors") {
+		landingImage.src = uVisualizerRandomizer("scissors") 
+	}
+}
+
+function uVisualizerRandomizer(type) {
+	let choicesR = ["images/b1p-rock.png", "images/b2p-rock.png"]
+	let choicesP = ["images/b1p-paper.png", "images/b2p-paper.png"]
+	let choicesS = ["images/b1p-scissors.png", "images/b2p-scissors.png"]
+	let decision
+
+	if (type == "rock") {
+		decision = choicesR[randomValue(2)]
+	} else if (type == "paper") {
+		decision = choicesP[randomValue(2)]
+	} else if (type == "scissors") {
+		decision = choicesS[randomValue(2)]
+	}
+
+	return decision
+}
 
 // GAME FUNCTIONS
 
 function game() {
+
 	let result
 	c = computerChooser()
 	if (userChoice.value == c) {
