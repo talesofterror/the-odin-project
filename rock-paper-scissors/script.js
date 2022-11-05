@@ -1,3 +1,15 @@
+var OSName="Unknown OS";
+if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+
+console.log('Your OS: '+OSName);
+
+// The above is to detect the operating system, in case I want to fix this issue with
+// Windows (and possibly Mac?) rendering the page differently. It probably stems from the
+// google font I'm using. 
+
 let userChoice = document.querySelector(".input")
 let choice = document.querySelector(".choice-declaration") 
 let fightButton = document.querySelector(".fight-button")
@@ -19,6 +31,10 @@ userChooser()
 })
 
 // DESIGN FUNCTIONS
+// It's kind of extra, but now I've got the idea in my head that I should make
+// a little arm icon for the title section that changes based on what you pick.
+// It could start with an arm curled up in a flex pose, then "shoot" based on
+// userChoice.value
 
 function userChooser () {
 

@@ -18,7 +18,7 @@ body {
     flex-direction: column;
     align-items: center;
     font-size: 2em;
-	margin-top: 10%;
+	margin-top: 5%;
 }
 
 div {
@@ -30,17 +30,24 @@ img {
 }
 
 .container {
-	max-width: 600px;
+	display: flex; 
+	flex-direction: column;
+	justify-content: center;
+	max-width: 1000px;
 }
 
 .title {
+	max-width: 75%;
 	color: var(--accentColor);
 	font-size: 1.3em;
 	padding-bottom: 25px;
 	border-bottom: 1px solid white;
 }
 
+/* LANDING SCREEN */
+
 .landing-screen {
+	display: none;
 	margin: 0px;
 	padding: 0px;
 }
@@ -89,6 +96,7 @@ img {
 	-webkit-text-stroke: 1px white;
 	padding-bottom: 15px;
 	border-radius: 50px;
+	cursor: pointer;
 }
 
 .fight-button:hover {
@@ -100,6 +108,24 @@ img {
 
 .fight-button span {
 	margin: auto auto;
+}
+
+/* GAME SCREEN */
+
+.game-screen {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: space-between;
+	
+}
+
+.game-screen img {
+	max-width: 100%;
+}
+
+.game-element {
+	width: 33.3%;
 }
 
 @font-face {
