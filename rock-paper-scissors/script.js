@@ -11,10 +11,17 @@ console.log('Your OS: '+OSName);
 // google font I'm using. 
 
 let userChoice = document.querySelector(".input")
-let choice = document.querySelector(".choice-declaration") 
-let fightButton = document.querySelector(".fight-button")
+let choice = document.querySelector(".choice-declaration")
+
+let landingScreen = document.querySelector(".landing-screen")
 let landingImage = document.querySelector(".landing-image")
+let fightButton = document.querySelector(".fight-button")
 landingImage.src = "images/rps-circle-ezgif.gif"
+
+let gameScreen = document.querySelector(".game-screen")
+let container = document.querySelector(".container")
+let playerChoiceImage = document.querySelector(".player-choice-image")
+let computerChoiceImage = document.querySelector(".computer-choice-image")
 
 let computerOptions = ["rock", "paper", "scissors"]
 
@@ -22,6 +29,8 @@ let randomValue = (length) => Math.floor(Math.random() * length)
 let computerChooser = () => computerOptions[randomValue(3)]
 let c
 let numberOfRounds = 5
+
+// EVENT LISTENER
 
 addEventListener ("change", 
 () => {
@@ -47,7 +56,6 @@ function userChooser () {
 		fightButton.style.display = "block"
 		choice.textContent = `You chose ${userChoice.value}`
 		choice.style.display = "block"
-		landingImage.src = "images/b1p-rock.png"
 		userChoiceVisualizer()
 		game()
 	}
@@ -80,10 +88,23 @@ function uVisualizerRandomizer(type) {
 	return decision
 }
 
+let screenState = "landing-screen"
+function screenSelector() {
+	if (screenState == "landing-screen"){
+		landingScreen.style.display = "none"
+		gameScreen.style.display = "flex";
+		container.style.maxWidth = "1000px";
+		screenState = "game-screen"
+	} else if (screenState == "game-screen") {
+		landingScreen.style.display = "block"
+		gameScreen.style.display = "none";
+		screenState = "landing-screen"
+	}
+}
+
 // GAME FUNCTIONS
 
 function game() {
-
 	let result
 	c = computerChooser()
 	if (userChoice.value == c) {

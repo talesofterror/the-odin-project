@@ -8,10 +8,12 @@
 <body>
 
 <div class="container">
-	<div class="title">Rock, Paper, Scissors
-	</div>
+	<div class="title-container">
+	<div onclick="screenSelector()" class="title">Rock, Paper, Scissors
+	</div></div>
 
 <!-- LANDING SCREEN -->
+
 	<div class="landing-screen">
 
 	<div class="choice-box">
@@ -28,6 +30,7 @@
 		<img class="landing-image">
 	</div>   
 
+	<div class="landing-bottom-container">
 	<div class="landing-bottom">
 		<div class="choice-declaration-container">
 			<div class="choice-declaration">
@@ -36,7 +39,8 @@
 		</div>
 	</div>
 
-	<div onclick="function()" class="fight-button"><span>Fight?</span></div>
+	<div class="fight-button" onclick="screenSelector()"><span>Fight?</span></div>
+	</div>
 
 	</div>
 	
@@ -46,23 +50,22 @@
 	<div class="game-screen">
 
 		<div class="player-box game-element">
-			<img src="images/b1p-rock.png">
+			<img class="player-choice-image" src="images/b1p-rock.png">
 		</div>
 
-		<div class="game-box game-element">
+		<div class="game-box game-element game-text">
 			
 		</div>
 
 		<div class="computer-box game-element">
-			<img src="images/b2c-paper.png">
+			<img class="computer-choice-image" src="images/b2c-paper.png">
 		</div>
 
 	</div>
 
 </div>
 
-	<script src="script.js"></script>
-    </body>
-
+<script src="script.js"></script>
+</body>
     
 </html>
