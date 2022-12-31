@@ -1,14 +1,3 @@
-var OSName="Unknown OS";
-if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
-if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
-if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
-if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
-
-console.log('Your OS: '+OSName);
-
-// The above is to detect the operating system, in case I want to fix this issue with
-// Windows (and possibly Mac?) rendering the page differently. It probably stems from the
-// google font I'm using. 
 
 let userChoice = document.querySelector(".input")
 let choice = document.querySelector(".choice-declaration")
@@ -29,6 +18,13 @@ let randomValue = (length) => Math.floor(Math.random() * length)
 let computerChooser = () => computerOptions[randomValue(3)]
 let c
 let numberOfRounds = 5
+
+let stringTest = "sup"
+
+for (x = 0; x < 10; x++) {
+	
+}
+
 
 // EVENT LISTENER
 
@@ -134,5 +130,24 @@ function rounds () {
 		console.log("Round " + (i+ 1) + ": " + game())
 	}
 }
+
+// WINDOWS COMPATABILITY
+
+var OSName="Unknown OS";
+if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+
+console.log('Your OS: '+OSName);
+
+if (OSName=="Windows") {
+	let titleElement = document.querySelector(".title")
+	let fightButton = document.querySelector(".fight-button")
+
+	titleElement.style.paddingBottom = "5px"
+	fightButton.style.paddingBottom = "5px"
+}
+
 
 
