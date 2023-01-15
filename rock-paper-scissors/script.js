@@ -7,8 +7,8 @@ let landingImage = document.querySelector(".landing-image")
 let fightButton = document.querySelector(".fight-button")
 landingImage.src = "images/rps-circle-ezgif.gif"
 
-let gameScreen = document.querySelector(".game-screen")
 let container = document.querySelector(".container")
+let gameScreen = document.querySelector(".game-screen")
 let playerChoiceImage = document.querySelector(".player-choice-image")
 let computerChoiceImage = document.querySelector(".computer-choice-image")
 
@@ -19,10 +19,13 @@ let computerChooser = () => computerOptions[randomValue(3)]
 let c
 let numberOfRounds = 5
 
-let stringTest = "sup"
+let arrayTest = new Array(numberOfRounds)
 
-for (x = 0; x < 10; x++) {
-	
+function arrayTestDo() {
+	for (i = 0; i < arrayTest.length; i++) {
+		arrayTest[i] = "array index " + i
+		console.log(arrayTest[i])
+	}
 }
 
 
@@ -125,7 +128,7 @@ function game() {
 }
 
 function rounds () {
-	let result = []
+	let result = [numberOfRounds]
 	for (i = 0; i < numberOfRounds; i ++) {
 		console.log("Round " + (i+ 1) + ": " + game())
 	}
