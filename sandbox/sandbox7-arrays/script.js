@@ -20,9 +20,9 @@ function intervalFY() {
   randomNFY = () => Math.floor(Math.random() * (iteration + 1));
 		  document.getElementById("randomFY").innerHTML = "Random number using Fisher-Yates random value: " + randomNFY();
 		}
-		  
-		// // FISHER-YATES RANDOMIZATION ALGO
 
+
+// FISHER-YATES RANDOMIZATION ALGO
 
   for (i = numbersSlice.length - 1; i > 0; i --){  // iterate backwards through array indices
     let j = Math.floor(Math.random() * (i + 1))    // random number between 0 and the current index position
@@ -142,16 +142,26 @@ function sortNumberValue(arr) {
 
 // for strings: 
 
-function sortStringValue(arr) {
-	arr.sort( function(a, b) {
-		let x = a.item.toLowerCase()
-		let y = b.item.toLowerCase()
-			if (x < y) { return -1}
+function sortStringValue(arr) {			// 
+	arr.sort( function(a, b) {			// call the sort function with callback
+		let x = a.item.toLowerCase()	// store the lowercase value of the first callback variable
+		let y = b.item.toLowerCase()	// store the lowercase value of the second callback variable
+			if (x < y) { return -1}		// if 
 			if (x > y) { return 1}
 			return 0
 	})
 	return arr
 }
+
+// a  b  c  d  e  f  g  h  i  j   k   l   m   n   o   p   q   r   s   t   u   v   w   x   y   z  
+// 1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26
+
+let stringA = "apple"
+let stringA2 = "atrophe"
+let stringB = "broseph" 
+let stringH = "hello"
+let stringG = "goodbye"
+let stringK = "knowledge"
 
 
 
