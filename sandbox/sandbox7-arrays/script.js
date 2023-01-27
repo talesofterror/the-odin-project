@@ -146,9 +146,9 @@ function sortStringValue(arr) {			//
 	arr.sort( function(a, b) {			// call the sort function with callback
 		let x = a.item.toLowerCase()	// store the lowercase value of the first callback variable
 		let y = b.item.toLowerCase()	// store the lowercase value of the second callback variable
-			if (x < y) { return -1}		// if 
+			if (x < y) { return -1}		
 			if (x > y) { return 1}
-			return 0
+			return 0					// letters have the values below
 	})
 	return arr
 }
