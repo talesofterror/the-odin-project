@@ -42,4 +42,14 @@ function firstLetter (string) {
 }
 
 let petsFiltered = pets.filter(firstLetter)
-console.log(petsFiltered)
+
+let filteredSection = document.createElement("section")
+let filteredTitle = document.createElement("span")
+document.querySelector(".container").appendChild(filteredSection)
+document.querySelector(".container").insertBefore(filteredTitle, filteredSection)
+
+filteredTitle.textContent = "Pets[] filtered"
+filteredSection.textContent = 
+	`Only the M names: ${petsFiltered}!`
+
+
