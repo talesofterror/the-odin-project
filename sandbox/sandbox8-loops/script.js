@@ -55,37 +55,47 @@ filteredSection.textContent =
 // bare looping 
 
 let resultDiv = document.createElement("div")
-let sqRootSection = document.createElement("section")
-let sqRootTitle = document.createElement("span")
-let sqRootInput = document.createElement("input")
-let sqRootBtnCalc = document.createElement("button")
-sqRootBtnCalc.textContent = "Calculate"
-sqRootBtnCalc.addEventListener("click", function () {sqRoot(sqRootInput.value)})
-let sqRootBtnClear = document.createElement("button")
-sqRootBtnClear.textContent = "Clear"
-sqRootBtnClear.addEventListener("click", 
-	function () {resultDiv.textContent = " "; sqRootInput.value = " "})
-document.querySelector(".container").appendChild(sqRootSection)
-document.querySelector(".container").insertBefore(sqRootTitle, sqRootSection)
-sqRootTitle.textContent = "A simple loop"
-sqRootSection.textContent = "Enter a number and hit the button to calculate up to that value. "
-sqRootSection.appendChild(sqRootInput)
-sqRootSection.appendChild(sqRootBtnCalc)
-sqRootSection.appendChild(sqRootBtnClear)
+let squareSection = document.createElement("section")
+let squareTitle = document.createElement("span")
+let squareInput = document.createElement("input")
+let squareBtnCalc = document.createElement("button")
+squareBtnCalc.textContent = "Calculate"
+squareBtnCalc.addEventListener("click", function () {square(squareInput.value)})
+let squareBtnClear = document.createElement("button")
+squareBtnClear.textContent = "Clear"
+squareBtnClear.addEventListener("click", 
+	function () {resultDiv.textContent = " "; squareInput.value = " "})
+document.querySelector(".container").appendChild(squareSection)
+document.querySelector(".container").insertBefore(squareTitle, squareSection)
+squareTitle.textContent = "A simple loop"
+squareSection.innerHTML = "Enter a number and hit the button to calculate up to that value. <br> "
+squareSection.appendChild(squareInput)
+squareSection.appendChild(squareBtnCalc)
+squareSection.appendChild(squareBtnClear)
 
-function sqRoot (limit) {
+function square (limit) {
 	if (resultDiv.textContent != " "){ resultDiv.textContent = " " }
 	for (x = 1; x <= limit; x++) {
 		let result
 		result = x * x
 		// console.log(x + " x " + x + " = " + result)
 		resultDiv.innerHTML += x + " x " + x + " = " +  result + "<br>"
-		sqRootSection.appendChild(resultDiv)
+		squareSection.appendChild(resultDiv)
 	}
 }
 
-// PAGE 2
+// finding specific values in an array with formatted values
 
-let testDiv = document.createElement("span")
-testDiv.textContent = "Hi."
-document.querySelector(".container").appendChild(testDiv)
+let foods = ["protein:eggs", "carb:bread", "starch:potato", "sugar:ice cream"]
+
+function finderFunction (target) {
+	let result
+	for (i = 0; i < foods.length; i++) {	
+		let item = foods[i].split(":")
+		if (item[1] == target) {
+			result = item[0]
+			break;
+		}
+	}
+	return result
+}
