@@ -38,4 +38,19 @@ for (k = 0; k < admitArr.length; k++) {
 
 console.log("\n" + admitted + "\n" + refused)
 
+let array = [ 1, 2, 3, 4 ]
+const removeFromArray = function(array, target) {
+	let newArr = []
+	let i_newArr = 0
+	for (i = 0; i <= array.length - 1; i++) {
+		if (array[i] == target) {
+			continue	
+		} else {
+			newArr[i_newArr] = array[i]
+			i_newArr++
+		}
+	}
+	return newArr
+};
+
 
