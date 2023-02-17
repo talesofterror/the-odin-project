@@ -96,13 +96,27 @@ const removeFromArray3 = function (array) {
 	}
 
 	for (i = 0; i <= array.length - 1; i++) {
-		if (array[i] == argArr[i]) {
-			continue
-		} else {
-			newArr[i_newArr] = array[i]
-			i_newArr++
+		for (j = 0; j <= argArr.length - 1; j++) {
+				if (array[i] == argArr[j]) {
+					continue
+				} else {
+					if (newArr.length > 0){
+						for (k = 0; k <= newArr.length - 1; k++) {
+							if (newArr[k] == array[i]) {
+							continue
+							} else {
+							newArr[i_newArr] = array[i]
+							i_newArr++
+						}
+					}
+				} else {
+					newArr[i_newArr] = array[i]
+					i_newArr++
+				}
+			}
 		}
 	}
+	
 
 	return newArr;
 }
@@ -118,7 +132,7 @@ const removeFromArray4 = function (array) {
 	for (i = 0; i <= argArr.length-1; i++) {
 		for (j = 0; j <= array.length-1; j++) {	
 			if (argArr[i] == array[j]) {
-				continue
+				break
 			} else {
 				newArr[i_newArr] = array[j]
 				i_newArr++
