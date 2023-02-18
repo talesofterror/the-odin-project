@@ -98,18 +98,17 @@ const removeFromArray3 = function (array) {
 	for (i = 0; i <= array.length - 1; i++) {
 		for (j = 0; j <= argArr.length - 1; j++) {
 				if (array[i] == argArr[j]) {
-					continue
+				break	
 				} else {
 					if (newArr.length > 0){
-						for (k = 0; k <= newArr.length - 1; k++) {
-							if (newArr[k] == array[i]) {
-							continue
+						for (k = 0; k < newArr.length; k++) {
+							if (newArr[k] == array[i]) {	
+						  break
 							} else {
-							newArr[i_newArr] = array[i]
-							i_newArr++
+							continue
+							}
 						}
-					}
-				} else {
+					} else {
 					newArr[i_newArr] = array[i]
 					i_newArr++
 				}
@@ -142,4 +141,93 @@ const removeFromArray4 = function (array) {
 
 	return newArr;
 }
+
+const findInArray = function (array) {
+/*	
+	console.log(array)
+
+	for (i = 0; i <= array.length - 1; i++) {
+		console.log("array.length method: Index = " + i + " // Index Value = " + array[i])
+	}
+
+	for (i = 0; i < array.length; i++) {
+		console.log("array.length method: Index = " + i + " // Index Value = " + array[i])
+	}
+*/
+
+	/*
+
+	[1, 2, 3, 4]
+	[2, 4]
+ 
+		loop through the [a] array
+		individually compare each value to a value on the [b] array
+		if the value of the current index is NOT equal to a value on [b]
+			>add to new array [n]
+		if the value of the current index is equal to a value on [b] array
+			> skip
+
+ if [a] is in [b]
+  skip
+ else 
+  if [a] is in [n]
+   skip
+  else
+	 add [a] to [n]
+
+
+if [a] is already in [a], do i need to continue the loop?
+if the loops reaches the end without finding [a] in [n], we can safely add [a]
+if the loop finds [a] in [n], exit the loop
+
+	 */
+
+	let newArr = []
+	let response
+
+	for (i = 0; i < array.length; i++) {
+		if (arguments[1] == array [i]) {
+			response = `${arguments[1]} is in the array!`
+		} else {
+			response = `unable to find ${arguments[1]}`
+		}
+	}
+
+return response
+
+}
+
+const removeFromArray5 = function (array) {
+	newArr = []
+	argArr = []
+	i_newArr = 0
+	for (i = 0; i <= arguments.length-2; i++) {
+		argArr[i] = arguments[i+1]	
+	}
+
+	for (i = 0; i <= array.length - 1; i++) {
+		for (j = 0; j <= argArr.length - 1; j++) {
+			if (array[i] == argArr[j]) {break} 
+			else {
+				if (newArr.length > 0) {
+				for (k = 0; k < newArr.length; k++) {
+					if (newArr[k] == array[i]) {	
+						continue
+					} else if (k == newArr.length-1) {
+						newArr[i_newArr] = array[i]
+						i_newArr++
+					} else {break}
+				}
+				} else {
+				newArr[i_newArr] = array[i]
+				i_newArr++
+				}
+			}
+		} 
+	}
+	return newArr;
+}
+	
+
+
 
