@@ -137,7 +137,7 @@ const removeFromArray4 = function (array) {
 				i_newArr++
 			}
 		}
-	}
+}
 
 	return newArr;
 }
@@ -198,9 +198,9 @@ return response
 }
 
 const removeFromArray5 = function (array) {
-	newArr = []
-	argArr = []
-	i_newArr = 0
+	let newArr = []
+	let argArr = []
+	let i_newArr = 0
 	for (i = 0; i <= arguments.length-2; i++) {
 		argArr[i] = arguments[i+1]	
 	}
