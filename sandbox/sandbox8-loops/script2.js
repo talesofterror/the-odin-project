@@ -207,7 +207,7 @@ const removeFromArray5 = function (array) {
 
 	for (i = 0; i <= array.length - 1; i++) {
 		for (j = 0; j <= argArr.length - 1; j++) {
-			if (array[i] == argArr[j]) {break} 
+			if (array[i] == argArr[j]) {continue} 
 			else {
 				if (newArr.length > 0) {
 				for (k = 0; k < newArr.length; k++) {
@@ -228,6 +228,56 @@ const removeFromArray5 = function (array) {
 	return newArr;
 }
 	
+const removeFromArray6 = function (array) {
+	let newArr = []
+	let argArr = []
+	let i_newArr = 0
+	for (i = 0; i <= arguments.length-2; i++) {
+		argArr[i] = arguments[i+1]	
+	}
 
+	for (i = 0; i <= array.length - 1; i++) {
+		for (j = 0; j <= argArr.length - 1; j++) {
+			if (array[i] == argArr[j]) {
+				break
+			}
+			else {
+				for (k = 0; k <= newArr.length; k++) {
+					if (newArr[k] == array[i]) {
+						break
+					}
+					else if (k == newArr.length - 1 || newArr.length == 0) {
+						newArr[i_newArr] = array[i]
+						i_newArr++
+					}
+					else {
+						continue
+					}
+				}
+			}
+		}
+	}
+	return newArr;
+}
 
+const removeFromArray7 = function (array) {
+	let newArr = []
+	let argArr = []
+	let i_newArr = 0
 
+	for (i = 0; i <= arguments.length-2; i++) {
+		argArr[i] = arguments[i+1]	
+	}
+
+	for (i = 0; i <= array.length - 1; i++) {
+		for (j = 0; j <= argArr.length - 1; j++) {
+			if (argArr[j] == array[i]) {break}
+			else if (j == argArr.length-1) {
+				newArr[i_newArr] = array[i]
+				i_newArr++ 
+			}
+			else {continue}
+		}
+	}
+	return newArr;
+}
