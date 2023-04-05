@@ -19,17 +19,15 @@ setInterval(intervalFY, 1000);
 function intervalFY() {
   randomNFY = () => Math.floor(Math.random() * (iteration + 1));
 		  document.getElementById("randomFY").innerHTML = "Random number using Fisher-Yates random value: " + randomNFY();
-		}
-
+}
 
 // FISHER-YATES RANDOMIZATION ALGO
-
-  for (i = numbersSlice.length - 1; i > 0; i --){  // iterate backwards through array indices
-    let j = Math.floor(Math.random() * (i + 1))    // random number between 0 and the current index position
-    let k  = numbersSlice[i]                       // var storing current index position
-    numbersSlice[i] = numbersSlice[j]              // assign current index position to new, random index position
-    numbersSlice[j] = k                            // assign value of randomized index position to value of original
-  }                                                //    index position
+for (i = numbersSlice.length - 1; i > 0; i --){    // iterate backwards through array indices
+	let j = Math.floor(Math.random() * (i + 1))    // random number between 0 and the current index position
+	let k  = numbersSlice[i]                       // var storing current index position
+	numbersSlice[i] = numbersSlice[j]              // assign current index position to new, random index position
+	numbersSlice[j] = k                            // assign value of randomized index position to value original
+}                                                  // index position
 
 document.getElementById("FYarray").innerHTML = "Fisher-Yates Array: " + numbersSlice
 
@@ -71,6 +69,16 @@ let MinMaxApply = {
 	return Math.max.apply(null, array)
 	}
 }
+
+let MinMaxEllipses = {
+	min: function (array) {
+		return Math.min(...array)
+	},
+	max: function (array) {
+		return Math.max(...array)
+	}
+}
+
 
 document.getElementById("ArrayMinMax-apply").innerHTML = 
 	"Min/Max, Apply() Method: "
