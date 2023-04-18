@@ -87,21 +87,30 @@ function uVisualizerRandomizer(type) {
 	return decision
 }
 
+let gameTextBox = document.querySelector(".game-text")
 let screenState = "landing-screen"
 function screenSelector() {
 	if (screenState == "landing-screen"){
 		landingScreen.style.display = "none"
 		gameScreen.style.display = "flex";
 		container.style.maxWidth = "1000px";
+		setTimeout(()=>{
+			gameTextBox.style.height = "400px";
+			gameTextBox.style.marginTop = "10%"
+		}, 1)
 		screenState = "game-screen"
 	} else if (screenState == "game-screen") {
 		landingScreen.style.display = "block"
 		gameScreen.style.display = "none";
+		gameTextBox.style.height = "5px";
+		gameTextBox.style.marginTop = "30.5%"
 		screenState = "landing-screen"
 	}
 }
 
 // GAME FUNCTIONS
+
+
 
 function game() {
 	let result
@@ -151,6 +160,5 @@ if (OSName=="Windows") {
 	titleElement.style.paddingBottom = "5px"
 	fightButton.style.paddingBottom = "5px"
 }
-
 
 

@@ -13,7 +13,6 @@ spanList.forEach(span => {
     span.style.cssText = "display: block; background: white;"
 });
 
-
 let display = document.querySelector(".display")
 display.textContent = "Display"
 
@@ -31,7 +30,7 @@ console.dir(document.querySelectorAll("div"))
 
 console.log(Array.from(document.querySelectorAll("div")))
 // this can be iterated through, a NodeList can't 
-
+ 
 let nodelistToArray = Array.from(document.querySelectorAll("div"))
 let nodelistArraySpread = [...nodelistToArray]
 console.log(nodelistArraySpread)
@@ -69,3 +68,34 @@ for ( i = 0; i <= container.children.length-1; i++){
 // accessing container.children[i].style.cssText from within the loop and
 // the EventListener wasn't working for some reason. Access the event target
 // works fine. (???)
+
+
+
+
+// below is modified from https://eloquentjavascript.net/14_dom.html
+
+let quote = document.createElement("blockquote")
+quote.textContent = "This is a famous quote"
+quote.setAttribute("id", "quote")
+
+function elt(type, ...children) {
+    let node = document.createElement(type);
+    for (let child of children) {
+      if (typeof child != "string") node.appendChild(child);
+      else node.appendChild(document.createTextNode(child));
+    }
+    return node;
+  }
+
+  quote.appendChild(
+    elt("footer", 
+        "—",
+        elt("strong", "Karl Popper"),
+        ", preface to the second edition of ",
+        elt("em", "The Open Society and Its Enemies"),
+        ", 1950"
+    ));
+
+    container.appendChild(quote)
+
+    
