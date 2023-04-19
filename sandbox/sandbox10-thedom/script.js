@@ -75,6 +75,7 @@ for ( i = 0; i <= container.children.length-1; i++){
 // below is modified from https://eloquentjavascript.net/14_dom.html
 
 let quote = document.createElement("blockquote")
+let testElement = document.createElement("div")
 quote.textContent = "This is a famous quote"
 quote.setAttribute("id", "quote")
 
@@ -93,7 +94,8 @@ function elt(type, ...children) {
         elt("strong", "Karl Popper"),
         ", preface to the second edition of ",
         elt("em", "The Open Society and Its Enemies"),
-        ", 1950"
+        ", 1950",
+        elt("em", "test em")
     ));
 
     container.appendChild(quote)
