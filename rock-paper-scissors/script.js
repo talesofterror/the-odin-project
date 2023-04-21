@@ -97,7 +97,7 @@ function screenSelector() {
 		setTimeout(()=>{
 			gameTextBox.style.height = "400px";
 			gameTextBox.style.marginTop = "10%"
-		}, 1)
+		}, 100)
 		screenState = "game-screen"
 	} else if (screenState == "game-screen") {
 		landingScreen.style.display = "block"
@@ -108,9 +108,25 @@ function screenSelector() {
 	}
 }
 
+let roundContainer = document.querySelector(".round-container")
+
+// MP4 ATTEMPT: video does not align properly with window resize
+let videoWrapper = document.createElement("div")
+videoWrapper.classList.add("video-wrapper")
+let videoSource = document.createElement("video")
+videoSource.src = "images/gametext.bg.mp4";
+videoSource.autoplay = true;
+videoSource.loop = true;
+videoSource.muted = "muted"
+videoSource.play()
+// videoWrapper.appendChild(videoSource)
+// roundContainer.insertBefore(videoWrapper, roundContainer.firstElementChild)
+// roundContainer.appendChild(videoWrapper)
+// roundContainer.style.background = "url(images/gametext.bg.r.fs.gif)"
+
+
+
 // GAME FUNCTIONS
-
-
 
 function game() {
 	let result
