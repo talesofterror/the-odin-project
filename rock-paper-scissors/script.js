@@ -87,6 +87,8 @@ function uVisualizerRandomizer(type) {
 	return decision
 }
 
+// GAME STATE
+
 let gameTextBox = document.querySelector(".game-text")
 let screenState = "landing-screen"
 function screenSelector() {
@@ -96,7 +98,7 @@ function screenSelector() {
 		container.style.maxWidth = "1000px";
 		setTimeout(()=>{
 			gameTextBox.style.height = "400px";
-			gameTextBox.style.marginTop = "10%"
+			gameTextBox.style.marginTop = "7%"
 		}, 100)
 		screenState = "game-screen"
 	} else if (screenState == "game-screen") {
@@ -111,14 +113,14 @@ function screenSelector() {
 let roundContainer = document.querySelector(".round-container")
 
 // MP4 ATTEMPT: video does not align properly with window resize
-let videoWrapper = document.createElement("div")
-videoWrapper.classList.add("video-wrapper")
-let videoSource = document.createElement("video")
-videoSource.src = "images/gametext.bg.mp4";
-videoSource.autoplay = true;
-videoSource.loop = true;
-videoSource.muted = "muted"
-videoSource.play()
+// let videoWrapper = document.createElement("div")
+// videoWrapper.classList.add("video-wrapper")
+// let videoSource = document.createElement("video")
+// videoSource.src = "images/gametext.bg.mp4";
+// videoSource.autoplay = true;
+// videoSource.loop = true; 
+// videoSource.muted = "muted"
+// videoSource.play()
 // videoWrapper.appendChild(videoSource)
 // roundContainer.insertBefore(videoWrapper, roundContainer.firstElementChild)
 // roundContainer.appendChild(videoWrapper)
