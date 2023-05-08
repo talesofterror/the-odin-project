@@ -101,7 +101,7 @@ let gameTextBox = document.querySelector(".game-text")
 let playerChoiceImage = document.querySelector(".player-choice-image")
 let computerChoiceImage = document.querySelector(".computer-choice-image")
 let screenState = "landing-screen"
-let timerOffScroll = 100
+let timerOffsetScroll = 100
 let timerStart
 
 function screenSelector() {
@@ -113,7 +113,7 @@ function screenSelector() {
 		setTimeout(()=>{
 			gameTextBox.style.height = "400px";
 			gameTextBox.style.marginTop = "7%"
-		}, timerOffsetStart)
+		}, timerOffsetScroll)
 		screenState = "game-screen"
 	} else if (screenState == "game-screen") {
 		landingScreen.style.display = "block"
