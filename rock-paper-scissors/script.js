@@ -9,8 +9,6 @@ landingImage.src = "images/rps-circle-ezgif.gif"
 
 let container = document.querySelector(".container")
 let gameScreen = document.querySelector(".game-screen")
-let playerChoiceImage = document.querySelector(".player-choice-image")
-let computerChoiceImage = document.querySelector(".computer-choice-image")
 
 let computerOptions = ["rock", "paper", "scissors"]
 
@@ -60,46 +58,62 @@ function userChooser () {
 	}
 }
 
+let userChoiceString
 function userChoiceVisualizer() {
 	if (userChoice.value == "rock") {
-		landingImage.src = uVisualizerRandomizer("rock") 
+		landingImage.src = visualizerRandomizer(userChoice.value) 
 	} else if (userChoice.value == "paper") {
-		landingImage.src = uVisualizerRandomizer("paper") 
+		landingImage.src = visualizerRandomizer(userChoice.value) 
 	} else if (userChoice.value == "scissors") {
-		landingImage.src = uVisualizerRandomizer("scissors") 
-	}
+		landingImage.src = visualizerRandomizer(userChoice.value) 
+	} 
 }
 
-function uVisualizerRandomizer(type) {
-	let choicesR = ["images/b1p-rock.png", "images/b2p-rock.png"]
-	let choicesP = ["images/b1p-paper.png", "images/b2p-paper.png"]
-	let choicesS = ["images/b1p-scissors.png", "images/b2p-scissors.png"]
+function visualizerRandomizer(type) {
+	let playerRock = ["images/b1p-rock.png", "images/b2p-rock.png"]
+	let playerPaper = ["images/b1p-paper.png", "images/b2p-paper.png"]
+	let playerScissors = ["images/b1p-scissors.png", "images/b2p-scissors.png"]
 	let decision
 
 	if (type == "rock") {
-		decision = choicesR[randomValue(2)]
+		decision = playerRock[randomValue(2)]
 	} else if (type == "paper") {
-		decision = choicesP[randomValue(2)]
+		decision = playerPaper[randomValue(2)]
 	} else if (type == "scissors") {
-		decision = choicesS[randomValue(2)]
+		decision = playerScissors[randomValue(2)]
 	}
+
+	userChoiceString = decision
 
 	return decision
 }
 
 // GAME STATE
 
+/*
+need to access: 
+	- player-box.image
+	- computer-box.image
+	- game-text.round-container (for fight announcement and game rounds)
+*/
+
 let gameTextBox = document.querySelector(".game-text")
+let playerChoiceImage = document.querySelector(".player-choice-image")
+let computerChoiceImage = document.querySelector(".computer-choice-image")
 let screenState = "landing-screen"
+let timerOffScroll = 100
+let timerStart
+
 function screenSelector() {
 	if (screenState == "landing-screen"){
 		landingScreen.style.display = "none"
 		gameScreen.style.display = "flex";
 		container.style.maxWidth = "1000px";
+		playerChoiceImage.src = userChoiceString;
 		setTimeout(()=>{
 			gameTextBox.style.height = "400px";
 			gameTextBox.style.marginTop = "7%"
-		}, 100)
+		}, timerOffsetStart)
 		screenState = "game-screen"
 	} else if (screenState == "game-screen") {
 		landingScreen.style.display = "block"
@@ -112,21 +126,23 @@ function screenSelector() {
 
 let roundContainer = document.querySelector(".round-container")
 
-// MP4 ATTEMPT: video does not align properly with window resize
-// let videoWrapper = document.createElement("div")
-// videoWrapper.classList.add("video-wrapper")
-// let videoSource = document.createElement("video")
-// videoSource.src = "images/gametext.bg.mp4";
-// videoSource.autoplay = true;
-// videoSource.loop = true; 
-// videoSource.muted = "muted"
-// videoSource.play()
-// videoWrapper.appendChild(videoSource)
-// roundContainer.insertBefore(videoWrapper, roundContainer.firstElementChild)
-// roundContainer.appendChild(videoWrapper)
-// roundContainer.style.background = "url(images/gametext.bg.r.fs.gif)"
+/* 
+onClick FIGHT: 
+	- countdown 3, 2, 1
+		- second * 1000 + timerOffsetStart
+			3: 
+	- display "FIGHT!"
+	- display rounds
+		- one at a time
 
-
+psuedo: 
+	for (i = 0; i < numberOfRounds; i++) {
+		setTimeout( ()=> {
+			makeDiv(),
+			
+		})
+	}
+*/
 
 // GAME FUNCTIONS
 

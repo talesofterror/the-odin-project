@@ -28,8 +28,8 @@ div {
 img {
 	height: auto; 
 	width: auto;
-	max-height: 60vh;
-	max-width: 60vh;
+	max-height:  70vh;
+	max-width: 70vh;
 }
 
 .container {
@@ -64,25 +64,6 @@ img {
 	padding: 0px;
 }
 
-.landing-image-container {
-	width: 100%;
-	max-width: 600px;
-	height: 60vh;
-	display: flex;
-	justify-content: center;
-	z-index: -1;
-	border-bottom: var(--lineThickness) solid var(--accentColor);
-}
-
-.choice-declaration-container {
-	align-items: center;
-	justify-content: left;
-}
-
-.choice-declaration {
-	padding-bottom: 5px;
-}
-
 .choice-box {
 	width: 100%;
 	margin-top: 10px;
@@ -99,23 +80,47 @@ img {
     padding: 0px;
 }
 
+.landing-image-container {
+	width: 100%;
+	max-width: 670vh;
+	height: 60vh;
+	display: flex;
+	justify-content: center;
+	z-index: -1;
+	border-bottom: var(--lineThickness) solid var(--accentColor);
+}
+
 .landing-bottom-container {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
 	justify-content: right;
+	/* border: 1px red solid; */
 }
 
 .landing-bottom {
-	width: 50%;
+	width: 100%;
 	min-width: 25%;
 	text-align: right;
+	/* border: 1px blue solid; */
+}
+
+.choice-declaration-container {
+	align-items: left;
+	justify-content: left;
+	width: 100%;
+	/* border: 1px red solid; */
+}
+
+.choice-declaration {
+	padding-bottom: 5px;
+	/* border: 1px blue solid; */
 }
 
 .fight-button {
-	width: 25%;
-	min-width: 25%;
+	width: 30%;
+	min-width: 30%;
 	display: none;
 	vertical-align: top;
 	text-align: center;
@@ -124,6 +129,7 @@ img {
 	text-transform: uppercase;
 	-webkit-text-stroke: 1px white;
 	padding-bottom: 15px;
+	border: var(--lineThickness) black solid;
 	border-radius: 50px;
 	cursor: pointer;
 }
@@ -165,7 +171,7 @@ img {
 	height: 5px;
 	transition: all 0.5s linear;
 	overflow: hidden;
-	max-height: 60vh; 
+	max-height: 70vh; 
 	min-width: 33.3%;
 	border: var(--lineThickness) solid var(--accentColor);
 	border-radius: 50px;
