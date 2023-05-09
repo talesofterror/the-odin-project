@@ -103,6 +103,7 @@ function screenSelector() {
 		gameScreen.style.display = "none";
 		gameTextBox.style.height = "5px";
 		gameTextBox.style.marginTop = "30.5%"
+		resetGame()
 		screenState = "landing-screen"
 	}
 }
@@ -122,8 +123,6 @@ let playerChoiceImage = document.querySelector(".player-choice-image")
 let computerChoiceImage = document.querySelector(".computer-choice-image")
 let computerBox = document.querySelector(".computer-box")
 let screenState = "landing-screen"
-let t_OffsetScroll = 100
-let t_interval = 500
 
 let qMarksContainer = document.createElement("div")
 let qmarks = document.createElement("div")
@@ -134,23 +133,47 @@ computerBox.insertBefore(qMarksContainer, computerChoiceImage)
 qMarksContainer.appendChild(qmarks)
 let endPiece = roundContainer.lastElementChild
 
-let actionText = "1"
+let actionBox = document.createElement("div")
+actionBox.classList.add("round-text")
+roundContainer.insertBefore(actionBox, endPiece)
+let actionText = ""
+
+let t_OpeningOffset = 100
 
 function startGame () {
 	setTimeout(()=>{
 		gameTextBox.style.height = "400px";
 		gameTextBox.style.marginTop = "7%"
 		countDown()
-	}, t_OffsetScroll)
+	}, t_OpeningOffset)
 }
 
+let t_interval = 500
 function countDown() {
-	setTimeout(() => {
-		let actionBox = document.createElement("div")
-		actionBox.classList.add("round-text")
-		roundContainer.insertBefore(actionBox, endPiece)
-		actionBox.textContent = actionText
-	}, t_OffsetScroll + t_interval)
+
+	for (i = 1; i <= 4; i++){
+		countDownTimeout(i)
+	}
+
+	function countDownTimeout(i) {
+		if (i == 4){
+			setTimeout(() => {
+				actionBox.textContent = "FIGHT!"
+			}, t_OpeningOffset + t_interval * i)
+		} else {
+			i == 1 ? 
+			setTimeout(() => {
+				actionBox.textContent = i
+			}, t_OpeningOffset + t_interval - 100)
+			: setTimeout(() => {
+				actionBox.textContent = i
+			  }, t_OpeningOffset + t_interval * i)
+		}
+	}
+}
+
+function resetGame() {
+	actionBox.remove()
 }
 
 /* 
