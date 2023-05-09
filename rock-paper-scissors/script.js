@@ -90,30 +90,13 @@ function visualizerRandomizer(type) {
 
 // GAME STATE
 
-/*
-need to access: 
-	- player-box.image
-	- computer-box.image
-	- game-text.round-container (for fight announcement and game rounds)
-*/
-
-let gameTextBox = document.querySelector(".game-text")
-let playerChoiceImage = document.querySelector(".player-choice-image")
-let computerChoiceImage = document.querySelector(".computer-choice-image")
-let screenState = "landing-screen"
-let timerOffsetScroll = 100
-let timerStart
-
 function screenSelector() {
 	if (screenState == "landing-screen"){
 		landingScreen.style.display = "none"
 		gameScreen.style.display = "flex";
 		container.style.maxWidth = "1000px";
 		playerChoiceImage.src = userChoiceString;
-		setTimeout(()=>{
-			gameTextBox.style.height = "400px";
-			gameTextBox.style.marginTop = "7%"
-		}, timerOffsetScroll)
+		startGame();
 		screenState = "game-screen"
 	} else if (screenState == "game-screen") {
 		landingScreen.style.display = "block"
@@ -124,7 +107,51 @@ function screenSelector() {
 	}
 }
 
+// GAME SCREEN
+
+/*
+need to access: 
+	- player-box.image
+	- computer-box.image
+	- game-text.round-container (for fight announcement and game rounds)
+*/
+
 let roundContainer = document.querySelector(".round-container")
+let gameTextBox = document.querySelector(".game-text")
+let playerChoiceImage = document.querySelector(".player-choice-image")
+let computerChoiceImage = document.querySelector(".computer-choice-image")
+let computerBox = document.querySelector(".computer-box")
+let screenState = "landing-screen"
+let t_OffsetScroll = 100
+let t_interval = 500
+
+let qMarksContainer = document.createElement("div")
+let qmarks = document.createElement("div")
+qMarksContainer.classList.add("qmarks-container")
+qmarks.classList.add("qmarks")
+qmarks.textContent = "???"
+computerBox.insertBefore(qMarksContainer, computerChoiceImage)
+qMarksContainer.appendChild(qmarks)
+let endPiece = roundContainer.lastElementChild
+
+let actionText = "1"
+
+function startGame () {
+	setTimeout(()=>{
+		gameTextBox.style.height = "400px";
+		gameTextBox.style.marginTop = "7%"
+		countDown()
+	}, t_OffsetScroll)
+}
+
+function countDown() {
+	setTimeout(() => {
+		let actionBox = document.createElement("div")
+		actionBox.classList.add("round-text")
+		roundContainer.insertBefore(actionBox, endPiece)
+		actionBox.textContent = actionText
+	}, t_OffsetScroll + t_interval)
+}
 
 /* 
 onClick FIGHT: 
@@ -138,8 +165,8 @@ onClick FIGHT:
 psuedo: 
 	for (i = 0; i < numberOfRounds; i++) {
 		setTimeout( ()=> {
-			makeDiv(),
-			
+			makeDiv(), 
+			timerOffsetScroll + (interval * i)
 		})
 	}
 */
