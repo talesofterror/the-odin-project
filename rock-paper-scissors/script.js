@@ -133,10 +133,9 @@ computerBox.insertBefore(qMarksContainer, computerChoiceImage)
 qMarksContainer.appendChild(qmarks)
 let endPiece = roundContainer.lastElementChild
 
-let actionBox = document.createElement("div")
-actionBox.classList.add("round-text")
-roundContainer.insertBefore(actionBox, endPiece)
-let actionText = ""
+let countdownContainer = document.createElement("div")
+countdownContainer.classList.add("countdown")
+roundContainer.insertBefore(countdownContainer, endPiece)
 
 let t_OpeningOffset = 100
 
@@ -158,22 +157,54 @@ function countDown() {
 	function countDownTimeout(i) {
 		if (i == 4){
 			setTimeout(() => {
-				actionBox.textContent = "FIGHT!"
+				countdownContainer.textContent = "FIGHT!"
+				startRounds()
 			}, t_OpeningOffset + t_interval * i)
 		} else {
 			i == 1 ? 
 			setTimeout(() => {
-				actionBox.textContent = i
+				countdownContainer.textContent = i
 			}, t_OpeningOffset + t_interval - 100)
 			: setTimeout(() => {
-				actionBox.textContent = i
+				countdownContainer.textContent = i
 			  }, t_OpeningOffset + t_interval * i)
 		}
 	}
 }
 
+let stage = document.createElement("div")
+stage.id = "stage"
+function startRounds() {
+	roundContainer.insertBefore(stage, endPiece)
+
+	clearArea()
+	displayRounds()
+	
+	function clearArea() {
+		setTimeout(()=>{
+			countdownContainer.remove()
+		}, t_OpeningOffset + t_interval)
+	}
+
+	function displayRounds() {
+		for (i = 1; i <= numberOfRounds; i++){
+			roundsTimeout(i)
+		}
+		function roundsTimeout(i) {
+			setTimeout(()=> {
+				let r_Text = document.createElement("div")
+				r_Text.classList.add("round-text")
+				stage.appendChild(r_Text)
+				r_Text.textContent = i
+			}, t_OpeningOffset + 200 + t_interval * i)
+		}
+	}
+}
+
 function resetGame() {
-	actionBox.remove()
+	let target = roundContainer.children[1]
+	roundContainer.removeChild(target)
+	clearInterval()
 }
 
 /* 
@@ -187,6 +218,11 @@ onClick FIGHT:
 
 psuedo: 
 	for (i = 0; i < numberOfRounds; i++) {
+		timeoutFunction()
+		})
+	}
+
+	function timeoutFunction() {
 		setTimeout( ()=> {
 			makeDiv(), 
 			timerOffsetScroll + (interval * i)

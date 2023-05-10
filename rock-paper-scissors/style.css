@@ -220,6 +220,30 @@ img {
 	background-position: center;
 }
 
+
+.countdown {
+	flex: 1;
+	padding: 15px;
+	padding-top: 25px;
+	text-align: center;
+	font-size: 2em;
+}
+
+.round-text {
+	flex: 1;
+	padding: 15px;
+	padding-top: 10px;
+	text-align: center;
+	font-size: 1em;
+}
+
+.end-piece {
+	height: 50px;
+	width: 100%;
+	border-width: 0px;
+	padding-top: 15px;
+}
+
 video {
 	position: absolute; 
 	top: -10%;
@@ -236,21 +260,6 @@ video {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-
-.round-text {
-	flex: 1;
-	padding: 15px;
-	padding-top: 25px;
-	text-align: center;
-	font-size: 2em;
-}
-
-.round-text.end-piece {
-	height: 50px;
-	width: 100%;
-	border-width: 0px;
-	padding-top: 15px;
 }
 
 @font-face {
