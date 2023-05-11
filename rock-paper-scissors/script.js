@@ -133,10 +133,6 @@ computerBox.insertBefore(qMarksContainer, computerChoiceImage)
 qMarksContainer.appendChild(qmarks)
 let endPiece = roundContainer.lastElementChild
 
-let countdownContainer = document.createElement("div")
-countdownContainer.classList.add("countdown")
-roundContainer.insertBefore(countdownContainer, endPiece)
-
 let t_OpeningOffset = 100
 
 function startGame () {
@@ -147,8 +143,12 @@ function startGame () {
 	}, t_OpeningOffset)
 }
 
+
 let t_interval = 500
 function countDown() {
+	let countdownContainer = document.createElement("div")
+	countdownContainer.classList.add("countdown")
+	roundContainer.insertBefore(countdownContainer, endPiece)
 
 	for (i = 1; i <= 4; i++){
 		countDownTimeout(i)
@@ -172,9 +172,10 @@ function countDown() {
 	}
 }
 
-let stage = document.createElement("div")
-stage.id = "stage"
 function startRounds() {
+	let stage = document.createElement("div")
+	stage.id = "stage"
+
 	roundContainer.insertBefore(stage, endPiece)
 
 	clearArea()
@@ -182,7 +183,7 @@ function startRounds() {
 	
 	function clearArea() {
 		setTimeout(()=>{
-			countdownContainer.remove()
+			roundContainer.children[1].remove()
 		}, t_OpeningOffset + t_interval)
 	}
 
@@ -233,8 +234,9 @@ psuedo:
 // GAME FUNCTIONS
 
 function game() {
-	let result
+	let outcome = []
 	c = computerChooser()
+	let result
 	if (userChoice.value == c) {
 		result = "Tie!"
 	} else if (userChoice.value == "rock" && c == "paper") {
@@ -253,14 +255,23 @@ function game() {
 		result = "You must choose rock, paper, or scissors!"
 	}
 
-	return result
+	outcome[0] = userChoice.value
+	outcome[1] = c
+	outcome[2] = result
+
+	return outcome
 }
 
+// function rounds () {
+// 	let result = [numberOfRounds]
+// 	for (i = 0; i < numberOfRounds; i ++) {
+// 		console.log("Round " + (i+ 1) + ": " + game())
+// 	}
+// }
+
 function rounds () {
-	let result = [numberOfRounds]
-	for (i = 0; i < numberOfRounds; i ++) {
-		console.log("Round " + (i+ 1) + ": " + game())
-	}
+	let targets = roundContainer.querySelector(stage)
+
 }
 
 // WINDOWS COMPATABILITY
