@@ -175,6 +175,19 @@ function countDown() {
 function startRounds() {
 	let stage = document.createElement("div")
 	stage.id = "stage"
+	
+	function roundMaker (parent, u, c, r, i) {
+		let roundNumber = document.createElement("div")
+		let roundInfo = document.createElement("div")
+		roundNumber.classList.add("round-number")
+		roundInfo.classList.add("round-info")
+		parent.appendChild(roundNumber)
+		parent.appendChild(roundInfo)
+		roundNumber.textContent = "Round " + i + ": "
+		roundInfo.textContent = "User: " + u +
+								"\nComputer: " + c + 
+								"\n" + r
+	}
 
 	roundContainer.insertBefore(stage, endPiece)
 
@@ -196,7 +209,10 @@ function startRounds() {
 				let r_Text = document.createElement("div")
 				r_Text.classList.add("round-text")
 				stage.appendChild(r_Text)
-				r_Text.textContent = i
+				let gameInst = []
+				gameInst = game()
+				console.log(gameInst[1])
+				roundMaker(r_Text, gameInst[0].toUpperCase(), gameInst[1].toUpperCase(), gameInst[2], i)
 			}, t_OpeningOffset + 200 + t_interval * i)
 		}
 	}
@@ -240,7 +256,7 @@ function game() {
 	if (userChoice.value == c) {
 		result = "Tie!"
 	} else if (userChoice.value == "rock" && c == "paper") {
-		result = "You lose"
+		result = "You lose!"
 	} else if (userChoice.value == "rock" && c == "scissors") {
 		result = "You win!"
 	} else if (userChoice.value == "paper" && c == "rock") {
