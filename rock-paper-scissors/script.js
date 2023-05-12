@@ -285,11 +285,6 @@ function game() {
 // 	}
 // }
 
-function rounds () {
-	let targets = roundContainer.querySelector(stage)
-
-}
-
 // WINDOWS COMPATABILITY
 
 var OSName="Unknown OS";
