@@ -17,16 +17,6 @@ let computerChooser = () => computerOptions[randomValue(3)]
 let c
 let numberOfRounds = 5
 
-let arrayTest = new Array(numberOfRounds)
-
-function arrayTestDo() {
-	for (i = 0; i < arrayTest.length; i++) {
-		arrayTest[i] = "array index " + i
-		console.log(arrayTest[i])
-	}
-}
-
-
 // EVENT LISTENER
 
 addEventListener ("change", 
@@ -58,7 +48,6 @@ function userChooser () {
 	}
 }
 
-let userChoiceString
 function userChoiceVisualizer() {
 	if (userChoice.value == "rock") {
 		landingImage.src = visualizerRandomizer(userChoice.value) 
@@ -70,9 +59,9 @@ function userChoiceVisualizer() {
 }
 
 function visualizerRandomizer(type) {
-	let playerRock = ["images/b1p-rock.png", "images/b2p-rock.png"]
-	let playerPaper = ["images/b1p-paper.png", "images/b2p-paper.png"]
-	let playerScissors = ["images/b1p-scissors.png", "images/b2p-scissors.png"]
+	let playerRock = ["images/b1p-r.png", "images/b2p-r.png"]
+	let playerPaper = ["images/b1p-p.png", "images/b2p-p.png"]
+	let playerScissors = ["images/b1p-s.png", "images/b2p-s.png"]
 	let decision
 
 	if (type == "rock") {
@@ -110,17 +99,11 @@ function screenSelector() {
 
 // GAME SCREEN
 
-/*
-need to access: 
-	- player-box.image
-	- computer-box.image
-	- game-text.round-container (for fight announcement and game rounds)
-*/
-
 let roundContainer = document.querySelector(".round-container")
 let gameTextBox = document.querySelector(".game-text")
 let playerChoiceImage = document.querySelector(".player-choice-image")
 let computerChoiceImage = document.querySelector(".computer-choice-image")
+let computerChoiceString
 let computerBox = document.querySelector(".computer-box")
 let screenState = "landing-screen"
 
@@ -132,9 +115,10 @@ qmarks.textContent = "???"
 computerBox.insertBefore(qMarksContainer, computerChoiceImage)
 qMarksContainer.appendChild(qmarks)
 let endPiece = roundContainer.lastElementChild
+	
+	// timeouts
 
 let t_OpeningOffset = 100
-
 function startGame () {
 	setTimeout(()=>{
 		gameTextBox.style.height = "400px";
@@ -142,7 +126,6 @@ function startGame () {
 		countDown()
 	}, t_OpeningOffset)
 }
-
 
 let t_interval = 500
 function countDown() {
@@ -176,17 +159,52 @@ function startRounds() {
 	let stage = document.createElement("div")
 	stage.id = "stage"
 	
-	function roundMaker (parent, u, c, r, i) {
+	// function roundMaker (parent, u, c, r, i) {
+	// 	let roundNumber = document.createElement("div")
+	// 	let roundInfo = document.createElement("div")
+	// 	roundNumber.classList.add("round-number")
+	// 	roundInfo.classList.add("round-info")
+	// 	parent.appendChild(roundNumber)
+	// 	parent.appendChild(roundInfo)
+	// 	roundNumber.textContent = "Round " + i + ": "
+	// 	roundInfo.textContent = "User: " + u +
+	// 							"\nComputer: " + c + 
+	// 							"\n" + r
+	// }
+
+	function roundMaker2 (parent, u, c, r, i) {
+		let roundPlayerImg = document.createElement("div")
+		let roundComputerImg = document.createElement("div")
 		let roundNumber = document.createElement("div")
-		let roundInfo = document.createElement("div")
+		roundPlayerImg.classList.add("round-img")
 		roundNumber.classList.add("round-number")
-		roundInfo.classList.add("round-info")
+		roundComputerImg.classList.add("round-img")
+		parent.appendChild(roundPlayerImg)
 		parent.appendChild(roundNumber)
-		parent.appendChild(roundInfo)
-		roundNumber.textContent = "Round " + i + ": "
-		roundInfo.textContent = "User: " + u +
-								"\nComputer: " + c + 
-								"\n" + r
+		parent.appendChild(roundComputerImg)
+		roundNumber.textContent = "Round " + i
+		roundPlayerImg.innerHTML = `<img src="images/${iconizer("user")}">`
+		roundComputerImg.innerHTML = `<img src="images/${iconizer("not the user")}">`
+	}
+
+	function iconizer (belligerent) {
+		if (belligerent == "user"){
+			if (userChoiceString[11] == "r") {
+				return "rock-sm.png"
+			} else if (userChoiceString[11] == "p") {
+				return "paper-sm.png"
+			} else {
+				return "scissors-sm.png"
+			}
+		} else {
+			if (computerChoiceString[11] == "r") {
+				return "rock-sm.png"
+			} else if (computerChoiceString[11] == "p") {
+				return "paper-sm.png"
+			} else {
+				return "scissors-sm.png"
+			}
+		}
 	}
 
 	roundContainer.insertBefore(stage, endPiece)
@@ -197,13 +215,20 @@ function startRounds() {
 	function clearArea() {
 		setTimeout(()=>{
 			roundContainer.children[1].remove()
+			// countdownContainer.remove()
 		}, t_OpeningOffset + t_interval)
 	}
 
 	function displayRounds() {
+
+		setTimeout (() => {
+			qmarks.textContent = ""
+		}, t_OpeningOffset + 200 + t_interval)
+
 		for (i = 1; i <= numberOfRounds; i++){
 			roundsTimeout(i)
 		}
+
 		function roundsTimeout(i) {
 			setTimeout(()=> {
 				let r_Text = document.createElement("div")
@@ -211,16 +236,46 @@ function startRounds() {
 				stage.appendChild(r_Text)
 				let gameInst = []
 				gameInst = game()
-				console.log(gameInst[1])
-				roundMaker(r_Text, gameInst[0].toUpperCase(), gameInst[1].toUpperCase(), gameInst[2], i)
+				console.log("computer choice = " + gameInst[1])
+				computerChoiceImage.src = computerChoiceVisualizer(gameInst[1])
+				roundMaker2(r_Text, gameInst[0].toUpperCase(), gameInst[1].toUpperCase(), gameInst[2], i)
 			}, t_OpeningOffset + 200 + t_interval * i)
 		}
+	}
+
+	function computerChoiceVisualizer (c) {
+		let computerRock = ["images/b1c-r.png", "images/b2c-r.png"]
+		let computerPaper = ["images/b1c-p.png", "images/b2c-p.png"]
+		let computerScissors = ["images/b1c-s.png", "images/b2c-s.png"]
+
+		if (c == "rock") {
+			if (userChoiceString[8] == 2){
+				computerChoiceString = computerRock[0]
+			} else {
+				computerChoiceString = computerRock[1]
+			}
+		} else if (c == "paper") {
+			if (userChoiceString[8] == 2){
+				computerChoiceString = computerPaper[0]
+			} else {
+				computerChoiceString = computerPaper[1]
+			}
+		} else {
+			if (userChoiceString[8] == 2){
+				computerChoiceString = computerScissors[0]
+			} else {
+				computerChoiceString = computerScissors[1]
+			}
+		}
+		console.log("comp visualizer string: " + computerChoiceString)
+
+		return computerChoiceString
 	}
 }
 
 function resetGame() {
-	let target = roundContainer.children[1]
-	roundContainer.removeChild(target)
+	stage.remove()
+	userChoice.value = "default"
 	clearInterval()
 }
 
