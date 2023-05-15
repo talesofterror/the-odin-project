@@ -187,6 +187,34 @@ function startRounds() {
 		roundComputerImg.innerHTML = `<img src="images/${iconizer("not the user")}">`
 	}
 
+	function computerChoiceVisualizer (c) {
+		let computerRock = ["images/b1c-r.png", "images/b2c-r.png"]
+		let computerPaper = ["images/b1c-p.png", "images/b2c-p.png"]
+		let computerScissors = ["images/b1c-s.png", "images/b2c-s.png"]
+
+		if (c == "rock") {
+			if (userChoiceString[8] == 2){
+				computerChoiceString = computerRock[0]
+			} else {
+				computerChoiceString = computerRock[1]
+			}
+		} else if (c == "paper") {
+			if (userChoiceString[8] == 2){
+				computerChoiceString = computerPaper[0]
+			} else {
+				computerChoiceString = computerPaper[1]
+			}
+		} else {
+			if (userChoiceString[8] == 2){
+				computerChoiceString = computerScissors[0]
+			} else {
+				computerChoiceString = computerScissors[1]
+			}
+		}
+
+		return computerChoiceString
+	}
+
 	function iconizer (belligerent) {
 		if (belligerent == "user"){
 			if (userChoiceString[11] == "r") {
@@ -223,10 +251,20 @@ function startRounds() {
 
 		setTimeout (() => {
 			qmarks.textContent = ""
+			roundContainer.style.backgroundImage = "url('')"
+			roundContainer.style.backgroundColor = "var(--accentColor)"
 		}, t_OpeningOffset + 200 + t_interval)
 
 		for (i = 1; i <= numberOfRounds; i++){
 			roundsTimeout(i)
+			roundSizeTimeout(i)
+		}
+
+		function roundSizeTimeout (i) {
+			setTimeout(() => {
+				document.querySelectorAll(".round-text")
+					.forEach(element => element.style.fontSize = "1em")
+			}, t_OpeningOffset + 500 + t_interval * i)
 		}
 
 		function roundsTimeout(i) {
@@ -236,40 +274,13 @@ function startRounds() {
 				stage.appendChild(r_Text)
 				let gameInst = []
 				gameInst = game()
+				console.log("** ROUND " + i + " **")
+				console.log("user choice = " + gameInst[0])
 				console.log("computer choice = " + gameInst[1])
 				computerChoiceImage.src = computerChoiceVisualizer(gameInst[1])
 				roundMaker2(r_Text, gameInst[0].toUpperCase(), gameInst[1].toUpperCase(), gameInst[2], i)
 			}, t_OpeningOffset + 200 + t_interval * i)
 		}
-	}
-
-	function computerChoiceVisualizer (c) {
-		let computerRock = ["images/b1c-r.png", "images/b2c-r.png"]
-		let computerPaper = ["images/b1c-p.png", "images/b2c-p.png"]
-		let computerScissors = ["images/b1c-s.png", "images/b2c-s.png"]
-
-		if (c == "rock") {
-			if (userChoiceString[8] == 2){
-				computerChoiceString = computerRock[0]
-			} else {
-				computerChoiceString = computerRock[1]
-			}
-		} else if (c == "paper") {
-			if (userChoiceString[8] == 2){
-				computerChoiceString = computerPaper[0]
-			} else {
-				computerChoiceString = computerPaper[1]
-			}
-		} else {
-			if (userChoiceString[8] == 2){
-				computerChoiceString = computerScissors[0]
-			} else {
-				computerChoiceString = computerScissors[1]
-			}
-		}
-		console.log("comp visualizer string: " + computerChoiceString)
-
-		return computerChoiceString
 	}
 }
 

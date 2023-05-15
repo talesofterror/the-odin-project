@@ -7,7 +7,6 @@
 	padding: 0px;
 	margin: 0px;
 	font-family: "ConcertOne";
-	vertical-align: center;
 	outline: 0px blue dotted;
 }
 
@@ -54,6 +53,7 @@ img {
 	font-size: 1.3em;
 	padding-bottom: 25px;
 	border-bottom: var(--lineThickness) solid white;
+	/* text-shadow: white 2px 2px; */
 }
 
 /* LANDING SCREEN */
@@ -159,6 +159,7 @@ img {
 
 .game-screen img {
 	max-width: 100%;
+	padding-bottom: 0px;
 }
 
 .game-element {
@@ -181,14 +182,15 @@ img {
 }
 
 .player-box {
-	flex-shrink: 2;
+	flex-shrink: 1;
+	padding-bottom: 0px;
 }
 
 .computer-box {
 	position: relative;
 	align-items: center;
 	justify-content: center;
-	flex-shrink: 2;
+	flex-shrink: 1;
 }
 
 .qmarks-container {
@@ -237,39 +239,37 @@ img {
 }
 
 .round-text {
-	transition: 1000ms;
-	flex: 0.5;;
-	margin: 5px 0px;
+	transition: all 200ms ease;
+	flex: auto;
+	margin: 0px 0px;
 	display: flex;
+	margin: 1.2% 0px;
 	align-items: center;
-	height: auto;
-	max-height: 10%;
-	padding: 10px;
-	padding-top: 10px;
+	justify-content: center;
+	height: 100%;
+	max-height: 18%;
+	padding: 0px;
+	padding-top: 0px;
 	text-align: center;
-	font-size: 0.7em;
+	font-size: 1.4em;
+	/* text-shadow: white 2px 2px; */
 }
 
 .round-text img {
 	height: 100%;
-	width: auto;
 }
 
 .round-number{
 	width: 50%;
-}
-
-.round-info {
-	font-size: 0.5em;
-	white-space: pre;
-	text-align: left;
+	color: #000;
 }
 
 .round-img {
+	flex-grow: auto;
 	background-color:#000000;
 	border-radius: 100px;
-	height: auto;
-	width: 25%;
+	height: 100%;
+	width: auto;
 }
 
 .end-piece {
@@ -278,10 +278,10 @@ img {
 	/* padding: 15px; */
 	text-align: center;
 	font-size: 1em;
-	height: 5%;
+	height: 0%;
 	width: 100%;
 	border-width: 0px;
-	padding-top: 15px;
+	padding-top: 0px;
 }
 
 video {
@@ -305,5 +305,10 @@ video {
 @font-face {
 	font-family: "ConcertOne";
 	src: url(resources/ConcertOne-Regular.ttf)
+}
+
+@font-face {
+	font-family: "RoadRage";
+	src: url(resources/Road_Rage.otf)
 }
 
