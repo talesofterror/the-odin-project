@@ -19,7 +19,7 @@ let numberOfRounds = 5
 
 // EVENT LISTENER
 
-addEventListener ("change", 
+userChoice.addEventListener ("change", 
 () => {
 
 userChooser()
@@ -157,22 +157,10 @@ function countDown() {
 
 function startRounds() {
 	let stage = document.createElement("div")
+	let tally
 	stage.id = "stage"
 	
-	// function roundMaker (parent, u, c, r, i) {
-	// 	let roundNumber = document.createElement("div")
-	// 	let roundInfo = document.createElement("div")
-	// 	roundNumber.classList.add("round-number")
-	// 	roundInfo.classList.add("round-info")
-	// 	parent.appendChild(roundNumber)
-	// 	parent.appendChild(roundInfo)
-	// 	roundNumber.textContent = "Round " + i + ": "
-	// 	roundInfo.textContent = "User: " + u +
-	// 							"\nComputer: " + c + 
-	// 							"\n" + r
-	// }
-
-	function roundMaker2 (parent, u, c, r, i) {
+	function roundMaker (parent, i) {
 		let roundPlayerImg = document.createElement("div")
 		let roundComputerImg = document.createElement("div")
 		let roundNumber = document.createElement("div")
@@ -258,6 +246,25 @@ function startRounds() {
 		for (i = 1; i <= numberOfRounds; i++){
 			roundsTimeout(i)
 			roundSizeTimeout(i)
+			roundsResultsTimeout(i)
+		}
+
+		let gameInst = []
+		let resultArray = []
+		function roundsTimeout(i) {
+			setTimeout(()=> {
+				let r_Text = document.createElement("div")
+				r_Text.classList.add("round-text")
+				stage.appendChild(r_Text)
+				gameInst = game()
+				console.log("** ROUND " + i + " **")
+				console.log("user choice = " + gameInst[0])
+				console.log("computer choice = " + gameInst[1])
+				console.log("Result = " + gameInst[2])
+				resultArray[i] = gameInst[2]
+				computerChoiceImage.src = computerChoiceVisualizer(gameInst[1])
+				roundMaker(r_Text, i)
+			}, t_OpeningOffset + 200 + t_interval * i)
 		}
 
 		function roundSizeTimeout (i) {
@@ -267,26 +274,27 @@ function startRounds() {
 			}, t_OpeningOffset + 500 + t_interval * i)
 		}
 
-		function roundsTimeout(i) {
-			setTimeout(()=> {
-				let r_Text = document.createElement("div")
-				r_Text.classList.add("round-text")
-				stage.appendChild(r_Text)
-				let gameInst = []
-				gameInst = game()
-				console.log("** ROUND " + i + " **")
-				console.log("user choice = " + gameInst[0])
-				console.log("computer choice = " + gameInst[1])
-				computerChoiceImage.src = computerChoiceVisualizer(gameInst[1])
-				roundMaker2(r_Text, gameInst[0].toUpperCase(), gameInst[1].toUpperCase(), gameInst[2], i)
-			}, t_OpeningOffset + 200 + t_interval * i)
+		function roundsResultsTimeout (i) {
+			setTimeout(() => {
+				stage.children[i-1].children[1].textContent = resultArray[i]
+			}, t_OpeningOffset + 3000 + t_interval * i)
 		}
 	}
+
+	function displayWinner () {
+
+	}
+
 }
 
 function resetGame() {
 	stage.remove()
 	userChoice.value = "default"
+	landingImage.src = "images/rps-circle-ezgif.gif"
+	computerChoiceImage.src = "images/question-marks.2.png"
+	fightButton.style.display = "none"
+	choice.style.display ="none"
+	qmarks.textContent = "???"
 	clearInterval()
 }
 
