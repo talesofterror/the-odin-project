@@ -131,7 +131,7 @@ let t_interval = 500
 function countDown() {
 	let countdownContainer = document.createElement("div")
 	countdownContainer.classList.add("countdown")
-	roundContainer.insertBefore(countdownContainer, endPiece)
+	roundContainer.insertBefore(countdownContainer, roundContainer.children[1])
 
 	for (i = 1; i <= 4; i++){
 		countDownTimeout(i)
@@ -295,6 +295,7 @@ function resetGame() {
 	fightButton.style.display = "none"
 	choice.style.display ="none"
 	qmarks.textContent = "???"
+	roundContainer.style.backgroundImage = "url('images/gametext.bg.r.fs.gif')"
 	clearInterval()
 }
 
