@@ -141,15 +141,19 @@ function countDown() {
 		if (i == 4){
 			setTimeout(() => {
 				countdownContainer.textContent = "FIGHT!"
+				console.log("...FIGHT!")
 				startRounds()
+
 			}, t_OpeningOffset + t_interval * i)
 		} else {
 			i == 1 ? 
 			setTimeout(() => {
 				countdownContainer.textContent = i
+				console.log(i + "...")
 			}, t_OpeningOffset + t_interval - 100)
 			: setTimeout(() => {
 				countdownContainer.textContent = i
+				console.log(i + "...")
 			  }, t_OpeningOffset + t_interval * i)
 		}
 	}
@@ -157,7 +161,7 @@ function countDown() {
 
 function startRounds() {
 	let stage = document.createElement("div")
-	let tally
+	tally = []
 	stage.id = "stage"
 	
 	function roundMaker (parent, i) {
@@ -223,23 +227,26 @@ function startRounds() {
 		}
 	}
 
-	roundContainer.insertBefore(stage, endPiece)
-
+	
 	clearArea()
 	displayRounds()
 	
 	function clearArea() {
 		setTimeout(()=>{
 			roundContainer.children[1].remove()
+			roundContainer.insertBefore(stage, endPiece)
 			// countdownContainer.remove()
 		}, t_OpeningOffset + t_interval)
 	}
 
 	function displayRounds() {
 
+		let gameInst = []
+		let resultArray = []
+
 		setTimeout (() => {
 			qmarks.textContent = ""
-			roundContainer.style.backgroundImage = "url('')"
+			roundContainer.style.backgroundImage = "url('images/roundtext.bg.gif')"
 			roundContainer.style.backgroundColor = "var(--accentColor)"
 		}, t_OpeningOffset + 200 + t_interval)
 
@@ -248,9 +255,7 @@ function startRounds() {
 			roundSizeTimeout(i)
 			roundsResultsTimeout(i)
 		}
-
-		let gameInst = []
-		let resultArray = []
+		
 		function roundsTimeout(i) {
 			setTimeout(()=> {
 				let r_Text = document.createElement("div")
@@ -264,6 +269,7 @@ function startRounds() {
 				resultArray[i] = gameInst[2]
 				computerChoiceImage.src = computerChoiceVisualizer(gameInst[1])
 				roundMaker(r_Text, i)
+				tally[i-1] = gameInst[2]
 			}, t_OpeningOffset + 200 + t_interval * i)
 		}
 
