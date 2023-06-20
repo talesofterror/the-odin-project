@@ -159,9 +159,10 @@ function countDown() {
 	}
 }
 
+let tallyCalculated = [0, 0]
 function startRounds() {
 	let stage = document.createElement("div")
-	tally = []
+	let tally = []
 	stage.id = "stage"
 	
 	function roundMaker (parent, i) {
@@ -254,6 +255,9 @@ function startRounds() {
 			roundsTimeout(i)
 			roundSizeTimeout(i)
 			roundsResultsTimeout(i)
+			if (i == numberOfRounds){
+				displayWinner()
+			}
 		}
 		
 		function roundsTimeout(i) {
@@ -262,15 +266,20 @@ function startRounds() {
 				r_Text.classList.add("round-text")
 				stage.appendChild(r_Text)
 				gameInst = game()
+				resultArray[i] = gameInst[2]
+				computerChoiceImage.src = computerChoiceVisualizer(gameInst[1])
+				tally[i-1] = gameInst[2]
+				tallyAnalizer(i)
+				roundMaker(r_Text, i)
+				consoleText()
+			}, t_OpeningOffset + 200 + t_interval * i)
+			
+			function consoleText() {
 				console.log("** ROUND " + i + " **")
 				console.log("user choice = " + gameInst[0])
 				console.log("computer choice = " + gameInst[1])
 				console.log("Result = " + gameInst[2])
-				resultArray[i] = gameInst[2]
-				computerChoiceImage.src = computerChoiceVisualizer(gameInst[1])
-				roundMaker(r_Text, i)
-				tally[i-1] = gameInst[2]
-			}, t_OpeningOffset + 200 + t_interval * i)
+			}
 		}
 
 		function roundSizeTimeout (i) {
@@ -282,15 +291,40 @@ function startRounds() {
 
 		function roundsResultsTimeout (i) {
 			setTimeout(() => {
-				stage.children[i-1].children[1].textContent = resultArray[i]
+					stage.children[i-1].style.fontSize = "1.3em"
+					stage.children[i-1].children[1].textContent = resultArray[i]
+					shrink(i)
 			}, t_OpeningOffset + 3000 + t_interval * i)
+			
+			function shrink (i) {
+				setTimeout(() => {
+					stage.children[i-1].style.fontSize = "1em"						
+				}, 120)	
+
+			}
 		}
 	}
 
-	function displayWinner () {
+	function tallyAnalizer (i) {
+		if (tally[i-1] == "You win!") {
+			tallyCalculated[0]++
+		} else if (tally[i-1] == "You lose!") {
+			tallyCalculated[1]++
+		} else {}
 
 	}
+}
 
+function displayWinner () {
+	setTimeout(() => {
+		let winner = document.createElement("div")
+		winner.classList.add("winner")
+		let winnerImg = document.createElement("img")
+		winnerImg.src = "images/bx-trophy.svg"
+		winner.appendChild(winnerImg)
+		stage.appendChild(winner)
+		container.children[0].appendChild("div")
+	}, t_OpeningOffset + 5700 + t_interval)
 }
 
 function resetGame() {
@@ -302,6 +336,7 @@ function resetGame() {
 	choice.style.display ="none"
 	qmarks.textContent = "???"
 	roundContainer.style.backgroundImage = "url('images/gametext.bg.r.fs.gif')"
+	tallyCalculated = tallyCalculated.map(i => 0)
 	clearInterval()
 }
 
