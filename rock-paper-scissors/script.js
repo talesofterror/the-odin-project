@@ -162,7 +162,7 @@ function countDown() {
 let tallyCalculated = [0, 0]
 function startRounds() {
 	let stage = document.createElement("div")
-	let tally = []
+	let tallyHolster = []
 	stage.id = "stage"
 	
 	function roundMaker (parent, i) {
@@ -268,8 +268,8 @@ function startRounds() {
 				gameInst = game()
 				resultArray[i] = gameInst[2]
 				computerChoiceImage.src = computerChoiceVisualizer(gameInst[1])
-				tally[i-1] = gameInst[2]
-				tallyAnalizer(i)
+				tallyHolster[i-1] = gameInst[2]
+				tallyCounter(i)
 				roundMaker(r_Text, i)
 				consoleText()
 			}, t_OpeningOffset + 200 + t_interval * i)
@@ -293,6 +293,8 @@ function startRounds() {
 			setTimeout(() => {
 					stage.children[i-1].style.fontSize = "1.3em"
 					stage.children[i-1].children[1].textContent = resultArray[i]
+					stage.children[i-1].children[1].style.WebkitTextStroke 
+						= "1px var(--accentColor)"
 					shrink(i)
 			}, t_OpeningOffset + 3000 + t_interval * i)
 			
@@ -305,14 +307,27 @@ function startRounds() {
 		}
 	}
 
-	function tallyAnalizer (i) {
-		if (tally[i-1] == "You win!") {
+	function tallyCounter (i) {
+		if (tallyHolster[i-1] == "You win!") {
 			tallyCalculated[0]++
-		} else if (tally[i-1] == "You lose!") {
+		} else if (tallyHolster[i-1] == "You lose!") {
 			tallyCalculated[1]++
 		} else {}
-
 	}
+}
+
+function tallyAnalyser() {
+	let result
+
+	if (tallyCalculated[0] > tallyCalculated[1]) {
+		result = "player"
+	} else if (tallyCalculated[1] > tallyCalculated[0]) {
+		result = "computer"
+	} else {
+		result = "tie"
+	}
+
+	return result
 }
 
 function displayWinner () {
@@ -320,10 +335,15 @@ function displayWinner () {
 		let winner = document.createElement("div")
 		winner.classList.add("winner")
 		let winnerImg = document.createElement("img")
-		winnerImg.src = "images/bx-trophy.svg"
+		if (tallyAnalyser() == "player") {
+			winnerImg.src = "images/bx-trophy.svg"
+		} else if (tallyAnalyser() == "computer"){
+			winnerImg.src = "images/bxs-hand-up.svg"
+		} else {
+			winnerImg.src = "images/bxs-shield-minus.svg"
+		}
 		winner.appendChild(winnerImg)
 		stage.appendChild(winner)
-		container.children[0].appendChild("div")
 	}, t_OpeningOffset + 5700 + t_interval)
 }
 
