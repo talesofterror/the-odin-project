@@ -43,8 +43,11 @@ img {
 }
 
 .title-container {
+	display: flex;
+	justify-content: space-between;
 	width: 100%;
 	max-width: 600px;
+	border-bottom: var(--lineThickness) solid white;
 }
 
 .title {
@@ -52,8 +55,25 @@ img {
 	color: var(--accentColor);
 	font-size: 1.3em;
 	padding-bottom: 25px;
-	border-bottom: var(--lineThickness) solid white;
 	/* text-shadow: white 2px 2px; */
+}
+
+.reset-button {
+	width: 40px;
+	height: 40px;
+}
+
+.reset-button img {
+	flex-grow: auto;
+	/* background-color:#000000; */
+	/* border-radius: 100px; */
+	width: 100%;
+	height: 100%;
+	filter: invert(1);
+}
+
+.reset-button img:hover {
+	cursor: pointer;
 }
 
 /* LANDING SCREEN */
@@ -82,8 +102,8 @@ img {
 .input {
 	display: block;
 	background-color: black;
-	font-family: "Arial";
-    font-size: 0.5em;
+	font-family: "ConcertOne";
+    font-size: 1em;
     color: white;
     border: 3px var(--accentColor) solid;
 	margin: 0px auto;

@@ -293,8 +293,16 @@ function startRounds() {
 			setTimeout(() => {
 					stage.children[i-1].style.fontSize = "1.3em"
 					stage.children[i-1].children[1].textContent = resultArray[i]
-					stage.children[i-1].children[1].style.WebkitTextStroke 
-						= "1px var(--accentColor)"
+					if (resultArray[i] == "You win!") {
+						stage.children[i-1].children[1].style.WebkitTextStroke 
+							= "1px white"
+					} else if (resultArray[i] == "You lose!") {
+						stage.children[i-1].children[1].style.WebkitTextStroke 
+							= "1px var(--accentColor)"
+						} else {
+						stage.children[i-1].children[1].style.WebkitTextStroke 
+							= "1px grey"
+					}
 					shrink(i)
 			}, t_OpeningOffset + 3000 + t_interval * i)
 			
@@ -330,7 +338,15 @@ function tallyAnalyser() {
 	return result
 }
 
+titleContainer = document.querySelector(".title-container")
 function displayWinner () {
+	
+	let resetLink = document.createElement("a")
+	resetLink.setAttribute('onclick', "screenSelector()")
+	let resetButton = document.querySelector(".reset-button")
+	let resetButtonImg = document.createElement("img")
+	resetButtonImg.src = "images/refresh.png"
+
 	setTimeout(() => {
 		let winner = document.createElement("div")
 		winner.classList.add("winner")
@@ -344,6 +360,8 @@ function displayWinner () {
 		}
 		winner.appendChild(winnerImg)
 		stage.appendChild(winner)
+		resetButton.appendChild(resetLink)
+		resetLink.appendChild(resetButtonImg)
 	}, t_OpeningOffset + 5700 + t_interval)
 }
 
@@ -357,6 +375,7 @@ function resetGame() {
 	qmarks.textContent = "???"
 	roundContainer.style.backgroundImage = "url('images/gametext.bg.r.fs.gif')"
 	tallyCalculated = tallyCalculated.map(i => 0)
+	titleContainer.children[1].children[0].remove();
 	clearInterval()
 }
 
