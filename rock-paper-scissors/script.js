@@ -379,28 +379,6 @@ function resetGame() {
 	clearInterval()
 }
 
-/* 
-onClick FIGHT: 
-	- countdown 3, 2, 1
-		- second * 1000 + timerOffsetStart
-			3: 
-	- display "FIGHT!"
-	- display rounds
-		- one at a time
-
-psuedo: 
-	for (i = 0; i < numberOfRounds; i++) {
-		timeoutFunction()
-		})
-	}
-
-	function timeoutFunction() {
-		setTimeout( ()=> {
-			makeDiv(), 
-			timerOffsetScroll + (interval * i)
-		})
-	}
-*/
 
 // GAME FUNCTIONS
 
@@ -433,12 +411,6 @@ function game() {
 	return outcome
 }
 
-// function rounds () {
-// 	let result = [numberOfRounds]
-// 	for (i = 0; i < numberOfRounds; i ++) {
-// 		console.log("Round " + (i+ 1) + ": " + game())
-// 	}
-// }
 
 // WINDOWS COMPATABILITY
 
