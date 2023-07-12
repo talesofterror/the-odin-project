@@ -27,10 +27,6 @@ userChooser()
 })
 
 // DESIGN FUNCTIONS
-// It's kind of extra, but now I've got the idea in my head that I should make
-// a little arm icon for the title section that changes based on what you pick.
-// It could start with an arm curled up in a flex pose, then "shoot" based on
-// userChoice.value
 
 function userChooser () {
 
