@@ -7,8 +7,7 @@ for (i = 0; i < 10; i++) {
     mainElement.appendChild(document.createElement("div"))
     let codePointString = `0x1F60${i}`
     mainElement.lastElementChild.textContent = 
-        `${String.fromCodePoint(codePointString)}`
-    mainElement.lastElementChild.style.border = "1px solid red"
+        `${String.fromCodePoint(codePointString)} ` + (i+1)
 }
 
 // CODE BELOW ONLY ADDS A SINGLE ELEMENT TO THE END OF THE CHILD LIST
