@@ -1,5 +1,6 @@
 * { 
     box-sizing: border-box;
+    margin:0px;
 }
 
 :root {
@@ -15,7 +16,7 @@ body {
 
 main {
     display: flex;
-    width: 500px;
+    width: auto;
     height: 100%;
     outline: 1px dotted red;
 }
