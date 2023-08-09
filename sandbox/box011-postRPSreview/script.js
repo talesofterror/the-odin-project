@@ -1,22 +1,32 @@
 let mainNodeList = document.querySelectorAll("main")
 let mainElement = document.querySelector("main")
 
-// mainNodeList.forEach(element => console.dir(element))
-
 for (x = 0; x < 51; x++) {
-        
-        mainElement.appendChild(document.createElement("div"))
-        let codePointString = `0x1F60${x}`
-        // mainElement.lastElementChild.textContent = 
-        //     //`${String.fromCodePoint(codePointString)} ` + (x+1)
-        //     x+1
+	mainElement.appendChild(document.createElement("div"))
+	let codePointString = `0x1F60${x}`
+	// mainElement.lastElementChild.textContent = 
+	//     //`${String.fromCodePoint(codePointString)} ` + (x+1)
+	//     x+1
 }
 
+for (i = 0; i < 51; i++) {
+	mainElement.children[i].classList.add("pixel") 
+}
+
+// mainNodeList.forEach(element => console.dir(element))
 mainElement.childNodes.forEach(element => console.log(element))
 
 
 
-
+function Shape(size, shape) {
+	return {
+		size: size,
+		shape: shape, 
+		changeSize: function (newSize) {
+			this.size = newSize
+		}
+	}
+}
 
 
 
@@ -40,11 +50,11 @@ mainElement.childNodes.forEach(element => console.log(element))
    // ~ it was because the nodelist doesn't have any children to forEach
    // through. Duh.
 
-// mainNodeList.children.forEach(element => 
+// mainNodeList.children.forEach(element =>
 //     {
 //         element.appendChild(document.createElement("div"))
 //         let codePointString = `0x1F60${i}`
-//         element.lastElementChild.textContent = 
+//         element.lastElementChild.textContent =
 //         `${String.fromCodePoint(codePointString)} ` + (i+1)
 //     }
 // )
