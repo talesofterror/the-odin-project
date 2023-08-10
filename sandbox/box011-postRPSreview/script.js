@@ -1,17 +1,18 @@
-let mainElement = document.querySelector("main")
+let pixelContainer = document.querySelector(".pixel-container")
 
-for (x = 0; x < 51; x++) {
-	mainElement.appendChild(document.createElement("div"))
+for (x = 0; x < 100; x++) {
+	pixelContainer.appendChild(document.createElement("div"))
+	pixelContainer.lastChild.innerHTML = "&nbsp;"
 }
 
 // for (i = 0; i < 51; i++) {
 // 	mainElement.children[i].classList.add("pixel") 
 // }
 
-let mainChildren = Array.from(mainElement.children)
+let mainChildren = Array.from(pixelContainer.children)
 
 mainChildren.forEach(element => element.classList.add("pixel"))	
-	mainElement.childNodes.forEach(element => console.log(element))
+	pixelContainer.childNodes.forEach(element => console.log(element))
 
 	
 function Shape(size, shape) {
