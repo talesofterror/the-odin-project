@@ -1,8 +1,14 @@
 :root {
 		height: 100vh;
 		min-height: 100vh;
-		--outline: rgb(134, 255, 165);
-		--inline: rgb(0, 108, 158);
+		/* --outline: rgb(43, 250, 95); */
+		--outerBorderColor: #060;
+		/* --inline: rgb(255, 119, 0); */
+		--innerBorderColor: #050;
+		--innerBorderThickness: 30px;
+		--screenBG: rgb(255, 187, 127);
+		--borderRadius: 20px;
+		--displayWidth: 90%;
 }
 
 * { 
@@ -13,35 +19,40 @@
 
 
 body {
+		background-color:#9F9;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-    background-color:rgb(222, 220, 209);
     height: 100%;
 		width: auto;
     /* padding: 10% 10%; */
 }
 
 main {
-		background-color:rgb(222, 220, 209);
+		background-color:#0D7;
+		/* filter: drop-shadow(10px -10px 15px #075); */
     display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-    width: 85%;
-    height: 85%;
-    border: 10px solid var(--outline);
-		border-radius: 10px;
-		padding: 20px;
+		justify-content: space-around;
+    width: 75%;
+    height: 83%;
+    border: 3px solid var(--outerBorderColor);
+		/* border-radius: 10px; */
+		overflow: hidden;
+		padding: 1%;
+		padding-top: 3.5%;
 }
 
+
+
 .pixel-container {
+	background: var(--screenBG);
 	display: flex;
-	width: 95%;
-	height: 70%;
-	border: 5px var(--inline) solid;
-	border-start-start-radius: 10px;
-	border-start-end-radius: 10px;
+	width: var(--displayWidth);
+	height: 75%;
+	border: 4px var(--innerBorderColor) solid;
+	overflow: hidden;
 
 }
 
@@ -55,17 +66,33 @@ main {
 	flex-shrink: 1;
 	flex-basis: 1;
 	width:max-content;
-	border: 1px solid rgb(178, 255, 223);
+	border: 1px solid var(--innerBorderColor);
 	margin: 0px;
 }
 
 .controls-container {
+	background-color: #0B4;
 	display: flex;
-	border: 5px solid var(--inline);
-	border-top: none;
-	width: 95%;
+	border: 5px solid var(--innerBorderColor);
+	width: 85%;
 	height: 20%;
-	border-end-start-radius: 10px;
-	border-end-end-radius: 10px;
 }
 
+.display-shadow {
+	box-shadow: inset 0px 0px 10px 3px var(--innerBorderColor), 0 0 10px var(--innerBorderColor);
+}
+
+.controls-shadow {
+	box-shadow: inset 0 0 20px 5px var(--innerBorderColor), 0 0 10px Var(--innerBorderColor);
+}
+
+.device-shadow {
+	box-shadow: inset 0 0 20px var(--outerBorderColor);
+}
+
+.round-corners {
+	border-start-start-radius: var(--borderRadius);
+	border-start-end-radius: var(--borderRadius);
+	border-end-start-radius: var(--borderRadius);
+	border-end-end-radius: var(--borderRadius);
+}
