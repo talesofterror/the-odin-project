@@ -2,11 +2,13 @@
 		height: 100vh;
 		min-height: 100vh;
 		/* --outline: rgb(43, 250, 95); */
-		--outerBorderColor: #060;
+		--outerBorderColor: #050;
 		/* --inline: rgb(255, 119, 0); */
 		--innerBorderColor: #050;
 		--innerBorderThickness: 30px;
-		--screenBG: rgb(255, 187, 127);
+		--outerBorderThickness: 2.5px;
+		--screenBG: #efe;
+		--controlsBG: #0F6;
 		--borderRadius: 20px;
 		--displayWidth: 90%;
 }
@@ -19,7 +21,8 @@
 
 
 body {
-		background-color:#9F9;
+		/* background-color:#DAD; */
+		background-image: radial-gradient(#FCC, 70%, #B7B);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -35,16 +38,14 @@ main {
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-around;
-    width: 75%;
+    width: 60%;
     height: 83%;
-    border: 3px solid var(--outerBorderColor);
+    border: var(--outerBorderThickness) solid var(--outerBorderColor);
 		/* border-radius: 10px; */
 		overflow: hidden;
 		padding: 1%;
 		padding-top: 3.5%;
 }
-
-
 
 .pixel-container {
 	background: var(--screenBG);
@@ -71,7 +72,7 @@ main {
 }
 
 .controls-container {
-	background-color: #0B4;
+	background-color: var(--controlsBG);
 	display: flex;
 	border: 5px solid var(--innerBorderColor);
 	width: 85%;
@@ -87,7 +88,7 @@ main {
 }
 
 .device-shadow {
-	box-shadow: inset 0 0 20px var(--outerBorderColor);
+	box-shadow: inset 0 0 20px 5px var(--outerBorderColor);
 }
 
 .round-corners {
