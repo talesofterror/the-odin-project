@@ -1,6 +1,7 @@
 let pixelContainer = document.querySelector(".pixel-container")
+let root = document.querySelector("root")
 
-let sizeX = 20
+let sizeX = 50
 for (let y= 0; y < sizeX / 2; y++) {
 	pixelContainer.appendChild(document.createElement("div"))
 	pixelContainer.lastChild.classList.add("pixel-row")
@@ -36,7 +37,7 @@ let fishes = {
 	,
 	yellow: "A yellow fish. Not quite gold."
 	, 
-	cream: "A cream-colored fish. It's got love red and yellow dappling."
+	cream: "A cream-colored fish. It's got lovely red and yellow dappling."
 }
 
 let controls = {
