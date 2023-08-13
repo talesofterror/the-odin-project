@@ -1,12 +1,13 @@
 :root {
 		height: 100vh;
 		min-height: 100vh;
-		/* --outline: rgb(43, 250, 95); */
 		--outerBorderColor: #050;
-		/* --inline: rgb(255, 119, 0); */
 		--innerBorderColor: #050;
 		--innerBorderThickness: 30px;
 		--outerBorderThickness: 2.5px;
+		--pageBG: #B7B;
+		--pageImage: radial-gradient(#FCC, 70%, #B7B);
+		--deviceBG: #0D7;
 		--screenBG: #efe;
 		--controlsBG: #0F6;
 		--borderRadius: 20px;
@@ -21,19 +22,17 @@
 
 
 body {
-		/* background-color:#DAD; */
-		background-image: radial-gradient(#FCC, 70%, #B7B);
+		background-color: var(--pageBG);
+		background-image: var(--pageImage);
 		display: flex;
 		align-items: center;
 		justify-content: center;
     height: 100%;
 		width: auto;
-    /* padding: 10% 10%; */
 }
 
 main {
-		background-color:#0D7;
-		/* filter: drop-shadow(10px -10px 15px #075); */
+		background-color: var(--deviceBG);
     display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -41,7 +40,6 @@ main {
     width: 60%;
     height: 83%;
     border: var(--outerBorderThickness) solid var(--outerBorderColor);
-		/* border-radius: 10px; */
 		overflow: hidden;
 		padding: 1%;
 		padding-top: 3.5%;
@@ -50,6 +48,7 @@ main {
 .pixel-container {
 	background: var(--screenBG);
 	display: flex;
+	flex-direction: column;
 	width: var(--displayWidth);
 	height: 75%;
 	border: 4px var(--innerBorderColor) solid;

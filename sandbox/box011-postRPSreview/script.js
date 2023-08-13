@@ -1,21 +1,24 @@
 let pixelContainer = document.querySelector(".pixel-container")
 
-for (x = 0; x < 20; x++) {
+let sizeX = 20
+for (let y= 0; y < sizeX / 2; y++) {
 	pixelContainer.appendChild(document.createElement("div"))
-	pixelContainer.lastChild.innerHTML = "&nbsp;"
-	// pixelContainer.lastChild.style.height = pixelContainer.lastChild.offsetWidth +"px"
+	pixelContainer.lastChild.classList.add("pixel-row")
+		for (x = 0; x < sizeX; x++) {
+			pixelContainer.lastChild.appendChild(document.createElement("div"))
+			pixelContainer.lastChild.lastChild.classList.add("pixel")
+			pixelContainer.lastChild.lastChild.innerHTML = "&nbsp;"
+		}
 }
 
-// for (i = 0; i < 51; i++) {
-// 	mainElement.children[i].classList.add("pixel") 
+// for (let x = 0; x < 20; x++) {
+// 	pixelContainer.appendChild(document.createElement("div"))
+// 	pixelContainer.lastChild.classList.add("pixel")
+// 	pixelContainer.lastChild.innerHTML = "&nbsp;"
 // }
 
 let mainChildren = Array.from(pixelContainer.children)
 
-mainChildren.forEach(element => element.classList.add("pixel"))	
-	// pixelContainer.childNodes.forEach(element => console.log(element))
-
-	
 function Shape(size, shape) {
 	return {
 		size: size,
