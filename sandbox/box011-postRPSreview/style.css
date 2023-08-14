@@ -3,6 +3,7 @@
 		min-height: 100vh;
 		--outerBorderColor: #050;
 		--innerBorderColor: #050;
+		--gridColor: #eae;
 		--innerBorderThickness: 30px;
 		--outerBorderThickness: 2.5px;
 		--pageBG: #B7B;
@@ -38,7 +39,8 @@ main {
 		align-items: center;
 		justify-content: space-around;
     width: 60%;
-    height: 40vmax;
+    /* height: 40vmax; */
+		aspect-ratio: 3 / 2;
     border: var(--outerBorderThickness) solid var(--outerBorderColor);
 		overflow: hidden;
 		padding: 1%;
@@ -58,14 +60,14 @@ main {
 
 .pixel-row {
 	display: flex;
-	flex: 1 0 0.5%;
+	flex: 1 0 0;
 	height: 100%;
 }
 
 .pixel {
-	flex-grow: 1;
-	width:max-content;
-	border: 1px solid var(--innerBorderColor);
+	flex: 1;
+	/* width:min-content; */
+	border: 1px solid var(--gridColor);
 	margin: 0px;
 }
 
@@ -100,7 +102,7 @@ main {
 }
 
 .display-shadow {
-	box-shadow: inset 0px 0px 10px 3px var(--innerBorderColor), 0 0 10px var(--innerBorderColor);
+	box-shadow: inset 0px 0px 10px 3px var(--gridColor), 0 0 10px var(--innerBorderColor);
 }
 
 .controls-shadow {

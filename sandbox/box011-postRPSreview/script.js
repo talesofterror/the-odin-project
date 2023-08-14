@@ -1,14 +1,14 @@
 let pixelContainer = document.querySelector(".pixel-container")
 let root = document.querySelector("root")
 
-let sizeX = 50
+let sizeX = 100
 for (let y= 0; y < sizeX / 2; y++) {
 	pixelContainer.appendChild(document.createElement("div"))
 	pixelContainer.lastChild.classList.add("pixel-row")
 		for (x = 0; x < sizeX; x++) {
 			pixelContainer.lastChild.appendChild(document.createElement("div"))
 			pixelContainer.lastChild.lastChild.classList.add("pixel")
-			pixelContainer.lastChild.lastChild.innerHTML = "&nbsp;"
+			// pixelContainer.lastChild.lastChild.innerHTML = "&nbsp;"
 		}
 }
 
