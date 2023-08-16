@@ -1,7 +1,17 @@
 let pixelContainer = document.querySelector(".pixel-container")
 let root = document.querySelector("root")
 
-let sizeX = 100
+let controls = {
+	color: "#000",
+	size: 50,
+	eraser: false,
+	randomize: false,
+		// ? randomize options: 
+		// 		color, saturation, value
+		// 		use hsv?
+}
+
+let sizeX = 50
 for (let y= 0; y < sizeX / 2; y++) {
 	pixelContainer.appendChild(document.createElement("div"))
 	pixelContainer.lastChild.classList.add("pixel-row")
@@ -40,16 +50,6 @@ let fishes = {
 	cream: "A cream-colored fish. It's got lovely red and yellow dappling."
 }
 
-let controls = {
-	
-	color: "#000" ,
-	size: 100 ,
-	randomColor: function () {} ,
-		// randomize options: 
-		// color, saturation, value
-		// use hsv
-	
-}
 
 function map_range(value, low1, high1, low2, high2) {
 	return low2 + (high2 - low2) * (value - low1) / (high1 - low1);

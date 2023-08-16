@@ -8,5 +8,5 @@
 **\.swp
 **/.vscode
 **\.vscode
-**/submodule
-**\submodule
+**/submodules
+**\submodules
