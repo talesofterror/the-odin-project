@@ -6,5 +6,7 @@
 **\package-lock.json
 **/.swp
 **\.swp
-.vscode/
-.vscode\
+**/.vscode
+**\.vscode
+**/submodule
+**\submodule
