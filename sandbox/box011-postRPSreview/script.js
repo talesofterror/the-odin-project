@@ -3,13 +3,49 @@ let root = document.querySelector("root")
 
 let controls = {
 	color: "#000",
-	size: 50,
+	resolution: 50,
 	eraser: false,
 	randomize: false,
 		// ? randomize options: 
 		// 		color, saturation, value
 		// 		use hsv?
 }
+
+/*
+
+Things that need to happen: 
+
+- ui
+	* rolling smiley dials
+	* color picker & icon
+	* resolution picker & icon
+		- drop down? up and down arrows? 
+	* eraser icon 
+		- on/off variant
+	* randomize icon 
+		- on/off variant
+		
+- controls object
+	- controls.color 
+	- controls.resolution
+	- controls.eraser
+	- controls.randomize
+
+- functions 
+	* rolling smileys
+	* color picker
+		- pop-up color picker
+		- changes pixel:hover 
+	* resolution picker
+		- already written
+	* eraser 
+		- returns controls.color to base color (--screenBG)
+	* randomize 
+		- fisher-yates algo 
+		- discreet values -- rgb, hsv, or hex?
+		- written below
+
+*/
 
 let sizeX = 50
 for (let y= 0; y < sizeX / 2; y++) {
@@ -22,20 +58,28 @@ for (let y= 0; y < sizeX / 2; y++) {
 		}
 }
 
-// for (let x = 0; x < 20; x++) {
-// 	pixelContainer.appendChild(document.createElement("div"))
-// 	pixelContainer.lastChild.classList.add("pixel")
-// 	pixelContainer.lastChild.innerHTML = "&nbsp;"
-// }
+function randomize(values) {
 
-let mainChildren = Array.from(pixelContainer.children)
+	let v = values
 
-function Shape(size, shape) {
+	for (i = v.length - 1; i > 0; i --) {
+		let j = Math.floor(Math.random() * (i + 1))
+		let k  = v[i]
+		v[i] = v[j]
+		v[j] = k
+	}
+
+	return v
+}
+
+let mainChildren = Array.from(pixelContainer.children) // x ?
+
+function Shape(resolution, shape) {
 	return {
-		size: size,
+		resolution: resolution,
 		shape: shape, 
 		changeSize: function (newSize) {
-			this.size = newSize
+			this.resolution = newSize
 		}
 	}
 }
