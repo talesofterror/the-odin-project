@@ -112,19 +112,20 @@ svg {
 }
 
 .svg-face {
-	fill: none;
-	stroke:var(--innerBorderColor);
-	stroke-width:4.568;
+	fill: #fff;
+	stroke: var(--knobGradientEnd);
+	opacity: 0.6;
+	stroke-width:7;
 	stroke-linecap: square;
 	stroke-dasharray: none;
-	paint-order:stroke markers fill
+	paint-order: fill markers 	stroke
 }
 
 #path50 {
 	/* filter: hue-rotate(20deg); */
 	/* fill: #0D7; */
 	fill: url(#grad1);
-	stroke: var(--innerBorderColor);
+	stroke: var(--knobGradientEnd);
 	stroke-width: 5px;
 }
 
@@ -141,10 +142,6 @@ svg {
 }
 
 .device-shadow {
-	box-shadow: inset 0 0 20px 5px var(--outerBorderColor);
-}
-
-.knob-shadow {
 	box-shadow: inset 0 0 20px 5px var(--outerBorderColor);
 }
 
