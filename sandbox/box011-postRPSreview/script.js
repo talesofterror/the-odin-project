@@ -24,6 +24,10 @@ Things that need to happen:
 		- on/off variant
 	* randomize icon 
 		- on/off variant
+	* ? special drawer ?
+		- line tool
+		- circle tool 
+		- rect tool 
 		
 - controls object
 	- controls.color 
