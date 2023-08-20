@@ -62,6 +62,37 @@ for (let y= 0; y < sizeX / 2; y++) {
 		}
 }
 
+/*
+
+x = pixelContainer.children[x]
+y = pixelContainer.children[x].children[y]
+? [x, y] = pixelContainer.children[x].children[y]
+
+function (x, y) {
+	return [x,y]
+} what??
+
+pointA = [x1,y1]
+pointB = [x2,y2]
+
+distance = (x2 - y2) * 2 + (y2-y1) * 2
+
+to draw a rectangle: 
+	[x1, y1] = corner1
+	[x2, y2] = corner2
+
+	function rect (x1, y1, x2, y2) {
+		ghostpoint1 = [x1, y2]
+		ghostpoint2 = [x2, y1]
+
+	draw side1
+		for (i < distance(corner1, ghostpoint1)) {
+			pixelContainer.children[ (x1 + i].children[y].bgcolor = $color
+		}
+	} 
+
+*/
+
 function randomize(values) {
 
 	let v = values
