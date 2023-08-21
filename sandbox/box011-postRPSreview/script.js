@@ -1,16 +1,3 @@
-let pixelContainer = document.querySelector(".pixel-container")
-let root = document.querySelector("root")
-
-let controls = {
-	color: "#000",
-	resolution: 50,
-	eraser: false,
-	randomize: false,
-		// ? randomize options: 
-		// 		color, saturation, value
-		// 		use hsv?
-}
-
 /*
 
 Things that need to happen: 
@@ -51,8 +38,21 @@ Things that need to happen:
 
 */
 
+let pixelContainer = document.querySelector(".pixel-container")
+let root = document.querySelector("root")
+
+let controls = {
+	color: "#000",
+	resolution: 50,
+	eraser: false,
+	randomize: false,
+		// ? randomize options: 
+		// 		color, saturation, value
+		// 		use hsv?
+}
+
 let sizeX = 50
-for (let y= 0; y < sizeX / 2; y++) {
+for (let y = 0; y < sizeX / 2; y++) {
 	pixelContainer.appendChild(document.createElement("div"))
 	pixelContainer.lastChild.classList.add("pixel-row")
 		for (x = 0; x < sizeX; x++) {
@@ -60,6 +60,54 @@ for (let y= 0; y < sizeX / 2; y++) {
 			pixelContainer.lastChild.lastChild.classList.add("pixel")
 			// pixelContainer.lastChild.lastChild.innerHTML = "&nbsp;"
 		}
+}
+
+function distance (x1, y1, x2, y2) {
+	return Math.ceil(Math.sqrt(Math.pow(x2 - x1, 2) + 
+					Math.pow(y2 - y1, 2) * 1.0))
+}
+
+function colorCell (x, y) {
+	pixelContainer.children[y].children[x].style.backgroundColor = "#0f8"
+}
+
+function drawLine (x1, y1, x2, y2) {
+	let dotX
+	let dotY
+
+	for (i = 0; i < distance(x1, y1, x2, y2); i++) {
+
+		/*
+		for longer lines either x2 or y2 is reached too early, resulting
+		in curved lines. 
+
+		maybe: 
+			if (dotX < x2 / 3) { etc }
+			else if ()
+		*/
+
+		if (x1 < x2 && dotX != x2) {
+			//increment x
+			dotX = x1 + i
+		} else if (x1 == x2) {
+			dotX = x2
+		} else if (x1 > x2 && dotX != x2) {
+			//decrement x
+			dotX = x1 - i
+		}
+
+		if (y1 < y2 && dotY != y2) {
+			//increment x
+			dotY = y1 + i
+		} else if (y1 == y2 || dotY == y2) {
+			dotY = y2
+		} else if (y1 > y2 && dotY != y2) {
+			//decrement x
+			dotY = y1 - i
+		}
+
+		colorCell(dotX, dotY)
+	}
 }
 
 /*
