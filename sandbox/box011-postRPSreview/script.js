@@ -58,7 +58,8 @@ for (let y = 0; y < sizeX / 2; y++) {
 		for (x = 0; x < sizeX; x++) {
 			pixelContainer.lastChild.appendChild(document.createElement("div"))
 			pixelContainer.lastChild.lastChild.classList.add("pixel")
-			// pixelContainer.lastChild.lastChild.innerHTML = "&nbsp;"
+			// pixelContainer.lastChild.lastChild.onclick = () => colorCell()
+
 		}
 }
 
@@ -68,7 +69,11 @@ function distance (x1, y1, x2, y2) {
 }
 
 function colorCell (x, y) {
+	if (controls.eraser = true) {
+
+	} else {
 	pixelContainer.children[y].children[x].style.backgroundColor = "#0f8"
+	}
 }
 
 function drawLine (x1, y1, x2, y2) {
