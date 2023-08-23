@@ -54,6 +54,8 @@ let controls = {
 }
 
 createScreen()
+let pixels = [[],[]]
+createPixels()
 
 function createScreen() {
 	let sizeX = controls.resolution.value
@@ -68,14 +70,12 @@ function createScreen() {
 	}
 }
 
-let pixels = () => {
-	let p = [[],[]]
-	for (let i = 0; i <= pixelContainer.children[i].length; i++){
-		for (let j = 0; j <= pixelContainer.children[i].children[j].length; j++){
+function createPixels () {
+	for (let i = 0; i < pixelContainer.children.length; i++){
+		for (let j = 0; j < pixelContainer.children[i].children.length; j++){
 			pixels[i][j] = pixelContainer.children[i].children[j]
 		}
 	}
-	return p
 }
 
 function colorCell (x, y) {
