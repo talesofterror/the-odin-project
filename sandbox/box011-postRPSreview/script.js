@@ -45,7 +45,7 @@ let screenBG = getComputedStyle(document.documentElement).getPropertyValue("--sc
 
 let controls = {
 	color: { element: "", value: "#0f8" },
-	resolution: { element: "", value: 50 },
+	resolution: { element: "", value: 100 },
 	eraser: { element: "", value: false },
 	randomize: { element: "", value: false },
 		// ? randomize options: 
