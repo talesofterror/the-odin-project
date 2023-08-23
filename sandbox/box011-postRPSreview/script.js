@@ -41,17 +41,19 @@ Things that need to happen:
 let pixelContainer = document.querySelector(".pixel-container")
 let root = document.querySelector("root")
 
+let screenBG = getComputedStyle(document.documentElement).getPropertyValue("--screenBG")
+
 let controls = {
-	color: "#000",
-	resolution: 50,
-	eraser: false,
-	randomize: false,
+	color: { element: "", value: "#000" },
+	resolution: { element: "", value: 50 },
+	eraser: { element: "", value: false },
+	randomize: { element: "", value: false },
 		// ? randomize options: 
 		// 		color, saturation, value
 		// 		use hsv?
 }
 
-let sizeX = 50
+let sizeX = controls.resolution.value
 for (let y = 0; y < sizeX / 2; y++) {
 	pixelContainer.appendChild(document.createElement("div"))
 	pixelContainer.lastChild.classList.add("pixel-row")
@@ -59,7 +61,7 @@ for (let y = 0; y < sizeX / 2; y++) {
 			pixelContainer.lastChild.appendChild(document.createElement("div"))
 			pixelContainer.lastChild.lastChild.classList.add("pixel")
 			// pixelContainer.lastChild.lastChild.onclick = () => colorCell()
-
+			
 		}
 }
 
@@ -69,8 +71,8 @@ function distance (x1, y1, x2, y2) {
 }
 
 function colorCell (x, y) {
-	if (controls.eraser = true) {
-
+	if (controls.eraser.value == true) {
+	pixelContainer.children[y].children[x].style.backgroundColor = screenBG
 	} else {
 	pixelContainer.children[y].children[x].style.backgroundColor = "#0f8"
 	}
