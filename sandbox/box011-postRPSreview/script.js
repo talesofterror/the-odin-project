@@ -44,7 +44,7 @@ let root = document.querySelector("root")
 let screenBG = getComputedStyle(document.documentElement).getPropertyValue("--screenBG")
 
 let controls = {
-	color: { element: "", value: "#000" },
+	color: { element: "", value: "#0f8" },
 	resolution: { element: "", value: 50 },
 	eraser: { element: "", value: false },
 	randomize: { element: "", value: false },
@@ -53,16 +53,37 @@ let controls = {
 		// 		use hsv?
 }
 
-let sizeX = controls.resolution.value
-for (let y = 0; y < sizeX / 2; y++) {
-	pixelContainer.appendChild(document.createElement("div"))
-	pixelContainer.lastChild.classList.add("pixel-row")
+createScreen()
+
+function createScreen() {
+	let sizeX = controls.resolution.value
+	for (let y = 0; y < sizeX / 2; y++) {
+		pixelContainer.appendChild(document.createElement("div"))
+		pixelContainer.lastChild.classList.add("pixel-row")
 		for (x = 0; x < sizeX; x++) {
 			pixelContainer.lastChild.appendChild(document.createElement("div"))
 			pixelContainer.lastChild.lastChild.classList.add("pixel")
 			// pixelContainer.lastChild.lastChild.onclick = () => colorCell()
-			
 		}
+	}
+}
+
+let pixels = () => {
+	let p = [[],[]]
+	for (let i = 0; i <= pixelContainer.children[i].length; i++){
+		for (let j = 0; j <= pixelContainer.children[i].children[j].length; j++){
+			pixels[i][j] = pixelContainer.children[i].children[j]
+		}
+	}
+	return p
+}
+
+function colorCell (x, y) {
+	if (controls.eraser.value == true) {
+	pixelContainer.children[y].children[x].style.backgroundColor = screenBG
+	} else {
+	pixelContainer.children[y].children[x].style.backgroundColor = controls.color.value
+	}
 }
 
 function distance (x1, y1, x2, y2) {
@@ -70,29 +91,17 @@ function distance (x1, y1, x2, y2) {
 					Math.pow(y2 - y1, 2) * 1.0))
 }
 
-function colorCell (x, y) {
-	if (controls.eraser.value == true) {
-	pixelContainer.children[y].children[x].style.backgroundColor = screenBG
-	} else {
-	pixelContainer.children[y].children[x].style.backgroundColor = "#0f8"
-	}
-}
-
 function drawLine (x1, y1, x2, y2) {
 	let dotX
 	let dotY
-
 	for (i = 0; i < distance(x1, y1, x2, y2); i++) {
-
 		/*
-		for longer lines either x2 or y2 is reached too early, resulting
+		For longer lines either x2 or y2 is reached too early, resulting
 		in curved lines. 
-
-		maybe: 
+		Maybe: 
 			if (dotX < x2 / 3) { etc }
 			else if ()
 		*/
-
 		if (x1 < x2 && dotX != x2) {
 			//increment x
 			dotX = x1 + i
@@ -102,7 +111,6 @@ function drawLine (x1, y1, x2, y2) {
 			//decrement x
 			dotX = x1 - i
 		}
-
 		if (y1 < y2 && dotY != y2) {
 			//increment x
 			dotY = y1 + i
