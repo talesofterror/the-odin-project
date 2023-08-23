@@ -45,7 +45,7 @@ let screenBG = getComputedStyle(document.documentElement).getPropertyValue("--sc
 
 let controls = {
 	color: { element: "", value: "#0f8" },
-	resolution: { element: "", value: 100 },
+	resolution: { element: "", value: 50 },
 	eraser: { element: "", value: false },
 	randomize: { element: "", value: false },
 		// ? randomize options: 
@@ -54,8 +54,6 @@ let controls = {
 }
 
 createScreen()
-let pixels = [[],[]]
-createPixels()
 
 function createScreen() {
 	let sizeX = controls.resolution.value
@@ -70,11 +68,16 @@ function createScreen() {
 	}
 }
 
+let pixels = []
+createPixels()
+
 function createPixels () {
 	for (let i = 0; i < pixelContainer.children.length; i++){
+		let p = []
 		for (let j = 0; j < pixelContainer.children[i].children.length; j++){
-			pixels[i][j] = pixelContainer.children[i].children[j]
+			p.push(pixelContainer.children[i].children[j])
 		}
+		pixels.push(p)
 	}
 }
 
