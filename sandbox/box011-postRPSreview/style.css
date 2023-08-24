@@ -138,7 +138,19 @@ svg.right-knob {
 }
 
 .control-panel {
+	display: flex;
+	overflow: hidden;
+	justify-content: space-around;
+	align-items: space-between;
 	background-color: var(--controlPanelBG);
+}
+
+.control-panel-item {
+	color: var(--gridColor);
+	background-color: var(--gridColor);
+	width: 10%;
+	height: 80%;
+	margin: auto 0;
 }
 
 .display-shadow {
@@ -158,4 +170,8 @@ svg.right-knob {
 	border-start-end-radius: var(--borderRadius);
 	border-end-start-radius: var(--borderRadius);
 	border-end-end-radius: var(--borderRadius);
+}
+
+.flicker-protection {
+	visibility: hidden;
 }

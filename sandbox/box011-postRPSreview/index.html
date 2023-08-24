@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head> 
+        <script>
+            // doesn't work :(
+            window.onload = (e) => {
+                document.querySelector("body").classList.remove('flicker-protection')
+            }
+        </script>
         <title>
             Sandbox 11
         	</title>
@@ -9,7 +15,7 @@
         <link rel="stylesheet" href="style.css">
     </head>
 
-    <body>
+    <body class="flicker-protection knob-shadow">
         <main class="round-corners device-shadow">
 					<div class="pixel-container round-corners display-shadow"></div>
 					<div class="controls-container round-corners controls-shadow">
@@ -80,8 +86,13 @@
                             </svg>
                 </div>
 
-        <div class="controls-item control-panel controls-shadow round-corners">
+        <div id="controls" class="controls-item control-panel controls-shadow round-corners">
 <!-- CONTROL PANEL -->
+            <div class="control-panel-item round-corners knob-shadow"></div>
+            <div class="control-panel-item round-corners knob-shadow"></div>
+            <div class="control-panel-item round-corners knob-shadow"></div>
+            <div class="control-panel-item round-corners knob-shadow"></div>
+            <div class="control-panel-item round-corners knob-shadow"></div>
         </div>
 
                 <div class="controls-item knob controls-shadow">
