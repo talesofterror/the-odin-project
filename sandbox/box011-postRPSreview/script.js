@@ -40,12 +40,13 @@ Things that need to happen:
 
 let pixelContainer = document.querySelector(".pixel-container")
 let root = document.querySelector("root")
+let pixels = []
 
 let screenBG = getComputedStyle(document.documentElement).getPropertyValue("--screenBG")
 
 let controls = {
 	color: { element: "", value: "#0f8" },
-	resolution: { element: "", value: 50 },
+	resolution: { element: "", value: 50},
 	eraser: { element: "", value: false },
 	randomize: { element: "", value: false },
 		// ? randomize options: 
@@ -53,25 +54,25 @@ let controls = {
 		// 		use hsv?
 }
 
-createScreen()
+createScreen(controls.resolution.value)
 
-function createScreen() {
-	let sizeX = controls.resolution.value
-	for (let y = 0; y < sizeX / 2; y++) {
-		pixelContainer.appendChild(document.createElement("div"))
-		pixelContainer.lastChild.classList.add("pixel-row")
-		for (x = 0; x < sizeX; x++) {
-			pixelContainer.lastChild.appendChild(document.createElement("div"))
-			pixelContainer.lastChild.lastChild.classList.add("pixel")
-			// pixelContainer.lastChild.lastChild.onclick = () => colorCell()
+function createScreen(sizeX) {
+	// Insert elements
+	let pixelContainerArray = Array.from(pixelContainer.children)
+	if (pixelContainer.firstElementChild){
+		pixelContainerArray.forEach(element => element.remove())
+		createScreen(sizeX)
+	} else {
+		for (let y = 0; y < sizeX / 2; y++) {
+			pixelContainer.appendChild(document.createElement("div"))
+			pixelContainer.lastChild.classList.add("pixel-row")
+			for (x = 0; x < sizeX; x++) {
+				pixelContainer.lastChild.appendChild(document.createElement("div"))
+				pixelContainer.lastChild.lastChild.classList.add("pixel")
+			}
 		}
 	}
-}
-
-let pixels = []
-createPixels()
-
-function createPixels () {
+	// Create pixels
 	for (let i = 0; i < pixelContainer.children.length; i++){
 		let p = []
 		for (let j = 0; j < pixelContainer.children[i].children.length; j++){
