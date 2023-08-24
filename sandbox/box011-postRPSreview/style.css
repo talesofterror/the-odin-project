@@ -111,6 +111,14 @@ svg {
 	margin-top: 1.5%;
 }
 
+svg.left-knob {
+	rotate: 0deg
+}
+
+svg.right-knob {
+	rotate: 0deg
+}
+
 .svg-face {
 	fill: #fff;
 	stroke: var(--knobGradientEnd);
