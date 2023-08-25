@@ -1,0 +1,196 @@
+:root {
+		height: 100vh;
+		min-height: 100vh;
+		--outerBorderColor: #050;
+		--innerBorderColor: #050;
+		--knobGradientStart: #eae;
+		--knobGradientEnd: #737;
+		--pageBG: #B7B;
+		--gridColor: #eae;
+		--deviceBG: #0D7;
+		--screenBG: #efe;
+		--controlsBG: #0c3;
+		--controlPanelBG: #272;
+		--innerBorderThickness: 30px;
+		--outerBorderThickness: 2.5px;
+		--pageImage: radial-gradient(#FCC, 70%, #B7B);
+		--borderRadius: 20px;
+		--displayWidth: 90%;
+}
+
+* { 
+    box-sizing: border-box;
+    margin:0px;
+		padding: 0px;
+}
+
+
+body {
+		background-color: var(--pageBG);
+		background-image: var(--pageImage);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+    height: 100%;
+		width: auto;
+}
+
+main {
+		background-color: var(--deviceBG);
+    display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+    width: 60%;
+    /* height: 40vmax; */
+		aspect-ratio: 3 / 2;
+    border: var(--outerBorderThickness) solid var(--outerBorderColor);
+		overflow: hidden;
+		padding: 1%;
+		padding-top: 3.5%;
+}
+
+.pixel-container {
+	background: var(--screenBG);
+	display: flex;
+	flex-direction: column;
+	width: var(--displayWidth);
+	height: 75%;
+	border: 4px var(--innerBorderColor) solid;
+	overflow: hidden;
+
+}
+
+.pixel-row {
+	display: flex;
+	flex: 1 0 0;
+	height: 100%;
+}
+
+.pixel {
+	flex: 1;
+	/* width:min-content; */
+	border: 1px solid var(--gridColor);
+	margin: 0px;
+}
+
+.pixel:hover {
+	background-color: #B7B;
+}
+
+.controls-container {
+	background-color: var(--controlsBG);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border: 4px solid var(--innerBorderColor);
+	width: 85%;
+	height: 20%;
+	overflow: hidden;
+	padding: 0 5%;
+}
+
+.controls-item {
+	width: 55%;
+	height: 70%;
+	/* flex: 1 1 33%; */
+}
+
+.knob {
+	background-image: none;
+	border: none;
+	border-radius:100%;
+	width: 15%;
+	height: auto;
+	padding: 5px;
+}
+
+svg {
+	width: 100%;
+	height: auto;
+	margin-top: 1.5%;
+}
+
+svg.left-knob {
+	rotate: 0deg
+}
+
+svg.right-knob {
+	rotate: 0deg
+}
+
+.svg-face {
+	fill: #fff;
+	stroke: var(--knobGradientEnd);
+	opacity: 0.6;
+	stroke-width:7;
+	stroke-linecap: square;
+	stroke-dasharray: none;
+	paint-order: fill markers 	stroke
+}
+
+#path50 {
+	/* filter: hue-rotate(20deg); */
+	/* fill: #0D7; */
+	fill: url(#grad1);
+	stroke: var(--knobGradientEnd);
+	stroke-width: 5px;
+}
+
+.control-panel {
+	display: flex;
+	overflow: hidden;
+	justify-content: space-around;
+	align-items: space-between;
+	background-color: var(--controlPanelBG);
+}
+
+.control-panel-item {
+	overflow: hidden;
+	color: var(--gridColor);
+	background-color: var(--gridColor);
+	width: 10%;
+	height: 80%;
+	margin: auto 0;
+}
+
+/* Color picker looks different in chrome/edge v. firefox */
+.color-picker {
+	width: 100%;
+	height: 100%;
+	appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+	border: none;
+	margin:0px;
+}
+
+::-webkit-color-swatch{
+    border-radius: 50%;
+}
+
+.display-shadow {
+	box-shadow: inset 0px 0px 10px 3px var(--gridColor), 0 0 10px var(--innerBorderColor);
+}
+
+.controls-shadow {
+	box-shadow: inset 0 0 20px 5px var(--innerBorderColor), 0 0 10px Var(--innerBorderColor);
+}
+
+.device-shadow {
+	box-shadow: inset 0 0 20px 5px var(--outerBorderColor);
+}
+
+.round-corners {
+	border-start-start-radius: var(--borderRadius);
+	border-start-end-radius: var(--borderRadius);
+	border-end-start-radius: var(--borderRadius);
+	border-end-end-radius: var(--borderRadius);
+}
+
+.flicker-protection {
+	visibility: hidden;
+}
