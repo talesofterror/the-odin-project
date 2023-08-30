@@ -8,6 +8,7 @@ let screenBG = getComputedStyle(document.documentElement).getPropertyValue("--sc
 let controls = {
 	color: { element: "", value: "#0f8" },
 	resolution: { element: "", value: 50},
+	drawing: false,
 	eraser: { element: "", value: false },
 	randomize: { element: "", value: false },
 		// ? randomize options: 
@@ -30,6 +31,10 @@ function createScreen(sizeX) {
 			for (x = 0; x < sizeX; x++) {
 				pixelContainer.lastChild.appendChild(document.createElement("div"))
 				pixelContainer.lastChild.lastChild.classList.add("pixel")
+				pixelContainer.lastChild.lastChild.addEventListener("click", 
+					(e) => {
+						this.style.backgroundColor = "red"
+					})
 			}
 		}
 	}
