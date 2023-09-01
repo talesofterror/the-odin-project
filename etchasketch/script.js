@@ -39,6 +39,7 @@ let controls = {
 		}
 	}
 	// Create pixel array
+	// ** fast mouse movements cause skipped pixels
 	for (let i = 0; i < pixelContainer.children.length; i++){
 		let p = []
 		for (let j = 0; j < pixelContainer.children[i].children.length; j++){
