@@ -1,12 +1,14 @@
 
 let pixelContainer = document.querySelector(".pixel-container")
 let root = document.querySelector("root")
-let pixels = []
+let pixelsArray = []
+const xCoord = document.createAttribute("x")
+const yCoord = document.createAttribute("x")
 
 let screenBG = getComputedStyle(document.documentElement).getPropertyValue("--screenBG")
 
 let controls = {
-	color: { element: "", value: "#0f8" },
+	color: { element: "", fgValue: "#0f8", bgValue: screenBG },
 	resolution: { element: "", value: 50},
 	drawing: false,
 	eraser: { element: "", value: false },
@@ -14,45 +16,68 @@ let controls = {
 		// ? randomize options: 
 		// 		color, saturation, value
 		// 		use hsv?
-}
-
-createScreen(controls.resolution.value)
-
-function createScreen(sizeX) {
-	// Insert elements
-	let pixelContainerArray = Array.from(pixelContainer.children)
+	}
+	
+	createScreen(controls.resolution.value)
+	function pixelsFunction (x, y) {return pixelContainer.children[y].children[x]}
+	
+	function createScreen(sizeX) {
+		// Insert elements
 	if (pixelContainer.firstElementChild){
-		pixelContainerArray.forEach(element => element.remove())
+		Array.from(pixelContainer.children).forEach(element => element.remove())
 		createScreen(sizeX)
 	} else {
 		for (let y = 0; y < sizeX / 2; y++) {
 			pixelContainer.appendChild(document.createElement("div"))
 			pixelContainer.lastChild.classList.add("pixel-row")
-			for (x = 0; x < sizeX; x++) {
+			for (let x = 0; x < sizeX; x++) {
 				pixelContainer.lastChild.appendChild(document.createElement("div"))
 				pixelContainer.lastChild.lastChild.classList.add("pixel")
-				pixelContainer.lastChild.lastChild.addEventListener("click", 
-					(e) => {
-						this.style.backgroundColor = "red"
-					})
+				pixelContainer.lastChild.lastChild.setAttribute("x", x)
+				pixelContainer.lastChild.lastChild.setAttribute("y", y)
 			}
 		}
 	}
-	// Create pixels
+	// Create pixel array
 	for (let i = 0; i < pixelContainer.children.length; i++){
 		let p = []
 		for (let j = 0; j < pixelContainer.children[i].children.length; j++){
 			p.push(pixelContainer.children[i].children[j])
 		}
-		pixels.push(p)
+		pixelsArray.push(p)
 	}
+	// Add pixel listeners
+	for (let y = 0; y < pixelsArray.length; y++){
+		for (let x = 0; x < pixelsArray[y].length; x++){
+			pixelsArray[y][x].addEventListener("mousemove", 
+				(e)=> {
+					if (controls.drawing){
+						e.preventDefault()
+						colorCell(e.target.getAttribute("x"), e.target.getAttribute("y"))
+					}
+				})
+		}
+	}
+	// Add screen listeners
+	// ** currently the mousedown event remains triggered if i exit the pixelcontainer
+	// ** could wrap the whole thing in a mouseover and/or mouseout event?
+	pixelContainer.addEventListener("mousedown", 
+		(e)=>{
+			controls.drawing = true
+			console.log("drawing == " + controls.drawing)
+		})
+	pixelContainer.addEventListener("mouseup", 
+		()=>{
+			controls.drawing = false
+			console.log("drawing == " + controls.drawing)
+		})
 }
 
 function colorCell (x, y) {
 	if (controls.eraser.value == true) {
 	pixelContainer.children[y].children[x].style.backgroundColor = screenBG
 	} else {
-	pixelContainer.children[y].children[x].style.backgroundColor = controls.color.value
+	pixelContainer.children[y].children[x].style.backgroundColor = controls.color.fgValue
 	}
 }
 
