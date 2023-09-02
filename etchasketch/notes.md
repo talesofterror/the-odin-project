@@ -61,8 +61,8 @@ y = pixelContainer.children[x].children[y]
 
 function (x, y) {
 	return [x,y]
-} what??
-
+}` // what??
+`
 pointA = [x1,y1]
 pointB = [x2,y2]
 
@@ -81,4 +81,4 @@ to draw a rectangle:
 			pixelContainer.children[ (x1 + i].children[y].bgcolor = $color
 		}
 	} 
-`
+	`
