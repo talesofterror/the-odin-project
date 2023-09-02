@@ -1,5 +1,6 @@
 
 let pixelContainer = document.querySelector(".pixel-container")
+let fgColorPicker = document.querySelector(".fg")
 let pixels = []
 const xCoord = document.createAttribute("x")
 const yCoord = document.createAttribute("y")
@@ -7,7 +8,7 @@ const yCoord = document.createAttribute("y")
 let screenBG = getComputedStyle(document.documentElement).getPropertyValue("--screenBG")
 
 let controls = {
-	color: { element: "", fgValue: "#0f8", bgValue: screenBG },
+	color: { element: "", fgValue: fgColorPicker.value, bgValue: screenBG },
 	resolution: { element: "", value: 50},
 	drawing: false,
 	eraser: { element: "", value: false },
@@ -18,6 +19,12 @@ let controls = {
 	}
 	
 createScreen(controls.resolution.value)
+fgColorPicker.value = "#000"
+fgColorPicker.addEventListener("change", ()=>{
+	console.log(fgColorPicker.value)
+	controls.color.fgValue = fgColorPicker.value
+})
+
 
 function createScreen(sizeX) {
 // Insert elements
