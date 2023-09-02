@@ -1,9 +1,8 @@
 
 let pixelContainer = document.querySelector(".pixel-container")
-let root = document.querySelector("root")
-let pixelsArray = []
+let pixels = []
 const xCoord = document.createAttribute("x")
-const yCoord = document.createAttribute("x")
+const yCoord = document.createAttribute("y")
 
 let screenBG = getComputedStyle(document.documentElement).getPropertyValue("--screenBG")
 
@@ -18,11 +17,10 @@ let controls = {
 		// 		use hsv?
 	}
 	
-	createScreen(controls.resolution.value)
-	function pixelsFunction (x, y) {return pixelContainer.children[y].children[x]}
-	
-	function createScreen(sizeX) {
-		// Insert elements
+createScreen(controls.resolution.value)
+
+function createScreen(sizeX) {
+// Insert elements
 	if (pixelContainer.firstElementChild){
 		Array.from(pixelContainer.children).forEach(element => element.remove())
 		createScreen(sizeX)
@@ -38,19 +36,19 @@ let controls = {
 			}
 		}
 	}
-	// Create pixel array
-	// ** fast mouse movements cause skipped pixels
+// Create pixel array
 	for (let i = 0; i < pixelContainer.children.length; i++){
 		let p = []
 		for (let j = 0; j < pixelContainer.children[i].children.length; j++){
 			p.push(pixelContainer.children[i].children[j])
 		}
-		pixelsArray.push(p)
+		pixels.push(p)
 	}
-	// Add pixel listeners
-	for (let y = 0; y < pixelsArray.length; y++){
-		for (let x = 0; x < pixelsArray[y].length; x++){
-			pixelsArray[y][x].addEventListener("mousemove", 
+// Add pixel listeners
+// ** fast mouse movements cause skipped pixels
+	for (let y = 0; y < pixels.length; y++){
+		for (let x = 0; x < pixels[y].length; x++){
+			pixels[y][x].addEventListener("mousemove", 
 				(e)=> {
 					if (controls.drawing){
 						e.preventDefault()
@@ -59,15 +57,17 @@ let controls = {
 				})
 		}
 	}
-	// Add screen listeners
-	// ** currently the mousedown event remains triggered if i exit the pixelcontainer
-	// ** could wrap the whole thing in a mouseover and/or mouseout event?
-	pixelContainer.addEventListener("mousedown", 
+// Add screen listeners
+// ** if I click outside the pixel container
+	document.querySelector("body").addEventListener("mousedown", 
 		(e)=>{
 			controls.drawing = true
+			if (e.target.classList.contains("pixel")) {
+				colorCell(e.target.getAttribute("x"), e.target.getAttribute("y")) 
+			}
 			console.log("drawing == " + controls.drawing)
 		})
-	pixelContainer.addEventListener("mouseup", 
+	document.querySelector("body").addEventListener("mouseup", 
 		()=>{
 			controls.drawing = false
 			console.log("drawing == " + controls.drawing)
@@ -134,29 +134,6 @@ function randomize(values) {
 
 	return v
 }
-
-let mainChildren = Array.from(pixelContainer.children) // x ?
-
-function Shape(resolution, shape) {
-	return {
-		resolution: resolution,
-		shape: shape, 
-		changeSize: function (newSize) {
-			this.resolution = newSize
-		}
-	}
-}
-
-let fishes = {
-	blue: "A blue fish, nothing too special about it. It shimmers when you rotate it."
-	,
-	red: "A red fish. It looks like cooked shrimp, but it is a fresh fish."
-	,
-	yellow: "A yellow fish. Not quite gold."
-	, 
-	cream: "A cream-colored fish. It's got lovely red and yellow dappling."
-}
-
 
 function map_range(value, low1, high1, low2, high2) {
 	return low2 + (high2 - low2) * (value - low1) / (high1 - low1);

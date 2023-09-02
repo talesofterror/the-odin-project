@@ -1,5 +1,8 @@
-Odin Project ETCHASKETCH
+## Odin Project ETCHASKETCH
 
+`
+let string = "markdown testing"
+`
 
 Things that need to happen: 
 
@@ -51,6 +54,7 @@ Things that need to happen:
 
 NOTES: 
 
+`
 x = pixelContainer.children[x]
 y = pixelContainer.children[x].children[y]
 ? [x, y] = pixelContainer.children[x].children[y]
@@ -77,3 +81,4 @@ to draw a rectangle:
 			pixelContainer.children[ (x1 + i].children[y].bgcolor = $color
 		}
 	} 
+`
