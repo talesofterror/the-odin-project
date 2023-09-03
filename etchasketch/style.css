@@ -1,14 +1,14 @@
 :root {
 		height: 100vh;
 		min-height: 100vh;
-		--outerBorderColor: #050;
-		--innerBorderColor: #050;
+		--outerBorderColor: #005500;
+		--innerBorderColor: #005500;
 		--knobGradientStart: #eae;
 		--knobGradientEnd: #737;
-		--pageBG: #B7B;
-		--gridColor: #eae;
-		--deviceBG: #0D7;
-		--screenBG: #efe;
+		--pageBG: #BB77BB;
+		--gridColor: #eeaaee;
+		--deviceBG: #00DD77;
+		--screenBG: #eeffee;
 		--controlsBG: #0c3;
 		--controlPanelBG: #272;
 		--innerBorderThickness: 30px;
@@ -56,7 +56,7 @@ main {
 	flex-direction: column;
 	width: var(--displayWidth);
 	height: 75%;
-	border: 4px var(--innerBorderColor) solid;
+	border: 2px var(--innerBorderColor) solid;
 	overflow: hidden;
 
 }
@@ -83,7 +83,7 @@ main {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border: 4px solid var(--innerBorderColor);
+	border: 2px solid var(--innerBorderColor);
 	width: 85%;
 	height: 20%;
 	overflow: hidden;
@@ -93,7 +93,7 @@ main {
 .controls-item {
 	width: 55%;
 	height: 70%;
-	/* flex: 1 1 33%; */
+	padding: 0px;
 }
 
 .knob {
@@ -146,30 +146,67 @@ svg.right-knob {
 }
 
 .control-panel-item {
+	display: flex;
+	flex-direction: row;
+	align-items: space-around;
+	justify-content: center;
 	overflow: hidden;
 	color: var(--gridColor);
-	background-color: var(--gridColor);
+	background-color: var(--controlPanelBG);
 	width: 10%;
 	height: 80%;
 	margin: auto 0;
+	padding: 5px;
+	border-start-start-radius: calc(var(--borderRadius)-5);
+	border-start-end-radius: calc(var(--borderRadius)-2);
+	border-end-start-radius: calc(var(--borderRadius)-2);
+	border-end-end-radius: calc(var(--borderRadius)-2);
+}
+
+.color-picker {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30%;
+}
+
+.color-picker img {
+	height: 60%;
+	width: auto;
+	margin: auto 0px;
+	/* filter:sepia(100%); */
+	filter: saturate(20%);
+	filter:drop-shadow();
+}
+
+.color-input-container {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--controlPanelBG);
+	height: 100%;
+	width: 50%;
+	margin-right:10px;
+	margin-left:10px;
+	border: 2px solid var(--innerBorderColor)
 }
 
 /* Color picker looks different in chrome/edge v. firefox */
-.color-picker {
-	width: 100%;
-	height: 50%;
+.color-input {
+	width: 80%;
+	height: 100%;
 	appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
   background: none;
   border: 0;
   cursor: pointer;
-	border: none;
-	margin:0px;
+	/* border: 2px solid var(--innerBorderColor); */
+	border-radius: 50px;
+	margin: 0px auto;
 }
 
 ::-webkit-color-swatch{
-    border-radius: 40%;
+    border-radius: 50px;
 }
 
 .display-shadow {
@@ -177,7 +214,11 @@ svg.right-knob {
 }
 
 .controls-shadow {
-	box-shadow: inset 0 0 20px 5px var(--innerBorderColor), 0 0 10px Var(--innerBorderColor);
+	box-shadow: inset 0 0 20px 2px var(--innerBorderColor), 0 0 10px Var(--innerBorderColor);
+}
+
+.controls-item-shadow {
+	box-shadow: 0 0 5px 2px var(--controlPanelBG), inset 0 0 1px 2px var(--outerBorderColor);
 }
 
 .device-shadow {

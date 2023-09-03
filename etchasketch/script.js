@@ -1,15 +1,19 @@
 
 let pixelContainer = document.querySelector(".pixel-container")
 let fgColorPicker = document.querySelector(".fg")
+let bgColorPicker = document.querySelector(".bg")
 let pixels = []
 const xCoord = document.createAttribute("x")
 const yCoord = document.createAttribute("y")
 
-let screenBG = getComputedStyle(document.documentElement).getPropertyValue("--screenBG")
+let initBG = getComputedStyle(document.documentElement).getPropertyValue("--screenBG")
+let initColor = getComputedStyle(document.documentElement).getPropertyValue("--deviceBG")
+fgColorPicker.value = initColor
+bgColorPicker.value = initBG
 
 let controls = {
-	color: { element: "", fgValue: fgColorPicker.value, bgValue: screenBG },
-	resolution: { element: "", value: 50},
+	color: { element: "", fgValue: fgColorPicker.value, bgValue: bgColorPicker.value },
+	resolution: { element: "", value: 100},
 	drawing: false,
 	eraser: { element: "", value: false },
 	randomize: { element: "", value: false },
@@ -19,15 +23,10 @@ let controls = {
 	}
 	
 createScreen(controls.resolution.value)
-fgColorPicker.value = "#000"
-fgColorPicker.addEventListener("change", ()=>{
-	console.log(fgColorPicker.value)
-	controls.color.fgValue = fgColorPicker.value
-})
-
 
 function createScreen(sizeX) {
-// Insert elements
+
+	// Insert elements
 	if (pixelContainer.firstElementChild){
 		Array.from(pixelContainer.children).forEach(element => element.remove())
 		createScreen(sizeX)
@@ -43,7 +42,7 @@ function createScreen(sizeX) {
 			}
 		}
 	}
-// Create pixel array
+	// Create pixel array
 	for (let i = 0; i < pixelContainer.children.length; i++){
 		let p = []
 		for (let j = 0; j < pixelContainer.children[i].children.length; j++){
@@ -51,8 +50,8 @@ function createScreen(sizeX) {
 		}
 		pixels.push(p)
 	}
-// Add pixel listeners
-// ** fast mouse movements cause skipped pixels
+	// Add pixel listeners
+	// ** fast mouse movements cause skipped pixels
 	for (let y = 0; y < pixels.length; y++){
 		for (let x = 0; x < pixels[y].length; x++){
 			pixels[y][x].addEventListener("mousemove", 
@@ -64,8 +63,8 @@ function createScreen(sizeX) {
 				})
 		}
 	}
-// Add screen listeners
-// ** if I click outside the pixel container
+	// Add screen listeners
+	// ** if I click outside the pixel container
 	document.querySelector("body").addEventListener("mousedown", 
 		(e)=>{
 			controls.drawing = true
@@ -79,11 +78,24 @@ function createScreen(sizeX) {
 			controls.drawing = false
 			console.log("drawing == " + controls.drawing)
 		})
+	fgColorPicker.addEventListener("change", ()=>{
+		console.log(fgColorPicker.value)
+		controls.color.fgValue = fgColorPicker.value
+	})
+	bgColorPicker.addEventListener("change", ()=>{
+		console.log(bgColorPicker.value)
+		controls.color.bgValue = bgColorPicker.value
+		for (let y = 0; y < pixels.length; y++){
+			for (let x = 0; x < pixels[y].length; x++){
+				pixels[y][x].style.backgroundColor = controls.color.bgValue
+			}
+		}
+	})
 }
 
 function colorCell (x, y) {
 	if (controls.eraser.value == true) {
-	pixelContainer.children[y].children[x].style.backgroundColor = screenBG
+	pixelContainer.children[y].children[x].style.backgroundColor = initBG
 	} else {
 	pixelContainer.children[y].children[x].style.backgroundColor = controls.color.fgValue
 	}
