@@ -115,11 +115,11 @@ svg {
 }
 
 svg.left-knob {
-	rotate: 0deg
+	rotate: 0deg;
 }
 
 svg.right-knob {
-	rotate: 0deg
+	rotate: 0deg;
 }
 
 .svg-face {
@@ -224,11 +224,15 @@ svg.right-knob {
 	margin: 0px 10px;
 }
 
+.randomize-toggle img {
+	width: 100%;
+}
+
 .resolution {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 5%;
+	gap: 0;
 	padding: 5px;
 	padding-right: 1%;
 	width: 30%;
@@ -267,6 +271,10 @@ svg.right-knob {
 	border-radius: 50px;
 }
 
+.dimmed {
+	filter: invert(28%) sepia(14%) saturate(2682%) hue-rotate(252deg) brightness(89%) contrast(93%);
+}
+
 .display-shadow {
 	box-shadow: inset 0px 0px 10px 3px var(--gridColor), 0 0 10px var(--innerBorderColor);
 }
@@ -292,4 +300,10 @@ svg.right-knob {
 
 .flicker-protection {
 	visibility: hidden;
+}
+
+@media (max-width: 720px) {
+  main {
+		width: 100%;
+	}
 }
