@@ -157,7 +157,7 @@ svg.right-knob {
 	height: 80%;
 	margin: auto 0;
 	padding: 5px;
-	border-start-start-radius: calc(var(--borderRadius)-5);
+	border-start-start-radius: calc(var(--borderRadius)-2);
 	border-start-end-radius: calc(var(--borderRadius)-2);
 	border-end-start-radius: calc(var(--borderRadius)-2);
 	border-end-end-radius: calc(var(--borderRadius)-2);
@@ -187,7 +187,6 @@ svg.right-knob {
 	width: 50%;
 	margin-right:10px;
 	margin-left:10px;
-	border: 2px solid var(--innerBorderColor)
 }
 
 /* Color picker looks different in chrome/edge v. firefox */
