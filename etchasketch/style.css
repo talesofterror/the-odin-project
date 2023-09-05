@@ -155,7 +155,7 @@ svg.right-knob {
 	align-items: space-around;
 	justify-content: center;
 	overflow: hidden;
-	color: var(--gridColor);
+	color: var(--knobGradientEnd);
 	background-color: var(--controlPanelBG);
 	width: 10%;
 	height: 80%;
@@ -225,7 +225,7 @@ svg.right-knob {
 }
 
 .randomize-toggle img {
-	width: 100%;
+	width: 80%;
 }
 
 .resolution {
@@ -271,8 +271,8 @@ svg.right-knob {
 	border-radius: 50px;
 }
 
-.dimmed {
-	filter: invert(28%) sepia(14%) saturate(2682%) hue-rotate(252deg) brightness(89%) contrast(93%);
+.default-icon {
+	filter: invert(66%) sepia(13%) saturate(3731%) hue-rotate(103deg) brightness(86%) contrast(101%);
 }
 
 .display-shadow {
