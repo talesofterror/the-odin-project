@@ -1,4 +1,3 @@
-
 let pixelContainer = document.querySelector(".pixel-container")
 let fgColorPicker = document.querySelector(".fg")
 let bgColorPicker = document.querySelector(".bg")
@@ -8,21 +7,29 @@ const yCoord = document.createAttribute("y")
 
 let initBG = getComputedStyle(document.documentElement).getPropertyValue("--screenBG")
 let initColor = getComputedStyle(document.documentElement).getPropertyValue("--deviceBG")
+let screenCursor = getComputedStyle(document.documentElement).getPropertyValue("--deviceBG")
 fgColorPicker.value = initColor
 bgColorPicker.value = initBG
 
 let controls = {
-	color: { element: "", fgValue: fgColorPicker.value, bgValue: bgColorPicker.value },
-	resolution: { element: "", value: 100},
+	color: 
+		{	fgValue: fgColorPicker.value,
+			bgValue: bgColorPicker.value },
+	resolution: 
+		{	elementUp: document.getElementById("up-arrow"),
+			elementDown: document.getElementById("up-arrow"),
+		 	value: 100 },
 	drawing: false,
-	eraser: { element: "", value: false },
-	randomize: { element: "", value: false },
-		// ? randomize options: 
-		// 		color, saturation, value
-		// 		use hsv?
+	eraser: 
+		{ element: "",
+			value: false },
+	randomize: 
+		{ element: "",
+			value: false },
 	}
 	
 createScreen(controls.resolution.value)
+document.documentElement.style.setProperty("--screenCursor", controls.color.fgValue)
 
 function createScreen(sizeX) {
 
@@ -51,27 +58,37 @@ function createScreen(sizeX) {
 		pixels.push(p)
 	}
 	// Add pixel listeners
-	// ** fast mouse movements cause skipped pixels
 	for (let y = 0; y < pixels.length; y++){
 		for (let x = 0; x < pixels[y].length; x++){
 			pixels[y][x].addEventListener("mousemove", 
 				(e)=> {
 					if (controls.drawing){
 						e.preventDefault()
-						colorCell(e.target.getAttribute("x"), e.target.getAttribute("y"))
+						controls.eraser.value ? 
+						colorCell(e.target.getAttribute("x"), e.target.getAttribute("y"), controls.color.bgValue)
+						: colorCell(e.target.getAttribute("x"), e.target.getAttribute("y"), controls.color.fgValue)
 					}
 				})
 		}
 	}
 	// Add screen listeners
-	// ** if I click outside the pixel container
-	document.querySelector("body").addEventListener("mousedown", 
+	// ** if I click inside the pixel container and then drag the mouse
+	// ** out of the container and let go of the mouse colorcell() is
+	// ** still being called when I move my mouse back in the container
+	pixelContainer.addEventListener("mousedown", 
 		(e)=>{
 			controls.drawing = true
-			if (e.target.classList.contains("pixel")) {
-				colorCell(e.target.getAttribute("x"), e.target.getAttribute("y")) 
-			}
 			console.log("drawing == " + controls.drawing)
+			console.log("button pressed == " + e.button)
+			console.log(e.target)
+			if (e.button == 0) {
+				controls.eraser.value = false
+				colorCell(e.target.getAttribute("x"), e.target.getAttribute("y"), controls.color.fgValue) 
+			} else if (e.button == 2) {
+				controls.eraser.value = true
+				colorCell(e.target.getAttribute("x"), e.target.getAttribute("y"), controls.color.bgValue) 
+				console.log("erasing")
+			}
 		})
 	document.querySelector("body").addEventListener("mouseup", 
 		()=>{
@@ -93,12 +110,8 @@ function createScreen(sizeX) {
 	})
 }
 
-function colorCell (x, y) {
-	if (controls.eraser.value == true) {
-	pixelContainer.children[y].children[x].style.backgroundColor = initBG
-	} else {
-	pixelContainer.children[y].children[x].style.backgroundColor = controls.color.fgValue
-	}
+function colorCell (x, y, color) {	
+	pixelContainer.children[y].children[x].style.backgroundColor = color
 }
 
 function distance (x1, y1, x2, y2) {
@@ -159,45 +172,3 @@ function map_range(value, low1, high1, low2, high2) {
 }
 
 let map16Colors = (color) => map_range(color, 0, 255, 0, 16)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/// GRAVEYARD
-
-
-// // CODE BELOW ONLY ADDS A SINGLE ELEMENT TO THE END OF THE CHILD LIST
-   // ~ it was because the nodelist doesn't have any children to forEach
-   // through. Duh.
-// mainNodeList.children.forEach(element =>
-//     {
-//         element.appendChild(document.createElement("div"))
-//         let codePointString = `0x1F60${i}`
-//         element.lastElementChild.textContent =
-//         `${String.fromCodePoint(codePointString)} ` + (i+1)
-//     }
-// )
-
-
-// for (x = 0; x < 51; x++) {
-// 	mainElement.appendChild(document.createElement("div"))
-// 	let codePointString = `0x1F60${x}`
-// 	mainElement.lastElementChild.textContent = 
-// 	    `${String.fromCodePoint(codePointString)} ` + (x+1)
-// 	    x+1
-// }
-
-
-// let mainNodeList = document.querySelectorAll("main")

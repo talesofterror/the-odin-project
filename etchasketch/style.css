@@ -13,6 +13,7 @@
 	--controlPanelBG: #272;
 	--innerBorderThickness: 30px;
 	--outerBorderThickness: 2.5px;
+	--screenCursor: #000;
 	--pageImage: radial-gradient(#FCC, 70%, #B7B);
 	--borderRadius: 20px;
 	--displayWidth: 90%;
@@ -60,7 +61,7 @@ main {
 	height: 75%;
 	border: 2px var(--innerBorderColor) solid;
 	overflow: hidden;
-
+	
 }
 
 .pixel-row {
@@ -77,7 +78,7 @@ main {
 }
 
 .pixel:hover {
-	background-color: #B7B;
+	background-color: var(--screenCursor);
 }
 
 .controls-container {
@@ -179,9 +180,6 @@ svg.right-knob {
 	width: 30%;
 	height: auto;
 	margin: auto 0px;
-	/* filter:sepia(100%); */
-	/* filter: saturate(20%); */
-	/* filter:drop-shadow(100%); */
 }
 
 .color-input-container {
@@ -238,6 +236,15 @@ svg.right-knob {
 	width: 30%;
 }
 
+.resolution-right-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin-bottom: 5%;
+}
+
 .resolution-icon {
 	display: flex;
 	align-items: center;
@@ -247,7 +254,21 @@ svg.right-knob {
 }
 
 .resolution-icon img {
-	width: 50%;
+	width: 100%;
+	height: 100%;
+	transform: rotate(90deg);
+}
+
+.grid-off-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	max-height: 100%;
+}
+
+.grid-off-icon img {
+	width: 40%;
 	height: 100%;
 }
 
@@ -258,7 +279,7 @@ svg.right-knob {
 	align-items: center;
 	justify-content: space-around;
 	padding: 5px;
-	margin: 0px 10px;
+	margin-left: 10px;
 	font-size: 1em;
 	font-weight: bolder;
 }
@@ -271,7 +292,10 @@ svg.right-knob {
 	border-radius: 50px;
 }
 
-.default-icon {
+.icon-color-mouseout {
+	filter: invert(66%) sepia(80%) saturate(2493%) hue-rotate(105deg) brightness(72%) contrast(104%);
+}
+.icon-color-mousein {
 	filter: invert(66%) sepia(13%) saturate(3731%) hue-rotate(103deg) brightness(86%) contrast(101%);
 }
 
@@ -302,8 +326,8 @@ svg.right-knob {
 	visibility: hidden;
 }
 
-@media (max-width: 720px) {
+@media (max-height: 720px) {
   main {
-		width: 100%;
+		width: 80%;
 	}
 }

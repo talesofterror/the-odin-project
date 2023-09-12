@@ -20,7 +20,7 @@
 <body class="flicker-protection knob-shadow">
     <main class="round-corners device-shadow">
 <!-- pixel container -->
-        <div class="pixel-container round-corners display-shadow"></div>
+        <div oncontextmenu="return false" class="pixel-container round-corners display-shadow"></div>
         <div class="controls-container round-corners controls-shadow">
 <!-- knob left svg -->
             <div class="controls-item knob controls-shadow">
@@ -66,16 +66,23 @@
                     </div>
                     <img src="assets/color-icon.svg">
                     <div class="randomize-toggle control-panel-item controls-item-shadow round-corners">
-                        <img class="default-icon" src="assets/dice-icon.svg">
+                        <img class="icon-color-mouseout" src="assets/dice-icon.svg">
                     </div>
                 </div>
                 <div class="control-panel-item resolution controls-item-shadow round-corners ">
                     <div class="resolution-controls-container controls-item-shadow round-corners">
-                        <img class="dimmed" src="assets/up-arrow.svg">
+                        <img class="dimmed" id="up-arrow" src="assets/up-arrow.svg">
                         <div class="resolution-value-text">100</div>
-                        <img  class="dimmed" src="assets/down-arrow.svg">
+                        <img  class="dimmed" id="down-arrow" src="assets/down-arrow.svg">
                     </div>
-                    <div class="resolution-icon"><img src="assets/grid-icon.svg"></div>
+                    <div class="resolution-right-container">
+                        <div class="resolution-icon">
+                            <img src="assets/grid-icon.svg">
+                        </div>
+                        <div class="grid-off-icon">
+                            <img src="assets/eye-icon.svg">
+                        </div>
+                </div>
                 </div>
                 <div class="control-panel-item controls-item-shadow round-corners "></div>
                 <div class="control-panel-item controls-item-shadow round-corners "></div>
