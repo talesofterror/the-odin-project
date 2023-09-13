@@ -13,7 +13,7 @@
 	--controlPanelBG: #272;
 	--innerBorderThickness: 30px;
 	--outerBorderThickness: 2.5px;
-	--screenCursor: #000;
+	--screenCursor: #00DD77;
 	--pageImage: radial-gradient(#FCC, 70%, #B7B);
 	--borderRadius: 20px;
 	--displayWidth: 90%;
@@ -100,19 +100,22 @@ main {
 }
 
 .knob {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	background-color: var(--controlPanelBG);
 	background-image: none;
 	border: none;
 	border-radius: 100%;
 	width: 15%;
 	height: auto;
-	padding: 5px;
+	padding: 3px;
 }
 
 svg {
 	width: 100%;
 	height: auto;
-	margin-top: 1.5%;
+	margin: 3%;
 }
 
 svg.left-knob {
@@ -134,8 +137,6 @@ svg.right-knob {
 }
 
 #path50 {
-	/* filter: hue-rotate(20deg); */
-	/* fill: #0D7; */
 	fill: url(#grad1);
 	stroke: var(--knobGradientEnd);
 	stroke-width: 5px;
@@ -176,12 +177,6 @@ svg.right-knob {
 	width: 30%;
 }
 
-.control-panel-item img {
-	width: 30%;
-	height: auto;
-	margin: auto 0px;
-}
-
 .color-input-container {
 	display: flex;
 	flex-direction: column;
@@ -206,6 +201,21 @@ svg.right-knob {
 	border-radius: 50px;
 	margin: 0px auto;
 }
+
+.color-info-container {
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+	font-size: 0.6em;
+	font-weight: bolder;
+}
+
+.color-info-container img {
+	width: 100%;
+	height: auto;
+	margin: auto 0px;
+}
+
 
 .randomize-toggle {
 	width: 30%;
@@ -241,7 +251,7 @@ svg.right-knob {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 100%;
+	width: 60%;
 	margin-bottom: 5%;
 }
 
@@ -288,6 +298,20 @@ svg.right-knob {
 	width: 90%
 }
 
+.text-button {
+	writing-mode: vertical-rl;
+	text-orientation: upright;
+	font-kerning:auto;
+	font-size: 0.6em;
+	font-weight: bolder;
+	text-align: center;
+	text-justify: center;
+}
+
+.text-button:hover {
+	color: var(--controlsBG)
+}
+
 ::-webkit-color-swatch {
 	border-radius: 50px;
 }
@@ -326,8 +350,12 @@ svg.right-knob {
 	visibility: hidden;
 }
 
-@media (max-height: 720px) {
+@media (max-height: 721px) {
   main {
-		width: 80%;
+		width: 60%;
+	}
+
+	.text-button {
+		font-size: 0.45em;
 	}
 }
