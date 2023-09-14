@@ -9,26 +9,24 @@ const yCoord = document.createAttribute("y")
 let initBG = getComputedStyle(document.documentElement).getPropertyValue("--screenBG")
 let initColor = getComputedStyle(document.documentElement).getPropertyValue("--deviceBG")
 let screenCursor = getComputedStyle(document.documentElement).getPropertyValue("--screenCursor")
-// fgColorPicker.value = initColor
-// bgColorPicker.value = initBG
 
 let controls = {
 	color: {	
 		fgValue: fgColorPicker.value,
 		bgValue: bgColorPicker.value
-		//background color change should preserve
+		//background color change should preserve drawing
 	},
 	resolution: { 
 		elementUp: document.getElementById("up-arrow"),
 		elementDown: document.getElementById("up-arrow"),
-		value: 100
+		elementText: document.getElementById("resolution-text"),
 	},
 	drawing: false,
 	eraser: false,
 	randomize:{ 
 		element: document.querySelector(".randomize-toggle img"),
 		value: false },
-	reset: {
+	clear: {
 	// maybe this should be called "clear"
 		element: document.getElementById("reset"),
 		method: function (bgColor) {
@@ -39,27 +37,57 @@ let controls = {
 	 }
 }
 
-createScreen(controls.resolution.value)
+createScreen(100)
 activateControls()
 
 function activateControls () {
-	controls.reset.element.addEventListener("click", () => controls.reset.method(controls.color.bgValue))
+	// randomize element
+	controls.randomize.element.addEventListener("mouseover", ()=> {
+		controls.randomize.element.classList.add("icon-color-mousein")
+		controls.randomize.element.classList.remove("icon-color-mouseout")
+	})
+	controls.randomize.element.addEventListener("mouseout", ()=> {
+		controls.randomize.element.classList.add("icon-color-mouseout")
+		controls.randomize.element.classList.remove("icon-color-mousein")
+	})
+	controls.randomize.element.addEventListener("click", ()=> {
+		// randomize()
+	})
+	// resolution elements
+	controls.resolution.elementUp.addEventListener("click", () => {
+		
+	})
+	controls.resolution.elementDown.addEventListener("click", () => {
+
+	})
+	// reset element
+	controls.clear.element.addEventListener("click", () => controls.clear.method(controls.color.bgValue))
 }
 
 function colorCell(x, y, color) {
 	pixels[y][x].style.backgroundColor = color
 }
 
+function randomColorValue () {
+	let colorVal = Math.floor(Math.random() * 256)
+	return colorVal
+}
 
-function randomize(values) {
-	let v = values
-	for (i = v.length - 1; i > 0; i--) {
+function randomColorMaker () {
+	let r = randomColorValue()
+	let g = randomColorValue()
+	let b = randomColorValue()
+	return `rgb(${r}, ${g}, ${b})`
+}
+
+function randomizeArray(array) {
+	for (i = array.length - 1; i > 0; i--) {
 		let j = Math.floor(Math.random() * (i + 1))
-		let k = v[i]
-		v[i] = v[j]
-		v[j] = k
+		let k = array[i]
+		array[i] = array[j]
+		array[j] = k
 	}
-	return v
+	return array
 }
 
 function map(value, low1, high1, low2, high2) {
@@ -152,4 +180,6 @@ function createScreen(sizeX) {
 			}
 		}
 	})
+	// resolution text value
+	controls.resolution.elementText.textContent = sizeX
 }
