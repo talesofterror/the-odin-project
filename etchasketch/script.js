@@ -1,6 +1,6 @@
-let pixelContainer = document.querySelector(".pixel-container")
-let fgColorPicker = document.querySelector(".fg")
-let bgColorPicker = document.querySelector(".bg")
+const pixelContainer = document.querySelector(".pixel-container")
+const fgColorPicker = document.querySelector(".fg")
+const bgColorPicker = document.querySelector(".bg")
 let pixels = []
 let mousePosition = [0, 0]
 const xCoord = document.createAttribute("x")
@@ -47,11 +47,24 @@ function activateControls () {
 		controls.randomize.element.classList.remove("icon-color-mouseout")
 	})
 	controls.randomize.element.addEventListener("mouseout", ()=> {
+		if (controls.randomize.value) { return }
+		else {
 		controls.randomize.element.classList.add("icon-color-mouseout")
 		controls.randomize.element.classList.remove("icon-color-mousein")
+		}
 	})
 	controls.randomize.element.addEventListener("click", ()=> {
-		// randomize()
+		if (!controls.randomize.value) {
+			controls.randomize.value = true 
+			controls.randomize.element.classList.add("icon-color-mousein")
+			controls.randomize.element.classList.remove("icon-color-mouseout")
+			controls.randomize.element.src = "assets/dice-color-icon.svg"
+		} else { 
+			controls.randomize.value = false 
+			controls.randomize.element.classList.add("icon-color-mouseout")
+			controls.randomize.element.classList.remove("icon-color-mousein")
+			controls.randomize.element.src = "assets/dice-icon.svg"
+		}
 	})
 	// resolution elements
 	controls.resolution.elementUp.addEventListener("click", () => {
@@ -61,22 +74,33 @@ function activateControls () {
 
 	})
 	// reset element
-	controls.clear.element.addEventListener("click", () => controls.clear.method(controls.color.bgValue))
+	controls.clear.element.addEventListener("click", () => 
+		controls.clear.method(controls.color.bgValue))
 }
 
 function colorCell(x, y, color) {
 	pixels[y][x].style.backgroundColor = color
 }
 
-function randomColorValue () {
-	let colorVal = Math.floor(Math.random() * 256)
+function makeRandomColorValue () {
+	let colorVal = Math.floor(Math.random() * 255)
+	return colorVal
+}
+function makeRandomColorValue16 () {
+	let colorVal = Math.floor(Math.random() * 16)
 	return colorVal
 }
 
-function randomColorMaker () {
-	let r = randomColorValue()
-	let g = randomColorValue()
-	let b = randomColorValue()
+// function makeRandomColorString () {
+// 	let r = makeRandomColorValue()
+// 	let g = makeRandomColorValue()
+// 	let b = makeRandomColorValue()
+// 	return `rgb(${r}, ${g}, ${b})`
+// }
+function makeRandomColorString () {
+	let r = map256Colors(makeRandomColorValue16())
+	let g = map256Colors(makeRandomColorValue16())
+	let b = map256Colors(makeRandomColorValue16())
 	return `rgb(${r}, ${g}, ${b})`
 }
 
@@ -94,7 +118,8 @@ function map(value, low1, high1, low2, high2) {
 	return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
 }
 
-let map16Colors = (color) => map(color, 0, 255, 0, 16)
+function map16Colors (color) { return map(color, 0, 255, 0, 15) }
+function map256Colors (color) { return map(color, 0, 15, 0, 255) }
 
 function createScreen(sizeX) {
 	// Insert elements
@@ -130,7 +155,9 @@ function createScreen(sizeX) {
 						e.preventDefault()
 						controls.eraser ?
 							colorCell(mousePosition[0], mousePosition[1], controls.color.bgValue)
-							: colorCell(mousePosition[0], mousePosition[1], controls.color.fgValue)
+							: controls.randomize.value ? 
+									colorCell(mousePosition[0], mousePosition[1], makeRandomColorString())
+								: colorCell(mousePosition[0], mousePosition[1], controls.color.fgValue)
 					}
 				})
 		}

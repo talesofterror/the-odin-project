@@ -1,6 +1,8 @@
 :root {
 	height: 100vh;
 	min-height: 100vh;
+	--borderRadius: 20px;
+	--displayWidth: 90%;
 	--outerBorderColor: #005500;
 	--innerBorderColor: #005500;
 	--knobGradientStart: #eae;
@@ -15,8 +17,6 @@
 	--outerBorderThickness: 2.5px;
 	--screenCursor: #00DD77;
 	--pageImage: radial-gradient(#FCC, 70%, #B7B);
-	--borderRadius: 20px;
-	--displayWidth: 90%;
 }
 
 * {
@@ -201,7 +201,7 @@ svg.right-knob {
 }
 
 .color-input:hover {
-	border: 1px solid var(--deviceBG)
+	/* border: 1px solid var(--deviceBG) */
 }
 
 .color-input-container:hover {
@@ -235,6 +235,7 @@ svg.right-knob {
 	line-height: 90%;
 	padding: 1px;
 	margin: 0px 10px;
+	cursor: pointer;
 }
 
 .randomize-toggle:hover {
@@ -256,7 +257,7 @@ svg.right-knob {
 }
 
 .resolution:hover {
-	cursor: pointer;
+
 }
 
 .resolution-right-container {
@@ -288,6 +289,7 @@ svg.right-knob {
 	justify-content: center;
 	width: 100%;
 	max-height: 100%;
+	cursor: pointer;
 }
 
 .grid-off-icon img {
@@ -305,6 +307,7 @@ svg.right-knob {
 	margin-left: 10px;
 	font-size: 1em;
 	font-weight: bolder;
+	cursor: pointer;
 }
 
 .resolution-controls-container:hover {
@@ -313,7 +316,8 @@ svg.right-knob {
 }
 
 .resolution-controls-container img {
-	width: 90%
+	width: 90%;
+	cursor: pointer;
 }
 
 .text-button {
@@ -338,7 +342,7 @@ svg.right-knob {
 }
 
 .icon-color-mouseout {
-	filter: invert(66%) sepia(80%) saturate(2493%) hue-rotate(105deg) brightness(72%) contrast(104%);
+	filter: invert(66%) sepia(80%) saturate(2493%) hue-rotate(105deg) brightness(62%) contrast(104%);
 }
 .icon-color-mousein {
 	filter: invert(66%) sepia(13%) saturate(3731%) hue-rotate(103deg) brightness(86%) contrast(101%);
