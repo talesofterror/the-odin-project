@@ -17,8 +17,9 @@ let controls = {
 		//background color change should preserve drawing
 	},
 	resolution: { 
+		value: 50,
 		elementUp: document.getElementById("up-arrow"),
-		elementDown: document.getElementById("up-arrow"),
+		elementDown: document.getElementById("down-arrow"),
 		elementText: document.getElementById("resolution-text"),
 	},
 	drawing: false,
@@ -37,7 +38,7 @@ let controls = {
 	 }
 }
 
-createScreen(100)
+createScreen(controls.resolution.value)
 activateControls()
 
 function activateControls () {
@@ -59,19 +60,23 @@ function activateControls () {
 			controls.randomize.element.classList.add("icon-color-mousein")
 			controls.randomize.element.classList.remove("icon-color-mouseout")
 			controls.randomize.element.src = "assets/dice-color-icon.svg"
+			document.documentElement.style.setProperty("--screenCursor", makeRandomColorString())
 		} else { 
 			controls.randomize.value = false 
 			controls.randomize.element.classList.add("icon-color-mouseout")
 			controls.randomize.element.classList.remove("icon-color-mousein")
 			controls.randomize.element.src = "assets/dice-icon.svg"
+			document.documentElement.style.setProperty("--screenCursor", controls.color.fgValue)
 		}
 	})
 	// resolution elements
 	controls.resolution.elementUp.addEventListener("click", () => {
-		
+		controls.resolution.value += 10
+		createScreen(controls.resolution.value)
 	})
 	controls.resolution.elementDown.addEventListener("click", () => {
-
+		controls.resolution.value -= 10
+		createScreen(controls.resolution.value)
 	})
 	// reset element
 	controls.clear.element.addEventListener("click", () => 
@@ -82,6 +87,12 @@ function colorCell(x, y, color) {
 	pixels[y][x].style.backgroundColor = color
 }
 
+function map(value, low1, high1, low2, high2) {
+	return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+}
+
+function map256To16 (color) { return map(color, 0, 15, 0, 255) }
+
 function makeRandomColorValue () {
 	let colorVal = Math.floor(Math.random() * 255)
 	return colorVal
@@ -91,35 +102,12 @@ function makeRandomColorValue16 () {
 	return colorVal
 }
 
-// function makeRandomColorString () {
-// 	let r = makeRandomColorValue()
-// 	let g = makeRandomColorValue()
-// 	let b = makeRandomColorValue()
-// 	return `rgb(${r}, ${g}, ${b})`
-// }
 function makeRandomColorString () {
-	let r = map256Colors(makeRandomColorValue16())
-	let g = map256Colors(makeRandomColorValue16())
-	let b = map256Colors(makeRandomColorValue16())
+	let r = map256To16(makeRandomColorValue16())
+	let g = map256To16(makeRandomColorValue16())
+	let b = map256To16(makeRandomColorValue16())
 	return `rgb(${r}, ${g}, ${b})`
 }
-
-function randomizeArray(array) {
-	for (i = array.length - 1; i > 0; i--) {
-		let j = Math.floor(Math.random() * (i + 1))
-		let k = array[i]
-		array[i] = array[j]
-		array[j] = k
-	}
-	return array
-}
-
-function map(value, low1, high1, low2, high2) {
-	return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
-}
-
-function map16Colors (color) { return map(color, 0, 255, 0, 15) }
-function map256Colors (color) { return map(color, 0, 15, 0, 255) }
 
 function createScreen(sizeX) {
 	// Insert elements
@@ -153,11 +141,12 @@ function createScreen(sizeX) {
 				(e) => {
 					if (controls.drawing) {
 						e.preventDefault()
-						controls.eraser ?
+						if (controls.eraser) {
 							colorCell(mousePosition[0], mousePosition[1], controls.color.bgValue)
-							: controls.randomize.value ? 
-									colorCell(mousePosition[0], mousePosition[1], makeRandomColorString())
-								: colorCell(mousePosition[0], mousePosition[1], controls.color.fgValue)
+						} else if (controls.randomize.value) { 
+							colorCell(mousePosition[0], mousePosition[1], makeRandomColorString())
+						} else { colorCell(mousePosition[0], mousePosition[1], controls.color.fgValue)
+						}
 					}
 				})
 		}
@@ -168,6 +157,9 @@ function createScreen(sizeX) {
 	// ** still being called when I move my mouse back in the container
 	pixelContainer.addEventListener("mouseover",
 	(e) => {
+		if (controls.randomize.value) {
+			document.documentElement.style.setProperty("--screenCursor", makeRandomColorString())
+		}
 		mousePosition[0] = e.target.getAttribute("x")
 		mousePosition[1] = e.target.getAttribute("y")
 	})
@@ -178,7 +170,10 @@ function createScreen(sizeX) {
 			console.log("button pressed == " + e.button)
 			console.log(e.target)
 			console.log("x = " + mousePosition[0] + "; y = " + mousePosition[1])
-			if (e.button == 0) {
+			if (e.button == 0) { 
+				if (controls.randomize.value) {
+					screenCursor = () => makeRandomColorString()
+				}
 				controls.eraser = false
 				colorCell(mousePosition[0], mousePosition[1], controls.color.fgValue)
 			} else if (e.button == 2) {
