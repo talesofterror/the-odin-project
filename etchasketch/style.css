@@ -37,7 +37,7 @@ body {
 }
 
 main {
-	width: 60%;
+	width: 65%;
 	background-color: var(--deviceBG);
 	display: flex;
 	flex-direction: column;
@@ -377,7 +377,7 @@ svg.right-knob {
 
 @media (max-height: 721px) {
   main {
-		width: 60%;
+		width: 65%;
 	}
 
 	.text-button {

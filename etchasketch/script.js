@@ -113,6 +113,7 @@ function createScreen(sizeX) {
 	// Insert elements
 	if (pixelContainer.firstElementChild) {
 		Array.from(pixelContainer.children).forEach(element => element.remove())
+		pixels.length = 0
 		createScreen(sizeX)
 	} else {
 		for (let y = 0; y < sizeX / 2; y++) {
