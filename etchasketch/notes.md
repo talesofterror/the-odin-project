@@ -4,50 +4,22 @@
 let string = "markdown testing"
 `
 
-Things that need to happen: 
+# Things that need to happen: 
 
-- ui
-	* icons
-		- pencil	
-			~ This could function as both the color picker and the color indicator
-		- Resolution dial
-			~ Two way arrows? < 50 > 
-			~ Drop down menu?
-		- Dice
-			~ separate dice, or within the color picker if i end up writing one myself. 
-		- * possibly: Line/ Rectangle / Circle
-	* rolling smiley dials
-	* color picker & icon
-	* resolution picker & icon
-		- drop down? up and down arrows? 
-	* eraser icon 
-		- on/off variant
-	* randomize icon 
-		- on/off variant
-	* ? special drawer ?
-		- line tool
-		- circle tool 
-		- rect tool 
-		
-- controls object
-	- controls.color 
-	- controls.resolution
-	- controls.eraser
-	- controls.randomize
-
-- functions 
-	* rolling smileys
-	* color picker
-		- pop-up color picker
-		- changes pixel:hover 
-	* resolution picker
-		- already written
-	* eraser 
-		- returns controls.color to base color (--screenBG)
-	* randomize 
-		- fisher-yates algo 
-		- discreet values -- rgb, hsv, or hex?
-		- written below
+* resolution dial
+	* limit to values between 50 and 100
+* rolling smiley dials
+* color picker & icon
+	* fix color of randomizer button toggle
+* grid visibility
+	* functionality
+	* closed eye toggle
+* rolling smileys
+* device texture
+* Logo / title
+* Info copy
+* Tooltip copy
+  * eraser function advisory
 
 # experimental shape functions
 `

@@ -200,10 +200,6 @@ svg.right-knob {
 	margin: 0px auto;
 }
 
-.color-input:hover {
-	/* border: 1px solid var(--deviceBG) */
-}
-
 .color-input-container:hover {
 	background-color: var(--controlsHoverBG);
 }
@@ -254,10 +250,6 @@ svg.right-knob {
 	padding: 5px;
 	padding-right: 1%;
 	width: 30%;
-}
-
-.resolution:hover {
-
 }
 
 .resolution-right-container {
