@@ -9,6 +9,7 @@ const yCoord = document.createAttribute("y")
 let initBG = getComputedStyle(document.documentElement).getPropertyValue("--screenBG")
 let initColor = getComputedStyle(document.documentElement).getPropertyValue("--deviceBG")
 let screenCursor = getComputedStyle(document.documentElement).getPropertyValue("--screenCursor")
+let gridColor = getComputedStyle(document.documentElement).getPropertyValue("--gridColor")
 
 let controls = {
 	color: {	
@@ -18,6 +19,8 @@ let controls = {
 	},
 	resolution: { 
 		value: 50,
+    visible: true,
+    elementToggleGrid: document.getElementById("grid-toggle"),
 		elementUp: document.getElementById("up-arrow"),
 		elementDown: document.getElementById("down-arrow"),
 		elementText: document.getElementById("resolution-text"),
@@ -78,6 +81,15 @@ function activateControls () {
 		controls.resolution.value -= 10
 		createScreen(controls.resolution.value)
 	})
+	controls.resolution.elementToggleGrid.addEventListener("click", () => {
+		if (controls.resolution.visible){
+      gridColor = controls.color.bgColor
+      controls.resolution.visible = false
+    } else {
+      gridColor = "#000"
+      controls.resolution.visible = true
+    }
+	})
 	// reset element
 	controls.clear.element.addEventListener("click", () => 
 		controls.clear.method(controls.color.bgValue))
@@ -131,7 +143,8 @@ function createScreen(sizeX) {
 	for (let i = 0; i < pixelContainer.children.length; i++) {
 		let p = []
 		for (let j = 0; j < pixelContainer.children[i].children.length; j++) {
-			p.push(pixelContainer.children[i].children[j])
+			pixelContainer.children[i].children[j].style.backgroundColor = controls.color.bgValue
+      p.push(pixelContainer.children[i].children[j])
 		}
 		pixels.push(p)
 	}
