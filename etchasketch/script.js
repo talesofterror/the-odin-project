@@ -9,7 +9,6 @@ const yCoord = document.createAttribute("y")
 let initBG = getComputedStyle(document.documentElement).getPropertyValue("--screenBG")
 let initColor = getComputedStyle(document.documentElement).getPropertyValue("--deviceBG")
 let screenCursor = getComputedStyle(document.documentElement).getPropertyValue("--screenCursor")
-let gridColor = getComputedStyle(document.documentElement).getPropertyValue("--gridColor")
 
 let controls = {
 	color: {	
@@ -41,10 +40,13 @@ let controls = {
 	 }
 }
 
+
 createScreen(controls.resolution.value)
 activateControls()
 
+
 function activateControls () {
+
 	// randomize element
 	controls.randomize.element.addEventListener("mouseover", ()=> {
 		controls.randomize.element.classList.add("icon-color-mousein")
@@ -74,19 +76,35 @@ function activateControls () {
 	})
 	// resolution elements
 	controls.resolution.elementUp.addEventListener("click", () => {
-		controls.resolution.value += 10
-		createScreen(controls.resolution.value)
-	})
+    if (controls.resolution.value == 100) {
+      return
+    } else {
+      controls.resolution.value += 10
+      createScreen(controls.resolution.value)
+    } 
+  })
 	controls.resolution.elementDown.addEventListener("click", () => {
-		controls.resolution.value -= 10
-		createScreen(controls.resolution.value)
-	})
+    if (controls.resolution.value == 50) {
+      return
+    } else {
+      controls.resolution.value -= 10
+      createScreen(controls.resolution.value)
+    } 
+  })
 	controls.resolution.elementToggleGrid.addEventListener("click", () => {
 		if (controls.resolution.visible){
-      gridColor = controls.color.bgColor
+      for (y =0; y < pixels.length; y++){
+        for (x = 0; x < pixels[y].length; x++){
+          pixels[y][x].style.borderColor = controls.color.bgValue
+        }
+      }
       controls.resolution.visible = false
     } else {
-      gridColor = "#000"
+      for (y =0; y < pixels.length; y++){
+        for (x = 0; x < pixels[y].length; x++){
+          pixels[y][x].style.borderColor = controls.color.fgValue
+        }
+      }
       controls.resolution.visible = true
     }
 	})

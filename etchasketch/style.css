@@ -337,7 +337,7 @@ svg.right-knob {
 	filter: invert(66%) sepia(80%) saturate(2493%) hue-rotate(105deg) brightness(62%) contrast(104%);
 }
 .icon-color-mousein {
-	filter: invert(66%) sepia(13%) saturate(3731%) hue-rotate(103deg) brightness(86%) contrast(101%);
+	/* filter: invert(66%) sepia(13%) saturate(3731%) hue-rotate(103deg) brightness(86%) contrast(101%); */
 }
 
 .display-shadow {

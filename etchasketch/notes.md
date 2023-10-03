@@ -6,11 +6,11 @@ let string = "markdown testing"
 
 # Things that need to happen: 
 
-* resolution dial
-	* limit to values between 50 and 100
+<!-- * resolution dial
+	* limit to values between 50 and 100 -->
 * rolling smiley dials
-* color picker & icon
-	* fix color of randomizer button toggle
+<!-- * color picker & icon
+	* fix color of randomizer button toggle -->
 * grid visibility
 	* functionality
 	* closed eye toggle
