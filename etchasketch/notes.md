@@ -14,7 +14,6 @@ let string = "markdown testing"
 * grid visibility
 	* functionality
 	* closed eye toggle
-* rolling smileys
 * device texture
 * Logo / title
 * Info copy

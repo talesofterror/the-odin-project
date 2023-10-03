@@ -95,14 +95,14 @@ function activateControls () {
 		if (controls.resolution.visible){
       for (y =0; y < pixels.length; y++){
         for (x = 0; x < pixels[y].length; x++){
-          pixels[y][x].style.borderColor = controls.color.bgValue
+          pixels[y][x].style.borderWidth = "0px"
         }
       }
       controls.resolution.visible = false
     } else {
       for (y =0; y < pixels.length; y++){
         for (x = 0; x < pixels[y].length; x++){
-          pixels[y][x].style.borderColor = controls.color.fgValue
+          pixels[y][x].style.borderWidth = "1px"
         }
       }
       controls.resolution.visible = true
