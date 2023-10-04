@@ -8,7 +8,7 @@
 	--knobGradientStart: #eae;
 	--knobGradientEnd: #737;
 	--pageBG: #BB77BB;
-	--gridColor: #eeaaee;
+	--gridColor: #00DD77;
 	--deviceBG: #00DD77;
 	--screenBG: #eeffee;
 	--controlsHoverBG: #494;
@@ -50,7 +50,25 @@ main {
 	padding: 1%;
 	padding-top: 3.5%;
 	font-family: Arial, Helvetica, sans-serif;
-	
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip-window {
+  visibility: visible;
+  position: fixed;
+  bottom: 23%;
+  z-index: 1;
+  background-color: black;
+  color: white;
+  padding: 3px;
+  border-radius: 10px;
+}
+
+.tooltip:hover .tooltip-window {
+  visibility: visible; 
 }
 
 .pixel-container {
@@ -77,7 +95,7 @@ main {
 }
 
 .pixel:hover {
-	background-color: var(--screenCursor);
+	background-color: var(--screenCursor) !important;
 }
 
 .controls-container {
