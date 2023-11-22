@@ -21,7 +21,7 @@
 <body class="flicker-protection knob-shadow">
     <main class="round-corners device-shadow">
 <!-- pixel container -->
-        <div oncontextmenu="return false" class="pixel-container round-corners display-shadow"></div>
+        <div oncontextmenu="return false" class="relative pixel-container round-corners display-shadow"></div>
         <div class="controls-container round-corners controls-shadow">
 <!-- knob left svg -->
             <div class="controls-item knob controls-shadow">
@@ -60,9 +60,9 @@
 
 <!-- CONTROL PANEL -->
             <div id="controls" class="controls-item control-panel controls-shadow round-corners">
-                <div class="color-picker tooltip control-panel-item controls-item-shadow round-corners ">
-                  <div class="tooltip-window">Right-click to erase!</div>  
-                  <div class="color-input-container controls-item-shadow round-corners">
+                <div class="color-picker relative control-panel-item controls-item-shadow round-corners">
+                  <div class="tooltip-window" id="tooltip-erase">Right-click to erase!</div>  
+                  <div class="color-input-container controls-item-shadow round-corners" onmouseover="tooltipHover(event, 'tooltip-erase')" onmouseleave="tooltipOff('tooltip-erase')">
                         <input class="color-input fg" type="color" value="#00DD77"/>
                         <input class="color-input bg" type="color" value="#eeffee" />
                     </div>

@@ -139,6 +139,20 @@ function makeRandomColorString () {
 	return `rgb(${r}, ${g}, ${b})`
 }
 
+function tooltipHover(event, divid) {
+  let left = event.clientX + 15 + "px";
+  let right = event.clientY + "px";
+  let div = document.getElementById(divid)
+  div.style.left = left
+  div.style.right = right
+  div.style.visibility = "visible";
+}
+
+function tooltipOff(divid) {
+  let div = document.getElementById(divid)
+  div.style.visibility = "hidden"
+}
+
 function createScreen(sizeX) {
 	// Insert elements
 	if (pixelContainer.firstElementChild) {
