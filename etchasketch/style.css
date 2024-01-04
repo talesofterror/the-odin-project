@@ -58,7 +58,7 @@ main {
 
 .tooltip-window {
   width:fit-content;
-  visibility: hidden;
+  visibility: visible;
   position: fixed;
   /* bottom: 23%; */
   z-index: 1;
@@ -78,7 +78,7 @@ main {
 	flex-direction: column;
 	width: var(--displayWidth);
 	height: 75%;
-	border: 2px var(--innerBorderColor) solid;
+	border: 0px var(--innerBorderColor) solid;
 	overflow: hidden;
 }
 
@@ -145,19 +145,9 @@ svg.right-knob {
 }
 
 .svg-face {
-	fill: #fff;
+	fill: var(--screenBG);
 	stroke: var(--knobGradientEnd);
-	opacity: 0.6;
 	stroke-width: 7;
-	stroke-linecap: square;
-	stroke-dasharray: none;
-	paint-order: fill markers stroke
-}
-
-#path50 {
-	fill: url(#grad1);
-	stroke: var(--knobGradientEnd);
-	stroke-width: 5px;
 }
 
 .control-panel {

@@ -46,8 +46,9 @@ createScreen(controls.resolution.value)
 activateControls()
 
 function rotateKnobs () {
-  let knobs = [ document.querySelector(".left-knob"),
-                document.querySelector(".right-knob")]
+  let knobs = [ document.querySelector(".left-knob"),   // horizontal
+                document.querySelector(".right-knob")]  // vertical
+
 }
 
 function activateControls() {
@@ -125,6 +126,7 @@ function activateControls() {
   bgColorPicker.addEventListener("change", () => {
     console.log(bgColorPicker.value)
     controls.color.bgValue = bgColorPicker.value
+    pixelContainer.style.backgroundColor = bgColorPicker.value
     for (let y = 0; y < pixels.length; y++) {
       for (let x = 0; x < pixels[y].length; x++) {
         pixels[y][x].style.backgroundColor = controls.color.bgValue
@@ -135,8 +137,8 @@ function activateControls() {
   pixelContainer.addEventListener("mouseover", (e) => 
     {
       let pixelContainerCoords = pixelContainer.getBoundingClientRect()
-      console.log("mouse screen position = " + e.clientX + ", " + e.clientY)
-      console.log("pixel container coords = " + pixelContainerCoords.x + ", " + pixelContainerCoords.y)
+      // console.log("mouse screen position = " + e.clientX + ", " + e.clientY)
+      // console.log("pixel container coords = " + pixelContainerCoords.x + ", " + pixelContainerCoords.y)
     })
 }
 
