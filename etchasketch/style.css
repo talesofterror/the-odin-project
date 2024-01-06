@@ -136,11 +136,11 @@ svg {
 	margin: 3%;
 }
 
-svg.left-knob {
-	rotate: 0deg;
+.left-knob {
+	rotate: 0deg; 
 }
 
-svg.right-knob {
+.right-knob {
 	rotate: 0deg;
 }
 

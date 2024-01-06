@@ -45,15 +45,28 @@ let controls = {
 createScreen(controls.resolution.value)
 activateControls()
 
-function rotateKnobs () {
-  let knobs = [ document.querySelector(".left-knob"),   // horizontal
-                document.querySelector(".right-knob")]  // vertical
-
-}
+let i = 0
+let currentRotation = 0
+let degreesFromRadians = (radians ) => radians * 180 / Math.PI
+let knobInterval = setInterval(() => {
+  if (i < 360){
+    let knobs = [document.querySelector(".left-knob"), document.querySelector(".right-knob")]
+    //knobs[0] = horizontal
+    //knobs[1] = vertical
+    currentRotation += 1
+    knobs[0].style.transform = `rotate(${currentRotation}deg)` // string[7]
+  }
+  if (i > 360){
+    let knobs = [document.querySelector(".left-knob"), document.querySelector(".right-knob")]
+    currentRotation = 0
+    knobs[0].style.transform = `rotate(0deg)` // string[7]
+  }
+}, 10)
 
 function activateControls() {
 
   // randomize element
+
   controls.randomize.element.addEventListener("mouseover", () => {
     controls.randomize.element.classList.add("icon-color-mousein")
     controls.randomize.element.classList.remove("icon-color-mouseout")
@@ -80,7 +93,9 @@ function activateControls() {
       document.documentElement.style.setProperty("--screenCursor", controls.color.fgValue)
     }
   })
+
   // resolution elements
+
   controls.resolution.elementUp.addEventListener("click", () => {
     if (controls.resolution.value == 100) {
       return
@@ -114,10 +129,14 @@ function activateControls() {
       controls.resolution.visible = true
     }
   })
+
   // reset element
+
   controls.clear.element.addEventListener("click", () =>
     controls.clear.method(controls.color.bgValue))
+
   // add color picker listeners
+
   fgColorPicker.addEventListener("change", () => {
     console.log(fgColorPicker.value)
     controls.color.fgValue = fgColorPicker.value
@@ -133,13 +152,14 @@ function activateControls() {
       }
     }
   })
+
   // add knob reactivity
-  pixelContainer.addEventListener("mouseover", (e) => 
-    {
-      let pixelContainerCoords = pixelContainer.getBoundingClientRect()
-      // console.log("mouse screen position = " + e.clientX + ", " + e.clientY)
-      // console.log("pixel container coords = " + pixelContainerCoords.x + ", " + pixelContainerCoords.y)
-    })
+
+  pixelContainer.addEventListener("mouseover", (e) => {
+    let pixelContainerCoords = pixelContainer.getBoundingClientRect()
+    // console.log("mouse screen position = " + e.clientX + ", " + e.clientY)
+    // console.log("pixel container coords = " + pixelContainerCoords.x + ", " + pixelContainerCoords.y)
+  })
 }
 
 function colorCell(x, y, color) {
@@ -183,7 +203,9 @@ function tooltipOff(divid) {
 }
 
 function createScreen(sizeX) {
+
   // Insert elements
+
   if (pixelContainer.firstElementChild) {
     Array.from(pixelContainer.children).forEach(element => element.remove())
     pixels.length = 0
@@ -200,7 +222,9 @@ function createScreen(sizeX) {
       }
     }
   }
+
   // Create pixel array
+
   for (let i = 0; i < pixelContainer.children.length; i++) {
     let p = []
     for (let j = 0; j < pixelContainer.children[i].children.length; j++) {
@@ -209,10 +233,12 @@ function createScreen(sizeX) {
     }
     pixels.push(p)
   }
+
   // Add screen listeners
   // ** if I click inside the pixel container and then drag the mouse
   // ** out of the container and let go of the mouse colorcell() is
   // ** still being called when I move my mouse back in the container
+
   for (let y = 0; y < pixels.length; y++) {
     for (let x = 0; x < pixels[y].length; x++) {
       pixels[y][x].addEventListener("mousemove",
@@ -262,6 +288,8 @@ function createScreen(sizeX) {
       controls.drawing = false
       console.log("drawing == " + controls.drawing)
     })
+
   // resolution text value
+
   controls.resolution.elementText.textContent = sizeX
 }
