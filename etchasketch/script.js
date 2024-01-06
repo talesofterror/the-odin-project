@@ -45,24 +45,6 @@ let controls = {
 createScreen(controls.resolution.value)
 activateControls()
 
-let i = 0
-let currentRotation = 0
-let degreesFromRadians = (radians ) => radians * 180 / Math.PI
-let knobInterval = setInterval(() => {
-  if (i < 360){
-    let knobs = [document.querySelector(".left-knob"), document.querySelector(".right-knob")]
-    //knobs[0] = horizontal
-    //knobs[1] = vertical
-    currentRotation += 1
-    knobs[0].style.transform = `rotate(${currentRotation}deg)` // string[7]
-  }
-  if (i > 360){
-    let knobs = [document.querySelector(".left-knob"), document.querySelector(".right-knob")]
-    currentRotation = 0
-    knobs[0].style.transform = `rotate(0deg)` // string[7]
-  }
-}, 10)
-
 function activateControls() {
 
   // randomize element
@@ -154,11 +136,27 @@ function activateControls() {
   })
 
   // add knob reactivity
-
+  let knobInterval
+  let i = 0
+  let currentRotation = 0
+  let tau = Math.PI * 2
   pixelContainer.addEventListener("mouseover", (e) => {
-    let pixelContainerCoords = pixelContainer.getBoundingClientRect()
-    // console.log("mouse screen position = " + e.clientX + ", " + e.clientY)
-    // console.log("pixel container coords = " + pixelContainerCoords.x + ", " + pixelContainerCoords.y)
+    clearInterval(knobInterval)
+    knobInterval = setInterval(() => {
+      if (i < tau) {
+        let knobs = [document.querySelector(".left-knob"), document.querySelector(".right-knob")]
+        currentRotation += Math.sin(i) * 2
+        i += 0.25
+        knobs[0].style.transform = `rotate(${currentRotation}deg)` // string[7]
+        knobs[1].style.transform = `rotate(${-currentRotation}deg)` // string[7]
+      }
+      if (i > tau) {
+        i = 0
+      }
+    }, 30)
+  })
+  pixelContainer.addEventListener("mouseout", (e) => {
+    clearInterval(knobInterval)
   })
 }
 

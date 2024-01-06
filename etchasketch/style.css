@@ -58,7 +58,7 @@ main {
 
 .tooltip-window {
   width:fit-content;
-  visibility: visible;
+  visibility:hidden;
   position: fixed;
   /* bottom: 23%; */
   z-index: 1;
@@ -70,6 +70,15 @@ main {
 
 .info-text {
   position: absolute;
+  top: 30vh;
+  background-color: var(--knobGradientEnd);
+  color: var(--deviceBG);
+  width: 50%;
+  padding: 10px;
+}
+
+.info-text p {
+  margin-top: 30px;
 }
 
 .pixel-container {
@@ -78,7 +87,7 @@ main {
 	flex-direction: column;
 	width: var(--displayWidth);
 	height: 75%;
-	border: 0px var(--innerBorderColor) solid;
+	border: 2px var(--controlPanelBG) solid;
 	overflow: hidden;
 }
 
@@ -89,6 +98,7 @@ main {
 }
 
 .pixel {
+  position: relative;
 	flex: 1;
 	/* width:min-content; */
 	border: 1px solid var(--gridColor);
