@@ -39,6 +39,9 @@ body {
 main {
 	width: 65%;
 	background-color: var(--deviceBG);
+  background-image: url(assets/device-bg2.png);
+  background-repeat: repeat;
+  background-size: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
