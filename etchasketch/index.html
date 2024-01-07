@@ -4,13 +4,12 @@
 
 <head>
   <script>
-    // maybe works :/
     window.onload = (e) => {
       document.querySelector("body").classList.remove('flicker-protection')
     }
   </script>
   <title>
-    Sketcha-Etch
+    Sketch A Etch
   </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,11 +23,10 @@
     <!-- pixel container -->
 
     <div oncontextmenu="return false" class="relative pixel-container round-corners display-shadow"></div>
-    <div class="info-text round-corners">
-      <h1>Sketcha-Etch</h1>
+    <div id="info-text" class="round-corners">
+      <h1>Sketch A Etch</h1>
       <h3>by <a href="https://github.com/talesofterror">github.com/talesofterror</a></h3>
       <p>Created as part of The Odin Project online web development course. All assets created my myself with assistance from countless youtube tutorials, web resources, and, of course, <a href="https://youtu.be/SPA2ZlB8TDc?si=l_D_-Y3mBiJZRqIU">music</a></p>
-
     </div>
 
     
@@ -107,12 +105,12 @@
           </div>
         </div>
 
-        <div id="reset" class="text-button control-panel-item controls-item-shadow round-corners">
+        <div id="reset-button" class="text-button control-panel-item controls-item-shadow round-corners">
           <div class="">
             CLEAR
           </div>
         </div>
-        <div id="info" class="text-button control-panel-item controls-item-shadow round-corners ">
+        <div id="info-button" class="text-button control-panel-item controls-item-shadow round-corners ">
           <div class="">
             INFO
           </div>

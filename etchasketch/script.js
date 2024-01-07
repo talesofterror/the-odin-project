@@ -31,7 +31,7 @@ let controls = {
     value: false
   },
   clear: {
-    element: document.getElementById("reset"),
+    element: document.getElementById("reset-button"),
     method: function (bgColor) {
       for (y = 0; y < pixels.length; y++) {
         for (x = 0; x < pixels[y].length; x++) {
@@ -39,6 +39,11 @@ let controls = {
         }
       }
     }
+  }, 
+  info: {
+    button: document.getElementById("info-button"),
+    element: document.getElementById("info-text"),
+    value: false
   }
 }
 
@@ -132,6 +137,19 @@ function activateControls() {
       for (let x = 0; x < pixels[y].length; x++) {
         pixels[y][x].style.backgroundColor = controls.color.bgValue
       }
+    }
+  })
+
+  // info button
+
+  controls.info.button.addEventListener("click", () => {
+    if (controls.info.value == false){
+      controls.info.element.style.visibility = "visible"
+      controls.info.value = true
+    } else {
+      controls.info.element.style.visibility = "hidden"
+      controls.info.value = false
+      
     }
   })
 

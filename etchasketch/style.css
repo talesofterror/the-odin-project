@@ -71,7 +71,8 @@ main {
   border-radius: 10px;
 }
 
-.info-text {
+#info-text {
+  visibility: hidden;
   position: absolute;
   top: 30vh;
   background-color: var(--knobGradientEnd);
@@ -80,7 +81,7 @@ main {
   padding: 10px;
 }
 
-.info-text p {
+#info-text p {
   margin-top: 30px;
 }
 
