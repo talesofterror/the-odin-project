@@ -39,7 +39,7 @@ let controls = {
         }
       }
     }
-  }, 
+  },
   info: {
     button: document.getElementById("info-button"),
     element: document.getElementById("info-text"),
@@ -143,13 +143,13 @@ function activateControls() {
   // info button
 
   controls.info.button.addEventListener("click", () => {
-    if (controls.info.value == false){
+    if (controls.info.value == false) {
       controls.info.element.style.visibility = "visible"
       controls.info.value = true
     } else {
       controls.info.element.style.visibility = "hidden"
       controls.info.value = false
-      
+
     }
   })
 
@@ -159,7 +159,6 @@ function activateControls() {
   let currentRotation = 0
   let tau = Math.PI * 2
   pixelContainer.addEventListener("mouseover", (e) => {
-    clearInterval(knobInterval)
     knobInterval = setInterval(() => {
       if (i < tau) {
         let knobs = [document.querySelector(".left-knob"), document.querySelector(".right-knob")]
@@ -174,6 +173,7 @@ function activateControls() {
     }, 30)
   })
   pixelContainer.addEventListener("mouseout", (e) => {
+    console.log("mouse exited pixel container")
     clearInterval(knobInterval)
   })
 }
