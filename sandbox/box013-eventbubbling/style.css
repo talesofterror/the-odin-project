@@ -1,0 +1,27 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: lightblue;
+}
+
+#div1 {
+  display: flex;
+  justify-content: center;
+  height: 50%;
+  width: 50%;
+  color: white;
+  background-color: black;
+  padding: 10px;
+}
+
+#div2 {
+  width: 50%;
+  color: black;
+  background-color: white;
+}
