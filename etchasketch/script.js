@@ -10,6 +10,8 @@ let initBG = getComputedStyle(document.documentElement).getPropertyValue("--scre
 let initColor = getComputedStyle(document.documentElement).getPropertyValue("--deviceBG")
 let screenCursor = getComputedStyle(document.documentElement).getPropertyValue("--screenCursor")
 
+let knobInterval
+
 let controls = {
   color: {
     fgValue: fgColorPicker.value,
@@ -36,6 +38,7 @@ let controls = {
       for (y = 0; y < pixels.length; y++) {
         for (x = 0; x < pixels[y].length; x++) {
           colorCell(pixels[y][x].getAttribute("x"), pixels[y][x].getAttribute("y"), bgColor)
+          pixels[y][x].classList.remove("drawn")
         }
       }
     }
@@ -51,6 +54,26 @@ createScreen(controls.resolution.value)
 activateControls()
 
 function activateControls() {
+
+    // add color picker listeners
+
+    fgColorPicker.addEventListener("change", () => {
+      controls.color.fgValue = fgColorPicker.value
+      document.documentElement.style.setProperty("--screenCursor", controls.color.fgValue)
+    })
+    bgColorPicker.addEventListener("change", () => {
+      controls.color.bgValue = bgColorPicker.value
+      pixelContainer.style.backgroundColor = bgColorPicker.value
+      for (let y = 0; y < pixels.length; y++) {
+        for (let x = 0; x < pixels[y].length; x++) {
+          if (pixels[y][x].classList.contains("drawn")) {
+            continue
+          } else {
+            pixels[y][x].style.backgroundColor = controls.color.bgValue
+          }
+        }
+      }
+    })
 
   // randomize element
 
@@ -122,24 +145,6 @@ function activateControls() {
   controls.clear.element.addEventListener("click", () =>
     controls.clear.method(controls.color.bgValue))
 
-  // add color picker listeners
-
-  fgColorPicker.addEventListener("change", () => {
-    console.log(fgColorPicker.value)
-    controls.color.fgValue = fgColorPicker.value
-    document.documentElement.style.setProperty("--screenCursor", controls.color.fgValue)
-  })
-  bgColorPicker.addEventListener("change", () => {
-    console.log(bgColorPicker.value)
-    controls.color.bgValue = bgColorPicker.value
-    pixelContainer.style.backgroundColor = bgColorPicker.value
-    for (let y = 0; y < pixels.length; y++) {
-      for (let x = 0; x < pixels[y].length; x++) {
-        pixels[y][x].style.backgroundColor = controls.color.bgValue
-      }
-    }
-  })
-
   // info button
 
   controls.info.button.addEventListener("click", () => {
@@ -154,12 +159,17 @@ function activateControls() {
   })
 
   // add knob reactivity
-  let knobInterval
+
   let i = 0
   let currentRotation = 0
   let tau = Math.PI * 2
   pixelContainer.addEventListener("mouseover", (e) => {
+    if (e.currentTarget != pixelContainer){
+      return
+    }
+    console.log(e.target)
     knobInterval = setInterval(() => {
+      console.log("interval called")
       if (i < tau) {
         let knobs = [document.querySelector(".left-knob"), document.querySelector(".right-knob")]
         currentRotation += Math.sin(i) * 2
@@ -173,7 +183,10 @@ function activateControls() {
     }, 30)
   })
   pixelContainer.addEventListener("mouseout", (e) => {
-    console.log("mouse exited pixel container")
+    if (e.currentTarget != pixelContainer){
+      return
+    }
+    // console.log("mouse exited pixel container")
     clearInterval(knobInterval)
   })
 }
@@ -259,50 +272,55 @@ function createScreen(sizeX) {
     for (let x = 0; x < pixels[y].length; x++) {
       pixels[y][x].addEventListener("mousemove",
         (e) => {
+          e.stopPropagation()
           if (controls.drawing) {
             e.preventDefault()
             if (controls.eraser) {
               colorCell(mousePosition[0], mousePosition[1], controls.color.bgValue)
             } else if (controls.randomize.value) {
+              e.target.classList.add("drawn")
               colorCell(mousePosition[0], mousePosition[1], makeRandomColorString())
             } else {
+              e.target.classList.add("drawn")
               colorCell(mousePosition[0], mousePosition[1], controls.color.fgValue)
+            }
+          }
+        })
+      pixels[y][x].addEventListener("mouseover",
+        (e) => {
+          // e.stopPropagation()
+          if (controls.randomize.value) {
+            document.documentElement.style.setProperty("--screenCursor", makeRandomColorString())
+          }
+          mousePosition[0] = e.target.getAttribute("x")
+          mousePosition[1] = e.target.getAttribute("y")
+        })
+      pixels[y][x].addEventListener("mousedown",
+        (e) => {
+          controls.drawing = true
+          if (e.button == 0) {
+            e.preventDefault()
+            if (controls.randomize.value) {
+              screenCursor = () => makeRandomColorString()
+            }
+            controls.eraser = false
+            colorCell(mousePosition[0], mousePosition[1], controls.color.fgValue)
+            e.target.classList.add("drawn")
+            console.log(pixels[mousePosition[0]][mousePosition[1]].classList)
+          } else if (e.button == 2) {
+            controls.eraser = true
+            e.target.classList.remove("drawn")
+            if (e.target.classList.contains("drawn")) {
+              colorCell(mousePosition[0], mousePosition[1], controls.color.bgValue)
             }
           }
         })
     }
   }
-  pixelContainer.addEventListener("mouseover",
-    (e) => {
-      if (controls.randomize.value) {
-        document.documentElement.style.setProperty("--screenCursor", makeRandomColorString())
-      }
-      mousePosition[0] = e.target.getAttribute("x")
-      mousePosition[1] = e.target.getAttribute("y")
-    })
-  pixelContainer.addEventListener("mousedown",
-    (e) => {
-      controls.drawing = true
-      console.log("drawing == " + controls.drawing)
-      console.log("button pressed == " + e.button)
-      console.log(e.target)
-      console.log("x = " + mousePosition[0] + "; y = " + mousePosition[1])
-      if (e.button == 0) {
-        if (controls.randomize.value) {
-          screenCursor = () => makeRandomColorString()
-        }
-        controls.eraser = false
-        colorCell(mousePosition[0], mousePosition[1], controls.color.fgValue)
-      } else if (e.button == 2) {
-        controls.eraser = true
-        colorCell(mousePosition[0], mousePosition[1], controls.color.bgValue)
-        console.log("erasing")
-      }
-    })
+
   document.querySelector("body").addEventListener("mouseup",
     () => {
       controls.drawing = false
-      console.log("drawing == " + controls.drawing)
     })
 
   // resolution text value

@@ -8,7 +8,7 @@
 	--knobGradientStart: #eae;
 	--knobGradientEnd: #737;
 	--pageBG: #BB77BB;
-	--gridColor: #00DD77;
+	--gridColor: rgb(255, 237, 255);
 	--deviceBG: #00DD77;
 	--screenBG: #eeffee;
 	--controlsHoverBG: #494;
@@ -41,7 +41,7 @@ main {
 	background-color: var(--deviceBG);
   background-image: url(assets/device-bg2.png);
   background-repeat: repeat;
-  background-size: 100%;
+  background-size: 30%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -51,8 +51,20 @@ main {
 	border: var(--outerBorderThickness) solid var(--outerBorderColor);
 	overflow: hidden;
 	padding: 1%;
-	padding-top: 3.5%;
+	/* padding-top: 3.5%; */
 	font-family: Arial, Helvetica, sans-serif;
+}
+
+#title {
+  height: 1%;
+  flex-shrink: 0;
+}
+
+#title img {
+  height: 300%;
+  /* object-fit:scale-down; */
+  opacity: 50%;
+  filter: invert(66%);
 }
 
 .relative {
@@ -115,6 +127,9 @@ main {
 
 .controls-container {
 	background-color: var(--controlsHoverBG);
+  background-image: url(assets/device-bg2.png);
+  background-repeat: repeat;
+  background-size: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -123,6 +138,12 @@ main {
 	height: 20%;
 	overflow: hidden;
 	padding: 0 5%;
+}
+
+#controls {
+  background-image: url(assets/device-bg2.png);
+  background-repeat: repeat;
+  background-size: 30%;
 }
 
 .controls-item {
