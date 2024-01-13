@@ -56,11 +56,11 @@ function activateControls() {
 
     // add color picker listeners
 
-    fgColorPicker.addEventListener("change", () => {
+    fgColorPicker.addEventListener("input", () => {
       controls.color.fgValue = fgColorPicker.value
       document.documentElement.style.setProperty("--screenCursor", controls.color.fgValue)
     })
-    bgColorPicker.addEventListener("change", () => {
+    bgColorPicker.addEventListener("input", () => {
       controls.color.bgValue = bgColorPicker.value
       pixelContainer.style.backgroundColor = bgColorPicker.value
       for (let y = 0; y < pixels.length; y++) {
@@ -140,7 +140,15 @@ function activateControls() {
     } else {
       controls.info.element.style.visibility = "hidden"
       controls.info.value = false
+    }
+  })
 
+  document.body.addEventListener("keydown", (e)=> {
+    if (e.key == "Escape") {
+      if (controls.info.element.style.visibility == "visible") {
+        controls.info.element.style.visibility = "hidden"
+        controls.info.value = false
+      }
     }
   })
 

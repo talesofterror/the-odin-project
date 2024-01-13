@@ -8,17 +8,17 @@ let string = "markdown testing"
 
 <!-- * resolution dial
 	* limit to values between 50 and 100 -->
-* rolling smiley dials
+<!-- * rolling smiley dials -->
 <!-- * color picker & icon
 	* fix color of randomizer button toggle -->
-* grid visibility
+<!-- * grid visibility
 	* functionality
-	* closed eye toggle
-* device texture
-* Logo / title
+	* closed eye toggle -->
+<!-- * device texture -->
+<!-- * Logo / title -->
 * Info copy
-* Tooltip copy
-  * eraser function advisory
+<!-- * Tooltip copy -->
+  <!-- * eraser function advisory -->
 
 # experimental shape functions
 `

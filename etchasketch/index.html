@@ -19,15 +19,17 @@
 
 <body class="flicker-protection knob-shadow">
   <main class="round-corners device-shadow">
-    <div id="title"><img src="assets/sketchaetch.png"></div>
+    <div id="title" class="prevent-select"><img src="assets/sketchaetch.png"></div>
 
     <!-- pixel container -->
 
     <div oncontextmenu="return false" class="relative pixel-container round-corners display-shadow"></div>
     <div id="info-text" class="round-corners">
       <h1>Sketch A Etch</h1>
-      <h3>by <a href="https://github.com/talesofterror">github.com/talesofterror</a></h3>
-      <p>Created as part of The Odin Project online web development course. All assets created my myself with assistance from countless youtube tutorials, web resources, and, of course, <a href="https://youtu.be/SPA2ZlB8TDc?si=l_D_-Y3mBiJZRqIU">music</a></p>
+      <h3>by <a href="https://github.com/talesofterror">talesofterror</a></h3>
+      <p>Created as part of The Odin Project online web development course.</p>
+      <p>Textures and SVGs by me. Title created with Kingsman font from <a href="https://www.fontspace.com/kingsman-font-f86709">fontspace.com</a></p>
+      <p style="font-size: smaller; color: grey; font-family:'Courier New', Courier, monospace;">// final push: ~Jan2024AD</p>
     </div>
 
     
@@ -71,7 +73,7 @@
 
       <!-- CONTROL PANEL -->
 
-      <div id="controls" class="controls-item control-panel controls-shadow round-corners">
+      <div id="controls" class="controls-item control-panel controls-shadow round-corners prevent-select">
         <div class="color-picker relative control-panel-item controls-item-shadow round-corners">
           <div class="tooltip-window" id="tooltip-erase">Right-click to erase!</div>
           <div class="color-input-container controls-item-shadow round-corners"
@@ -106,12 +108,12 @@
           </div>
         </div>
 
-        <div id="reset-button" class="text-button control-panel-item controls-item-shadow round-corners prevent-select">
+        <div id="reset-button" class="text-button control-panel-item controls-item-shadow round-corners">
           <div class="">
             CLEAR
           </div>
         </div>
-        <div id="info-button" class="text-button control-panel-item controls-item-shadow round-corners prevent-select">
+        <div id="info-button" class="text-button control-panel-item controls-item-shadow round-corners">
           <div class="">
             INFO
           </div>

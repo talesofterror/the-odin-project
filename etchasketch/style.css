@@ -3,7 +3,8 @@
   min-height: 100vh;
   --borderRadius: 20px;
   --displayWidth: 90%;
-  --outerBorderColor: #005500;
+  --outerBorderColor: #000000;
+  --controlItemBorderColor: #005500;
   --innerBorderColor: #005500;
   --knobGradientStart: #eae;
   --knobGradientEnd: #737;
@@ -16,8 +17,9 @@
   --innerBorderThickness: 30px;
   --outerBorderThickness: 2.5px;
   --screenCursor: #00DD77;
-  --pageImage: radial-gradient(#FCC, 70%, #B7B);
+  --pageImage: radial-gradient(#0C0, 65%, var(--knobGradientEnd));
 }
+
 
 * {
   box-sizing: border-box;
@@ -34,6 +36,10 @@ body {
   justify-content: center;
   height: 100%;
   width: auto;
+}
+
+a {
+  color: var(--controlsHoverBG)
 }
 
 main {
@@ -78,16 +84,6 @@ main {
   color: white;
   padding: 3px;
   border-radius: 10px;
-}
-
-#info-text {
-  visibility: hidden;
-  position: absolute;
-  top: 30vh;
-  background-color: var(--knobGradientEnd);
-  color: var(--deviceBG);
-  width: 50%;
-  padding: 10px;
 }
 
 #info-text p {
@@ -391,6 +387,19 @@ svg {
   cursor: pointer;
 }
 
+#info-text {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size:medium;
+  visibility: hidden;
+  position: absolute;
+  top: 25vh;
+  background-color: rgba(230, 230, 230, 0.9);
+  color: var(--knobGradientEnd);
+  border: 5px solid var(--deviceBG);
+  width: 30%;
+  padding: 10px;
+} 
+
 .display-shadow {
   box-shadow: inset 0px 0px 10px 3px var(--gridColor), 0 0 10px var(--innerBorderColor);
 }
@@ -400,7 +409,7 @@ svg {
 }
 
 .controls-item-shadow {
-  box-shadow: 0 0 5px 2px var(--controlPanelBG), inset 0 0 1px 2px var(--outerBorderColor);
+  box-shadow: 0 0 5px 2px var(--controlPanelBG), inset 0 0 1px 2px var(--controlItemBorderColor);
 }
 
 .device-shadow {
@@ -431,5 +440,9 @@ svg {
 
   .text-button {
     font-size: 0.45em;
+  }
+
+  #info-text {
+    width: 40%;
   }
 }
