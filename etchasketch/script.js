@@ -16,11 +16,10 @@ let controls = {
   color: {
     fgValue: fgColorPicker.value,
     bgValue: bgColorPicker.value
-    //background color change should preserve drawing
   },
   resolution: {
     value: 50,
-    visible: true,
+    gridVisible: true,
     elementToggleGrid: document.getElementById("grid-toggle"),
     elementUp: document.getElementById("up-arrow"),
     elementDown: document.getElementById("down-arrow"),
@@ -28,7 +27,7 @@ let controls = {
   },
   drawing: false,
   eraser: false,
-  randomize: {
+  randomizeColor: {
     element: document.querySelector(".randomize-toggle img"),
     value: false
   },
@@ -77,29 +76,14 @@ function activateControls() {
 
   // randomize element
 
-  controls.randomize.element.addEventListener("mouseover", () => {
-    controls.randomize.element.classList.add("icon-color-mousein")
-    controls.randomize.element.classList.remove("icon-color-mouseout")
-  })
-  controls.randomize.element.addEventListener("mouseout", () => {
-    if (controls.randomize.value) { return }
-    else {
-      controls.randomize.element.classList.add("icon-color-mouseout")
-      controls.randomize.element.classList.remove("icon-color-mousein")
-    }
-  })
-  controls.randomize.element.addEventListener("click", () => {
-    if (!controls.randomize.value) {
-      controls.randomize.value = true
-      controls.randomize.element.classList.add("icon-color-mousein")
-      controls.randomize.element.classList.remove("icon-color-mouseout")
-      controls.randomize.element.src = "assets/dice-color-icon.svg"
+  controls.randomizeColor.element.addEventListener("click", () => {
+    if (!controls.randomizeColor.value) {
+      controls.randomizeColor.value = true
+      controls.randomizeColor.element.src = "assets/dice-color-icon.svg"
       document.documentElement.style.setProperty("--screenCursor", makeRandomColorString())
     } else {
-      controls.randomize.value = false
-      controls.randomize.element.classList.add("icon-color-mouseout")
-      controls.randomize.element.classList.remove("icon-color-mousein")
-      controls.randomize.element.src = "assets/dice-icon.svg"
+      controls.randomizeColor.value = false
+      controls.randomizeColor.element.src = "assets/dice-icon.svg"
       document.documentElement.style.setProperty("--screenCursor", controls.color.fgValue)
     }
   })
@@ -123,20 +107,22 @@ function activateControls() {
     }
   })
   controls.resolution.elementToggleGrid.addEventListener("click", () => {
-    if (controls.resolution.visible) {
+    if (controls.resolution.gridVisible) {
       for (y = 0; y < pixels.length; y++) {
         for (x = 0; x < pixels[y].length; x++) {
           pixels[y][x].style.borderWidth = "0px"
+          controls.resolution.elementToggleGrid.classList.add("grid-off-icon-fade")
         }
       }
-      controls.resolution.visible = false
+      controls.resolution.gridVisible = false
     } else {
       for (y = 0; y < pixels.length; y++) {
         for (x = 0; x < pixels[y].length; x++) {
           pixels[y][x].style.borderWidth = "1px"
+          controls.resolution.elementToggleGrid.classList.remove("grid-off-icon-fade")
         }
       }
-      controls.resolution.visible = true
+      controls.resolution.gridVisible = true
     }
   })
 
@@ -167,9 +153,7 @@ function activateControls() {
     if (e.currentTarget != pixelContainer){
       return
     }
-    console.log(e.target)
     knobInterval = setInterval(() => {
-      console.log("interval called")
       if (i < tau) {
         let knobs = [document.querySelector(".left-knob"), document.querySelector(".right-knob")]
         currentRotation += Math.sin(i) * 2
@@ -186,7 +170,6 @@ function activateControls() {
     if (e.currentTarget != pixelContainer){
       return
     }
-    // console.log("mouse exited pixel container")
     clearInterval(knobInterval)
   })
 }
@@ -201,10 +184,6 @@ function map(value, low1, high1, low2, high2) {
 
 function map256To16(color) { return map(color, 0, 15, 0, 255) }
 
-function makeRandomColorValue() {
-  let colorVal = Math.floor(Math.random() * 255)
-  return colorVal
-}
 function makeRandomColorValue16() {
   let colorVal = Math.floor(Math.random() * 16)
   return colorVal
@@ -264,9 +243,6 @@ function createScreen(sizeX) {
   }
 
   // Add screen listeners
-  // ** if I click inside the pixel container and then drag the mouse
-  // ** out of the container and let go of the mouse colorcell() is
-  // ** still being called when I move my mouse back in the container
 
   for (let y = 0; y < pixels.length; y++) {
     for (let x = 0; x < pixels[y].length; x++) {
@@ -277,7 +253,7 @@ function createScreen(sizeX) {
             e.preventDefault()
             if (controls.eraser) {
               colorCell(mousePosition[0], mousePosition[1], controls.color.bgValue)
-            } else if (controls.randomize.value) {
+            } else if (controls.randomizeColor.value) {
               e.target.classList.add("drawn")
               colorCell(mousePosition[0], mousePosition[1], makeRandomColorString())
             } else {
@@ -289,7 +265,7 @@ function createScreen(sizeX) {
       pixels[y][x].addEventListener("mouseover",
         (e) => {
           // e.stopPropagation()
-          if (controls.randomize.value) {
+          if (controls.randomizeColor.value) {
             document.documentElement.style.setProperty("--screenCursor", makeRandomColorString())
           }
           mousePosition[0] = e.target.getAttribute("x")
@@ -300,13 +276,12 @@ function createScreen(sizeX) {
           controls.drawing = true
           if (e.button == 0) {
             e.preventDefault()
-            if (controls.randomize.value) {
+            if (controls.randomizeColor.value) {
               screenCursor = () => makeRandomColorString()
             }
             controls.eraser = false
             colorCell(mousePosition[0], mousePosition[1], controls.color.fgValue)
             e.target.classList.add("drawn")
-            console.log(pixels[mousePosition[0]][mousePosition[1]].classList)
           } else if (e.button == 2) {
             controls.eraser = true
             e.target.classList.remove("drawn")

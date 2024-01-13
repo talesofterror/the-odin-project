@@ -34,7 +34,7 @@ function drawLine(x1, y1, x2, y2) {
 		/*
 		For longer lines either x2 or y2 is reached too early, resulting
 		in curved lines. 
-		Maybe: 
+		// Maybe: 
 			if (dotX < x2 / 3) { etc }
 			else if ()
 		*/
@@ -68,7 +68,7 @@ NOTES:
 `
 x = pixelContainer.children[x]
 y = pixelContainer.children[x].children[y]
-? [x, y] = pixelContainer.children[x].children[y]
+[x, y] = pixelContainer.children[x].children[y]
 
 function (x, y) {
 	return [x,y]
@@ -81,7 +81,7 @@ pointB = [x2,y2]
 
 distance = (x2 - y2) * 2 + (y2-y1) * 2
 
-to draw a rectangle: 
+// to draw a rectangle: 
 	[x1, y1] = corner1
 	[x2, y2] = corner2
 

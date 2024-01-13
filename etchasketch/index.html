@@ -83,7 +83,7 @@
             <img src="assets/color-icon.svg">
           </div>
           <div class="randomize-toggle control-panel-item controls-item-shadow round-corners">
-            <img class="icon-color-mouseout" src="assets/dice-icon.svg">
+            <img class="" src="assets/dice-icon.svg">
           </div>
         </div>
         <div class="control-panel-item resolution controls-item-shadow round-corners ">
@@ -91,7 +91,7 @@
           <div class="resolution-controls-container controls-item-shadow round-corners"
             onmouseover="tooltipHover(event, 'tooltip-resolution')" onmouseleave="tooltipOff('tooltip-resolution')">
             <img id="up-arrow" class="dimmed" src="assets/up-arrow.svg">
-            <div id="resolution-text" class="resolution-value-text">100</div>
+            <div id="resolution-text" class="resolution-value-text prevent-select">100</div>
             <img id="down-arrow" class="dimmed" src="assets/down-arrow.svg">
           </div>
           <div class="resolution-right-container">
@@ -99,19 +99,19 @@
               <img src="assets/grid-icon.svg">
             </div>
             <div class="tooltip-window" id="tooltip-gridtoggle">Toggle grid on/off!</div>
-            <div id="grid-toggle" class="grid-off-icon" onmouseover="tooltipHover(event, 'tooltip-gridtoggle')"
+            <div id="grid-toggle" class="grid-off-icon controls-item-shadow round-corners" onmouseover="tooltipHover(event, 'tooltip-gridtoggle')"
               onmouseleave="tooltipOff('tooltip-gridtoggle')">
               <img src="assets/eye-icon.svg">
             </div>
           </div>
         </div>
 
-        <div id="reset-button" class="text-button control-panel-item controls-item-shadow round-corners">
+        <div id="reset-button" class="text-button control-panel-item controls-item-shadow round-corners prevent-select">
           <div class="">
             CLEAR
           </div>
         </div>
-        <div id="info-button" class="text-button control-panel-item controls-item-shadow round-corners ">
+        <div id="info-button" class="text-button control-panel-item controls-item-shadow round-corners prevent-select">
           <div class="">
             INFO
           </div>
