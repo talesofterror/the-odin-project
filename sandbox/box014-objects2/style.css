@@ -13,12 +13,13 @@ button {
 }
 
 #container1{
-    width: 65vw;
+    width: 100%;
 }
 
 .drawer {
-  border: 2px solid red;
   width: 25%;
+  min-width: 200px;
+  border: 2px solid red;
   padding: 10px;
   margin: 10px 0px;
 }

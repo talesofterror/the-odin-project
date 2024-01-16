@@ -17,7 +17,7 @@ button_Reset.addEventListener("click", () => {
   container1.textContent = intro.greeting + "... and " + intro.dismissal
 })
 
-let user = {
+let fruitSnack = {
   name: "Fruit Snack",
   age: 800,
   "likes birds": true
@@ -28,4 +28,60 @@ let button_Name = document.getElementById("name-button")
 let button_Age = document.getElementById("age-button")
 let button_UserAssert = document.getElementById("user-assert-button")
 
-container2.textContent = "My name is " + user.name + ". I'm " + user.age + " years old, and everything you've heard about me is " + user["likes birds"]
+container2.textContent = "My name is " + fruitSnack.name + ". I'm " + fruitSnack.age + " years old, and everything you've heard about me is " + fruitSnack["likes birds"]
+
+// Tasks from lesson 
+
+// 1
+let user = {}
+
+user.name = "John"
+user.surname = "John"
+user.name = "Pete"
+delete user.name 
+
+// 2 
+let emptyObj = {}
+function isEmpty (obj) {
+  for (prop in obj) {
+      return false
+  }
+  return true
+}
+
+// 3
+let salaries = {
+  John: 100,
+  Ann: 160,
+  Pete: 130,
+}
+
+function sumProp (obj) {
+  let sum = 0
+  for (prop in obj) {
+    sum += obj[prop]
+  }
+  return sum
+}
+
+// 4
+
+let menu = {
+  width: 200,
+  height: 600,
+  title: "My Menu"
+}
+
+function mulitplyNumeric (obj) {
+  for (prop in obj) {
+    if (typeof obj[prop] == "number") {
+      obj[prop] *= 2
+    }
+  }
+  return obj
+}
+
+
+
+
+
