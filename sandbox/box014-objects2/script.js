@@ -81,6 +81,22 @@ function mulitplyNumeric (obj) {
   return obj
 }
 
+//javascript.info array-methods exercises
+
+// 1
+
+function camelize (string) {
+  let stringSplit = string.split("-")
+  let result = ""
+  for (let i = 1; i < stringSplit.length; i++) {
+    stringSplit[i].charAt(0) = stringSplit[i].charAt(0).toUpperCase()
+  }
+  stringSplit.forEach(element => {
+    result += element
+  });
+  return result
+}
+
 
 
 
