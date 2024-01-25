@@ -3,7 +3,7 @@ let button_Delete = document.getElementById("delete-button")
 let delete_prompt
 let button_Reset = document.getElementById("reset-button")
 
-let intro = new Object({greeting: "hello", dismissal: "goodbye"})
+let intro = new Object({ greeting: "hello", dismissal: "goodbye" })
 
 container1.textContent = intro.greeting
 container1.textContent += "... and " + intro.dismissal
@@ -38,13 +38,13 @@ let user = {}
 user.name = "John"
 user.surname = "John"
 user.name = "Pete"
-delete user.name 
+delete user.name
 
 // 2 
 let emptyObj = {}
-function isEmpty (obj) {
+function isEmpty(obj) {
   for (prop in obj) {
-      return false
+    return false
   }
   return true
 }
@@ -56,7 +56,7 @@ let salaries = {
   Pete: 130,
 }
 
-function sumProp (obj) {
+function sumProp(obj) {
   let sum = 0
   for (prop in obj) {
     sum += obj[prop]
@@ -72,7 +72,7 @@ let menu = {
   title: "My Menu"
 }
 
-function mulitplyNumeric (obj) {
+function mulitplyNumeric(obj) {
   for (prop in obj) {
     if (typeof obj[prop] == "number") {
       obj[prop] *= 2
@@ -85,17 +85,56 @@ function mulitplyNumeric (obj) {
 
 // 1
 
-function camelize (string) {
+function camelize(string) {
   let stringSplit = string.split("-")
-  let result = ""
   for (let i = 1; i < stringSplit.length; i++) {
-    stringSplit[i].charAt(0) = stringSplit[i].charAt(0).toUpperCase()
+    let newFirstLetter = stringSplit[i].charAt(0).toUpperCase()
+    stringSplit.splice(i, 1, newFirstLetter + stringSplit[i].slice(1, stringSplit[i].length))
   }
-  stringSplit.forEach(element => {
-    result += element
-  });
-  return result
+  return stringSplit.join("")
 }
+
+// 2 
+
+filterArray = [5, 3, 8, 1]
+
+function filtered(arr, a, b) {
+  let r = arr.filter((elem) => elem >= a && elem <= b)
+  return r
+}
+
+// 3 
+
+function filteredInPlace(arr, a, b) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] >= a && arr[i] >= b) {
+      arr.splice(i, 1)
+    }
+  }
+}
+
+// 4
+
+function sortDecreasing (arr) {
+  arr.sort((a, b) => b - a)
+}
+
+// 5 
+
+function sortInPlace (arr) {
+  let r = arr.filter( (elem) => elem != null)
+  return r.sort()
+}
+
+// 6 
+// need to learn about objects
+// https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics
+
+
+
+
+
+
 
 
 
