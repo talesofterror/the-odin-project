@@ -115,28 +115,57 @@ function filteredInPlace(arr, a, b) {
 
 // 4
 
-function sortDecreasing (arr) {
+function sortDecreasing(arr) {
   arr.sort((a, b) => b - a)
 }
 
 // 5 
 
-function sortInPlace (arr) {
-  let r = arr.filter( (elem) => elem != null)
+function sortInPlace(arr) {
+  let r = arr.filter((elem) => elem != null)
   return r.sort()
 }
 
 // 6 
-// need to learn about objects
+// need to learn about object constructors
 // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics
 
+const person = {
+  name: {
+    first: "Bob",
+    last: "Smith"
+  },
+  age: 32,
+  bio() {
+    console.log(`${this.name[0]} ${this.name[1]} is ${this.age} years old`)
+  },
+  introduceSelf() {
+    console.log(`Hi, I'm ${this.name[0]}`)
+  },
+}
+
+function logProperty(obj, prop) {
+  console.log(obj[prop])
+}
+
+let newProp = "weight"
+let newPropValue = "500000 lbs"
+person[newProp] = newPropValue
+
+function Person(name) {
+  this.name = name
+  this.introduceSelf = () => {
+    console.log(`Hello, my name is ${this.name}`)
+  }
+}
+
+let anna = new Person("Anna")
+anna.name
 
 
+function Calculator() {
+  this["+"] = (a, b) => a + b
+  this["-"] = (a, b) => a - b
 
-
-
-
-
-
-
+}
 
