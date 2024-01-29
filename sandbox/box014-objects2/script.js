@@ -163,18 +163,58 @@ let anna = new Person("Anna")
 anna.name
 
 function Calculator() {
-  
+
   this.calculate = function (str) {
     let op = str.split(" ")
     return this[op[1]](Number(op[0]), Number([op[2]]))
   }
 
-  this.addMethod = function (op, func) {
-    this[op] = func
-  }
+  this.addMethod = (op, func) => this[op] = func
 
-  this["+"] = function(a, b) {return a + b}
-  this["-"] = function(a, b) {return a - b}
+  this["+"] = function (a, b) { return a + b }
+  this["-"] = function (a, b) { return a - b }
 }
 
 let calc = new Calculator()
+
+// 7 
+// write the code that converts [user] into an array of names
+
+let john = { name: "John", age: 25 };
+let pete = { name: "Pete", age: 30 };
+let mary = { name: "Mary", age: 28 };
+
+let users = [john, pete, mary];
+
+let names = users.map((prop) => prop.name)
+
+// 8 
+// create an array of objects containing properties for 
+// [fullName] and [id] using the users2 array
+
+let bill = { name: "Bill", surname: "Smith", id: 1 };
+let jill = { name: "Jill", surname: "Hunt", id: 2 };
+let hank = { name: "Hank", surname: "Key", id: 3 };
+
+let users2 = [bill, jill, hank];
+
+usersMapped = users2.map((elem) => {
+  return {
+    fullName: elem.name + " " + elem.surname,
+    id: elem.id
+  }
+})
+
+// 8 
+// sort array of objects by the value of an object property value 
+
+let sam = { name: "Sam", age: 25 };
+let ben = { name: "Ben", age: 30 };
+let liz = { name: "Liz", age: 28 };
+
+let arr = [ sam, ben, liz ];
+
+function sortByAge () {
+  
+}
+
