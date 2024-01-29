@@ -162,10 +162,19 @@ function Person(name) {
 let anna = new Person("Anna")
 anna.name
 
-
 function Calculator() {
-  this["+"] = (a, b) => a + b
-  this["-"] = (a, b) => a - b
+  
+  this.calculate = function (str) {
+    let op = str.split(" ")
+    return this[op[1]](Number(op[0]), Number([op[2]]))
+  }
 
+  this.addMethod = function (op, func) {
+    this[op] = func
+  }
+
+  this["+"] = function(a, b) {return a + b}
+  this["-"] = function(a, b) {return a - b}
 }
 
+let calc = new Calculator()
