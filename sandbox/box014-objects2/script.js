@@ -178,7 +178,7 @@ function Calculator() {
 let calc = new Calculator()
 
 // 7 
-// write the code that converts [user] into an array of names
+// write the code that converts [users] into an array of [names]
 
 let john = { name: "John", age: 25 };
 let pete = { name: "Pete", age: 30 };
@@ -212,9 +212,68 @@ let sam = { name: "Sam", age: 25 };
 let ben = { name: "Ben", age: 30 };
 let liz = { name: "Liz", age: 28 };
 
-let arr = [ sam, ben, liz ];
+let arrSort = [ sam, ben, liz ];
 
-function sortByAge () {
+function sortByAge (array) {
+  array.sort((a, b)=> {
+    a.age - b.age
+  })
+}
+function reverseArray (array) {
+  return array.reverse()
+}
+
+// 9 
+// write a function that shuffled elements of the array 
+
+let arrShuffle = [1, 2, 3]
+
+function shuffle (array) {
+  array.sort((elem, i) => {elem[i] = Math.floor(Math.random() * 3)})
+}
+
+// gave up looked at the solution, and it's 
+// the Fisher Yates algo again. Pasting the 
+// code to walk through later
+
+function shuffleFY(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+
+    // swap elements array[i] and array[j]
+    // we use "destructuring assignment" syntax to achieve that
+    // you'll find more details about that syntax in later chapters
+    // same can be written as:
+    // let t = array[i]; array[i] = array[j]; array[j] = t
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+// 10 
+// get the average of members of an array of objects
+
+let joe = { name: "Joe", age: 25 };
+let blo = { name: "Blo", age: 30 };
+let glo = { name: "Glo", age: 29 };
+
+let arrAverage = [ joe, blo, glo ];
+
+function getAverageAge (array) {
+  let total = array.reduce((acc, elem) => acc + elem.age, 0)
+  let av = total / array.length
+  return av
+}
+
+// 11
+// create a function that returns unique values 
+// from a larger array 
+
+let strings = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+function getUnique (arr) {
+  let newArr = []
   
 }
 
