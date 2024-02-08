@@ -274,6 +274,38 @@ let strings = ["Hare", "Krishna", "Hare", "Krishna",
 
 function getUnique (arr) {
   let newArr = []
-  
+  let ignoreArr = []
+  let randomLength = Math.floor(Math.random() * arr.length) + 1
+  for (i = 0; i < randomLength; i++) {
+    let randomIndex = Math.floor(Math.random() * arr.length)
+    if (randomIndex == ignoreArr.filter(((elem) => elem == randomIndex))){
+      continue
+    } else {
+      newArr.push(arr[randomIndex])
+      ignoreArr.push(randomIndex)
+    }
+  }
+  return console.table(newArr)
 }
+
+// console.table(getUnique(strings))
+
+// 12 
+// create a keyed pbject from array
+
+let usersKeyed = [
+  {id: 'john', name: "John Smith", age: 20},
+  {id: 'ann', name: "Ann Smith", age: 24},
+  {id: 'pete', name: "Pete Peterson", age: 31},
+];
+
+function groupById(arr) {
+  let resultObj = {}
+  for (i = 0; i < arr.length; i++) {
+    resultObj[arr[i].id] = arr[i]
+  }
+  return resultObj
+}
+
+console.table(groupById(usersKeyed))
 
