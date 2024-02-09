@@ -2,20 +2,22 @@ const add = function(a, b) {
 	return a + b
 };
 
-const subtract = function() {
-	
+const subtract = function(a, b) {
+	return a - b
 };
 
-const sum = function() {
-	
+const sum = function(arr) {
+  let init = 0
+	return arr.reduce((acc, curr)=>curr+acc, init)
 };
 
-const multiply = function() {
-
+const multiply = function(arr) {
+  let init = 1
+  return arr.reduce((acc, curr)=>curr*acc, init)
 };
 
-const power = function() {
-	
+const power = function(a, b) {
+	return a**b
 };
 
 const factorial = function() {
