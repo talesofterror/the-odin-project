@@ -20,8 +20,18 @@ const power = function(a, b) {
 	return a**b
 };
 
-const factorial = function() {
-	
+const factorial2 = function(a) {
+  let counter = a
+  return a <= 1 ? a : factorial(a * (a - 1))
+};
+
+const factorial = function(a) {
+  let result = 1
+  for (i = a; i > 0; i--) {
+    result *= i
+  }
+  // return a == 0 ? 1 : result
+  return result
 };
 
 // Do not edit below this line
