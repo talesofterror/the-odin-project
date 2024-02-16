@@ -1,17 +1,18 @@
-let split
-let backwardString = ''
 const palindromes = function (a) {
+  let split
+  let backwardString = ''
   split = a.toLowerCase().split('')
-  let exclude = ["!", ".", ",", "?", / /g]
-  for (i = 0; i < split.length; i++){
-    if (split[i] == exclude.filter((e)=>e == split[i])){
-      split.splice(i, 1)
+  let arrayNoSpaces = split.map((str) => str.replace(/\s/g, ''))
+  let exclude = ["!", ".", ",", "?", /\s/]
+  for (i = 0; i < arrayNoSpaces.length; i++){
+    if (arrayNoSpaces[i] == exclude.filter((e)=>e == arrayNoSpaces[i])){
+      arrayNoSpaces.splice(i, 1)
     }
   }
-  for (i = split.length-1; i >= 0; i--) {
-    backwardString += split[i]
+  for (i = arrayNoSpaces.length-1; i >= 0; i--) {
+    backwardString += arrayNoSpaces[i]
   }
-  return split.join('') == backwardString ? true : false
+  return arrayNoSpaces.join('') == backwardString ? true : false
 }
 
 // Do not edit below this line
