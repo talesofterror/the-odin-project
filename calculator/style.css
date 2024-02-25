@@ -1,0 +1,27 @@
+:root {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#main {
+  background-color: #ff5757;
+  height: 70%;
+  width: 50%;
+}
+
+.rounded-corners {
+  border-radius: 10px;
+}
