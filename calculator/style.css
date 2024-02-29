@@ -7,6 +7,7 @@
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
+  /* border: 1px blue dotted; */
 }
 
 body {
@@ -17,9 +18,87 @@ body {
 }
 
 #main {
-  background-color: #ff5757;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 70%;
-  width: 50%;
+  aspect-ratio: 2/3;
+  min-width: 300px;
+  min-height: 500px;
+  background-color: #ff5757;
+  padding: 10px;
+}
+
+#top-container {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: space-around;
+  justify-content: space-around;
+  padding: 0px 2%;
+}
+
+#top-1 {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: wrap;
+}
+
+#top-2 {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: wrap;
+  margin-top:10px;;
+}
+
+#top-1, #top-2 {
+  box-sizing: border-box;
+}
+
+#solar, #logo {
+  height: 100%;
+  flex-basis: 50%;
+}
+
+#bottom-container {
+  height: 70%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: wrap;
+  padding: 15px 0px;
+}
+
+.break {
+  height: 0;
+  flex-basis: 100%;
+}
+
+.button {
+  flex-grow: 1;
+  flex-basis: 15%;
+  height: 15%;
+  margin: 0px 2%;
+}
+
+#zero {
+  flex-basis: 41%;
+  flex-shrink: 0;
+}
+
+body, .button, #top-1, #top-2 {
+  background-color: #ffaa92;
 }
 
 .rounded-corners {
