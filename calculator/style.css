@@ -83,6 +83,14 @@ body {
 #input {
   width: 100%;
   height: 100%;
+  border: 0px;
+  text-align: right;
+  caret-color: transparent;
+  autocomplete: chrome-off;
+}
+
+#input:focus {
+  outline: none;
 }
 
 #bottom-container {
@@ -107,7 +115,7 @@ body {
   margin: 0px 2%;
 }
 
-#zero {
+#butt_0 {
   flex-basis: 41%;
   flex-shrink: 0;
 }
