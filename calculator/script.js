@@ -1,4 +1,7 @@
-
+let input = document.getElementById("input")
+window.onload = function () {
+  input.focus()
+}
 
 function add (a, b) {
   return a + b
