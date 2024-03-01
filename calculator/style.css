@@ -86,7 +86,6 @@ body {
   border: 0px;
   text-align: right;
   caret-color: transparent;
-  autocomplete: chrome-off;
 }
 
 #input:focus {
