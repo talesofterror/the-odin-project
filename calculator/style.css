@@ -48,7 +48,7 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: wrap;
+  justify-content: center;
 }
 
 #top-2 {
@@ -77,7 +77,7 @@ body {
 }
 
 #logo {
-  flex-basis: 32%;
+  flex-basis: 30%;
 }
 
 #input {
@@ -87,13 +87,14 @@ body {
   text-align: right;
   caret-color: transparent;
   font-family:"DigitalDisplay";
+  font-size: 3.6em;
 }
 
 #input:focus {
   outline: none;
 }
 
-#bottom-container {
+#button-container {
   height: 70%;
   width: 100%;
   display: flex;
@@ -127,7 +128,7 @@ body, .button, #solar, #logo, #input {
 
 @font-face {
   font-family: "DigitalDisplay";
-  src: url(assets/DigitalDisplayRegular-ODEO.ttf);
+  src: url('assets/Digital-Display.woff2');
 }
 
 .rounded-corners {
