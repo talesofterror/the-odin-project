@@ -14,6 +14,7 @@ document.addEventListener("keydown", (e) => {
       buttonContainer[i].style.background = "#ff6633"
     }
   }
+  console.log(e.key)
 })
 document.addEventListener("keyup", (e) => {
   for (let i = 0; i < buttonContainer.length; i++) {
