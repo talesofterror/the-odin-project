@@ -1,6 +1,10 @@
+
 :root {
   height: 100vh;
   min-height: 100vh;
+  --buttonDefault: #ffaa92;
+  --buttonPressed: #ff6633;
+  --buttonHover: #ff2200;
 }
 
 * {
@@ -114,6 +118,10 @@ body {
   flex-basis: 15%;
   height: 15%;
   margin: 0px 2%;
+}
+
+.button:hover {
+  background-color: var(--buttonHover);
 }
 
 #butt_0 {
