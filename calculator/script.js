@@ -15,10 +15,10 @@ window.onload = function () {
 document.addEventListener("click", () => input.focus())
 
 input.addEventListener("input", (e) => {
-  if (permittedChars.slice(10, 14).includes(e.data)) {
-    console.log(`key blocked: ${e.data}`)
-    input.value = ""
-  }
+  // if (permittedChars.slice(10, 14).includes(e.data)) {
+  //   // console.log(`key blocked: ${e.data}`)
+  //   input.value = ""
+  // }
   if (e.data != permittedChars.filter((el) => el == e.data)
     // || (e.data == permittedChars.slice(10, 14).filter(el => el == e.data) && input.value == "")
     ) {
@@ -27,7 +27,8 @@ input.addEventListener("input", (e) => {
   }
 })
 
-let permittedChars = "1234567890+-*/.".split('')
+let permittedChars = "1234567890.".split('')
+let operationChars = "+-*/".split('')
 let buttonContainer = [].slice.call(document.getElementById("button-container").children)
 
 function Operators() {
@@ -49,25 +50,49 @@ let ops = new Operators()
 
 let equation = []
 
-document.addEventListener("keydown", (e) => {
-  if (permittedChars.slice(10, 14).includes(e.key)) {
-    console.log(`key blocked: ${e.key}`)
-    input.value = ""
-  }
+function operate(eq) {
+  let opArr = eq.split
+  return ops[eq[1]](eq[0], eq[2])
+}
 
+document.addEventListener("keydown", (e) => {
   for (let i = 0; i < buttonContainer.length; i++) {
     if (e.key == buttonContainer[i].id.slice(5)) {
       buttonContainer[i].style.background = buttonColorPressed
+      if (operationChars.includes(e.key)){
+        if (equation.length == 0) {
+          equation.push(Number(input.value))
+          equation.push(e.key)
+          console.table("equation, no input: " + equation)
+        } else {
+          equation.push(Number(input.value))
+          input.value = operate(equation)
+          // equation = equation.slice(2)
+          // console.table("equation, after split: " + equation)
+          // equation.push(input.value)
+          // equation.push(e.key)
+          // console.table("equation, after push: " + equation)
+        }
+      } 
+    }
+    if (e.key == "Enter") {
+      e.preventDefault()
+      buttonContainer[buttonContainer.length-1].style.background = buttonColorPressed
+      if (equation.length == 2 && input.value != "") {
 
+      }
     }
     if (e.key == "Delete") {
+      e.preventDefault()
+      input.value = ""
       buttonContainer[0].style.background = buttonColorPressed
     }
     if (e.key == "s") {
+      input.value = input.value * -1
       buttonContainer[1].style.background = buttonColorPressed
     }
   }
-  console.log("keydown: " + e.key)
+  // console.log("keydown: " + e.key)
 })
 
 document.addEventListener("keyup", (e) => {
@@ -76,12 +101,6 @@ document.addEventListener("keyup", (e) => {
   }
 })
 
-
-
-function operate(op) {
-  let opArr = op.split
-  return Operators[opArr[1]](opArr[0], opArr[2])
-}
 
 
 
