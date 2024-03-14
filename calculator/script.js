@@ -1,37 +1,18 @@
-// & filter for permitted chars 9 to 14
-// & clear input value and push to equation array
-// & then wait for next number input
-// & and either wait for another operator sign or equals
-// & if (e.key == )
-
 
 let buttonColorDefault = getComputedStyle(document.documentElement).getPropertyValue("--buttonDefault")
 let buttonColorPressed = getComputedStyle(document.documentElement).getPropertyValue("--buttonPressed")
-
-let input = document.getElementById("input")
-window.onload = function () {
-  input.focus()
-}
-document.addEventListener("click", () => input.focus())
-
-input.addEventListener("input", (e) => {
-  // if (permittedChars.slice(10, 14).includes(e.data)) {
-  //   // console.log(`key blocked: ${e.data}`)
-  //   input.value = ""
-  // }
-  if (e.data != permittedChars.filter((el) => el == e.data)
-    // || (e.data == permittedChars.slice(10, 14).filter(el => el == e.data) && input.value == "")
-    ) {
-    // console.log(`key blocked: ${e.data}`)
-    input.value = input.value.slice(0, input.value.length - 1)
-  }
-})
 
 let permittedChars = "1234567890.".split('')
 let operationChars = "+-*/".split('')
 let buttonContainer = [].slice.call(document.getElementById("button-container").children)
 
-function Operators() {
+let input = document.getElementById("input")
+
+let ops = new Operations()
+
+let equation = []
+
+function Operations() {
   this["+"] = function add(a, b) {
     return a + b
   }
@@ -46,45 +27,55 @@ function Operators() {
   }
 }
 
-let ops = new Operators()
-
-let equation = []
-
-function operate(eq) {
-  let opArr = eq.split
+function calculate(eq) {
   return ops[eq[1]](eq[0], eq[2])
 }
+
+window.onload = function () {
+  input.focus()
+}
+document.addEventListener("click", () => input.focus())
+
+input.addEventListener("input", (e) => {
+  if (e.data != permittedChars.filter((el) => el == e.data)) {
+    input.value = input.value.slice(0, input.value.length - 1)
+  }
+})
 
 document.addEventListener("keydown", (e) => {
   for (let i = 0; i < buttonContainer.length; i++) {
     if (e.key == buttonContainer[i].id.slice(5)) {
       buttonContainer[i].style.background = buttonColorPressed
-      if (operationChars.includes(e.key)){
+      if (operationChars.includes(e.key)) {
+        // & After operator symbol entered: 
+        // & Should display answer until new input is entered 
         if (equation.length == 0) {
-          equation.push(Number(input.value))
-          equation.push(e.key)
-          console.table("equation, no input: " + equation)
+          equation.push(Number(input.value), e.key)
+          input.value = ""
         } else {
           equation.push(Number(input.value))
-          input.value = operate(equation)
-          // equation = equation.slice(2)
-          // console.table("equation, after split: " + equation)
-          // equation.push(input.value)
-          // equation.push(e.key)
-          // console.table("equation, after push: " + equation)
+          input.value = calculate(equation)
+          equation = equation.slice(equation.length)
+          equation.push(Number(input.value), e.key)
+          input.value = ""
         }
-      } 
+      }
     }
     if (e.key == "Enter") {
       e.preventDefault()
-      buttonContainer[buttonContainer.length-1].style.background = buttonColorPressed
+      buttonContainer[buttonContainer.length - 1].style.background = buttonColorPressed
       if (equation.length == 2 && input.value != "") {
-
+        // & After enter pressed: 
+        // & Should display answer until new input is entered 
+        equation.push(Number(input.value))
+        input.value = calculate(equation)
+        // & repeat operation on new press? 
       }
     }
     if (e.key == "Delete") {
       e.preventDefault()
       input.value = ""
+      equation = equation.slice(equation.length)
       buttonContainer[0].style.background = buttonColorPressed
     }
     if (e.key == "s") {
