@@ -1,3 +1,5 @@
+"use strict"
+
 
 let buttonColorDefault = getComputedStyle(document.documentElement).getPropertyValue("--buttonDefault")
 let buttonColorPressed = getComputedStyle(document.documentElement).getPropertyValue("--buttonPressed")
@@ -83,7 +85,7 @@ document.addEventListener("keydown", (e) => {
       buttonContainer[1].style.background = buttonColorPressed
     }
   }
-  // console.log("keydown: " + e.key)
+  console.log("keydown: " + e.key)
 })
 
 document.addEventListener("keyup", (e) => {
@@ -92,9 +94,15 @@ document.addEventListener("keyup", (e) => {
   }
 })
 
-
-
-
-
+document.addEventListener("mouseover", (e) => {
+    if (e.target.classList.contains("button")) {
+      e.target.style.background = buttonColorPressed
+    }
+})
+document.addEventListener("mouseout", (e) => {
+    if (e.target.classList.contains("button")) {
+      e.target.style.background = buttonColorDefault
+    }
+})
 
 
