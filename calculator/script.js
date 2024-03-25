@@ -30,7 +30,7 @@ function Operations() {
 }
 
 function calculate(eq) {
-  return ops[eq[1]](eq[0], eq[2])
+  return ops[eq[1]](Number(eq[0]), Number(eq[2]))
 }
 
 window.onload = function () {
@@ -44,7 +44,13 @@ input.addEventListener("input", (e) => {
   }
 })
 
-let answered = false
+function answerLatch() {
+  let memValue = equation[2]
+  let memOperation = equation[1]
+  equation.length = 0
+  equation.push(memOperation)
+  equation.push(memValue)
+}
 
 document.addEventListener("keydown", (e) => {
   console.log("keydown: " + e.key)
@@ -53,56 +59,48 @@ document.addEventListener("keydown", (e) => {
       buttonContainer[i].style.background = buttonColorPressed
       // if (e.key == operationChars.includes(buttonContainer[i].id.slice(5))) {
       if (operationChars.includes(e.key)) {
-        // & After operator symbol entered: 
-        // & Should display answer until new input is entered 
         if (equation.length == 0) {
-          equation.push(Number(input.value), e.key)
+          equation.push(input.value, e.key)
           console.log("operation key pressed when equation.length = 0:") // & 
-          console.log(equation) //  &
+          console.table(equation) //  &
           input.value = ""
         } else if (equation.length == 2) {
-          equation.push(Number(input.value))
+          equation.push(input.value)
           console.log("operation key pressed when equation.length = 2:") // &
-          console.log(equation) // &
+          console.table(equation) // &
           input.value = calculate(equation)
           equation.length = 0
           equation.push(input.value)
           equation.push(e.key)
-          answered = true;
-        }
-      } else if (permittedChars.includes(e.key) && equation.length == 0) {
-        if (answered == false) {
-          let memChar = e.key
-        } else {
-          return
         }
       }
-    } 
-    if (e.key == "Enter") {
-      e.preventDefault()
-      buttonContainer[buttonContainer.length - 1].style.background = buttonColorPressed
-      if (equation.length == 2 && input.value != "") {
-        // & After enter pressed: 
-        // & Should display answer until new input is entered 
-        equation.push(Number(input.value))
-        input.value = calculate(equation)
-        let memOperation = equation[1]
-        equation.length = 0
-        equation.push(input.value)
-        equation.push(memOperation)
-        // & repeat operation on new press? 
-      }
     }
-    if (e.key == "Delete") {
-      e.preventDefault()
-      input.value = ""
-      equation = equation.slice(equation.length)
-      buttonContainer[0].style.background = buttonColorPressed
+  }
+  if ((e.key == "Enter" || e.key == "=") && input.value != "") {
+    e.preventDefault()
+    buttonContainer[buttonContainer.length - 1].style.background = buttonColorPressed
+    if (equation[1] == operationChars.find(e => e == equation[1])) {
+      equation.push(input.value)
+      input.value = calculate(equation)
+      answerLatch()
     }
-    if (e.key == "s") {
-      input.value = input.value * -1
-      buttonContainer[1].style.background = buttonColorPressed
+    else {
+      equation.unshift(input.value)
+      console.log("enter pressed when equation[1] != operation") // & 
+      console.table(equation) //  &
+      input.value = calculate(equation)
+      answerLatch()
     }
+  }
+  if (e.key == "Delete") {
+    e.preventDefault()
+    input.value = ""
+    equation = equation.slice(equation.length)
+    buttonContainer[0].style.background = buttonColorPressed
+  }
+  if (e.key == "s") {
+    input.value = input.value * -1
+    buttonContainer[1].style.background = buttonColorPressed
   }
 })
 
@@ -122,5 +120,6 @@ document.addEventListener("mouseout", (e) => {
     e.target.style.background = buttonColorDefault
   }
 })
+
 
 
