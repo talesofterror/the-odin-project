@@ -2,6 +2,7 @@
 // * branch test
 // * branch test 2
 // * branch test 3
+// * branch test 4
 
 // & Consider keeping the equation array a constant length and 
 // & assigning it's elements as needed
