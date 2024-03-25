@@ -1,3 +1,11 @@
+
+
+
+// & Consider keeping the equation array a constant length and 
+// & assigning it's elements as needed
+
+
+
 "use strict"
 
 
@@ -44,16 +52,18 @@ input.addEventListener("input", (e) => {
   }
 })
 
-function repeatOperationLatch() {
+let displayLatch = false
+let repeatOperationLatch = false
+
+function repeatOperationDriver() {
   let memValue = equation[2]
   let memOperation = equation[1]
   equation.length = 0
   equation.push(memOperation)
   equation.push(memValue)
   displayLatch = true
+  repeatOperationLatch = false
 }
-
-let displayLatch = false
 
 document.addEventListener("keydown", (e) => {
   console.log("keydown: " + e.key)
@@ -70,8 +80,7 @@ document.addEventListener("keydown", (e) => {
           equation.push(input.value)
           input.value = calculate(equation)
           equation.length = 0
-          equation.push(input.value)
-          equation.push(e.key)
+          equation.push(input.value, e.key)
           displayLatch = true
         }
       } 
@@ -80,17 +89,16 @@ document.addEventListener("keydown", (e) => {
   if ((e.key == "Enter" || e.key == "=") && input.value != "") {
     e.preventDefault()
     buttonContainer[buttonContainer.length - 1].style.background = buttonColorPressed
-    if (equation[1] == operationChars.find(e => e == equation[1])) {
+    if (equation[1] == operationChars.find(e => e == equation[1]) && repeatOperationLatch == false) {
       equation.push(input.value)
       input.value = calculate(equation)
-      repeatOperationLatch()
+      repeatOperationDriver()
+      repeatOperationLatch = true
     }
     else {
       equation.unshift(input.value)
-      console.log("enter pressed when equation[1] != operation") // & 
-      console.table(equation) //  &
       input.value = calculate(equation)
-      repeatOperationLatch()
+      repeatOperationDriver()
     }
   }
   if (e.key == "Delete") {
