@@ -44,13 +44,16 @@ input.addEventListener("input", (e) => {
   }
 })
 
-function answerLatch() {
+function repeatOperationLatch() {
   let memValue = equation[2]
   let memOperation = equation[1]
   equation.length = 0
   equation.push(memOperation)
   equation.push(memValue)
+  displayLatch = true
 }
+
+let displayLatch = false
 
 document.addEventListener("keydown", (e) => {
   console.log("keydown: " + e.key)
@@ -61,19 +64,17 @@ document.addEventListener("keydown", (e) => {
       if (operationChars.includes(e.key)) {
         if (equation.length == 0) {
           equation.push(input.value, e.key)
-          console.log("operation key pressed when equation.length = 0:") // & 
-          console.table(equation) //  &
-          input.value = ""
+          displayLatch = true
+          // input.value = ""
         } else if (equation.length == 2) {
           equation.push(input.value)
-          console.log("operation key pressed when equation.length = 2:") // &
-          console.table(equation) // &
           input.value = calculate(equation)
           equation.length = 0
           equation.push(input.value)
           equation.push(e.key)
+          displayLatch = true
         }
-      }
+      } 
     }
   }
   if ((e.key == "Enter" || e.key == "=") && input.value != "") {
@@ -82,14 +83,14 @@ document.addEventListener("keydown", (e) => {
     if (equation[1] == operationChars.find(e => e == equation[1])) {
       equation.push(input.value)
       input.value = calculate(equation)
-      answerLatch()
+      repeatOperationLatch()
     }
     else {
       equation.unshift(input.value)
       console.log("enter pressed when equation[1] != operation") // & 
       console.table(equation) //  &
       input.value = calculate(equation)
-      answerLatch()
+      repeatOperationLatch()
     }
   }
   if (e.key == "Delete") {
@@ -101,6 +102,12 @@ document.addEventListener("keydown", (e) => {
   if (e.key == "s") {
     input.value = input.value * -1
     buttonContainer[1].style.background = buttonColorPressed
+  }
+  else if (permittedChars.includes(e.key)) {
+    if (displayLatch) {
+      input.value = input.value.slice(0, input.value.length - 2)
+      displayLatch = false
+    }
   }
 })
 
