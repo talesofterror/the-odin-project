@@ -1,9 +1,4 @@
 
-// * branch test
-// * branch test 2
-// * branch test 3
-// * branch test 4
-// * branch test 5
 
 // & Consider keeping the equation array a constant length and 
 // & assigning it's elements as needed
@@ -16,7 +11,7 @@
 let buttonColorDefault = getComputedStyle(document.documentElement).getPropertyValue("--buttonDefault")
 let buttonColorPressed = getComputedStyle(document.documentElement).getPropertyValue("--buttonPressed")
 
-let permittedChars = "1234567890.".split('')
+let displayChars = "1234567890.".split('')
 let operationChars = "+-*/".split('')
 let buttonContainer = [].slice.call(document.getElementById("button-container").children)
 
@@ -51,75 +46,30 @@ window.onload = function () {
 document.addEventListener("click", () => input.focus())
 
 input.addEventListener("input", (e) => {
-  if (e.data != permittedChars.filter((el) => el == e.data)) {
+  if (e.data != displayChars.filter((elem) => elem == e.data)) {
     input.value = input.value.slice(0, input.value.length - 1)
   }
 })
-
-let displayLatch = false
-let repeatOperationLatch = false
-
-function repeatOperationDriver() {
-  let memValue = equation[2]
-  let memOperation = equation[1]
-  equation.length = 0
-  equation.push(memOperation)
-  equation.push(memValue)
-  displayLatch = true
-  repeatOperationLatch = false
-}
 
 document.addEventListener("keydown", (e) => {
   console.log("keydown: " + e.key)
   for (let i = 0; i < buttonContainer.length; i++) {
     if (e.key == buttonContainer[i].id.slice(5)) {
       buttonContainer[i].style.background = buttonColorPressed
-      // if (e.key == operationChars.includes(buttonContainer[i].id.slice(5))) {
-      if (operationChars.includes(e.key)) {
-        if (equation.length == 0) {
-          equation.push(input.value, e.key)
-          displayLatch = true
-          // input.value = ""
-        } else if (equation.length == 2) {
-          equation.push(input.value)
-          input.value = calculate(equation)
-          equation.length = 0
-          equation.push(input.value, e.key)
-          displayLatch = true
-        }
-      } 
     }
   }
   if ((e.key == "Enter" || e.key == "=") && input.value != "") {
     e.preventDefault()
     buttonContainer[buttonContainer.length - 1].style.background = buttonColorPressed
-    if (equation[1] == operationChars.find(e => e == equation[1]) && repeatOperationLatch == false) {
-      equation.push(input.value)
-      input.value = calculate(equation)
-      repeatOperationDriver()
-      repeatOperationLatch = true
-    }
-    else {
-      equation.unshift(input.value)
-      input.value = calculate(equation)
-      repeatOperationDriver()
-    }
   }
   if (e.key == "Delete") {
     e.preventDefault()
     input.value = ""
-    equation = equation.slice(equation.length)
     buttonContainer[0].style.background = buttonColorPressed
   }
   if (e.key == "s") {
     input.value = input.value * -1
     buttonContainer[1].style.background = buttonColorPressed
-  }
-  else if (permittedChars.includes(e.key)) {
-    if (displayLatch) {
-      input.value = input.value.slice(0, input.value.length - 2)
-      displayLatch = false
-    }
   }
 })
 
