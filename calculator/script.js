@@ -17,9 +17,17 @@ let buttonContainer = [].slice.call(document.getElementById("button-container").
 
 let input = document.getElementById("input")
 
-let ops = new Operations()
+window.onload = function () {
+  input.focus()
+}
 
-let equation = []
+document.addEventListener("click", () => input.focus())
+
+input.addEventListener("input", (e) => {
+  if (e.data != displayChars.filter((elem) => elem == e.data)) {
+    input.value = input.value.slice(0, input.value.length - 1)
+  }
+})
 
 function Operations() {
   this["+"] = function add(a, b) {
@@ -36,20 +44,55 @@ function Operations() {
   }
 }
 
+let ops = new Operations()
+
+let equation = []
+let answer = 0
+
 function calculate(eq) {
-  return ops[eq[1]](Number(eq[0]), Number(eq[2]))
+  let result = ops[eq[1]](Number(eq[0]), Number(eq[2]))
+  answer = result
+  return result
 }
 
-window.onload = function () {
-  input.focus()
-}
-document.addEventListener("click", () => input.focus())
+/* 
 
-input.addEventListener("input", (e) => {
-  if (e.data != displayChars.filter((elem) => elem == e.data)) {
-    input.value = input.value.slice(0, input.value.length - 1)
-  }
-})
+[operations listener]
+if keydown == operation character:
+  if input{} empty
+   return
+  else: 
+    if equation[] empty:
+      push input.value to equation[0]
+      push e.key to equation[1]
+    if equation[0] and [1]
+      push input value to equation[2]
+      calculate
+      display answer
+      equation[].length = 0
+
+[enter / equals listener]
+if keydown == "enter" || key == "="
+  if input{} empty
+    return
+  else:
+    if equation[] empty
+      return
+    if equation[0] and [1]
+      push input value to equation[]
+      calculate(equation[])
+      display answer
+      equation[].length = 0
+
+*/
+
+
+function operationKeyPressed() {
+
+}
+function enterEqualsPressed() {
+
+}
 
 document.addEventListener("keydown", (e) => {
   console.log("keydown: " + e.key)
@@ -58,13 +101,17 @@ document.addEventListener("keydown", (e) => {
       buttonContainer[i].style.background = buttonColorPressed
     }
   }
-  if ((e.key == "Enter" || e.key == "=") && input.value != "") {
+  if (operationChars.contains(e.key)) {
+    operationKeyPressed()
+  }
+  if (e.key == "Enter" || e.key == "=") {
     e.preventDefault()
     buttonContainer[buttonContainer.length - 1].style.background = buttonColorPressed
   }
   if (e.key == "Delete") {
     e.preventDefault()
     input.value = ""
+    equation.length = 0
     buttonContainer[0].style.background = buttonColorPressed
   }
   if (e.key == "s") {
