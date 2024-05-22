@@ -16,6 +16,7 @@ let operationChars = "+-*/".split('')
 let buttonContainer = [].slice.call(document.getElementById("button-container").children)
 
 let input = document.getElementById("input")
+let equationViewer = document.getElementById("equation-viewer")
 
 window.onload = function () {
   input.focus()
@@ -48,6 +49,7 @@ let ops = new Operations()
 
 let equation = []
 let answer = 0
+let lastInput = ""
 
 function calculate(eq) {
   let result = ops[eq[1]](Number(eq[0]), Number(eq[2]))
@@ -87,26 +89,51 @@ if keydown == "enter" || key == "="
 */
 
 
-function operationKeyPressed() {
+function operationKeyPressed(e) {
+  if (input.valuie == "") {
+    return
+  }
+  else {
+    if (equation.length == 0) {
+      equation.push(input.value)
+      equation.push(e.key)
+      console.log(equation)
+      equationViewer.textContent = equation.join(" ")
+      input.value = e.key
+    }
+    else if (equation.length == 2) {
+      equation.push(input.value)
+      input.value = calculate(equation)
+      equationViewer.textContent = equation.join(" ") + " = " + answer
+      console.log(equation)
+      equation.length == 0
+    }
+  }
 
 }
-function enterEqualsPressed() {
+function enterEqualsPressed(e) {
+  e.preventDefault()
+  buttonContainer[buttonContainer.length - 1].style.background = buttonColorPressed
+
+
 
 }
 
 document.addEventListener("keydown", (e) => {
   console.log("keydown: " + e.key)
+  if (operationChars.includes(input.value)){
+    input.value = ""
+  }
   for (let i = 0; i < buttonContainer.length; i++) {
     if (e.key == buttonContainer[i].id.slice(5)) {
       buttonContainer[i].style.background = buttonColorPressed
     }
   }
-  if (operationChars.contains(e.key)) {
-    operationKeyPressed()
+  if (operationChars.includes(e.key)) {
+    operationKeyPressed(e)
   }
   if (e.key == "Enter" || e.key == "=") {
-    e.preventDefault()
-    buttonContainer[buttonContainer.length - 1].style.background = buttonColorPressed
+    enterEqualsPressed(e)
   }
   if (e.key == "Delete") {
     e.preventDefault()
