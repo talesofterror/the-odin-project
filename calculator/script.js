@@ -88,9 +88,24 @@ if keydown == "enter" || key == "="
 
 */
 
+let latched = false
+let lastOp
+
+function operationCalc(e) {
+  equation.push(input.value)
+  input.value = calculate(equation)
+  equationViewer.textContent = equation.join(" ") + " = " + answer
+  console.log("Pre latch check equation[] =" + equation)
+  if (answer != 0) {
+    latched = true
+    return
+  }
+  console.log("Post latch check equation[] =" + equation)
+  equation.length = 0
+}
 
 function operationKeyPressed(e) {
-  if (input.valuie == "") {
+  if (input.value == "") {
     return
   }
   else {
@@ -102,44 +117,63 @@ function operationKeyPressed(e) {
       input.value = e.key
     }
     else if (equation.length == 2) {
-      equation.push(input.value)
-      input.value = calculate(equation)
-      equationViewer.textContent = equation.join(" ") + " = " + answer
-      console.log(equation)
-      equation.length == 0
+      operationCalc()
+    }
+    else if (latched) {
+      equation.length = 0
+      equation.push(answer)     
+      equation.push(e.key)     
+      input.value = e.key
+      equationViewer.textContent = equation.join(" ")
     }
   }
-
 }
+
 function enterEqualsPressed(e) {
   e.preventDefault()
   buttonContainer[buttonContainer.length - 1].style.background = buttonColorPressed
-
-
-
+  if (input.value == "") {
+    return
+  }
+  else {
+    if (equation.length == 0) {
+      return
+    }
+    else if (equation.length == 2) {
+      operationCalc(e)
+    }
+  }
 }
 
 document.addEventListener("keydown", (e) => {
   console.log("keydown: " + e.key)
-  if (operationChars.includes(input.value)){
+  if (operationChars.includes(input.value)) {
     input.value = ""
+  }
+  if (latched == true) {
+    latched = false
+    operationCalc(e)
   }
   for (let i = 0; i < buttonContainer.length; i++) {
     if (e.key == buttonContainer[i].id.slice(5)) {
       buttonContainer[i].style.background = buttonColorPressed
     }
   }
-  if (operationChars.includes(e.key)) {
+  if (operationChars.includes(e.key) && !latched) {
     operationKeyPressed(e)
   }
-  if (e.key == "Enter" || e.key == "=") {
+  if (e.key == "Enter" || e.key == "=" && !latched) {
     enterEqualsPressed(e)
   }
   if (e.key == "Delete") {
     e.preventDefault()
     input.value = ""
     equation.length = 0
+    answer = 0
+    lastInput = null
+    lastOp = null
     buttonContainer[0].style.background = buttonColorPressed
+    equationViewer.textContent = ""
   }
   if (e.key == "s") {
     input.value = input.value * -1
