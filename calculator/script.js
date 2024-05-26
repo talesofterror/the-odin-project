@@ -96,12 +96,11 @@ function operationCalc(e) {
   input.value = calculate(equation)
   equationViewer.textContent = equation.join(" ") + " = " + answer
   console.log("Pre latch check equation[] =" + equation)
+  equation.length = 0
   if (answer != 0) {
     latched = true
-    return
+    console.log("Post latch check equation[] =" + equation)
   }
-  console.log("Post latch check equation[] =" + equation)
-  equation.length = 0
 }
 
 function operationKeyPressed(e) {
@@ -109,6 +108,15 @@ function operationKeyPressed(e) {
     return
   }
   else {
+    if (latched) {
+        equation.length = 0
+        equation.push(answer)
+        equation.push(e.key)
+        input.value = e.key
+        equationViewer.textContent = equation.join(" ")
+        console.log("Latched operation equation check" + equation)
+        return
+      }
     if (equation.length == 0) {
       equation.push(input.value)
       equation.push(e.key)
@@ -118,13 +126,6 @@ function operationKeyPressed(e) {
     }
     else if (equation.length == 2) {
       operationCalc()
-    }
-    else if (latched) {
-      equation.length = 0
-      equation.push(answer)     
-      equation.push(e.key)     
-      input.value = e.key
-      equationViewer.textContent = equation.join(" ")
     }
   }
 }
@@ -150,16 +151,18 @@ document.addEventListener("keydown", (e) => {
   if (operationChars.includes(input.value)) {
     input.value = ""
   }
-  if (latched == true) {
-    latched = false
-    operationCalc(e)
-  }
+
   for (let i = 0; i < buttonContainer.length; i++) {
     if (e.key == buttonContainer[i].id.slice(5)) {
       buttonContainer[i].style.background = buttonColorPressed
     }
   }
   if (operationChars.includes(e.key) && !latched) {
+    if (latched == true) {
+      latched = false
+      input.value = e.key
+      return
+    }
     operationKeyPressed(e)
   }
   if (e.key == "Enter" || e.key == "=" && !latched) {
