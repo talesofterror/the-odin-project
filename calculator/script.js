@@ -108,15 +108,6 @@ function operationKeyPressed(e) {
     return
   }
   else {
-    if (latched) {
-        equation.length = 0
-        equation.push(answer)
-        equation.push(e.key)
-        input.value = e.key
-        equationViewer.textContent = equation.join(" ")
-        console.log("Latched operation equation check" + equation)
-        return
-      }
     if (equation.length == 0) {
       equation.push(input.value)
       equation.push(e.key)
@@ -127,6 +118,15 @@ function operationKeyPressed(e) {
     else if (equation.length == 2) {
       operationCalc()
     }
+    if (latched) {
+        equation.length = 0
+        equation.push(answer)
+        equation.push(e.key)
+        input.value = e.key
+        equationViewer.textContent = equation.join(" ")
+        console.log("Latched operation equation check" + equation)
+        return
+      }
   }
 }
 
