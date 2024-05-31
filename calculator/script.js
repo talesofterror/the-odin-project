@@ -111,17 +111,17 @@ function operationCalc() {
   latched = true
 }
 
-function operationKeyPressed(e) {
+function operationKeyPressed(key) {
   if (input.value == "") {
     return
   }
   else {
     if (equation.length == 0) {
       equation.push(input.value)
-      equation.push(e.key)
+      equation.push(key)
       console.log(equation)
       equationViewer.textContent = equation.join(" ")
-      input.value = e.key
+      input.value = key
     }
     else if (equation.length == 2) {
       operationCalc()
@@ -129,7 +129,7 @@ function operationKeyPressed(e) {
     if (latched) {
         equation.length = 0
         equation.push(answer)
-        equation.push(e.key)
+        equation.push(key)
         input.value = ""
         latched = false
         return
@@ -137,8 +137,8 @@ function operationKeyPressed(e) {
   }
 }
 
-function enterEqualsPressed(e) {
-  e.preventDefault()
+function enterEqualsPressed(key) {
+  // key.preventDefault()
   buttonContainer[buttonContainer.length - 1].style.background = buttonColorPressed
   if (input.value == "") {
     return
@@ -148,7 +148,7 @@ function enterEqualsPressed(e) {
       return
     }
     else if (equation.length == 2) {
-      operationCalc(e)
+      operationCalc()
     }
     else if (latched) {
       equation.length = 0
@@ -168,17 +168,17 @@ document.addEventListener("keydown", (e) => {
 
   for (let i = 0; i < buttonContainer.length; i++) {
     if (e.key == buttonContainer[i].id.slice(5)) {
+      // e.preventDefault()
       buttonContainer[i].style.background = buttonColorPressed
     }
   }
   if (operationChars.includes(e.key) && !latched) {
-    operationKeyPressed(e)
+    operationKeyPressed(e.key)
   }
   if (e.key == "Enter" || e.key == "=") {
-    enterEqualsPressed(e)
+    enterEqualsPressed(e.key)
   }
   if (e.key == "Delete") {
-    e.preventDefault()
     input.value = ""
     equation.length = 0
     answer = 0
@@ -199,6 +199,17 @@ document.addEventListener("keyup", (e) => {
     buttonContainer[i].style.background = buttonColorDefault
   }
 })
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("button")){
+    let key = e.target.id.slice(5)
+    if (operationChars.includes(key) && !latched){
+      operationKeyPressed(key)
+    }
+  }
+}
+)
+
 
 document.addEventListener("mouseover", (e) => {
   if (e.target.classList.contains("button")) {
