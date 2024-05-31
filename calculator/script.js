@@ -80,21 +80,35 @@ if keydown == "enter" || key == "="
       display answer
       equation[].length = 0
 
+  if Latched
+    if operation key pressed
+      clear
+      push answer to equation
+      push operation to equation
+      display equation in euqationDisplay
+      set latched false
+      wait for next input
+    if equals pressed
+      clear equation
+      push answer to equation
+      push last operation to equation
+      push last input to eqaution
+      display answer
+
 */
 
 let latched = false
-let lastOp
+let lastOp = ""
 
-function operationCalc(e) {
-  equation.push(input.value)
+function operationCalc() {
+  if (!latched){
+    equation.push(input.value)
+  }
+  lastOp = equation[1]
+  lastInput = equation[2]
   input.value = calculate(equation)
   equationViewer.textContent = equation.join(" ") + " = " + answer
-  console.log("Pre latch check equation[] =" + equation)
-  equation.length = 0
-  if (answer != 0) {
-    latched = true
-    console.log("Post latch check equation[] =" + equation)
-  }
+  latched = true
 }
 
 function operationKeyPressed(e) {
@@ -116,9 +130,8 @@ function operationKeyPressed(e) {
         equation.length = 0
         equation.push(answer)
         equation.push(e.key)
-        input.value = e.key
-        equationViewer.textContent = equation.join(" ")
-        console.log("Latched operation equation check" + equation)
+        input.value = ""
+        latched = false
         return
       }
   }
@@ -137,6 +150,13 @@ function enterEqualsPressed(e) {
     else if (equation.length == 2) {
       operationCalc(e)
     }
+    else if (latched) {
+      equation.length = 0
+      equation.push(answer)
+      equation.push(lastOp)
+      equation.push(lastInput)
+      operationCalc(equation)
+    }
   }
 }
 
@@ -152,14 +172,9 @@ document.addEventListener("keydown", (e) => {
     }
   }
   if (operationChars.includes(e.key) && !latched) {
-    if (latched == true) {
-      latched = false
-      input.value = e.key
-      return
-    }
     operationKeyPressed(e)
   }
-  if (e.key == "Enter" || e.key == "=" && !latched) {
+  if (e.key == "Enter" || e.key == "=") {
     enterEqualsPressed(e)
   }
   if (e.key == "Delete") {
@@ -169,6 +184,7 @@ document.addEventListener("keydown", (e) => {
     answer = 0
     lastInput = null
     lastOp = null
+    latched = false
     buttonContainer[0].style.background = buttonColorPressed
     equationViewer.textContent = ""
   }
