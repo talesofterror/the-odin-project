@@ -1,7 +1,7 @@
 
-// let number1 = 1
+let number1 = 1
 
-// console.log(number1 && 3)
+console.log(number1 && 3)
 
 let a = prompt("First Number?", 1)
 let b = prompt("Second Number?", 2)
@@ -27,4 +27,29 @@ console.log(+a + +b)
 14 = NaN
 
 */
+
+let numbers = [100, 50, 25, 30, 543, 22, 30]
+
+let largest2 = 0
+function findLargest () {
+  for (i of numbers) {
+    if (i > largest2) { 
+      largest2 = i 
+    }
+  }
+}
+findLargest()
+console.log(largest2)
+
+let largest = 0
+function findLargest2() {
+  for (number of numbers) {
+    if (number > largest){
+      largest = number
+    }
+  }
+}
+findLargest2()
+console.log(largest)
+
 
