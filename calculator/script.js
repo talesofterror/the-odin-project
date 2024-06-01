@@ -54,7 +54,7 @@ function calculate(eq) {
   return result
 }
 
-function operationCalc() {
+function evalEquation() {
   if (!latched) {
     equation.push(input.value)
   }
@@ -78,7 +78,7 @@ function operatorKeyBehavior(key) {
       input.value = key
     }
     else if (equation.length == 2) {
-      operationCalc()
+      evalEquation()
     }
     if (latched) {
       equation.length = 0
@@ -92,7 +92,6 @@ function operatorKeyBehavior(key) {
 }
 
 function enterEqualsBehavior(key) {
-  // key.preventDefault()
   buttonContainer[buttonContainer.length - 1].style.background = buttonColorPressed
   if (input.value == "") {
     return
@@ -102,14 +101,14 @@ function enterEqualsBehavior(key) {
       return
     }
     else if (equation.length == 2) {
-      operationCalc()
+      evalEquation()
     }
     else if (latched) {
       equation.length = 0
       equation.push(answer)
       equation.push(lastOp)
       equation.push(lastInput)
-      operationCalc(equation)
+      evalEquation(equation)
     }
   }
 }
@@ -155,6 +154,22 @@ document.addEventListener("keydown", (e) => {
   }
 })
 
+function signBehavior() {
+  input.value = input.value * -1
+  buttonContainer[1].style.background = buttonColorPressed
+}
+
+function percentBehavior() {
+  if (input.value == "") {
+    return
+  }
+  else {
+    let percentAnswer = input.value
+    console.log(percentAnswer)
+    input.value = percentAnswer * 0.01
+  }
+}
+
 document.addEventListener("keyup", (e) => {
   for (let i = 0; i < buttonContainer.length; i++) {
     buttonContainer[i].style.background = buttonColorDefault
@@ -179,30 +194,17 @@ document.addEventListener("click", (e) => {
     if (key == "%") {
       percentBehavior()
     }
-    if (Number(key) == NaN) {
+    if ([1, 2, 3, 4, 5, 6, 7, 8, 9, 0].includes(Number(key))) {
       input.value = Number(key)
     }
-    console.log(Number(key))
   }
 })
 
-function signBehavior() {
-  input.value = input.value * -1
-  buttonContainer[1].style.background = buttonColorPressed
-}
-
-function percentBehavior() {
-  if (input.value == "") {
-    return
+document.addEventListener("mousedown", (e) => {
+  if (e.target.classList.contains("button")) {
+    e.target.style.background = buttonColorPressed
   }
-  else {
-    let percentAnswer = input.value
-    console.log(percentAnswer)
-    input.value = percentAnswer * 0.01
-  }
-}
-
-
+})
 document.addEventListener("mouseover", (e) => {
   if (e.target.classList.contains("button")) {
     e.target.style.background = buttonColorPressed
