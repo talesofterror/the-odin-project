@@ -24,7 +24,13 @@ input.addEventListener("input", (e) => {
   }
 })
 
-function Operations() {
+let equation = []
+let answer = 0
+let lastInput = ""
+let lastOp = ""
+let latched = false
+
+function calculator() {
   this["+"] = function add(a, b) {
     return a + b
   }
@@ -39,69 +45,17 @@ function Operations() {
   }
 }
 
-let ops = new Operations()
+let calcFunctions = new calculator()
 
-let equation = []
-let answer = 0
-let lastInput = ""
 
 function calculate(eq) {
-  let result = ops[eq[1]](Number(eq[0]), Number(eq[2]))
+  let result = calcFunctions[eq[1]](Number(eq[0]), Number(eq[2]))
   answer = result
   return result
 }
 
-/* 
-
-[operations listener]
-if keydown == operation character:
-  if input{} empty
-   return
-  else: 
-    if equation[] empty:
-      push input.value to equation[0]
-      push e.key to equation[1]
-    if equation[0] and [1]
-      push input value to equation[2]
-      calculate
-      display answer
-      equation[].length = 0
-
-[enter / equals listener]
-if keydown == "enter" || key == "="
-  if input{} empty
-    return
-  else:
-    if equation[] empty
-      return
-    if equation[0] and [1]
-      push input value to equation[]
-      calculate(equation[])
-      display answer
-      equation[].length = 0
-
-  if Latched
-    if operation key pressed
-      clear
-      push answer to equation
-      push operation to equation
-      display equation in euqationDisplay
-      set latched false
-      wait for next input
-    if equals pressed
-      clear equation
-      push answer to equation
-      push last operation to equation
-      push last input to eqaution
-      display answer
-
-*/
-
-let latched = false
-let lastOp = ""
-
 function operationCalc() {
-  if (!latched){
+  if (!latched) {
     equation.push(input.value)
   }
   lastOp = equation[1]
@@ -111,7 +65,7 @@ function operationCalc() {
   latched = true
 }
 
-function operationKeyPressed(key) {
+function operatorKeyBehavior(key) {
   if (input.value == "") {
     return
   }
@@ -127,17 +81,17 @@ function operationKeyPressed(key) {
       operationCalc()
     }
     if (latched) {
-        equation.length = 0
-        equation.push(answer)
-        equation.push(key)
-        input.value = ""
-        latched = false
-        return
-      }
+      equation.length = 0
+      equation.push(answer)
+      equation.push(key)
+      input.value = ""
+      latched = false
+      return
+    }
   }
 }
 
-function enterEqualsPressed(key) {
+function enterEqualsBehavior(key) {
   // key.preventDefault()
   buttonContainer[buttonContainer.length - 1].style.background = buttonColorPressed
   if (input.value == "") {
@@ -160,6 +114,19 @@ function enterEqualsPressed(key) {
   }
 }
 
+
+function deleteBehavior() {
+  input.value = ""
+  equation.length = 0
+  answer = 0
+  lastInput = null
+  lastOp = null
+  latched = false
+  buttonContainer[0].style.background = buttonColorPressed
+  equationViewer.textContent = ""
+}
+
+
 document.addEventListener("keydown", (e) => {
   console.log("keydown: " + e.key)
   if (operationChars.includes(input.value)) {
@@ -168,29 +135,23 @@ document.addEventListener("keydown", (e) => {
 
   for (let i = 0; i < buttonContainer.length; i++) {
     if (e.key == buttonContainer[i].id.slice(5)) {
-      // e.preventDefault()
       buttonContainer[i].style.background = buttonColorPressed
     }
   }
   if (operationChars.includes(e.key) && !latched) {
-    operationKeyPressed(e.key)
+    operatorKeyBehavior(e.key)
   }
   if (e.key == "Enter" || e.key == "=") {
-    enterEqualsPressed(e.key)
+    enterEqualsBehavior(e.key)
   }
   if (e.key == "Delete") {
-    input.value = ""
-    equation.length = 0
-    answer = 0
-    lastInput = null
-    lastOp = null
-    latched = false
-    buttonContainer[0].style.background = buttonColorPressed
-    equationViewer.textContent = ""
+    deleteBehavior()
   }
   if (e.key == "s") {
-    input.value = input.value * -1
-    buttonContainer[1].style.background = buttonColorPressed
+    signBehavior()
+  }
+  if (e.key == "%") {
+    percentBehavior()
   }
 })
 
@@ -201,14 +162,45 @@ document.addEventListener("keyup", (e) => {
 })
 
 document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("button")){
+  if (e.target.classList.contains("button")) {
     let key = e.target.id.slice(5)
-    if (operationChars.includes(key) && !latched){
-      operationKeyPressed(key)
+    if (operationChars.includes(key) && !latched) {
+      operatorKeyBehavior(key)
     }
+    if ((key == "=" || key == "Enter") && !latched) {
+      enterEqualsBehavior(key)
+    }
+    if (key == "AC") {
+      deleteBehavior()
+    }
+    if (key == "sign") {
+      signBehavior()
+    }
+    if (key == "%") {
+      percentBehavior()
+    }
+    if (Number(key) == NaN) {
+      input.value = Number(key)
+    }
+    console.log(Number(key))
+  }
+})
+
+function signBehavior() {
+  input.value = input.value * -1
+  buttonContainer[1].style.background = buttonColorPressed
+}
+
+function percentBehavior() {
+  if (input.value == "") {
+    return
+  }
+  else {
+    let percentAnswer = input.value
+    console.log(percentAnswer)
+    input.value = percentAnswer * 0.01
   }
 }
-)
 
 
 document.addEventListener("mouseover", (e) => {
