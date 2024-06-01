@@ -4,6 +4,7 @@
 
 let buttonColorDefault = getComputedStyle(document.documentElement).getPropertyValue("--buttonDefault")
 let buttonColorPressed = getComputedStyle(document.documentElement).getPropertyValue("--buttonPressed")
+let buttonColorHover = getComputedStyle(document.documentElement).getPropertyValue("--buttonHover")
 
 let displayChars = "1234567890.".split('')
 let operationChars = "+-*/".split('')
@@ -92,7 +93,6 @@ function operatorKeyBehavior(key) {
 }
 
 function enterEqualsBehavior(key) {
-  buttonContainer[buttonContainer.length - 1].style.background = buttonColorPressed
   if (input.value == "") {
     return
   }
@@ -114,52 +114,27 @@ function enterEqualsBehavior(key) {
 }
 
 
-function deleteBehavior() {
+function deleteBehavior(e) {
+  if (keyboardUsed(e)){
+    buttonContainer[0].style.background = buttonColorPressed
+  }
   input.value = ""
   equation.length = 0
   answer = 0
   lastInput = null
   lastOp = null
   latched = false
-  buttonContainer[0].style.background = buttonColorPressed
   equationViewer.textContent = ""
 }
 
-
-document.addEventListener("keydown", (e) => {
-  console.log("keydown: " + e.key)
-  if (operationChars.includes(input.value)) {
-    input.value = ""
+function signBehavior(e) {
+  if (keyboardUsed(e)){
+    buttonContainer[1].style.background = buttonColorPressed
   }
-
-  for (let i = 0; i < buttonContainer.length; i++) {
-    if (e.key == buttonContainer[i].id.slice(5)) {
-      buttonContainer[i].style.background = buttonColorPressed
-    }
-  }
-  if (operationChars.includes(e.key) && !latched) {
-    operatorKeyBehavior(e.key)
-  }
-  if (e.key == "Enter" || e.key == "=") {
-    enterEqualsBehavior(e.key)
-  }
-  if (e.key == "Delete") {
-    deleteBehavior()
-  }
-  if (e.key == "s") {
-    signBehavior()
-  }
-  if (e.key == "%") {
-    percentBehavior()
-  }
-})
-
-function signBehavior() {
   input.value = input.value * -1
-  buttonContainer[1].style.background = buttonColorPressed
 }
 
-function percentBehavior() {
+function percentBehavior(e) {
   if (input.value == "") {
     return
   }
@@ -169,6 +144,40 @@ function percentBehavior() {
     input.value = percentAnswer * 0.01
   }
 }
+
+function keyboardUsed(e) {
+  if (e.type == "keydown") {
+    return true
+  }
+}
+
+document.addEventListener("keydown", (e) => {
+  console.log("keydown: " + e.key)
+  if (operationChars.includes(input.value)) {
+    input.value = ""
+  }
+
+  for (let i = 0; i < buttonContainer.length; i++) {
+    if (e.key == buttonContainer[i].id.slice(5)) {
+    buttonContainer[i].style.background = buttonColorPressed
+    }
+  }
+  if (operationChars.includes(e.key) && !latched) {
+    operatorKeyBehavior(e.key)
+  }
+  if (e.key == "Enter" || e.key == "=") {
+    enterEqualsBehavior(e.key)
+  }
+  if (e.key == "Delete") {
+    deleteBehavior(e)
+  }
+  if (e.key == "s") {
+    signBehavior(e)
+  }
+  if (e.key == "%") {
+    percentBehavior()
+  }
+})
 
 document.addEventListener("keyup", (e) => {
   for (let i = 0; i < buttonContainer.length; i++) {
@@ -186,16 +195,16 @@ document.addEventListener("click", (e) => {
       enterEqualsBehavior(key)
     }
     if (key == "AC") {
-      deleteBehavior()
+      deleteBehavior(e)
     }
     if (key == "sign") {
-      signBehavior()
+      signBehavior(e)
     }
     if (key == "%") {
       percentBehavior()
     }
     if ([1, 2, 3, 4, 5, 6, 7, 8, 9, 0].includes(Number(key))) {
-      input.value = Number(key)
+      input.value += Number(key)
     }
   }
 })
@@ -203,14 +212,10 @@ document.addEventListener("click", (e) => {
 document.addEventListener("mousedown", (e) => {
   if (e.target.classList.contains("button")) {
     e.target.style.background = buttonColorPressed
+    console.log(e.target.classList.contains("button"))
   }
 })
-document.addEventListener("mouseover", (e) => {
-  if (e.target.classList.contains("button")) {
-    e.target.style.background = buttonColorPressed
-  }
-})
-document.addEventListener("mouseout", (e) => {
+document.addEventListener("mouseup", (e) => {
   if (e.target.classList.contains("button")) {
     e.target.style.background = buttonColorDefault
   }

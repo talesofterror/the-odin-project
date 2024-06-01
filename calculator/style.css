@@ -18,6 +18,11 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
+  background-color: #26ebd1;
+}
+
+body {
+  border: 10px solid black;
 }
 
 div {
@@ -83,6 +88,8 @@ div {
   background-color: var(--buttonDefault);
   border: 2px solid black;
   box-shadow: 10px 5px 5px;
+  font-family: "ClashMedium";
+  font-size: 1.5em;
 }
 
 #solar {
@@ -101,11 +108,15 @@ div {
   flex-wrap: wrap;
   align-items: left;
   justify-content: space-around;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #equaltion-viewer {
   width: 100%;
   height: 40%;
+  font-family: "ClashMedium";
+  font-size: 1em;
 }
 
 #input {
@@ -114,7 +125,7 @@ div {
   background-color: transparent;
   text-align: right;
   caret-color: transparent;
-  font-family: "DigitalDisplay";
+  font-family: "ClashBold";
   font-size: 3.6em;
   border-width: 0px;
 }
@@ -122,7 +133,6 @@ div {
 #input:focus {
   outline: none;
 }
-
 
 #button-container {
   height: 70%;
@@ -144,6 +154,10 @@ div {
   flex-basis: 15%;
   height: 15%;
   margin: 0px 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
 }
 
 #butt_0 {
@@ -151,14 +165,17 @@ div {
   flex-shrink: 0;
 }
 
-body {
-  border: 1px solid black;
-  background-color: #26ebd1;
-}
-
 @font-face {
   font-family: "DigitalDisplay";
   src: url('assets/Digital-Display.woff2');
+}
+@font-face {
+  font-family: "ClashBold";
+  src: url('assets/ClashGrotesk-Bold.otf');
+}
+@font-face {
+  font-family: "ClashMedium";
+  src: url('assets/ClashGrotesk-Medium.otf');
 }
 
 .rounded-corners {
