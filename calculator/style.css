@@ -10,7 +10,6 @@
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  /* border: 1px blue dotted; */
 }
 
 body {
@@ -87,7 +86,7 @@ div {
   height: 100%;
   background-color: var(--buttonDefault);
   border: 2px solid black;
-  box-shadow: 10px 5px 5px;
+  box-shadow: 10px 5px 5px black;
   font-family: "ClashMedium";
   font-size: 1.5em;
 }
@@ -112,11 +111,16 @@ div {
   padding-right: 10px;
 }
 
-#equaltion-viewer {
+#equation-viewer {
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 40%;
   font-family: "ClashMedium";
   font-size: 1em;
+  border-bottom: 1px #000 solid;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 #input {
@@ -157,12 +161,22 @@ div {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 #butt_0 {
   flex-basis: 41%;
   flex-shrink: 0;
+}
+
+.number {
+  color: #ffaa92;
+  -webkit-text-stroke: 3px black;
+}
+
+.number:hover{
+  color: #000;
+  -webkit-text-stroke: 0px black;
 }
 
 @font-face {
