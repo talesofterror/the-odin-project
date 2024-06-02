@@ -151,6 +151,21 @@ function keyboardUsed(e) {
   }
 }
 
+// todo 
+/* 
+  Decimal when input blank
+    add zero then dot, wait for input
+  Add constraints for amount of digits in display
+    9 total? may need to adjust font size
+  Backspace doesn't work right
+    deletes two digits instead of one
+  Contingency for very large / very small numbers
+    Scientific notation?
+  Divide by zero contingency
+    ...???
+*/
+// todo
+
 document.addEventListener("keydown", (e) => {
   console.log("keydown: " + e.key)
   if (operationChars.includes(input.value)) {
