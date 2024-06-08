@@ -4,6 +4,7 @@
   --buttonDefault: #ffaa92;
   --buttonPressed: #ff6633;
   --buttonHover: #ff2200;
+  --shadowColor: #64220c;
 }
 
 * {
@@ -97,7 +98,7 @@ div {
   height: 100%;
   background-color: var(--buttonDefault);
   border: 2px solid black;
-  box-shadow: 10px 5px 5px black;
+  box-shadow: 10px 5px 5px var(--shadowColor);
   font-family: "ClashMedium";
   font-size: 1.5em;
 }
@@ -108,7 +109,14 @@ div {
 }
 
 #logo {
+  display: flex;
+  align-items: center;
+  font-family: "ClashBold";
+  font-size: 1.40em;
   flex-basis: 30%;
+  /* color: #dd8872; */
+  color: var(--buttonDefault);
+  -webkit-text-stroke: 1.3px black;
 }
 
 #display-holster {
@@ -183,7 +191,7 @@ div {
 
 .number {
   color: #ffaa92;
-  -webkit-text-stroke: 3px black;
+  -webkit-text-stroke: 2px black;
 }
 
 .number:hover{
