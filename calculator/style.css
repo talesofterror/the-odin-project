@@ -46,7 +46,7 @@ div {
   border: 2px solid black;
   /* border-top: 3px solid black; */
   /* border-left: 3px solid black; */
-  box-shadow: 10px 8px 5px;
+  box-shadow: 10px 8px 5px #0e6559;
 }
 
 @media all and (min-width: 0px){
@@ -199,16 +199,22 @@ div {
 }
 
 .number {
-  color: #ffaa92;
+  color: var(--buttonDefault);
+  font-family: "ClashBold";
   -webkit-text-stroke: 2px black;
 }
 
 .number:hover{
-  color: #000;
-  -webkit-text-stroke: 0px black;
+  color: var(--buttonPressed);
+  -webkit-text-stroke: 2px black;
+}
+
+.operation {
+  color: var(--shadowColor)
 }
 
 .operation:hover {
+  color: #000;
   font-family: "ClashBold";
 }
 
