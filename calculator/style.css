@@ -47,6 +47,17 @@ div {
   box-shadow: 10px 8px 5px;
 }
 
+#logo {
+  display: flex;
+  justify-content: center;
+  color: var(--buttonPressed);
+  font-size: 10em;
+}
+
+#solar {
+  color: var(--buttonPressed)
+}
+
 #screen-container {
   height: 30%;
   width: 100%;
@@ -162,6 +173,7 @@ div {
   justify-content: center;
   align-items: center;
   font-size: 2.5em;
+  cursor: pointer;
 }
 
 #butt_0 {
@@ -177,6 +189,10 @@ div {
 .number:hover{
   color: #000;
   -webkit-text-stroke: 0px black;
+}
+
+.operation:hover {
+  font-family: "ClashBold";
 }
 
 @font-face {

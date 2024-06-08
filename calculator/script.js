@@ -20,8 +20,8 @@ window.onload = function () {
 document.addEventListener("click", () => input.focus())
 
 input.addEventListener("input", (e) => {
-  if (e.data != displayChars.filter((elem) => elem == e.data)) {
-    input.value = input.value.slice(0, input.value.length - 1)
+  if (!displayChars.includes(e.data)) {
+    input.value = input.value.slice(0, input.value.length -1)
   }
 })
 
@@ -115,7 +115,7 @@ function enterEqualsBehavior(key) {
 
 
 function deleteBehavior(e) {
-  if (keyboardUsed(e)){
+  if (keyboardUsed(e)) {
     buttonContainer[0].style.background = buttonColorPressed
   }
   input.value = ""
@@ -128,7 +128,7 @@ function deleteBehavior(e) {
 }
 
 function signBehavior(e) {
-  if (keyboardUsed(e)){
+  if (keyboardUsed(e)) {
     buttonContainer[1].style.background = buttonColorPressed
   }
   input.value = input.value * -1
@@ -153,12 +153,12 @@ function keyboardUsed(e) {
 
 // todo 
 /* 
-  Decimal when input blank
-    add zero then dot, wait for input
+  // Decimal when input blank
+  //   add zero then dot, wait for input
   Add constraints for amount of digits in display
     9 total? may need to adjust font size
-  Backspace doesn't work right
-    deletes two digits instead of one
+  // Backspace doesn't work right
+  //   deletes two digits instead of one
   Contingency for very large / very small numbers
     Scientific notation?
   Divide by zero contingency
@@ -174,9 +174,10 @@ document.addEventListener("keydown", (e) => {
 
   for (let i = 0; i < buttonContainer.length; i++) {
     if (e.key == buttonContainer[i].id.slice(5)) {
-    buttonContainer[i].style.background = buttonColorPressed
+      buttonContainer[i].style.background = buttonColorPressed
     }
   }
+
   if (operationChars.includes(e.key) && !latched) {
     operatorKeyBehavior(e.key)
   }
@@ -191,6 +192,20 @@ document.addEventListener("keydown", (e) => {
   }
   if (e.key == "%") {
     percentBehavior()
+  }
+  if (e.key == "Backspace"){
+    e.preventDefault()
+    input.value = input.value.slice(0, input.value.length-1)
+  }
+  if (e.key == "."){
+    e.preventDefault()
+    if (!input.value){
+      input.value = "0."
+    } else if (input.value.split("").includes(".")) {
+      return
+    } else {
+      input.value += "."
+    }
   }
 })
 
