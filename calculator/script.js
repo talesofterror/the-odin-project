@@ -86,6 +86,7 @@ document.addEventListener("keydown", (e) => {
     operatorKeyBehavior(e.key)
   }
   if (e.key == "Enter" || e.key == "=") {
+    buttonContainer[22].style.background = buttonColorPressed
     enterEqualsBehavior(e.key)
   }
   if (e.key == "Delete") {
@@ -194,6 +195,7 @@ function operatorKeyBehavior(key) {
 }
 
 function enterEqualsBehavior(key) {
+  
   if (input.value == "") {
     return
   }
