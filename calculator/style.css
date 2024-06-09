@@ -23,6 +23,8 @@ body {
 
 body {
   border: 10px solid black;
+  min-height: 550px;
+  min-width: 600px;
 }
 
 div {
@@ -49,7 +51,7 @@ div {
   box-shadow: 10px 8px 5px #0e6559;
 }
 
-@media all and (min-width: 0px){
+@media all and (min-width: 0px) {
   #main {
     height: 90%;
   }
@@ -126,6 +128,11 @@ div {
   /* color: #dd8872; */
   color: var(--buttonDefault);
   -webkit-text-stroke: 1.3px black;
+  cursor: pointer;
+}
+
+#logo:hover {
+  color: var(--buttonPressed);
 }
 
 #display-holster {
@@ -139,7 +146,30 @@ div {
   padding-right: 10px;
 }
 
+#about {
+  font-family: "ClashBold";
+  font-size: 0.8em;
+  position: absolute;
+  width: 400px;
+}
+
+#divide-by-zero {
+  position: absolute;
+  background-image: url("assets/dividebyzero.gif");
+  background-size: 100%;
+  width: 403px;
+  height: 110px;
+}
+
+@media all and (min-width: 0px) {
+  #divide-by-zero {
+    width: 355px;
+    height: 100px;
+  }
+}
+
 #equation-viewer {
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
@@ -152,6 +182,7 @@ div {
 }
 
 #input {
+  position: relative;
   width: 100%;
   height: 60%;
   background-color: transparent;
@@ -174,11 +205,6 @@ div {
   align-items: center;
   justify-content: wrap;
   padding: 10px 0px;
-}
-
-.break {
-  height: 0;
-  flex-basis: 100%;
 }
 
 .button {
@@ -204,17 +230,17 @@ div {
   -webkit-text-stroke: 2px black;
 }
 
-.number:hover{
+.number:hover {
   color: var(--buttonPressed);
   -webkit-text-stroke: 2px black;
 }
 
 .operation {
-  color: var(--shadowColor)
+  color: #000;
 }
 
 .operation:hover {
-  color: #000;
+  color: var(--shadowColor);
   font-family: "ClashBold";
 }
 
@@ -222,15 +248,33 @@ div {
   font-family: "DigitalDisplay";
   src: url('assets/Digital-Display.woff2');
 }
+
 @font-face {
   font-family: "ClashBold";
   src: url('assets/ClashGrotesk-Bold.otf');
 }
+
 @font-face {
   font-family: "ClashMedium";
   src: url('assets/ClashGrotesk-Medium.otf');
 }
 
+.break {
+  height: 0;
+  flex-basis: 100%;
+}
+
 .rounded-corners {
   border-radius: 10px;
+}
+
+.prevent-select {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.hide {
+  display: none !important;
+  border: 0px solid #000 !important;
 }

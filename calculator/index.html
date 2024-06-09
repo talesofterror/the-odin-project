@@ -16,10 +16,18 @@
 
       <div id="screen-upper">
         <div id="solar" class="rounded-corners"></div>
-        <div id="logo" class="rounded-corners">calculator</div>
+        <div id="logo" class="rounded-corners" onclick="toggleAbout()">calculator</div>
       </div>
       <div id="screen-lower" class="rounded-corners">
         <div id="display-holster" class="rounded-corners">
+          <div id="about" class="hide">
+            Odin Project Calculator Project<br>
+            <span style="font-family:'ClashMedium'">by talesofterror</span><br>
+            <span style="font-size:0.7em; font-family:monospace;">
+              // final push Jun2024AD
+            </span>
+          </div>
+          <div id="divide-by-zero"></div>
           <div id="equation-viewer" class="rounded-corners"></div>
           <input id="input" autocomplete="off" class="rounded-corners">
         </div>
@@ -30,29 +38,29 @@
     <!-- & bottom container -->
     <div id="button-container">
 
-      <div id="butt_AC" class="button operation rounded-corners">AC</div>
-      <div id="butt_sign" class="button operation rounded-corners">+/-</div>
-      <div id="butt_%" class="button operation rounded-corners">%</div>
-      <div id="butt_/" class="button operation rounded-corners">&#247</div>
+      <div id="butt_AC" class="button operation rounded-corners prevent-select">AC</div>
+      <div id="butt_sign" class="button operation rounded-corners prevent-select">+/-</div>
+      <div id="butt_%" class="button operation rounded-corners prevent-select">%</div>
+      <div id="butt_/" class="button operation rounded-corners prevent-select">&#247</div>
       <div class="break"></div>
-      <div id="butt_7" class="button number rounded-corners">7</div>
-      <div id="butt_8" class="button number rounded-corners">8</div>
-      <div id="butt_9" class="button number rounded-corners">9</div>
-      <div id="butt_*" class="button operation rounded-corners">*</div>
+      <div id="butt_7" class="button number rounded-corners prevent-select">7</div>
+      <div id="butt_8" class="button number rounded-corners prevent-select">8</div>
+      <div id="butt_9" class="button number rounded-corners prevent-select">9</div>
+      <div id="butt_*" class="button operation rounded-corners prevent-select">*</div>
+      <div class="break prevent-select"></div>
+      <div id="butt_4" class="button number rounded-corners prevent-select">4</div>
+      <div id="butt_5" class="button number rounded-corners prevent-select">5</div>
+      <div id="butt_6" class="button number rounded-corners prevent-select">6</div>
+      <div id="butt_-" class="button operation rounded-corners prevent-select">-</div>
+      <div class="break prevent-select"></div>
+      <div id="butt_1" class="button number rounded-corners prevent-select">1</div>
+      <div id="butt_2" class="button number rounded-corners prevent-select">2</div>
+      <div id="butt_3" class="button number rounded-corners prevent-select">3</div>
+      <div id="butt_+" class="button operation rounded-corners prevent-select">+</div>
       <div class="break"></div>
-      <div id="butt_4" class="button number rounded-corners">4</div>
-      <div id="butt_5" class="button number rounded-corners">5</div>
-      <div id="butt_6" class="button number rounded-corners">6</div>
-      <div id="butt_-" class="button operation rounded-corners">-</div>
-      <div class="break"></div>
-      <div id="butt_1" class="button number rounded-corners">1</div>
-      <div id="butt_2" class="button number rounded-corners">2</div>
-      <div id="butt_3" class="button number rounded-corners">3</div>
-      <div id="butt_+" class="button operation rounded-corners">+</div>
-      <div class="break"></div>
-      <div id="butt_0" class="button number rounded-corners">0</div>
-      <div id="butt_." class="button operation rounded-corners">.</div>
-      <div id="butt_=" class="button operation rounded-corners"> = </div>
+      <div id="butt_0" class="button number rounded-corners prevent-select">0</div>
+      <div id="butt_." class="button operation rounded-corners prevent-select">.</div>
+      <div id="butt_=" class="button operation rounded-corners prevent-select"> = </div>
 
     </div>
 

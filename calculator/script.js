@@ -12,6 +12,7 @@ let buttonContainer = [].slice.call(document.getElementById("button-container").
 
 let input = document.getElementById("input")
 let equationViewer = document.getElementById("equation-viewer")
+let aboutElement = document.getElementById("about")
 
 window.onload = function () {
   input.focus()
@@ -20,8 +21,8 @@ window.onload = function () {
 document.addEventListener("click", () => input.focus())
 
 input.addEventListener("input", (e) => {
-  if (!displayChars.includes(e.data)) {
-    input.value = input.value.slice(0, input.value.length -1)
+  if (!displayChars.includes(e.data) || input.value.length > 8) {
+    input.value = input.value.slice(0, input.value.length - 1)
   }
 })
 
@@ -58,12 +59,12 @@ function calculate(eq) {
 /* 
   // Decimal when input blank
   //   add zero then dot, wait for input
-  Add constraints for amount of digits in display
-    9 total? may need to adjust font size
+  // Add constraints for amount of digits in display
+  //   9 total? may need to adjust font size
   // Backspace doesn't work right
   //   deletes two digits instead of one
-  Contingency for very large / very small numbers
-    Scientific notation?
+  // Contingency for very large / very small numbers
+  //   Scientific notation? nah let's do it the lazy way
   Divide by zero contingency
     ...???
   // When using mouse, operator key leaves operation sign on next input
@@ -71,7 +72,11 @@ function calculate(eq) {
 // todo
 
 document.addEventListener("keydown", (e) => {
-  console.log("keydown: " + e.key)
+
+  if (!Array.from(aboutElement.classList).includes("hide")) {
+    toggleAbout()
+  }
+
   if (operationChars.includes(input.value)) {
     input.value = ""
   }
@@ -98,13 +103,13 @@ document.addEventListener("keydown", (e) => {
   if (e.key == "%") {
     percentBehavior()
   }
-  if (e.key == "Backspace"){
+  if (e.key == "Backspace") {
     e.preventDefault()
-    input.value = input.value.slice(0, input.value.length-1)
+    input.value = input.value.slice(0, input.value.length - 1)
   }
-  if (e.key == "."){
+  if (e.key == ".") {
     e.preventDefault()
-    if (!input.value){
+    if (!input.value) {
       input.value = "0."
     } else if (input.value.split("").includes(".")) {
       return
@@ -121,14 +126,20 @@ document.addEventListener("keyup", (e) => {
 })
 
 document.addEventListener("mousedown", (e) => {
+  console.log(e.target.id)
+
+  if (!Array.from(aboutElement.classList).includes("hide")
+      && e.target.id != "logo") {
+    toggleAbout()
+  }
+
   if (e.target.classList.contains("button")) {
     e.target.style.background = buttonColorPressed
-    console.log(e.target.classList.contains("button"))
   }
 
   if (e.target.classList.contains("button")) {
     let key = e.target.id.slice(5)
-    if (operationChars.includes(input.value)){
+    if (operationChars.includes(input.value)) {
       input.value = ""
     }
     if (operationChars.includes(key) && !latched) {
@@ -151,9 +162,10 @@ document.addEventListener("mousedown", (e) => {
     }
   }
 })
+
 document.addEventListener("mouseup", (e) => {
-  if (e.target.classList.contains("button")) {
-    e.target.style.background = buttonColorDefault
+  for (let i = 0; i < buttonContainer.length; i++) {
+    buttonContainer[i].style.background = buttonColorDefault
   }
 })
 
@@ -165,6 +177,10 @@ function evalEquation() {
   lastInput = equation[2]
   input.value = calculate(equation)
   equationViewer.textContent = equation.join(" ") + " = " + answer
+  if (answer.toString().split("").length > 9) {
+    input.value = "too big :("
+    equationViewer.textContent = "too big :("
+  }
   latched = true
 }
 
@@ -176,7 +192,6 @@ function operatorKeyBehavior(key) {
     if (equation.length == 0) {
       equation.push(input.value)
       equation.push(key)
-      console.log(equation)
       equationViewer.textContent = equation.join(" ")
       input.value = key
     }
@@ -195,7 +210,7 @@ function operatorKeyBehavior(key) {
 }
 
 function enterEqualsBehavior(key) {
-  
+
   if (input.value == "") {
     return
   }
@@ -243,7 +258,6 @@ function percentBehavior(e) {
   }
   else {
     let percentAnswer = input.value
-    console.log(percentAnswer)
     input.value = percentAnswer * 0.01
   }
 }
@@ -252,6 +266,24 @@ function keyboardUsed(e) {
   if (e.type == "keydown") {
     return true
   }
+}
+
+function toggleAbout() {
+
+  if (Array.from(aboutElement.classList).includes("hide")) {
+    input.classList.add("hide")
+    equationViewer.classList.add("hide")
+    aboutElement.classList.remove("hide")
+  }
+  else {
+    input.classList.remove("hide")
+    equationViewer.classList.remove("hide")
+    aboutElement.classList.add("hide")
+  }
+}
+
+function toggleDivideByZero() {
+
 }
 
 
