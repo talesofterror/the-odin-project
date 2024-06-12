@@ -16,18 +16,18 @@
 
       <div id="screen-upper">
         <div id="solar" class="rounded-corners"></div>
-        <div id="logo" class="rounded-corners" onclick="toggleAbout()">calculator</div>
+        <div id="logo" class="rounded-corners prevent-select" onclick="toggleAbout()">calculator</div>
       </div>
       <div id="screen-lower" class="rounded-corners">
         <div id="display-holster" class="rounded-corners">
           <div id="about" class="hide">
-            Odin Project Calculator Project<br>
-            <span style="font-family:'ClashMedium'">by talesofterror</span><br>
+            <a href="https://www.theodinproject.com/">Odin Project</a> Calculator Project<br>
+            <span style="font-family:'ClashMedium'">by <a href="https://github.com/talesofterror">talesofterror</a></span><br>
             <span style="font-size:0.7em; font-family:monospace;">
               // final push Jun2024AD
             </span>
           </div>
-          <div id="divide-by-zero"></div>
+          <div id="divide-by-zero" class="hide prevent-select"></div>
           <div id="equation-viewer" class="rounded-corners"></div>
           <input id="input" autocomplete="off" class="rounded-corners">
         </div>

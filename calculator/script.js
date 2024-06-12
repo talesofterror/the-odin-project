@@ -1,7 +1,6 @@
 
 "use strict"
 
-
 let buttonColorDefault = getComputedStyle(document.documentElement).getPropertyValue("--buttonDefault")
 let buttonColorPressed = getComputedStyle(document.documentElement).getPropertyValue("--buttonPressed")
 let buttonColorHover = getComputedStyle(document.documentElement).getPropertyValue("--buttonHover")
@@ -13,6 +12,8 @@ let buttonContainer = [].slice.call(document.getElementById("button-container").
 let input = document.getElementById("input")
 let equationViewer = document.getElementById("equation-viewer")
 let aboutElement = document.getElementById("about")
+let divideByZeroElement = document.getElementById("divide-by-zero")
+let broken = false
 
 window.onload = function () {
   input.focus()
@@ -43,7 +44,7 @@ function calculator() {
     return a * b
   }
   this["/"] = function divide(a, b) {
-    return b == 0 ? 0 : a / b
+    return b == 0 ? breakCalculator() : a / b
   }
 }
 
@@ -55,26 +56,18 @@ function calculate(eq) {
   return result
 }
 
-// todo 
-/* 
-  // Decimal when input blank
-  //   add zero then dot, wait for input
-  // Add constraints for amount of digits in display
-  //   9 total? may need to adjust font size
-  // Backspace doesn't work right
-  //   deletes two digits instead of one
-  // Contingency for very large / very small numbers
-  //   Scientific notation? nah let's do it the lazy way
-  Divide by zero contingency
-    ...???
-  // When using mouse, operator key leaves operation sign on next input
-*/
-// todo
-
 document.addEventListener("keydown", (e) => {
 
   if (!Array.from(aboutElement.classList).includes("hide")) {
     toggleAbout()
+  }
+
+  if (broken) {
+    fixCalculator(e)
+  }
+
+  if (answer != 0) {
+    deleteBehavior(e)
   }
 
   if (operationChars.includes(input.value)) {
@@ -126,11 +119,18 @@ document.addEventListener("keyup", (e) => {
 })
 
 document.addEventListener("mousedown", (e) => {
-  console.log(e.target.id)
 
   if (!Array.from(aboutElement.classList).includes("hide")
-      && e.target.id != "logo") {
+    && e.target.id != "logo") {
     toggleAbout()
+  }
+
+  if (broken) {
+    fixCalculator(e)
+  }
+
+  if (answer != 0) {
+    deleteBehavior(e)
   }
 
   if (e.target.classList.contains("button")) {
@@ -269,7 +269,6 @@ function keyboardUsed(e) {
 }
 
 function toggleAbout() {
-
   if (Array.from(aboutElement.classList).includes("hide")) {
     input.classList.add("hide")
     equationViewer.classList.add("hide")
@@ -282,8 +281,19 @@ function toggleAbout() {
   }
 }
 
-function toggleDivideByZero() {
-
+function breakCalculator() {
+  input.classList.add("hide")
+  equationViewer.classList.add("hide")
+  divideByZeroElement.classList.remove("hide")
+  broken = true
+  return 0
 }
 
-
+function fixCalculator(e) {
+  divideByZeroElement.classList.add("hide")
+  input.classList.remove("hide")
+  equationViewer.classList.remove("hide")
+  deleteBehavior(e.type)
+  input.focus()
+  broken = false
+}
