@@ -157,6 +157,16 @@ document.addEventListener("mousedown", (e) => {
     if (key == "%") {
       percentBehavior()
     }
+    if (key == ".") {
+      e.preventDefault()
+      if (!input.value) {
+        input.value = "0."
+      } else if (input.value.split("").includes(".")) {
+        return
+      } else {
+        input.value += "."
+      }
+    }
     if ([1, 2, 3, 4, 5, 6, 7, 8, 9, 0].includes(Number(key))) {
       input.value += Number(key)
     }
