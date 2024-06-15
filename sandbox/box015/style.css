@@ -16,7 +16,7 @@ div {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 49.3%;
+  width: 500px;
   margin: 10px;
 }
 
