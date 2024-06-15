@@ -1,34 +1,64 @@
 body {
-}
-
-main {
-  width: 50%;
-  border: 10px solid blue;
+  display: flex;
+  box-sizing: border-box;
+  border: 10px solid #000;
+  margin: 0px;
+  min-height: 100vh;
 }
 
 div {
-  width: 50%;
+  background-color: aquamarine;
+  border: 10px solid #000;
   padding: 10px;
-  border: 10px solid red;
+}
+
+.parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 49.3%;
   margin: 10px;
 }
 
-main div {
-  background-color: orange;
+.parent > div {
+  background-color: #fff;
 }
 
-main > div{
-  background-color: teal;
+.parent > div > div {
+  background-color: #999999;
+  margin: 10px;
 }
 
-main > div > div {
-  background-color: yellow;
+.grand-child > div {
+  margin: 10px;
 }
 
-.group1 ~ div {
-  border-color: blue;
+.group2 + div {
+  background-color: #4f4;
 }
 
-main:nth-child(2) {
-  border-color: black;
+.grand-child div {
+  border-color: #ccee25;
+}
+
+/* .group3 ~ div{
+  border-color: #2020ee;
+} */
+
+.grand-child ~ div{
+  border-color: #2020ee;
+}
+
+.group1 , .group2 {
+  border-color: #ff20cc;
+  background-color: crimson; /* not specific enough, ".parent > div > div" wins */ 
+}
+
+.group3:nth-child(4) {
+  border-color: #aa50ff;
+}
+
+/* nth-child selects the element that matches both the base element and child number */
+.great-grand-child:nth-child(3) {
+  border-color: #ffcc00;
 }
