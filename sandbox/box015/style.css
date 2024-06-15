@@ -1,0 +1,34 @@
+body {
+}
+
+main {
+  width: 50%;
+  border: 10px solid blue;
+}
+
+div {
+  width: 50%;
+  padding: 10px;
+  border: 10px solid red;
+  margin: 10px;
+}
+
+main div {
+  background-color: orange;
+}
+
+main > div{
+  background-color: teal;
+}
+
+main > div > div {
+  background-color: yellow;
+}
+
+.group1 ~ div {
+  border-color: blue;
+}
+
+main:nth-child(2) {
+  border-color: black;
+}
