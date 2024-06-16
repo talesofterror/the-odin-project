@@ -3,7 +3,8 @@ html {
 }
 
 body {
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family:Poppins;
+  font-style: calc(1em + 1vw);
   display: flex;
   box-sizing: border-box;
   border: 10px solid #000;
@@ -60,11 +61,12 @@ ul {
 }
 
 .parent-2 + div {
+  line-height: 25px;
   overflow: scroll;
   overflow-x: hidden;
   background-color: #ddeeff;
-  border-width: 2px;
-  border-color: crimson;
+  border-width: 20px;
+  border-color: black;
   width: 100%;
   scrollbar-color:crimson turquoise;
 }
