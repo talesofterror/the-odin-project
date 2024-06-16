@@ -4,7 +4,6 @@ html {
 
 body {
   font-family:Poppins;
-  font-style: calc(1rem + 1vw);
   display: flex;
   box-sizing: border-box;
   border: 10px solid #000;
@@ -33,6 +32,10 @@ ul {
   }
 }
 
+h1 {
+  line-height: 2.5rem;
+}
+
 .parent {
   box-sizing: border-box;
   display: flex;
@@ -54,6 +57,7 @@ ul {
 }
 
 .parent-2 {
+  font-size: calc(0.10rem + 1.2vw);
   width: 25%;
   border: 5px solid #000;
   /* height: 100%; */
