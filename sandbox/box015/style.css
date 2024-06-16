@@ -32,10 +32,6 @@ ul {
   }
 }
 
-h1 {
-  line-height: 2.5rem;
-}
-
 .parent {
   box-sizing: border-box;
   display: flex;
@@ -65,7 +61,7 @@ h1 {
 }
 
 .parent-2 + div {
-  line-height: 25px;
+  line-height: 1;
   overflow: scroll;
   overflow-x: hidden;
   background-color: #ddeeff;
@@ -73,6 +69,7 @@ h1 {
   border-color: black;
   width: 100%;
   scrollbar-color:crimson turquoise;
+  max-inline-size: 50ch;
 }
 
 .grand-child > div {
