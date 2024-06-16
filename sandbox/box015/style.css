@@ -32,6 +32,54 @@ ul {
   }
 }
 
+img {
+  width: 40%;
+  display: inline;
+  float: left;
+  margin: 1rem;
+  background-color: #fff;
+}
+
+img + p {
+  background-color: #f0f;
+  color: #fff;
+  /* transform: skew(3deg, 3deg); */
+}
+
+img + h3 {
+  background-color: #0ff;
+  color: #000;
+}
+
+div > img:last-child  {
+  background-color: #fff0;
+}
+
+h1 {
+  line-height: 2ch;
+  font-family: "Playwrite NL";
+}
+
+#second-lisa {
+  width: 30%;
+  float: right;
+  transform: skew(5deg, 5deg);
+}
+
+#final-lisa {
+  display: block;
+  width: 100%;
+}
+
+.parent-2 > div {
+  box-sizing:border-box;
+  display: flex;
+  background-color:#ffe090;
+  border: 5px solid crimson;
+  height: auto;
+  padding: 0px;
+}
+
 .parent {
   box-sizing: border-box;
   display: flex;
@@ -53,7 +101,7 @@ ul {
 }
 
 .parent-2 {
-  font-size: calc(0.10rem + 1.2vw);
+  font-size: clamp(0.50rem, 0.75rem + 1.5vw, 1rem);
   width: 25%;
   border: 5px solid #000;
   /* height: 100%; */
@@ -69,7 +117,21 @@ ul {
   border-color: black;
   width: 100%;
   scrollbar-color:crimson turquoise;
-  max-inline-size: 50ch;
+  /* max-inline-size: 50ch; */
+}
+
+p::after {
+  content: '\1F919';
+}
+p::before {
+  content: '\1F9D9';
+}
+p::first-line {
+  font-style: italic;
+}
+p::first-letter {
+  font-size: 2rem;
+  font-style: normal;
 }
 
 .grand-child > div {
