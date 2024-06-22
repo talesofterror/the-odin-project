@@ -6,11 +6,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="icon" type="image/svg" href="sandbox.icon.svg">
-  <title>sandbox 016</title>
+  <title>sandbox 017</title>
 </head>
 
 <body>
-
+<main>
+  <div id="form-container">
+    <fieldset>
+      <legend>Form</legend>
+    <form action="https://httpbin.org/post" method="post">
+      <label for="name">Name :: </label>
+      <input name="name" id="name" type="text" placeholder="Enter Name">
+      <label for="name">Email :: </label>
+      <input name="email" id="email" type="email" placeholder="Enter Email">
+      <br>
+      <br>
+      <label for="name">Password :: </label>
+      <input name="password" id="password" type="password" placeholder="Enter Password">
+      <br>
+      <br>
+      <label for="name">Number :: </label>
+      <input name="number" id="number" type="number" placeholder="Enter Number">
+      <br>
+      <br>
+      <label for="name">Color :: </label>
+      <input name="color" id="color" type="color" placeholder="Enter Color">
+      <label for="name">Options :: </label>
+      <select name="options" id="options">
+          <option value=""> </option>
+        <optgroup label="Declaratory">
+          <option value="Yes">No</option>
+          <option value="No">Yes</option>
+          <option value="Maybe">Never</option>
+          <option value="Never">Prob not</option>
+        </optgroup>
+        <optgroup label="Biological">
+          <option value="Fruit">Fruit</option>
+          <option value="Vegetable">Vegetable</option>
+          <option value="Animal">Animal</option>
+          <option value="Fungus">Fungus</option>
+        </optgroup>
+      </select>
+      <br>
+      <button type="submit" id="submit">Submit</button>
+      <button type="reset" id="reset">Reset</button>
+    </form>
+  </fieldset>
+  </div>
+  <div id="form-results"></div>
+</main>
 </body>
 
 </html>
