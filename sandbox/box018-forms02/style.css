@@ -1,0 +1,80 @@
+body {
+  text-align: center;
+}
+
+form {
+  display: inline-block;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 1em;
+}
+
+ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0;
+}
+
+form li + li {
+/* every list element that is an adjacent sibling of another list element */
+/* so every list element after the first, not including the first */
+  margin-top: 1em; 
+  /* border: 1px solid #000; */
+}
+
+label {
+  display: inline-block;
+  min-width: 5em;
+  text-align: right;
+}
+/* 
+aligns the labels and fields. 
+display:inline-block makes it responsive to the min-width
+attribute. the min-width normalizes the width of the 
+label elements, which has the side effect of aligning the ends 
+of the field elements.
+*/
+
+input,
+textarea {
+  font: 1em sans-serif;
+  width: 300px;
+  vertical-align: top;
+  box-sizing:border-box;
+}
+/*
+  font: 1em sans-serif breaks the input field alignment momentarily. 
+  It makes the text within the fields bigger and changes the font. 
+  (textarea has monospace by default.)
+  I think the alignment breaks due to the size of the font but I'm 
+  not sure.
+  setting the width here realigns the elements. 
+  vertical-align moves the adjacent inline elements to the top of the 
+  target elements
+*/
+
+input:focus,
+textarea:focus {
+  border-color: #f75;
+  outline: none;
+  /*
+  input and text area have a default outline that needs to be 
+  removed for the border color to come through. 
+  */
+}
+
+.button {
+  /* display: inline-block; */
+  padding-left: 5em;
+}
+/*
+not working the way it does in the lesson
+*/
+
+button {
+  margin-left: 0.5em;
+}
+/*
+same as prev
+*/
+
