@@ -41,6 +41,11 @@ input {
 label { 
   display: inline-block;
 }
+/*
+I think the display:inline-block on the label is what's 
+allowing the radio button to sit next to the lable text
+rather than radio button take up a whole line
+*/
 
 section {
   width: 300px;
