@@ -11,7 +11,7 @@ input[type="checkbox"] {
   /* adjust the position of the checkboxes ont he text baseline */
   vertical-align: -2px;
   /* set here so that windows' high-contrast mode can override */
-  color:green;
+  color: green;
 }
 
 input[type="checkbox"]:before {
@@ -22,13 +22,87 @@ input[type="checkbox"]:before {
   top: -0.27em;
   visibility: hidden;
 }
+
 input[type="checkbox"]:checked:before {
   /* use visibility instead of 'display' to avoid recalculating layout */
   visibility: visible;
 }
+
 input[type="checkbox"]:disabled {
-  border-color:darkgray;
+  border-color: darkgray;
   background-color: #ddd;
   color: gray;
 }
 
+#second-form {
+  span {
+    position: relative;
+  }
+}
+
+select {
+  appearance: none;
+  width: 100px;
+}
+
+/* 
+select content is fully controled by browser, so ::before and ::after can't work on them
+you have to wrap them in something, like this span with an ID of 'select-wrapper'
+*/
+#select-wrapper::after {
+  content: "\27a4";
+  transform: rotate(90deg);
+  position: absolute;
+  right: 3px;
+  top: 2px;
+  font-size: 0.7em;
+}
+
+#date2 {
+  /* appearance: auto; */
+}
+
+#range {
+  outline: 1px solid #000;
+  height: 0.7em;
+  background: #c3c;
+}
+
+progress {
+  appearance: none; 
+}
+
+#second-form label {
+  display: block;
+}
+
+#file {
+  border-radius: 1em;
+  appearance: none;
+}
+
+/* 
+The file picker can't be styles but it can be wrapped and hidden
+clicking the label for the file picker has the same effect as opening
+the dialogue to pick a file so the label can be style to look like
+a button instead of the element. picker must be wrapped and hidden
+with 'display: none'
+*/
+label[for="file"] {
+  position: relative;
+  width: 100px;
+  border: 1px solid #000;
+  border-radius: 1em;
+  padding: 5px;
+}
+
+label[for="file"]::after {
+  content: "\1f4be";
+  position: absolute;
+  top: 2px;
+  right: 6px;
+}
+
+#file-wrapper {
+  display: none;
+}

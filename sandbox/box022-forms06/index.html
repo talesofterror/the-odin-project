@@ -52,6 +52,60 @@
       </p>
     </fieldset>
   </form>
+
+  <form id="second-form">
+    <p>
+      <label for="fruits-selection">Select box: </label>
+      <span id="select-wrapper">
+        <select name="fruits-selection" id="fruits-selection" name="fruits-selection">
+          <option value="banana">Banana</option>
+          <option value="cherry">Cherry</option>
+          <option value="lemon">Lemon</option>
+        </select>
+      </span>
+    </p>
+    <p>
+      <label for="fav-fruit">"Favorite fruit? datalist</label>
+      <input type="text" id="fav-fruit" name="fav-fruit" list="fav-fruit-data">
+      <datalist id="fav-fruit-data">
+        <option value="Apple"></option>
+        <option value="Banana"></option>
+        <option value="Blackberry"></option>
+        <option value="Blueberry"></option>
+        <option value="Lemon"></option>
+        <option value="Lichee"></option>
+        <option value="Peach"></option>
+        <option value="Pear"></option>
+      </datalist>
+    </p>
+    <p>
+      <label for="date2">Datetime local</label>
+      <input type="datetime-local" id="date2" name="date2">
+    </p>
+    <p>
+      <label for="range">Range: </label>
+      <input type="range" min="0" max="10" value="50" id="range" name="range">
+    </p>
+    <p>
+      <label for="color">Color: </label>
+      <input type="color" id="color" name="color">
+    </p>
+    <p>
+      <label for="file">File picker: </label>
+      <span id="file-wrapper"><input type="file" id="file" name="file-picker"></span>
+    </p>
+    <p>
+      <label for="progress">Progress: </label>
+      <progress value="70" max="100" id="progress" name="progress">70%</progress>
+    </p>
+    <p>
+      <label for="meter">Meter: </label>
+      <meter value="50" max="100" min="0">at 50/100</meter>
+    </p>
+    <p>
+      <input type="submit" id="submit" />
+    </p>
+  </form>
 </body>
 
 </html>
