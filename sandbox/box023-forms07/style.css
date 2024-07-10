@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+  font: 1em sans-serif;
+}
+
+div {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 20px 20px;
+}
+
+fieldset {
+  width: 500px;
+  margin: 10px auto;
+}
+
+legend {
+  background: #000;
+  color: #fff;
+  padding: 4px 15px;
+}
+
+label {
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  /* display: block; */
+  margin-top: 10px;
+  border-radius: 0.3em;
+}
+
+input:required {
+  border: 1px solid #000;
+}
+
+input:optional {
+  border: 1px solid silver;
+}
+
+input+span {
+  position: relative;
+}
+
+input:required+span::after {
+  position: absolute;
+  content: "required";
+  font-size: 0.6em;
+  color: #fff;
+  background: #000;
+  padding: 4px 10px;
+  right: 10px;
+  top: -15px;
+
+}
+
+input[type="email"]:invalid+span::after {
+  position: absolute;
+  content: "invalid email";
+  font-size: 0.6em;
+  color: #fff;
+  background: #f00;
+  padding: 4px 10px;
+  right: 10px;
+  top: -15px;
+  width: 5.6em;
+}
+
+input:invalid,
+input:invalid+span::after,
+input[type="email"]:invalid {
+  border: 1px solid #f00;
+}
+
+
+input:invalid+span::before {
+  position: absolute;
+  top: 12px;
+  right: -15px;
+  color: #f00;
+  content: "x";
+}
+
+input:invalid+span::after {
+  background-color: red;
+}
+
+.note {
+  font-size: 0.8em;
+}
