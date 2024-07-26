@@ -72,10 +72,65 @@ body{
 }
 
 .form-row select {
-  appearance: none;
+  color: black;
+  /* appearance: none; */
+  /* -webkit-appearance: none; */
   width: 100%;
   padding: 5px;
   font-size: 14px;
+  border: 1px solid #d6d9dc;
+}
+
+.form-row textarea {
+  font-family: "Helvetica","Arial",sans-serif;
+  font-size: 14px;
+
+  border: 1px solid #d6d9dc;
+  border-radius: 3px;
+
+  min-height: 10em;
+  max-height: 20em;
+  padding: 7px;
+  resize: none;
+}
+
+.form-row .instructions {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.form-row .checkbox-label {
+  margin-bottom: 0;
+}
+
+.form-row button {
+  font-size: 16px;
+  font-weight: bold;
+
+  color: white;
+  /* 
+  setting bgcolor removes the automatic border-radius 
+  in iOS Safari. Setting the border radius directly 
+  without first setting the bgcolor does nothing for 
+  some stupid reason .
+  */
+  background-color: #5995da; 
+
+  border: none;
+  border-radius: 3px;
+
+  padding: 10px 40px;
+  cursor: pointer;
+
+  margin-top: 30px;
+}
+
+.form-row button:hover {
+  background-color: #76AEED;
+}
+
+.form-row button:active {
+  background-color: #407FC7;
 }
 
 .legacy-form-row {
@@ -129,6 +184,19 @@ body{
     width: 120px;
     margin-top: 7px;
     padding-right: 20px;
+  }
+
+  .form-row .instructions {
+    margin-left: 120px;
+  }
+
+  .form-row .checkbox-label {
+    margin-left: 120px;
+    width: auto;
+  }
+
+  .form-row button {
+    margin-left: 120px;
   }
 
   .legacy-form-row {
