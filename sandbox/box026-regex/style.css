@@ -1,9 +1,9 @@
 * {
   box-sizing: border-box;
-  width: 100%;
 }
 
 body {
+  width: 90%;
   font-size: 18px;
   background-color: bisque;
   display: flex;
@@ -17,38 +17,87 @@ h1 {
 .container {
   width: 300px;
   margin: 0 auto;
+  margin-right: 15px;
 }
 
-input {
-  width: 200px;
-}
-
-input:invalid {
-  border: red 1px solid;
-}
-
-input+* {
-  font-weight: bold;
-}
-
-input:not(:first-child) {
-  font-weight: bold;
-}
-
-.input-group span {
-  vertical-align: bottom;
+.container+.container {
   width: 300px;
-  font-family: "Helvetica", sans-serif;
-  font-size: 1em;
-  font-weight: bold;
-  color: red;
+  margin: 0 auto;
+  margin-left: 0px;
 }
 
 .input-group {
+  position: relative;
   width: 90%;
   margin: 20px 20px;
   border-bottom: 1px solid red;
   padding-bottom: 5px;
+}
+
+input {
+  appearance: none;
+  -webkit-appearance: none;
+  color: #000;
+  border: 1px solid auto;
+  width: 200px;
+  padding: 5px;
+}
+
+input+*+* {
+  font-weight: bold;
+}
+
+input:invalid {
+  color: red;
+  border: red 1px solid;
+}
+
+input:invalid:focus {
+  appearance: none;
+  color: red;
+  border-color: red;
+}
+
+input:valid {
+  color: #4b9ef2;
+  font-weight: bold;
+  border: 2px solid #4b9ef2;
+  background-color: #e9d2b5;
+}
+
+input:valid:focus {
+  font-weight: bold;
+  border: 2px solid auto;
+  border-color: #4b9ef2;
+}
+
+input+span:before {
+  content: ">";
+  position: absolute;
+  font-family: "Helvetica", sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  left: -15px;
+  top: 3px;
+}
+
+input:invalid+span:before {
+  color: red;
+}
+
+input:valid+span:before {
+  color: #4b9ef2;
+}
+
+input:valid+span:after {
+  appearance: none;
+  position: absolute;
+  content: "✔";
+  /* checkmark */
+  font-size: 0.8em;
+  color: #4b9ef2;
+  right: 50px;
+  top: 5px;
 }
 
 .pattern-description {
@@ -66,6 +115,6 @@ input:not(:first-child) {
   font-size: 1em;
   font-weight: bold;
   content: ">";
-  color: #4b9ef2;
+  color: #aaa;
   left: -1em;
 }

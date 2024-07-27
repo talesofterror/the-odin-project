@@ -12,30 +12,86 @@
 <body>
   <div class="container">
 
+    <!-- 
+    
+    regex in pattern attribute are automatically 
+    prepended with: ^(?:
+    and appended with: )$
+
+    -->
+
     <h1>&#x1F62C RegEx &#x1F62C</h1>
 
     <div class="input-group">
-      <span>></span>
-      <input pattern="[abcd]">
+      <input pattern="[abcd]" required />
+      <span></span>
       <div class="pattern-description">
         [abcd]
       </div>
       <div class="pattern-description">
-        Matches one of each letter included within the brackets.
+        Matches a single instance of one of the characters in the brackets. Can only match one character at a time.
       </div>
     </div>
 
     <div class="input-group">
-      <span>></span>
-      <input pattern="\abcd\">
+      <input pattern="abcd" required />
+      <span></span>
       <div class="pattern-description">
-        \abcd\
+        abcd
       </div>
       <div class="pattern-description">
-        Matches only the exact sequence entered between the <stong>back</stong> slashes (not front slashes!) anywhere in the string.
+        Matches only the exact sequence entered, "abcd".
       </div>
     </div>
 
+    <div class="input-group">
+      <input pattern="ab*c" required />
+      <span></span>
+      <div class="pattern-description">
+        ab*c
+      </div>
+      <div class="pattern-description">
+        Matches a single "a", followed by any amount of "b", followed by a single "c".
+      </div>
+    </div>
+
+    <div class="input-group">
+      <input pattern="^A" required />
+      <span></span>
+      <div class="pattern-description">
+        ^A
+      </div>
+      <div class="pattern-description">
+        Matches a single instance of a single character at the beginning of the string, "A". Already included in the html prepend.
+      </div>
+    </div>
+
+    <div class="input-group">
+      <input pattern="^abcd*" required />
+      <span></span>
+      <div class="pattern-description">
+        abcd*
+      </div>
+      <div class="pattern-description">
+        Matches an "abc" and any number of "d" but nothing after that.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ^ need to make a script that evaluates pure regex without html additions? -->
+
+  <div class="container">
+    <div class="input-group">
+      <input pattern="d.$" required />
+      <span></span>
+      <div class="pattern-description">
+        d$
+      </div>
+      <div class="pattern-description">
+        Matches .
+      </div>
+    </div>
   </div>
 </body>
 
