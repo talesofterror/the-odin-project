@@ -1,6 +1,4 @@
 let scriptedInputs = document.getElementsByClassName("scripted")
-// console.log(scriptedInputs)
-// console.log(typeof scriptedInputs)
 
 for (const e of scriptedInputs) {
   e.classList.add("scripted-invalid")
