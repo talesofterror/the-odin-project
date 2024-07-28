@@ -47,30 +47,6 @@ input+*+* {
   font-weight: bold;
 }
 
-input:invalid {
-  color: red;
-  border: red 1px solid;
-}
-
-input:invalid:focus {
-  appearance: none;
-  color: red;
-  border-color: red;
-}
-
-input:valid {
-  color: #4b9ef2;
-  font-weight: bold;
-  border: 2px solid #4b9ef2;
-  background-color: #e9d2b5;
-}
-
-input:valid:focus {
-  font-weight: bold;
-  border: 2px solid auto;
-  border-color: #4b9ef2;
-}
-
 input+span:before {
   content: ">";
   position: absolute;
@@ -81,15 +57,39 @@ input+span:before {
   top: 3px;
 }
 
-input:invalid+span:before {
+.not-scripted:invalid {
+  color: red;
+  border: red 1px solid;
+}
+
+.not-scripted:invalid:focus {
+  appearance: none;
+  color: red;
+  border-color: red;
+}
+
+.not-scripted:valid {
+  color: #4b9ef2;
+  font-weight: bold;
+  border: 2px solid #4b9ef2;
+  background-color: #e9d2b5;
+}
+
+.not-scripted:valid:focus {
+  font-weight: bold;
+  border: 2px solid auto;
+  border-color: #4b9ef2;
+}
+
+.not-scripted:invalid+span:before {
   color: red;
 }
 
-input:valid+span:before {
+.not-scripted:valid+span:before {
   color: #4b9ef2;
 }
 
-input:valid+span:after {
+.not-scripted:valid+span:after {
   appearance: none;
   position: absolute;
   content: "✔";
@@ -117,4 +117,53 @@ input:valid+span:after {
   content: ">";
   color: #aaa;
   left: -1em;
+}
+
+/* * scripted classes */
+
+.scripted-invalid {
+  color: red !important; 
+  border: red 1px solid !important;
+}
+
+.scripted-invalid:focus {
+  appearance: none !important;
+  color: red !important;
+  border-color: red !important;
+}
+
+.scripted-invalid+span:before {
+  color: red !important;
+}
+
+.scripted-invalid+span:after {
+  content: "" !important;
+}
+
+.scripted-valid {
+  color: #4b9ef2 !important;
+  font-weight: bold !important;
+  border: 2px solid #4b9ef2 !important;
+  background-color: #e9d2b5 !important;
+}
+
+.scripted-valid:focus {
+  font-weight: bold !important;
+  border: 2px solid auto !important;
+  border-color: #4b9ef2 !important;
+}
+
+.scripted-valid+span:before {
+  color: #4b9ef2 !important;
+}
+
+.scripted-valid+span:after {
+  appearance: none !important;
+  position: absolute !important;
+  content: "✔" !important;
+  /* checkmark */
+  font-size: 0.8em !important;
+  color: #4b9ef2 !important;
+  right: 50px !important;
+  top: 5px !important;
 }

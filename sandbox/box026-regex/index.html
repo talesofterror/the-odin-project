@@ -22,8 +22,10 @@
 
     <h1>&#x1F62C RegEx &#x1F62C</h1>
 
+    <h3>HTML default input evalation:</h3>
+
     <div class="input-group">
-      <input pattern="[abcd]" required />
+      <input class="not-scripted" pattern="[abcd]" required />
       <span></span>
       <div class="pattern-description">
         [abcd]
@@ -34,7 +36,7 @@
     </div>
 
     <div class="input-group">
-      <input pattern="abcd" required />
+      <input class="not-scripted" pattern="abcd" required />
       <span></span>
       <div class="pattern-description">
         abcd
@@ -45,7 +47,7 @@
     </div>
 
     <div class="input-group">
-      <input pattern="ab*c" required />
+      <input class="not-scripted" pattern="ab*c" required />
       <span></span>
       <div class="pattern-description">
         ab*c
@@ -55,26 +57,6 @@
       </div>
     </div>
 
-    <div class="input-group">
-      <input pattern="^A" required />
-      <span></span>
-      <div class="pattern-description">
-        ^A
-      </div>
-      <div class="pattern-description">
-        Matches a single instance of a single character at the beginning of the string, "A". Already included in the html prepend.
-      </div>
-    </div>
-
-    <div class="input-group">
-      <input pattern="^abcd*" required />
-      <span></span>
-      <div class="pattern-description">
-        abcd*
-      </div>
-      <div class="pattern-description">
-        Matches an "abc" and any number of "d" but nothing after that.
-      </div>
     </div>
 
   </div>
@@ -82,17 +64,35 @@
   <!-- ^ need to make a script that evaluates pure regex without html additions? -->
 
   <div class="container">
+
+    <h3>Scripted inputs:</h3>
+
     <div class="input-group">
-      <input pattern="m/b" class="scripted" required />
+      <input data-pattern="^A" class="scripted" required />
       <span></span>
       <div class="pattern-description">
-        m/b
+        ^A
       </div>
       <div class="pattern-description">
-        Matches .
+        Matches so long as the string begins with "A". 
+
       </div>
     </div>
+
+    <div class="input-group">
+      <input data-pattern="^abcd*e" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        ^abcd*e
+      </div>
+      <div class="pattern-description">
+        Matches if the string begins with "abc" followed by none or any number of "d" and one "e". 
+      </div>
+    </div>
+
   </div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
