@@ -12,17 +12,27 @@
 <body>
   <div class="container">
 
-    <!-- 
-    
-    regex in HTML pattern attribute are automatically 
-    prepended with: ^(?:
-    and appended with: )$
+<!-- 
 
-    -->
+regex in HTML pattern attribute are automatically 
+prepended with: ^(?:
+and appended with: )$
+
+-->
+
+    
+<!-- 
+
+^ Glossary
+
+? "word character"
+  A word character is [0-9A-Za-z_], is is the characters "0" through "9", "A" through "Z", "a" through "z" and "_". Underscore is included due to an update in Perl RegEx because it was common in Perl variable names. 
+
+-->
 
     <h1>&#x1F62C RegEx &#x1F62C</h1>
 
-    <h3>HTML default input evalation:</h3>
+    <h3>Default HTML "pattern=" matching:</h3>
 
     <div class="input-group">
       <input class="not-scripted" pattern="[abcd]" required />
@@ -31,7 +41,8 @@
         [abcd]
       </div>
       <div class="pattern-description">
-        Matches a single instance of one of the characters in the brackets. Can only match one character at a time.
+        Matches a single instance of one of the characters in the brackets. Can only 
+        match one character at a time.
       </div>
     </div>
 
@@ -86,7 +97,53 @@
         ^abcd*e
       </div>
       <div class="pattern-description">
-        Matches if the string begins with "abc" followed by none or any number of "d" and one "e". 
+        Matches if the string begins with "abc" followed by none or any number of "d" 
+        and one "e". 
+      </div>
+    </div>
+
+    <div class="input-group">
+      <input data-pattern="p[el]" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        p[el]
+      </div>
+      <div class="pattern-description">
+        Matches if there is a "p" followed by an "e" or an "l" anywhere in the text. 
+        Order of ocurrence matters.
+      </div>
+    </div>
+
+    <div class="input-group">
+      <input data-pattern="ed&" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        ed&
+      </div>
+      <div class="pattern-description">
+        Matches if there the string ends in "ed".
+      </div>
+    </div>
+
+    <div class="input-group">
+      <input data-pattern="\w" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        \w
+      </div>
+      <div class="pattern-description">
+        Matches in the presence of any <span>word character</span>. Space is a non-word character so <pre>     m</pre> and <pre>*******m</pre> match despite the leading whitespace and asterisks. 
+      </div>
+    </div>
+    
+    <div class="input-group">
+      <input data-pattern="oon\b" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        oon\b
+      </div>
+      <div class="pattern-description">
+        Matches ???
       </div>
     </div>
 
