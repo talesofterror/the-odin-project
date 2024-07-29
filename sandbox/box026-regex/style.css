@@ -182,23 +182,3 @@ pre {
   right: 50px;
   top: 5px;
 }
-
-/* * modal */
-
-.modal {
-  color: white;
-  position: absolute;
-  /* left: 100px;
-  top: 100px; */
-  background-color: grey;
-  width: 100vw;
-}
-
-.modal-visible {
-
-}
-
-.modal-text {
-  margin: auto 50px 50px 50px;
-
-}
