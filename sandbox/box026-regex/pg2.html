@@ -31,33 +31,132 @@ and appended with: )$
   <div class="container">
 
     <h1>&#x1F62C RegEx &#x1F62C</h1>
-
+    
+    <!-- * scripted inputs -->
 
     <div id="page-holster">
     </div>
 
-    <!-- * non-scripted inputs -->
-
     <h3>Scripted inputs:</h3> 
 
     <div class="input-group">
-      <input data-pattern="\w" class="scripted" required />
+      <input data-pattern="x(?=y)" class="scripted" required />
       <span></span>
       <div class="pattern-description">
-        [...]
+        x(?=y)
       </div>
       <div class="pattern-description">
-        Matches ...
+        Matches if "x" is follow by "y" at any point within the string.
+      </div>
+    </div>
+    
+    <div class="input-group">
+      <input data-pattern="fizz(?=buzz|10)" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        fizz(?buzz|10)
+      </div>
+      <div class="pattern-description">
+        Matches if fizz is "follow" by "buzz" or "10" anywhere in the string.
+      </div>
+    </div>
+    
+    <div class="input-group">
+      <input data-pattern="\d" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        \d
+      </div>
+      <div class="pattern-description">
+        Matches a number anywhere in the string.
+      </div>
+    </div>
+    
+    <div class="input-group">
+      <input data-pattern="x(?!y)" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        x(?!y)
+      </div>
+      <div class="pattern-description">
+        Matches matches "x" if "x" is not followed by a y. Followed includes non-word characters. 
+      </div>
+    </div>
+    
+    <div class="input-group">
+      <input data-pattern="(?<=y)x" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        (?&lt=y)x
+      </div>
+      <div class="pattern-description">
+        Matches matches only if "x" is preceded by a "y" anywhere in the string. 
+      </div>
+    </div>
+    
+    <div class="input-group">
+      <input data-pattern="(?<!y)x" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        (?&lt!y)x
+      </div>
+      <div class="pattern-description">
+        Matches matches only if "x" is NOT preceded by a "y" anywhere in the string. 
+      </div>
+    </div>
+    
+  </div>
+
+
+  <!-- column 2 -->
+  
+  <div class="container">
+
+    <h3>Character classes:</h3>
+
+    <div class="input-group">
+      <input data-pattern="[abcdefg]" class="scripted" required />
+      <input data-pattern="[a-g]" class="scripted" required />
+      <input data-pattern="[-abcdef]" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        square brackets: [abcdefg]
+      </div>
+      <div class="pattern-description bold">
+        [a-g]
+      </div>
+      <div class="pattern-description bold">
+        [-abcdef]
+      </div>
+      <div class="pattern-description">
+        Matches any of the characters enclosed in the square brackets.
+      </div>
+      <div class="pattern-description">
+        Matches the range indicated by the hyphen. If the hyphen occurs as the first or last character it is included as a character to be matched.
       </div>
     </div>
 
-  </div>
+    <div class="input-group">
+      <input data-pattern="[^abcdefg]" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        square brackets: [^abcdefg]
+      </div>
+      <div class="pattern-description">
+        Matches anything that is not the characters included in the square brackets. Same hyphen rules as above.
+      </div>
+    </div>
 
-  <!-- * scripted inputs -->
-
-  <div class="container">
-
-
+    <div class="input-group">
+      <input data-pattern="[^abcdefg]" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        square brackets: [^abcdefg]
+      </div>
+      <div class="pattern-description">
+        Matches anything that is not the characters included in the square brackets. Same hyphen rules as above.
+      </div>
+    </div>
 
   </div>
 

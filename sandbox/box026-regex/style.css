@@ -90,6 +90,10 @@ pre {
   left: -1em;
 }
 
+.pattern-description.bold {
+  font-weight: bold;
+}
+
 #page-holster {
   font-family: "Helvetica", sans-serif;
   line-break: normal;
