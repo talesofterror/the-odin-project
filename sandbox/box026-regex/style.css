@@ -100,7 +100,7 @@ pre {
   line-height: 2em;
   width: 300px;
   text-align: center;
-  margin: 10px;
+  margin: 10px auto;
 }
 
 #page-holster span {
