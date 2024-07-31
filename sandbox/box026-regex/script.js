@@ -1,7 +1,24 @@
 
+// * page maker
+
+let pageHolster = document.getElementById("page-holster")
+let numberOfPages = 2
+
+for (let i = 0; i < numberOfPages; i++) {
+  let page = document.createElement("span")
+  page.classList.add("page-button")
+  if (i == 0) {
+    page.innerHTML = "<a href='index.html'>" + "pg1" + "</a> "
+  }
+  else {
+    page.innerHTML = `<a href="pg${i+1}.html">` + `pg${i+1}` + `</a> `
+  }
+  pageHolster.appendChild(page)
+}
+
 // * utility functions
 
-function toggleClass (event, boolean, defaultClass, optionClass) {
+function toggleClass(event, boolean, defaultClass, optionClass) {
   if (boolean) {
     event.target.classList.remove(defaultClass)
     event.target.classList.add(optionClass)

@@ -9,9 +9,6 @@
   <title>sandbox 026</title>
 </head>
 
-<body>
-  <div class="container">
-
 <!-- 
 
 regex in HTML pattern attribute are automatically 
@@ -20,7 +17,7 @@ and appended with: )$
 
 -->
 
-    
+
 <!-- 
 
 ^ Glossary
@@ -30,7 +27,16 @@ and appended with: )$
 
 -->
 
+<body>
+  <div class="container">
+
     <h1>&#x1F62C RegEx &#x1F62C</h1>
+
+
+    <div id="page-holster">
+    </div>
+
+    <!-- * non-scripted inputs -->
 
     <h3>Default HTML "pattern=" matching:</h3>
 
@@ -41,7 +47,7 @@ and appended with: )$
         [abcd]
       </div>
       <div class="pattern-description">
-        Matches a single instance of one of the characters in the brackets. Can only 
+        Matches a single instance of one of the characters in the brackets. Can only
         match one character at a time.
       </div>
     </div>
@@ -68,14 +74,6 @@ and appended with: )$
       </div>
     </div>
 
-    </div>
-
-  </div>
-
-  <!-- * scripted inputs -->
-
-  <div class="container">
-
     <h3>Scripted inputs:</h3>
 
     <div class="input-group">
@@ -85,7 +83,7 @@ and appended with: )$
         ^A
       </div>
       <div class="pattern-description">
-        Matches so long as the string begins with "A". 
+        Matches so long as the string begins with "A".
 
       </div>
     </div>
@@ -97,10 +95,16 @@ and appended with: )$
         ^abcd*e
       </div>
       <div class="pattern-description">
-        Matches if the string begins with "abc" followed by none or any number of "d" 
-        and one "e". 
+        Matches if the string begins with "abc" followed by none or any number of "d"
+        and one "e".
       </div>
     </div>
+
+  </div>
+
+  <!-- * scripted inputs -->
+
+  <div class="container">
 
     <div class="input-group">
       <input data-pattern="p[el]" class="scripted" required />
@@ -109,7 +113,7 @@ and appended with: )$
         p[el]
       </div>
       <div class="pattern-description">
-        Matches if there is a "p" followed by an "e" or an "l" anywhere in the text. 
+        Matches if there is a "p" followed by an "e" or an "l" anywhere in the text.
         Order of ocurrence matters.
       </div>
     </div>
@@ -132,10 +136,12 @@ and appended with: )$
         \w
       </div>
       <div class="pattern-description">
-        Matches in the presence of any <span>word character</span>. Space is a non-word character so <pre>     m</pre> and <pre>*******m</pre> match despite the leading whitespace and asterisks. 
+        Matches in the presence of any <span>word character</span>. Space is a non-word character so
+        <pre>     m</pre> and
+        <pre>*******m</pre> match despite the leading whitespace and asterisks.
       </div>
     </div>
-    
+
     <div class="input-group">
       <input data-pattern="oon\b" class="scripted" required />
       <span></span>
@@ -143,11 +149,35 @@ and appended with: )$
         oon\b
       </div>
       <div class="pattern-description">
-        Matches ???
+        Matches if the pattern ("oon") has a non-word character boundary at the end like " " or "*"
+      </div>
+    </div>
+
+    <div class="input-group">
+      <input data-pattern="\Boo" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        \Boo
+      </div>
+      <div class="pattern-description">
+        Matches if there is a word character at the beginning of the string only.
+      </div>
+    </div>
+
+    <div class="input-group">
+      <input data-pattern="\Boo\b" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        \Boo\b (heh)
+      </div>
+      <div class="pattern-description">
+        Matches if there is a word character at the beginning of the string and a non-word character at the end of the
+        string.
       </div>
     </div>
 
   </div>
+
 
   <script src="script.js"></script>
 </body>
