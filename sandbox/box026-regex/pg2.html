@@ -161,6 +161,28 @@ and appended with: )$
       </div>
     </div>
 
+    <div class="input-group">
+      <input data-pattern=".y" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        .y
+      </div>
+      <div class="pattern-description">
+        Matches instances of "y" if the "y" is at the beginning of the string and is the only "y" in the string, or if the string is just "y". 
+			</div>
+    </div>
+
+    <div class="input-group">
+      <input data-pattern="y." class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+        .y
+      </div>
+      <div class="pattern-description">
+        Matches if there is a y anywhere followed by another character except if the string is a single "y" or if the "y" is at the end and there are no other "y"s.  
+			</div>
+    </div>
+
   </div>
 
 

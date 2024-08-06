@@ -2,7 +2,7 @@
 // * page maker
 
 let pageHolster = document.getElementById("page-holster")
-let numberOfPages = 2
+let numberOfPages = 3
 
 for (let i = 0; i < numberOfPages; i++) {
   let page = document.createElement("span")

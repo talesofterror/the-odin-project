@@ -30,6 +30,8 @@ input {
 
 input+*+* {
   font-weight: bold;
+	letter-spacing: 0.1em;
+	font-family: monospace;
 }
 
 input+span:before {

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="sandbox.icon.svg" sizes="any" type="image/svg+xml">
+  <title>sandbox 026</title>
+</head>
+
+<!-- 
+
+regex in HTML pattern attribute are automatically 
+prepended with: ^(?:
+and appended with: )$
+
+-->
+
+
+<!-- 
+
+^ Glossary
+
+? "word character"
+  A word character is [0-9A-Za-z_], is is the characters "0" through "9", "A" through "Z", "a" through "z" and "_". Underscore is included due to an update in Perl RegEx because it was common in Perl variable names. 
+
+-->
+
+<body>
+  <div class="container">
+
+    <h1>&#x1F62C RegEx &#x1F62C</h1>
+    
+    <!-- * scripted inputs -->
+
+    <div id="page-holster">
+    </div>
+
+    <h3>Scripted inputs:</h3> 
+ 
+    <div class="input-group">
+      <input data-pattern="\d" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+      \d
+			</div>
+      <div class="pattern-description">
+        Matches if the string contains a number character.
+			</div>
+    </div>   
+
+    <div class="input-group">
+			<input data-pattern="\d{5}" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+				\d{5}
+			</div>
+      <div class="pattern-description">
+        Matches matches if there are five consecutive number characters anywhere in string. Doesn't count if there are other characters in between the numbers. 
+			</div>
+    </div>  
+
+    <div class="input-group">
+			<input data-pattern="\D" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+				(?&lt!\w)\d{5}(?&gt!\w)
+			</div>
+      <div class="pattern-description">
+        Matches if there is a non-number character anywhere in the string. 
+			</div>
+    </div>  
+
+    <div class="input-group">
+			<input data-pattern="\D" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+			\D	
+			</div>
+      <div class="pattern-description">
+        Matches if there is a non-number character anywhere in the string. 
+			</div>
+    </div>  
+
+    <div class="input-group">
+			<input data-pattern="\w" class="scripted" required />
+      <span></span>
+			<input data-pattern="\W" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+				\w
+			</div>
+      <div class="pattern-description">
+        Matches any alphanumeric character. Characters like "-" and "@" will not match. "_" Matches because of the Perl thing.  
+			</div>
+      <div class="pattern-description bold">
+				\W
+			</div>
+      <div class="pattern-description">
+        Matches only non-alphanumeric character. Will not match "_" due to the Perl thing. 
+			</div>
+    </div> 
+
+  </div>
+
+
+  <!-- column 2 -->
+  
+  <div class="container">
+
+    <div class="input-group">
+			<input data-pattern="\s" class="scripted" required />
+      <span></span>
+			<input data-pattern="\S" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+				\s
+			</div>
+      <div class="pattern-description">
+        Matches the whitespace character inside any string. Includes space, tab, form feed (?), line feed (?), and "other unicode spaces". 
+			</div>
+      <div class="pattern-description bold">
+				\S
+			</div>
+      <div class="pattern-description">
+        Matches the opposite of the above. Does not match if there is a non-whitespace character anywhere in the string.  
+			</div>
+    </div> 
+
+    <div class="input-group">
+			<input data-pattern="apple|orange" class="scripted" required />
+      <span></span>
+      <div class="pattern-description">
+			apple|orange	
+			</div>
+      <div class="pattern-description">
+        Disjunction / "or" operation: Matches if the characters on either side of the bar are present. 
+			</div>
+    </div>  
+
+
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
