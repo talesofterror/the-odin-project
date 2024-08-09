@@ -24,18 +24,37 @@ main {
 }
 
 .logo-main div {
+	position: relative;
+	font-family: "norse";
 	text-align: center;
 	width: 100%;
 	height: 70%;
-	color: red;
+	color: white;
+	font-size: 5em;
+	background-color: #0007;
+}
+
+@font-face {
+	font-family: "norse";
+	src: 
+		url("assets/Norse-Bold.woff") format("woff"),
+		url("assets/Norse-Bold.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
 }
 
 .logo img {
 	width: auto;
-	height: 100%;
+	height: 90%;
+	vertical-align: middle;
 }
 
 .form-main{
+}
+
+.input-group {
+	
+
 }
 
 
