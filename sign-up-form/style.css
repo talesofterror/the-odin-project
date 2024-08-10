@@ -10,6 +10,12 @@
 		- smaller label text
  */
 
+:root {
+	--main-left-margin: 30px;	
+	--green: #3e552e;
+	--lightgray: #fcfcff;
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -19,10 +25,38 @@ body {
 	width: 100%;
 }
 
+a {
+	text-decoration: none;
+	color: var(--green); 
+}
+
 main {
 	display: flex;
 	flex-direction: column;
 }
+
+input {
+	appearance: none;
+	-webkit-appearance: none;
+	font-size: 1.3em;
+	background-color: var(--lightgray);
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	outline: none;
+}
+
+input:focus {
+	-webkit-appearance: none;
+	border: 1px blue solid;
+	box-shadow: 5px 5px 10px #ddd;
+	outline: none;
+}
+
+input[type="password"]:invalid {
+	position: relative; 
+	border: 1px solid red;
+}
+
 
 .logo-main {
 	display: flex;
@@ -61,23 +95,26 @@ main {
 }
 
 .form-main {
-	font-family: "Arial";
-	background-color: #fafafd;
+	/* font-family: "Arial"; */
+	font: 1.0em
+				"Arial", sans-serif;
+	background-color: var(--lightgray);
 }
 
 .form-main-top {
 	font-weight: bold;
-	margin: 10px 20px 20px 20px;	
+	margin: 40px 20px 40px var(--main-left-margin);	
 }
 
 p {
-	margin: 10px 0 10px 0;
+	margin: 20px 0 10px 0;
+	letter-spacing: 0.025em;
 }
 
 .form-main-form {
 	display: flex;
 	flex-direction: column;
-	padding: 10px 20px 20px 20px;
+	padding: 20px 20px 40px var(--main-left-margin);
 	background-color: #fff;
 	box-shadow: 0px 5px 10px #999;
 }
@@ -88,22 +125,60 @@ label {
 	letter-spacing: 0.1em;
 	font-size: 0.7em;
 	display: block;
-	margin: 20px 0 0 0;
+	margin: 35px 0 0 0;
 }
 
 .label-group {
 	/* margin: 10px 0 10px 0; */
 }
 
+.label-group span:before {
+	position: absolute;
+}
+
 .form-main-bottom {
-	margin: 20px; 
+	margin: 40px 20px 70px var(--main-left-margin); 
 }
 
 button {
+	font-size: 1.4em;
+	font-weight: 650;
 	appearance: none;
-	background-color: #668844;
+	background-color: var(--green);
 	color: white;
 	border: 0px;
-	border-radius: 5px;
+	border-radius: 10px;
 	padding: 10px 40px 10px 40px;
+}
+
+.form-main-bottom p {
+	font-size: 0.8em;
+	margin-top: 20px;
+	font-weight: bold;
+}
+
+/* 
+ * * Desktop 
+ */
+
+@media only screen and (min-width: 700px) {
+	main {
+		flex-direction: row;
+	}
+
+	body {
+		height: 100vh;
+	}	
+
+	.logo-main {
+		height: 100%
+	}
+
+	.form-main {
+		height: 100%;
+	}
+
+	.input-group {
+		display: flex;
+	}
 }
