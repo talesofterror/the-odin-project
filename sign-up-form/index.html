@@ -8,21 +8,21 @@
 	</head>
 	<body>
 		<main>
+
 			<div class="logo-main">
 				<div class="logo">
 					<img src="assets/odin-lined.png" alt="">ODIN
 				</div>
-
 			</div>
 			<div class="form-main">
 
-				<div class="explainer">
-					This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams. Sign up <i>now</i> to get started.
+				<div class="form-main-top">
+					<p>This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams. Sign up <i>now</i> to get started.</p>
+					<p>You know what to do.</p>
 				</div>	
 
-				<form>
-
-					<h2>Let's do this!</h2>
+				<form class="form-main-form" method="GET" action="#" id="form">
+					<h4>Let's do this!</h4>
 
 					<div class="input-group">
 						<div class="label-group">
@@ -46,7 +46,7 @@
 						</div>
 					</div>
 
-					<div class="input-group">
+			 		<div class="input-group">
 						<div class="label-group">
 							<label for="password">Password</label>
 							<input type="text" name="password" id="password" value="" required />
@@ -56,8 +56,14 @@
 							<input type="text" name="password-confirm" id="password-confirm" value="" required />
 						</div>
 					</div>
-
 				</form>
+
+				<div class="form-main-bottom">
+					<button type="submit" form="form">Create Account</button>
+					<div>
+						<p>Already have an account? <a href="">Log in</a></p>
+					</div>
+				</div>
 
 			</div>
 		</main>	
