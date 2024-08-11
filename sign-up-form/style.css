@@ -25,45 +25,9 @@ body {
 	width: 100%;
 }
 
-a {
-	text-decoration: none;
-	color: var(--green); 
-}
-
 main {
 	display: flex;
 	flex-direction: column;
-}
-
-input {
-	appearance: none;
-	-webkit-appearance: none;
-	font-size: 1.3em;
-	background-color: var(--lightgray);
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	outline: none;
-}
-
-input:focus {
-	-webkit-appearance: none;
-	border: 1px blue solid;
-	box-shadow: 5px 5px 10px #ddd;
-	outline: none;
-}
-
-input[type="password"] {
-	position: relative;
-}
-
-input[type="password"]:invalid {
-	border: 1px solid red;
-}
-
-input[type="password"]:invalid+span:before {
-	position: absolute;
-	color: red;
-	content: "Enter a valid password"	
 }
 
 .logo-main {
@@ -129,6 +93,10 @@ p {
 	box-shadow: 0px 5px 10px #999;
 }
 
+.label-group {
+	position: relative;
+}
+
 label {
 	color: #555;
 	text-transform: uppercase;
@@ -139,12 +107,39 @@ label {
 	margin: 35px 0 0 0;
 }
 
-.label-group {
-	/* margin: 10px 0 10px 0; */
+input {
+	appearance: none;
+	width: 220px;
+	-webkit-appearance: none;
+	font-size: 1.3em;
+	background-color: var(--lightgray);
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	outline: none;
 }
 
-.label-group span:before {
+input:focus {
+	-webkit-appearance: none;
+	border: 1px blue solid;
+	box-shadow: 5px 5px 10px #ddd;
+	outline: none;
+}
+
+input[type="password"] {
+}
+
+input[type="password"]:invalid {
+	border: 1px solid red;
+}
+
+input[type="password"]:invalid+span:before {
 	position: absolute;
+	right: 8em;
+	top: 6.9em;
+	width: 220px;
+	font-size: 0.6em;
+	color: red;
+	content: "Enter a valid password"	
 }
 
 .form-main-bottom {
@@ -166,6 +161,11 @@ button {
 	font-size: 0.8em;
 	margin-top: 20px;
 	font-weight: bold;
+}
+
+a {
+	text-decoration: none;
+	color: var(--green); 
 }
 
 /* 
