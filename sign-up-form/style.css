@@ -52,11 +52,19 @@ input:focus {
 	outline: none;
 }
 
+input[type="password"] {
+	position: relative;
+}
+
 input[type="password"]:invalid {
-	position: relative; 
 	border: 1px solid red;
 }
 
+input[type="password"]:invalid+span:before {
+	position: absolute;
+	color: red;
+	content: "Enter a valid password"	
+}
 
 .logo-main {
 	display: flex;
@@ -69,7 +77,9 @@ input[type="password"]:invalid {
 }
 
 .logo-main div {
-	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	font-family: "norse";
 	text-align: center;
 	width: 100%;
@@ -90,7 +100,7 @@ input[type="password"]:invalid {
 
 .logo img {
 	width: auto;
-	height: 90%;
+	height: 80%;
 	vertical-align: middle;
 }
 
@@ -120,8 +130,9 @@ p {
 }
 
 label {
-	color: #444;
+	color: #555;
 	text-transform: uppercase;
+	font-weight: 600;
 	letter-spacing: 0.1em;
 	font-size: 0.7em;
 	display: block;
@@ -141,14 +152,14 @@ label {
 }
 
 button {
-	font-size: 1.4em;
+	font-size: 0.8em;
 	font-weight: 650;
 	appearance: none;
 	background-color: var(--green);
 	color: white;
 	border: 0px;
 	border-radius: 10px;
-	padding: 10px 40px 10px 40px;
+	padding: 15px 60px 15px 60px;
 }
 
 .form-main-bottom p {
@@ -162,23 +173,60 @@ button {
  */
 
 @media only screen and (min-width: 700px) {
-	main {
-		flex-direction: row;
-	}
 
 	body {
-		height: 100vh;
-	}	
-
-	.logo-main {
-		height: 100%
+		height: 100%;
 	}
 
-	.form-main {
+	main {
+		/* font-size: calc(50px * 100vw); */
+		font-size: 1em;
+		height: 100vh;
+		flex-direction: row;
+	}
+	
+	.logo-main {
+		align-items: start;
 		height: 100%;
+		width: 50%
+	}
+
+	.logo-main div {
+		height: 20%;
+		margin: 13vh 0 0 0;
+	}
+
+	.logo-main img {
+		width: auto;
+		height: 70%;
+	}
+
+	.form-main-top {
+		margin-top: 10vh;
+		margin-bottom: 50px;
+	}
+
+	.form-main-top p {
+		margin-right: 25vw;
 	}
 
 	.input-group {
 		display: flex;
 	}
+
+	label {
+		margin-top: 2vh;
+		font-size: 0.65em;
+	}
+	
+	input {
+		font-size: 1.5em;
+		width: 220px;
+		margin-right: 80px;
+	}
 }
+
+@media only screen and (max-width: 719px) {
+
+}
+
