@@ -57,15 +57,16 @@ main {
 				font-weight: 100;
 	word-spacing: 0.4em;
 	text-align: right;
-	color: #fff5;
+	color: #fffa;
 	justify-content: end;
-	background-color: #f000;	
+	background-color: #0000;	
 	height: auto;
 }
 
 .photo-credit a {
 	color: #fff7;
 	margin: 0.4em;
+	text-decoration: underline;
 }
 
 @font-face {
@@ -119,11 +120,12 @@ input {
 	appearance: none;
 	width: 220px;
 	-webkit-appearance: none;
-	font-size: 1.3em;
+	font-size: 1em;
 	background-color: var(--lightgray);
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	outline: none;
+	padding: 5px;
 }
 
 input:focus {
@@ -133,11 +135,11 @@ input:focus {
 	outline: none;
 }
 
-input[type="password"]:invalid {
+.pw-check:invalid {
 	border: 1px solid red;
 }
 
-input[type="password"]:invalid+span:before {
+.pw-check:invalid+span:before {
 	position: absolute;
 	right: 8em;
 	top: 6.9em;
@@ -145,6 +147,20 @@ input[type="password"]:invalid+span:before {
 	font-size: 0.6em;
 	color: red;
 	content: "Enter a valid password"	
+}
+
+.pw-confirm-check {
+	border: 1px solid red;
+}
+
+.pw-confirm-check+span:before {
+	position: absolute;
+	right: 8em;
+	top: 6.9em;
+	width: 220px;
+	font-size: 0.6em;
+	color: red;
+	content: "Passwords must match"	
 }
 
 .form-main-bottom {
@@ -205,6 +221,16 @@ a {
 		height: 70%;
 	}
 
+	.photo-credit:last-child {
+		font-size: 0.8em; important!
+	}
+
+	.photo-credit a {
+		color: #fff7;
+		margin: 0.4em;
+		text-decoration: underline;
+	}
+
 	.form-main-top {
 		margin-top: 10vh;
 		margin-bottom: 50px;
@@ -224,7 +250,7 @@ a {
 	}
 	
 	input {
-		font-size: 1.5em;
+		font-size: 1em;
 		width: 220px;
 		margin-right: 80px;
 	}
