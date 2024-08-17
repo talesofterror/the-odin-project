@@ -1,0 +1,41 @@
+* {
+	box-sizing: border-box;
+}
+
+.flex-wrap {
+	width: 300px;
+	box-sizing: border-box;
+	border: 1px solid blue;
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 20px;
+}
+
+.flex-wrap>div {
+	display: block;
+	border: 1px solid red;
+	width: 30%;
+}
+
+.grid-test {
+	display: grid;
+	grid-template-columns: 50px 100px 50px; 
+	/* first value is first column width, second is second column, etc
+ 	 * stragler element seems to prefer being in column rather than row.
+	 * */
+	grid-template-rows: 60px 100px 100px;
+	/* same but row height */
+	border: 2px solid blue;
+	padding: 3px;
+	gap: 3px;
+	margin-bottom: 20px;
+}
+
+.grid-test2 {
+	display: grid;
+}
+
+.grid-child {
+	border: 1px solid red;
+}
+
