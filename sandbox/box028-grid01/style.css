@@ -32,17 +32,22 @@
 }
 
 .grid-container {
-	width: 300px;
+	width: auto;
 	border: 1px solid blue;
 }
 
 .grid-test2 {
-	display: grid;
-	grid-template:
-		"a a" 50px 
-		"b ." 50px
-		"c c" 50px;
-	margin: auto;
+	display: inline-grid;
+	grid-template: 50px / 50px 50px;
+	grid-auto-rows: 80px;
+}
+
+.grid-test2+.grid-test2 {
+	border: 1px solid blue;
+	width: 500px;
+	height: 300px;
+	grid-template-rows: [r] 1fr [r2] 2fr;
+	grid-template-columns: [col] 1fr [col2] 3fr; 
 }
 
 .grid-child {
