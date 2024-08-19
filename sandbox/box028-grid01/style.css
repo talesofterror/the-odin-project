@@ -31,8 +31,18 @@
 	margin-bottom: 20px;
 }
 
+.grid-container {
+	width: 300px;
+	border: 1px solid blue;
+}
+
 .grid-test2 {
 	display: grid;
+	grid-template:
+		"a a" 50px 
+		"b ." 50px
+		"c c" 50px;
+	margin: auto;
 }
 
 .grid-child {
