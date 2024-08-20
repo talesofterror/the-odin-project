@@ -1,0 +1,34 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: black;
+}
+
+.grid-main {
+	display: grid;
+	grid-template: 4fr 1fr / 4fr 1fr;
+	gap: 50px;
+	width: 100%;
+	height: 100%;
+}
+
+.grid-main-item {
+	display: grid;
+	background-color: #cfe;
+}	
+
+#first-quadrant {
+	grid-template-columns: 1fr 2fr 1fr;
+}
+
+.grid-main-item>.grid-main-item {
+	background-color: #bdb;
+	border: 1px solid red;
+	grid-template-rows: 4fr 1fr;
+}
