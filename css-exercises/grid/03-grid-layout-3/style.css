@@ -50,9 +50,11 @@
 }
 
 .sidebar {
+	display: grid; 
+	grid: repeat(4, 1fr) / 1fr;
+	gap: 1.5em;
   background-color: #C50208;
-	grid-area: 2/1 / 5/2;
-	margin-bottom: 6px;
+	grid-area: 2/1 / 4/2;
 }
 
 .sidebar .photo {
@@ -61,6 +63,11 @@
   font-size: 12px;
   font-weight: normal;
   border-radius: 10px;
+}
+
+.sidebar > div {
+	display: grid;
+	align-items: center;
 }
 
 
@@ -75,6 +82,7 @@
   background-color: #C50208;
 	grid-area: 2/2 / 3/3; 
 }
+
 .nav ul {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -112,6 +120,7 @@
   color: black;
   font-weight: normal;
   font-size: 14px;
+	margin-bottom: 10px;
 }
 
 .card .title {
