@@ -1,0 +1,34 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+}
+
+.container {
+	display: grid;
+	grid: 1fr 3fr 3fr / repeat(4, 1fr);
+	height: 100%;
+}
+
+.top-bar {
+	grid-area: 1/2 / 2/5;
+	background-color: #ccc;
+}
+
+.nav-bar {
+	grid-area: 1/1 / 4/2;
+	background-color: #55F;
+}
+
+.side-bar {
+	grid-area: 2/4 / 4/5;
+	background-color: #adf;
+}
+
+.content {
+	grid-area: 2/2 / 4/5;
+}
