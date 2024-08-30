@@ -222,7 +222,7 @@ a {
 	}
 
 	.photo-credit:last-child {
-		font-size: 0.8em; important!
+		font-size: 0.8em; important!;
 	}
 
 	.photo-credit a {

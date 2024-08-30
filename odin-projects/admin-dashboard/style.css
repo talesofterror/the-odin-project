@@ -5,6 +5,43 @@
 
 body {
 	width: 100vw;
+	/* height: 100vh;  */
+	/* ! delete above when elements filled with content */
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	grid: 1fr 1fr;
+	height: 100%;
+}
+
+.top-bar {
+	background-color: #ccc;
+	/* height: 100px; */
+	/* ! delete above when elements filled with content */
+}
+
+.nav-bar {
+	background-color: #55F;
+	/* height: 100px;  */
+	/* ! delete above when elements filled with content */
+}
+
+.side-bar {
+	background-color: #adf;
+	/* height: 100px;  */
+	/* ! delete above when elements filled with content */
+}
+
+.content {
+	/* height: 100px;  */
+	/* ! delete above when elements filled with content */
+}
+
+@media only screen and (min-width: 700px) {
+
+body {
 	height: 100vh;
 }
 
@@ -16,19 +53,19 @@ body {
 
 .top-bar {
 	grid-area: 1/2 / 2/5;
-	background-color: #ccc;
 }
 
 .nav-bar {
 	grid-area: 1/1 / 4/2;
-	background-color: #55F;
 }
 
 .side-bar {
 	grid-area: 2/4 / 4/5;
-	background-color: #adf;
 }
 
 .content {
 	grid-area: 2/2 / 4/5;
+	overflow: scroll;
 }
+}
+
