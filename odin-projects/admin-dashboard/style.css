@@ -9,6 +9,11 @@ body {
 	/* ! delete above when elements filled with content */
 }
 
+ul {
+	appearance: none;
+	list-style: none;
+}
+
 .container {
 	display: flex;
 	flex-direction: column;
@@ -24,8 +29,46 @@ body {
 
 .nav-bar {
 	background-color: #55F;
+	display: flex;
+	color: white;
 	/* height: 100px;  */
 	/* ! delete above when elements filled with content */
+}
+
+.nav-bar img {
+	filter: invert(100%);
+}
+
+.nav-bar>.logo-container {
+	flex: 1;
+	vertical-align: center;
+}
+
+.logo-img {
+	height: 50px;
+	width: auto;
+	filter: invert;
+	vertical-align: middle;
+}
+
+.nav-menu-container {
+	text-align: right;
+}
+
+.nav-menu-container img {
+	height: 50px;
+	width: auto;
+	display: inline;
+	vertical-align: middle;
+	/* filter: invert(100%); */
+}
+
+.menu-group {
+	font-family: sans-serif;
+}
+
+.menu-group img {
+	height: 30px;
 }
 
 .side-bar {
