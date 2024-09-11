@@ -33,6 +33,10 @@ ul {
 	min-width: 200px;
 }
 
+.nav-bar span {
+	margin-left: 10px;
+}
+
 .nav-bar img {
 	filter: invert(100%);
 }
@@ -45,6 +49,7 @@ ul {
 .logo-img {
 	height: 50px;
 	width: auto;
+	/* margin-right: 10px; */
 	filter: invert;
 	vertical-align: middle;
 }
@@ -115,6 +120,7 @@ body {
 }
 
 .nav-menu {
+	display: block;
 	position: initial;
 	margin-top: 3em;
 }
