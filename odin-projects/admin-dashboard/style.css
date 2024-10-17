@@ -17,6 +17,10 @@ ul {
 	list-style: none;
 }
 
+input {
+	width: 100%;
+}
+
 .container {
 	display: flex;
 	flex-direction: column;
@@ -131,13 +135,47 @@ ul {
 		border: 1px solid #000;
 	}
 
-	.top-bar-row img {
+	.top-row-group {
+		display: flex;
+		align-items: center;
+		height: 100%;
+		border: 1px solid #000;
+	}
+
+	.top-row-group img {
 		height: 50%;
 	}
 
-	.top-bar-row>* {
-		height: 100%;
-		border: 1px solid #000;
+	.top-group-search {
+		width: 40%;
+	}
+
+	.search-icon {
+		width: 30px;
+	}
+
+	.search-input {
+		flex: 1;
+	}
+
+	.top-group-profile {
+		width: 20%;
+	}
+
+	.notif-icon {
+		width: 30px;
+	}
+
+	.profile-icon {
+		width: 40px;
+	}
+
+	.profile-icon img {
+		height: 10%;
+	}
+
+	.profile-name {
+		width: 50%;
 	}
 
 	.nav-bar {
