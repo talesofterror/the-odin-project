@@ -1,5 +1,6 @@
 :root {
 	--lightgray: #e2e8f0;
+	--darkgray: #999;
 	--white: #fefefe;
 	--blue: #19d;
 	--orange: #f0b429;
@@ -102,7 +103,7 @@ input {
 }
 
 .side-bar {
-	background-color: #adf;
+	/* background-color: #adf; */
 }
 
 .content {
@@ -265,6 +266,56 @@ input {
 
 	.side-bar {
 		grid-area: 2/4 / 4/5;
+		display: grid;
+		grid-template-rows: 1fr 1fr;
+		padding: 20px 20px 50px 0px;
+	}
+
+	.side-bar-announcements {
+
+	}
+
+	.announcements-title {
+		margin-bottom:10px; 
+	}
+
+	.announcements-area {
+		background-color: var(--white);
+		border-radius: 10px;
+		padding: 5%;
+		font-weight: normal; 
+		color: var(--darkgray);
+	}
+
+	.announcement-item:last-child {
+		border-bottom: 0px;
+		margin-bottom: 0px;
+	}
+
+	.announcement-item {
+		margin-bottom: 10px;
+		border-bottom: var(--darkgray) 1px solid;
+	}
+
+	.announcement-item-title {
+		color: black;
+	}
+
+	.announcements-item-text {
+		font-size: 0.9em;
+		padding-bottom: 10px;
+	}
+
+	.side-bar-trending {
+		margin-top: 20px;
+	}
+
+	.trending-title {
+		margin-bottom: 10px;
+	}
+
+	.trending-area {
+		background-color: var(--white);
 	}
 
 	.content {
@@ -305,8 +356,8 @@ input {
 	}
 
 	.project-container {
-		color: #999;
-		font-weight: normal;
+		color: var(--darkgray);
+		/* font-weight: normal; */
 	}
 
 	.project-title {
