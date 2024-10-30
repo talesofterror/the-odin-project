@@ -278,27 +278,44 @@ input {
 		margin-bottom: 10px;
 	}
 
-	.project-container {
+	.content-area {
 		height: 100%;
 		width: 100%;
 		display: grid;
 		grid: repeat(3, 1fr) / 1fr 1fr;
-		column-gap: 3em;
-		row-gap: 2em;
-	}
-
-	.content-item {
-		background-color: var(--white);
-		height: 100%;
-		width: 100%;
-		padding-left: 4px;
-		border-radius: 0px 10px 10px 0px;
+		column-gap: 2em;
+		row-gap: 1.5em;
 	}
 
 	.content-item-container {
 		border-radius: 10px;
 		box-shadow: -10px 0px 0px var(--orange);
-		/* overflow: hidden; */
+	}
+
+	.content-item {
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		background-color: var(--white);
+		height: 100%;
+		width: 100%;
+		border-radius: 0px 10px 10px 0px;
+		padding: 15px;
+	}
+
+	.project-container {
+		color: #999;
+		font-weight: normal;
+	}
+
+	.project-title {
+		color: black;
+		margin-bottom: 0px;
+	}
+
+	.project-icons {
+		align-self: flex-end;
 	}
 
 	.project-icons-img {
