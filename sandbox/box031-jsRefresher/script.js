@@ -67,3 +67,18 @@ setPropWithFunction1.apply(obj1, ["property6", "This property was added using se
 
 let setPropBound = setPropWithFunction1.bind(obj1)
 setPropBound("property7", "This property was added using setPropWithFunction1.bind(), which creates a persistent function that can create and set properties of an object")
+
+
+function curry(f) {
+	return function(a) {
+		return function(b) {
+			return f(a, b)
+		}
+	}
+}
+
+function add (a, b) {
+	return a+b
+}
+
+let curriedAdd = curry(add)
