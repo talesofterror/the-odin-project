@@ -68,7 +68,8 @@ setPropWithFunction1.apply(obj1, ["property6", "This property was added using se
 let setPropBound = setPropWithFunction1.bind(obj1)
 setPropBound("property7", "This property was added using setPropWithFunction1.bind(), which creates a persistent function that can create and set properties of an object")
 
-
+// currying 
+// used break fucntion arguments into discreet parts. 
 function curry(f) {
 	return function(a) {
 		return function(b) {
@@ -77,8 +78,23 @@ function curry(f) {
 	}
 }
 
+/*
+	Stepping through the above function: 
+
+	curry(f) creates a variable 'f' that is stored in memory, returns
+	function(a), which creates a variable 'a' which is stored in memory, returns
+	function (b), which creates a variable 'b', returns
+	f(a, b)
+
+	Up until the final return of f(a, b) all we're doing is setting up variables
+
+*/
+
 function add (a, b) {
 	return a+b
 }
 
 let curriedAdd = curry(add)
+
+// curriedAdd(2)(2) = 4
+// Why does the double () allow the variables to fall into place?
