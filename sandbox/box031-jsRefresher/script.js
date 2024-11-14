@@ -18,7 +18,7 @@ const obj0 = {
 	display: function () {
 		item1.innerHTML = ""
 		for ( k in obj0 ) {
-		item1.innerHTML += k + ": " + obj0[k] + "<br>"
+			item1.innerHTML += k + ": " + obj0[k] + "<br>"
 		}
 	},
 	makeEntry: function (a, b) {
@@ -67,12 +67,24 @@ setPropWithFunction1.apply(obj1, ["property6", "This property was added using se
 
 let setPropBound = setPropWithFunction1.bind(obj1)
 setPropBound("property7", "This property was added using setPropWithFunction1.bind(), which creates a persistent function that can create and set properties of an object")
+setPropBound("property8", "Checking to see if i can overwrite properties.")
+setPropBound("property8", "The value of this property was overwritten.")
 
 // currying 
 // used break fucntion arguments into discreet parts. 
 function curry(f) {
 	return function(a) {
 		return function(b) {
+			return f(a, b)
+		}
+	}
+}
+
+function curry2(f) {
+	return function(a) {
+		return function(b) {
+			console.log("function length: " + f.length)
+			// the length of a function is the number of parameters it was created with.
 			return f(a, b)
 		}
 	}
@@ -95,6 +107,47 @@ function add (a, b) {
 }
 
 let curriedAdd = curry(add)
+let curriedAdd2 = curry2(add)
 
-// curriedAdd(2)(2) = 4
-// Why does the double () allow the variables to fall into place?
+// curriedAdd(2)(2) => 4
+// curriedAdd2(2)(2) => function length: 2; 4
+
+let functionLengthTest = (...args) => console.log(functionLengthTest.length)
+// doesn't work
+
+function functionLengthTest2 (func) {
+	return func.length
+}
+// returns the number of parameters in the original function if called as functionLengthTest2(add), but not if called with parentheses. 
+
+function add2 (...args) {
+	return args.reduce( (a, i)=> a + i, 0 )	
+}
+// functionLengthTest2 returns 0 for add2 because of the rest operator
+
+function curryAdv (func) {
+	return function curried (...args) {
+		if (args.length >= func.length) {
+		//if there are more or an equal number of arguments provided than func has parameters
+			console.log(this)
+			return func.apply(this, args)
+			// apply the arguments to func
+		} else {
+			return function (...args2) {
+				// otherwise, store the provided argument in whatever function you create
+				return curried.apply(this, args.concat(args2))
+				// and add the new arguments to the end of the previous arguments to complete the function
+			}
+		}		
+	}
+}
+
+let curriedAdd2Adv = curryAdv(add2)
+// doesn't work because currying doesn't work with function with an undetermined number of parameters
+
+let curriedAddAdv = curryAdv(add)
+// works
+
+let curriedAddAdvLock2 = curriedAddAdv(2)
+// curriedAddAdvLock2(2) => 4
+// curriedAddAdvLock2(4) => 6
