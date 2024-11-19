@@ -15,11 +15,12 @@ else
 endif
 badd +26 term://~/personal-repos/the-odin-project/sandbox/box032-prototypes//11752:C:/Windows/system32/cmd.exe
 badd +1 sandbox/box032-prototypes/index.html
-badd +61 sandbox/box032-prototypes/script.js
+badd +1 sandbox/box032-prototypes/script.js
 badd +34 sandbox/box032-prototypes/style.css
+badd +0 sandbox/box032-prototypes
 argglobal
 %argdel
-$argadd sandbox/box032-prototypes/
+$argadd sandbox/box032-prototypes
 edit sandbox/box032-prototypes/script.js
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
@@ -41,11 +42,11 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 30 + 28) / 56)
-exe '2resize ' . ((&lines * 22 + 28) / 56)
-exe 'vert 2resize ' . ((&columns * 67 + 51) / 103)
-exe '3resize ' . ((&lines * 22 + 28) / 56)
-exe 'vert 3resize ' . ((&columns * 35 + 51) / 103)
+exe '1resize ' . ((&lines * 31 + 29) / 58)
+exe '2resize ' . ((&lines * 23 + 29) / 58)
+exe 'vert 2resize ' . ((&columns * 53 + 51) / 103)
+exe '3resize ' . ((&lines * 23 + 29) / 58)
+exe 'vert 3resize ' . ((&columns * 49 + 51) / 103)
 argglobal
 balt sandbox/box032-prototypes/index.html
 setlocal fdm=manual
@@ -58,11 +59,11 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 62 - ((19 * winheight(0) + 15) / 30)
+let s:l = 59 - ((17 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 62
+keepjumps 59
 normal! 0
 lcd ~/personal-repos/the-odin-project/sandbox/box032-prototypes
 wincmd w
@@ -82,7 +83,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 21 - ((2 * winheight(0) + 11) / 22)
+let s:l = 21 - ((2 * winheight(0) + 11) / 23)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -106,7 +107,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 11) / 22)
+let s:l = 1 - ((0 * winheight(0) + 11) / 23)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -114,11 +115,11 @@ keepjumps 1
 normal! 0
 lcd ~/personal-repos/the-odin-project/sandbox/box032-prototypes
 wincmd w
-exe '1resize ' . ((&lines * 30 + 28) / 56)
-exe '2resize ' . ((&lines * 22 + 28) / 56)
-exe 'vert 2resize ' . ((&columns * 67 + 51) / 103)
-exe '3resize ' . ((&lines * 22 + 28) / 56)
-exe 'vert 3resize ' . ((&columns * 35 + 51) / 103)
+exe '1resize ' . ((&lines * 31 + 29) / 58)
+exe '2resize ' . ((&lines * 23 + 29) / 58)
+exe 'vert 2resize ' . ((&columns * 53 + 51) / 103)
+exe '3resize ' . ((&lines * 23 + 29) / 58)
+exe 'vert 3resize ' . ((&columns * 49 + 51) / 103)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
