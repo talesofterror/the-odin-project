@@ -199,13 +199,3 @@ let pockets = {
 table.__proto__ = head
 bed.__proto__ = table
 pockets.__proto__ = bed
-
-function benchmark () {
-	console.time("pockets test")
-	console.log(pockets.glasses)
-	console.timeEnd("pockets test")
-
-	console.time("head test")
-	console.log(head.glasses)
-	console.timeEnd("head test")
-}
