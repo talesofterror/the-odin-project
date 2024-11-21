@@ -209,3 +209,102 @@ function benchmark () {
 	console.log(head.glasses)
 	console.timeEnd("head test")
 }
+
+////
+
+let hamster = {
+	stomach: [],
+
+	eat(food) {
+		this.stomach.push(food)
+	}
+}
+
+let speedy = {
+	__proto__: hamster
+}
+
+let lazy = {
+	__proto__: hamster
+}
+
+speedy.eat("apple")
+
+console.log("Speedy's stomach: " + speedy.stomach)
+console.log("Lazy's stomach: " + lazy.stomach)
+
+// The contents of both hamster's stomachs become "apple". 
+// I think this is because these objects are created as 
+// object literals. Specifying "this" on these properties 
+// creates an LSP error. 
+
+function Hamster () {
+	this.stomach = [],
+	this.eat = function (food) {
+		this.stomach.push(food)
+	}
+}
+
+let happy = new Hamster()
+let dopey = new Hamster()
+
+happy.eat("orange")
+console.log("Happy's stomach: " + happy.stomach)
+console.log("Dopey's stomach: " + dopey.stomach)
+
+// This works as intended (ie. only happy's stomach contains ""orange")
+// Unlike with the object literals before this, I can use "this" with the
+// object constructor. Everyone get's their own stomach. 
+
+console.log(this)
+this.newWindowProperty = "I'm a new window property"
+newWindowProperty = "this new window property exists in the global scope, which is the window"
+
+
+function show() {
+	console.log(this === window)
+}
+
+function show2 () {
+	"use strict"
+	console.log(this === undefined)
+}
+
+
+let car = {
+	brand: "Honda",
+	getBrand() {
+		return this.brand
+	}
+}
+
+let bike = {
+	brand: "Arch"
+}
+
+let bikeBrand = car.getBrand.bind(bike)
+console.log(bikeBrand())
+// bikeBrand only logs properly if called as "bikeBrand()" with parentheses. 
+// bind(), available to all functions, replaces the "this" value of the function
+// with the argument provided. 
+
+function Car () {
+	if (!(this instanceof Car)) {
+		throw Error("Hi. This is a custom error! Must use the new operator to call this constructor")
+	}
+}
+
+let Audi = Car()
+// instanceof is an operator that tests if the left hand arguments is an instance of
+// the right hand argument. Goes down the chain of inheritance. 
+
+function Car2() {
+	if (!new.target) {
+		throw Error("Same")
+	}
+}
+
+let Kia = Car2()
+// new.target does something similar. It checks if the function was called with the 
+// new operator. Oddly, the above assignment doesn't produce the error, but calling 
+// Car2() directly does. 
