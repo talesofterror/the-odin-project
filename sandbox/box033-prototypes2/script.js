@@ -294,7 +294,7 @@ function Car () {
 	}
 }
 
-let Audi = Car()
+// let Audi = Car()
 // instanceof is an operator that tests if the left hand arguments is an instance of
 // the right hand argument. Goes down the chain of inheritance. 
 
@@ -304,7 +304,23 @@ function Car2() {
 	}
 }
 
-let Kia = Car2()
+// let Kia = Car2()
 // new.target does something similar. It checks if the function was called with the 
 // new operator. Oddly, the above assignment doesn't produce the error, but calling 
 // Car2() directly does. 
+
+function announceBrand(text) {
+	console.log(text + this.brand)
+}
+
+let silverado = {
+	brand: "chevy",
+	model: "silverado"
+}
+let tacoma = {
+	brand: "toyota",
+	model: "tacoma"
+}
+
+announceBrand.call(silverado, "Brand: ")
+announceBrand.apply(tacoma, ["Brand: "])
