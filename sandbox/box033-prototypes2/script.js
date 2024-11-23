@@ -324,3 +324,30 @@ let tacoma = {
 
 announceBrand.call(silverado, "Brand: ")
 announceBrand.apply(tacoma, ["Brand: "])
+// call() and apply(), which live on the Function prototype, can replace the "this"
+// value of a function with the first argument. call() takes arguments for the called
+// function as more arguments, ie call(obj, arg1, arg2, ...args), and apply() take
+// them as an array (apply(obj, [array of args]))
+
+function objConstructorWithVarMethod() {
+	this.method = function () {
+		var varInMethod = "hi."
+		return varInMethod
+	}
+}
+
+objConstructorWithVarMethod.prototype.method2 = function () {
+	var varInMethod2 = "hi"
+	let varInMethod3 = "hello"
+}
+
+// console.log(varInMethod)
+
+let objVarTest = new objConstructorWithVarMethod()
+
+console.log(objVarTest.method.varInMethod)
+
+console.log(objVarTest.method2.varInMethod2)
+console.log(objVarTest.method2.varInMethod3)
+
+
