@@ -25,6 +25,12 @@ function getQueryParams() {
 		return params;
 }
 
+function printQueryParams () {
+	console.log(getQueryParams())
+}
+
+printQueryParams()
+
 console.log(getQueryParams())
 console.log(encodeURIComponent(getQueryParams().thing1))
 console.log(decodeURIComponent(getQueryParams().thing1))
