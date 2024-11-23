@@ -1,6 +1,8 @@
 const greeting = "hello."
 console.log(greeting)
 
+const item1 = document.getElementById("item1")
+
 let obj0 = {
 	testProp: "Hello",
 }
@@ -115,3 +117,9 @@ const player2 = new Player("miles", "^")
 player1.sayName()
 player1.getMarker()
 
+console.log(document.location)
+console.log(document.location.toString())
+document.location.hash = "hash"
+console.log(document.location.hash)
+document.location.search = "query"
+console.log(document.location.search)
