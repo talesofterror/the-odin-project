@@ -107,6 +107,9 @@ console.log(player1.level)
 // 1
 
 console.log(player1.handle)
+// undefined
+// we never assigned variables for handle in createPlayer, just
+// the reputation functions. 
 
 
 
