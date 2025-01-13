@@ -28,23 +28,29 @@ let user1 = createUser("mike")
 console.log("name = " + user1.name + "; handle = " + user1.handle)
 // name = mike; handle = @mike
 
+
+// object shorthand
 console.log ({user1, add5})
 // returns an object with the variable names as keys and 
 // values as values
+
+const f0 = 10
+const g0 = 11
+const h0 = 12
+console.log({f0, g0, h0})
 
 
 // destructuring
 // destructing lets you assign object values to variables succinctly
 const obj01 = {a: 2, b: 3}
-const {one, two} = obj01
-console.log({one, two})
+const {a, b} = obj01
+console.log({a, b})
 // {one: 2, two: 3}
 
 const obj02 = {c: 3, d: 6, e: 8}
-const {three, four} = obj02
-console.log({three, four})
+const {c, e} = obj02
+console.log({c, e})
 // {three: 3, four: 6}
-// without specifying keys the values will match only consecutively
 
 const obj03 = {f: 10, g: 11, h: 12, i: 13}
 const {g: eleven, h: twelve} = obj03
@@ -81,7 +87,26 @@ console.log(user2.getReputation())
 // You can only manipulate it to the extent there are exposed
 // functions allowing you to. 
 
+function createPlayer (name, level) {
+	const { getReputation, giveReputation } = createUser2(name)
+	// seems to create local variables that are assigned to the 
+	// reputation functions of createUser2, but I'm not entirely sure
+	// what's going on here. 
 
+	const increaseLevel = () => level++
+	return { name, level, getReputation, giveReputation, increaseLevel }
+}
+
+let player1 = createPlayer("mike", 1)
+
+console.log(player1.name, player1.level, player1.getReputation())
+// mike 1 0
+
+player1.increaseLevel()
+console.log(player1.level)
+// 1
+
+console.log(player1.handle)
 
 
 
