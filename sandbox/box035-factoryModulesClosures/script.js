@@ -193,3 +193,18 @@ function createGreeting (greeting = "") {
 		console.log(`${greeting} ${name}`)
 	}
 }
+
+const sayHello = createGreeting("Hello")
+const sayHey = createGreeting("Hey") 
+
+console.log(sayHello("Mike"))
+// Hello Mike
+
+console.log(sayHey("Mike"))
+// Hey Mike
+
+
+// Module pattern (IIFE pt 2)
+
+const SomeModule = (function() {})()
+// legal, but does nothing
