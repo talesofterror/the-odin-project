@@ -89,28 +89,63 @@ console.log(user2.getReputation())
 
 function createPlayer (name, level) {
 	const { getReputation, giveReputation } = createUser2(name)
-	// seems to create local variables that are assigned to the 
-	// reputation functions of createUser2, but I'm not entirely sure
-	// what's going on here. 
-
+	// Creates local variables that are assigned to the 
+	// reputation functions of createUser2
+	// handle from createUser2 is not imported from createUser2
+	// so it can't be returned
+	
 	const increaseLevel = () => level++
-	return { name, level, getReputation, giveReputation, increaseLevel }
+	const getLevel = () => level
+	return { name, getReputation, giveReputation, getLevel, increaseLevel }
 }
 
 let player1 = createPlayer("mike", 1)
 
-console.log(player1.name, player1.level, player1.getReputation())
+console.log(player1.name, player1.getLevel(), player1.getReputation())
 // mike 1 0
 
 player1.increaseLevel()
-console.log(player1.level)
-// 1
+console.log(player1.getLevel())
+// 2
 
 console.log(player1.handle)
 // undefined
 // we never assigned variables for handle in createPlayer, just
 // the reputation functions. 
 
+function createPlayer2 (name, level) {
+	const user = createUser2(name)
+
+	const increaseLevel = () => level++
+	const getLevel = () => level
+	return Object.assign({}, user, {getLevel, increaseLevel})
+	// Object.assign(target object, things to add ..n)
+	// Here the target is an empty object and we add user in
+	// it's entirety (including handle this time), as well 
+	// as the level functions. 
+}
+
+let player2 = createPlayer2("mike", 0)
+
+console.log(player2.name, player2.getLevel(), player2.getReputation())
+// mike 0 0
+
+player2.increaseLevel()
+player2.increaseLevel()
+console.log(player2.getLevel())
+// 2
 
 
+// Immediately Invoked Function Expressions (IIFE)
 
+const calculator = (function () {
+	const add = (a, b) => a + b
+	const sub = (a, b) => a - b
+	const mul = (a, b) => a * b
+	const div = (a, b) => a / b
+
+	return {add, sub, mul, div}
+})()
+
+console.log(calculator.mul(5, 5))
+// 25
