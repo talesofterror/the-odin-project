@@ -149,3 +149,47 @@ const calculator = (function () {
 
 console.log(calculator.mul(5, 5))
 // 25
+
+
+// let var and const scopes
+
+function isCool(name) {
+	if (name === "mike") {
+		var cool = true
+	}
+
+	return cool
+}
+
+console.log(isCool("mike"))
+// true
+// In the above function var cool is avaiable to the entire
+// isCool() function because it is a "var". It is not available
+// outside of the isCool() function because in js all variables 
+// are scoped to the function they're declared in
+
+
+// closures (wesbos)
+
+function outer () {
+	let outerVar = "Hey I am the outervar"
+
+	return function inner() {
+		let innerVar = "Hey I am an inner var"
+		console.log(innerVar)
+		console.log(outerVar)
+	}
+}
+
+const innerFn = outer()
+// assigning innerFn to a call of outer() results in the
+// return value of outer() being assigned to innerFn
+// This is a closure. outer() was called during the 
+// assignment and is done running, but now inner can be called 
+// with innerFn()
+
+function createGreeting (greeting = "") {
+	return function greet (name) {
+		console.log(`${greeting} ${name}`)
+	}
+}
