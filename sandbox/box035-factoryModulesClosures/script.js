@@ -208,3 +208,22 @@ console.log(sayHey("Mike"))
 
 const SomeModule = (function() {})()
 // legal, but does nothing
+
+const Formatter = (function () {
+	const log = (message) => console.log(`[${Date.now()}] Logger: ${message}`)
+	let timesRun = []
+
+	writeToDOM = (selector, message) => {
+		document.querySelector(selector).textContent = message
+	}
+
+	const makeUppercase = (text) => {
+		log("Making uppercase")
+		timesRun.push(null)
+		return text.toUpperCase()
+	}
+	return {
+		makeUppercase,
+		writeToDOM
+	}
+})()
