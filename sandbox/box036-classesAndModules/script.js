@@ -45,7 +45,7 @@ Object.defineProperty(obj2, "fullName", {
 
 console.log(obj2.name)
 console.log(obj2.fullName)
-obj2.fullName = "maddy baddy"
+obj2.fullName = "rolf hauser"
 console.log(obj2.fullName)
 
 let obj3 = {
