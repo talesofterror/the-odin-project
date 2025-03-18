@@ -97,6 +97,9 @@ let person2 = new Class2("Chino")
 console.log(person2.name)
 person2.name = "Moreno" 
 console.log(person2.name)
+let person2_1 = new Class2("Ian") 
+	// the object is created, but the error is thrown
+	// person2_1.name is undefined
 
 
 // the this problem 
