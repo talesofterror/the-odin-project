@@ -1,9 +1,11 @@
 \javascript-exercises\node_modules
 /javascript-exercises/node_modules
-**/package.json
-**\package.json
-**/package-lock.json
-**\package-lock.json
+**/node_modules
+**\node_modules
+# **/package.json
+# **\package.json
+# **/package-lock.json
+# **\package-lock.json
 **/.swp
 **\.swp
 **/.vscode
