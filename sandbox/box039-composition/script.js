@@ -69,4 +69,38 @@ let samuel = new catDriver("samuel")
 
 Object.assign(samuel, driver(samuel))
 
-console.log(samuel.drive())
+console.log(samuel.drive()) // 11
+
+
+// another way 
+
+function swimmer ({name}) {
+	return {
+		swim: () => console.log(`${name} swam`)
+	}
+}
+
+
+function swimmingMonsterCreator (name) {
+	const monster = {name: name}
+
+	return {
+		...monster,
+		...swimmer(monster),
+		...barker(monster)
+	}
+}
+
+let monsterSwimmer = swimmingMonsterCreator("harold")
+
+monsterSwimmer.swim()
+monsterSwimmer.bark()
+console.log(monsterSwimmer)
+
+let noNameSwimmer = swimmer({})
+console.log(noNameSwimmer) // return an object with 
+	// only the swim function attached, no name
+noNameSwimmer.swim() // undefined swam
+
+
+
