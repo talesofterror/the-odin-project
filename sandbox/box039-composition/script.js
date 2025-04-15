@@ -102,5 +102,7 @@ console.log(noNameSwimmer) // return an object with
 	// only the swim function attached, no name
 noNameSwimmer.swim() // undefined swam
 
-
+let noObjectSwimer = swimmer("Jones")
+console.log(noObjectSwimer) // swim func only
+noObjectSwimer.swim() // undefined swam
 
