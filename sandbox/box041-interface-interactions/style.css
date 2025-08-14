@@ -1,0 +1,35 @@
+body {
+	background-color: #afe;
+}
+
+.menuGroup {
+	width: fit-content;
+	max-height: fit-content;
+	display: grid;
+	grid-template-areas: 
+		"button title"
+		"item-group item-group";
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: repeat(auto-fill, minmax(0, max-content));
+	/* background-color: #222; */
+	color: white;
+}
+
+.menuGroup * {
+	background-color: #444;
+}
+
+.menuButton {
+	grid-area: button;
+}
+
+.menuTitle {
+	grid-area: title;
+}
+
+.menuItemGroup {
+	grid-area: item-group;
+	/* height: fit-content; */
+}
+
+
