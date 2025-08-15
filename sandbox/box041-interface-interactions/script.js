@@ -1,6 +1,6 @@
-import { dropdownEffect } from './dropdownmenu.js'
+import { dropdownEffectDisplay, dropdownEffectVisibility } from './dropdownmenu.js'
 
-dropdownEffect(document.getElementById("menu-button"), document.getElementById("menu-item-group"))
+dropdownEffectDisplay(document.getElementById("menu-button"), document.getElementById("menu-item-group"), "block")
 
 
 
