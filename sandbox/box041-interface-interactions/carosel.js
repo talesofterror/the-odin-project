@@ -1,4 +1,4 @@
-export let images = [
+let images = [
 	"./images/elmo1.jpg",
 	"./images/elmo2.jpg",
 	"./images/elmo3.jpg",
@@ -32,14 +32,11 @@ export function carosel_Dots (containerElement, displayElement, defaultClass, ac
 	}
 }
 
-export function carosel_Next () {
-
+export function carosel_Next (arrowElement, displayElement) {
+	let elementArray = carosel_ImageElements(images)
+	
 }
 
 export function carosel_Prev () {
-
-}
-
-export function carosel_Dot () {
 
 }
