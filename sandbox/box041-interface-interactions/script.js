@@ -20,8 +20,13 @@ document.getElementById("carosel-right").addEventListener("click", ()=>{
 
 console.log(carosel.dotStyleActive)
 
-
 dropdownEffectDisplay(document.getElementById("menu-button"), document.getElementById("menu-item-group"), "block")
+
+let carosel_TimedRotation = () => {
+	carosel.next()
+}
+
+setInterval(carosel_TimedRotation, 5000)
 
 
 

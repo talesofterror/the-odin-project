@@ -1,0 +1,35 @@
+body {
+	height: 100vh;
+	width: 100vw;
+	font-size: calc( calc(1.5vh + 0.5vw) + 0.5vw);
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4rem;
+	background-color: #ef3d88;
+	color: #d08030;
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 900;
+	margin: 0;
+	/* padding: 1rem; */
+}
+
+form {
+	/* display: block; */
+}
+
+.item {
+	/* width: 10rem; */
+	height: 40vh;
+	/* min-height: 20%; */
+	min-width: fit-content;
+	width: 30%;
+	background-color: #f0c060;
+	padding: 0.5rem;
+	box-shadow: 10px 10px 1px black;
+}
+
+@media screen and (max-width: 600px) {
+	.item {
+		width: 100%;
+	}
+}
