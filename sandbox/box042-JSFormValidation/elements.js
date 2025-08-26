@@ -1,7 +1,10 @@
+import {countries} from './countries.js'
 
 function createForm () {
 	const elem = document.createElement("form")
-	elem.name = "form"
+	elem.id = "form"
+	elem.action = "/test"
+	elem.method = "POST"
 	return elem
 }
 
@@ -14,17 +17,33 @@ function createItem (id) {
 export function appendItems (items) {
 	for (let i = 0; i < items.length; i++) {
 		let form = createForm()
-
-		let text = document.createElement("div")
-		text.textContent = items[i].text
+		let item = createItem(items[i].text)
 
 		let element = items[i].element()
 		element.name = items[i].text
 		element.id = items[i].text
-		form.append(element)
+		if (items[i].text == "country") {
+			for (let country of countries) {
+				let option = document.createElement("option")
+				option.value = country
+				option.textContent = country
+				element.append(option)
+			}
+		}
 
-		let item = createItem(items[i].text)
-		item.append(text, element)
+		if (items[i].text == "submit") {
+			element.textContent = items[i].text
+			item.classList.add("submit-container")
+		} else {
+			let text = document.createElement("div")
+			text.textContent = items[i].text
+			item.append(text)
+		}
+
+		element.setAttribute("form", form.id)
+
+		form.append(element)
+		item.append(form)
 
 		document.body.append(item)
 	}

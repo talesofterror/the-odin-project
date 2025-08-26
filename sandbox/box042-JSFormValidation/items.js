@@ -1,3 +1,5 @@
+
+
 export const items = [
 	{
 		text: "email",
@@ -5,7 +7,6 @@ export const items = [
 			let e = document.createElement("input")
 			e.type = "email"
 			e.autocomplete = "email"
-			e.setAttribute("form", "form")
 			return e
 		}
 	},
@@ -13,7 +14,7 @@ export const items = [
 		text: "country", 
 		element: function () {
 			let e = document.createElement("select")
-			e.setAttribute("form", "form")
+			e.autocomplete = "confirm-password"
 			return e
 		}
 	},
@@ -23,7 +24,6 @@ export const items = [
 			let e = document.createElement("input")
 			e.type = "text"
 			e.autocomplete = "postal-code"
-			e.setAttribute("form", "form")
 			return e
 		}
 	},
@@ -33,7 +33,6 @@ export const items = [
 			let e = document.createElement("input")
 			e.type = "password"
 			e.autocomplete = "new-password"
-			e.setAttribute("form", "form")
 			return e
 		}
 	},
@@ -43,8 +42,19 @@ export const items = [
 			let e = document.createElement("input")
 			e.type = "password"
 			e.autocomplete = "confirm-password"
-			e.setAttribute("form", "form")
 			return e
 		}
-	}
+	},
+	{
+		text: "submit",
+		element: function () {
+			let e = document.createElement("button")
+			e.type = "submit"
+			// e.textContent = "submit"
+			// e.autocomplete = "confirm-password"
+			e.classList.add("submit-button")
+			return e
+		}
+	},
+
 ]
