@@ -3,8 +3,8 @@ import {countries} from './countries.js'
 function createForm () {
 	const elem = document.createElement("form")
 	elem.id = "form"
-	elem.action = "/test"
-	elem.method = "POST"
+	elem.action = ""
+	elem.method = "GET"
 	return elem
 }
 
