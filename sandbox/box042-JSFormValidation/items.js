@@ -7,6 +7,15 @@ export const items = [
 			let e = document.createElement("input")
 			e.type = "email"
 			e.autocomplete = "email"
+			e.addEventListener("input",  ()=> {
+				console.log(e.validity)
+				if (e.validity.typeMismatch) {
+					e.setCustomValidity("You need to type in an email, idiot")
+					console.log(e.validationMessage)
+				} else {
+					e.setCustomValidity("")
+				}
+			})
 			return e
 		}
 	},

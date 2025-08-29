@@ -13,10 +13,11 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +0 box042-JSFormValidation/elements.js
-badd +0 box042-JSFormValidation/index.html
-badd +0 box042-JSFormValidation/script.js
-badd +0 box042-JSFormValidation/style.css
+badd +18 box042-JSFormValidation/elements.js
+badd +1 box042-JSFormValidation/index.html
+badd +1 box042-JSFormValidation/script.js
+badd +1 box042-JSFormValidation/style.css
+badd +0 box042-JSFormValidation/items.js
 argglobal
 %argdel
 $argadd NvimTree_1
@@ -25,20 +26,7 @@ tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabrewind
-argglobal
-enew
-file NvimTree_1
-setlocal foldmethod=manual
-setlocal foldexpr=0
-setlocal foldmarker={{{,}}}
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal nofoldenable
-lcd ~/personal-repos/the-odin-project/sandbox/box042-JSFormValidation
-tabnext
-edit ~/personal-repos/the-odin-project/sandbox/box042-JSFormValidation/style.css
+edit box042-JSFormValidation/style.css
 argglobal
 setlocal foldmethod=manual
 setlocal foldexpr=0
@@ -70,11 +58,11 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 15 - ((14 * winheight(0) + 27) / 54)
+let s:l = 13 - ((12 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 15
+keepjumps 13
 normal! 0
 lcd ~/personal-repos/the-odin-project/sandbox/box042-JSFormValidation
 tabnext
@@ -110,6 +98,26 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
+let s:l = 18 - ((17 * winheight(0) + 27) / 54)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 18
+normal! $
+lcd ~/personal-repos/the-odin-project/sandbox/box042-JSFormValidation
+tabnext
+edit ~/personal-repos/the-odin-project/sandbox/box042-JSFormValidation/items.js
+argglobal
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+silent! normal! zE
+let &fdl = &fdl
 let s:l = 1 - ((0 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
@@ -117,7 +125,7 @@ normal! zt
 keepjumps 1
 normal! 0
 lcd ~/personal-repos/the-odin-project/sandbox/box042-JSFormValidation
-tabnext 3
+tabnext 4
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif

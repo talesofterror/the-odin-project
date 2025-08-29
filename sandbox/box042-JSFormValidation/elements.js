@@ -5,6 +5,7 @@ function createForm () {
 	elem.id = "form"
 	elem.action = ""
 	elem.method = "GET"
+	elem.noValidate = false
 	return elem
 }
 

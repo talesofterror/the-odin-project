@@ -21,6 +21,10 @@ form {
 	/* display: block; */
 }
 
+input:invalid {
+	border: red 3px dotted;
+}
+
 select {
 	width: 10rem;
 }
