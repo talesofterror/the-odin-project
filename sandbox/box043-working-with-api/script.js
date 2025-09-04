@@ -1,20 +1,54 @@
-import { morsel } from "./tinnedfish/tin.js"
+import { morsel1, morsel2 } from "./tinnedfish/tin.js"
 
 console.log("hi.")
 
 let weatherSection = document.getElementById("weather")
 let giphySection = document.getElementById("giphy")
+
+// WEATHER
+
+let weatherManualQuery = "90210"
+let weatherManualRequest = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/`
+	+ weatherManualQuery
+	+ `?unitGroup=us&key=` + morsel2
+	+ `&contentType=json`
+
+let weatherRefRequest = "./weatherRefData.json"
+let weatherResponse
+
+let w_item1 = document.getElementById("weather-city")
+
+function weatherFetch(request) {
+	fetch(request)
+	.then( response => {
+		if (!response.ok) {
+			console.log("ERROR!")
+		}
+		weatherResponse = response.json()
+		console.log(weatherResponse)
+		return weatherResponse
+	})
+	.then(json => {
+		console.log(json)
+		w_item1.textContent = json.address
+	})
+}
+
+weatherFetch(weatherManualRequest)
+
+// GIPHY
+
 let giphySearchInput = document.getElementById("giphy-search-input")
 let giphySearchValue
 let giphySearchForm = document.getElementById("giphy-form")
 
 let giphyManualQuery = "chess"
 let giphyManualSearchRequest = `https://api.giphy.com/v1/gifs/search?`
-	+ `api_key=` + morsel 
+	+ `api_key=` + morsel1 
 	+ `&q=` + giphyManualQuery 
 	+ `&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
 let giphyInputSearchRequest = () => `https://api.giphy.com/v1/gifs/search?`
-	+ `api_key=` + morsel 
+	+ `api_key=` + morsel1 
 	+ `&q=` + giphySearchValue
 	+ `&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
 
@@ -28,14 +62,11 @@ let randomNum = () => Math.floor(Math.random() * 25)
 giphySearchForm.addEventListener( "submit", (e)=> {
 	e.preventDefault()
 	giphySearchValue = giphySearchInput.value
-	console.log(giphySearchInput.value)
 	giphyFetch(giphyInputSearchRequest())
-	console.log(giphyInputSearchRequest)
 } )
 
 giphySearchInput.addEventListener( "change", () => {
 	giphySearchValue = giphySearchInput.value
-	console.log(giphySearchValue)
 })
 
 function giphyFetch (request) {
@@ -48,8 +79,6 @@ function giphyFetch (request) {
 		return response.json()
 	})
 	.then( json => {
-		console.log(json)
-		console.log(giphySearchValue)
 		let img = document.createElement("img")
 		img.className = "gihpy-picture"
 		img.src = json.data[randomNum()].images.original.url
