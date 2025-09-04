@@ -1,0 +1,17 @@
+body {
+	font-size: 20px;
+	color: #ccf;
+	background-color: #de8;
+	padding: 5rem 10rem;
+}
+
+.container {
+	width: 100%;
+	height: fit-content;
+	min-height: 10rem;
+	border: #44d 5px solid;
+	background-color: #88f;
+	border-radius: 1rem;
+	padding: 1rem;
+}
+
