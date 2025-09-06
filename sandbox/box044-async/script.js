@@ -175,10 +175,83 @@ let githubSearch = "sdkjhkjdfh"
 
 // demoGithubUser(githubSearch)
 // ^ original works as expected
-demoGithubUser2(githubSearch)
+//
+// demoGithubUser2(githubSearch)
 // ^ rewrite works the same
 // ^ returns user name when successful, throws HttpError and says
 // "no such user..." when there's no matching user
 
 // Must remember: a 404 response from fetch() does not trigger a catch block,
 // but it looks like I can force it to by using the "throw" keyword
+
+
+// call async function wait() from f()
+
+async function wait() {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  return 10;
+}
+
+function f() {
+	wait().then(response => console.log(response))
+}
+
+f()
+
+
+
+// Promise.all uncaught error problem
+
+let database;
+let number = 0
+
+function connect() {
+  database = {
+    async query(isOk) {
+			console.log("promise #" + ++number)
+      if (!isOk) throw new Error('Query failed');
+    }
+  };
+}
+
+function disconnect() {
+  database = null;
+}
+
+// intended usage:
+// connect()
+// ...
+// database.query(true) to emulate a successful call
+// database.query(false) to emulate a failed call
+// ...
+// disconnect()
+
+// Helper function to call async function `fn` after `ms` milliseconds
+function delay(fn, ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => fn().then(resolve, reject), ms);
+  });
+}
+
+
+
+async function run() {
+  connect();
+
+  try {
+    await Promise.all([
+      // these 3 parallel jobs take different time: 100, 200 and 300 ms
+      // we use the `delay` helper to achieve this effect
+      delay(async () => database.query(true), 100),
+      delay(async () => database.query(false), 200),
+      delay(async () => database.query(false), 300)
+    ]);
+  } catch(error) {
+    console.log('Error handled (or was it?)');
+  }
+
+  disconnect();
+}
+
+run();
