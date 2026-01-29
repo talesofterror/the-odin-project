@@ -221,4 +221,94 @@ console.log("first list now has " + countItems(list01) + " items")
 // divide and conquer: divide a problem into two or more subproblems (base and recursive cases)
 // so as to more easily solve the larger problem.
 
+// doubly linked list: when each node has pointers to the prev and next node. 
+// better for manipulating
+//
+// the less properties the better, since the stack will keep copies of all of them
 
+let testObject = {
+	first: "first value",
+	second: 2,
+	third: [3],
+	fourth: {
+		fifth: 4
+	}
+}
+
+const meaningOfLifeArray = [42]
+
+const object = {
+	data: {
+		duplicate: "e",
+		stuff: {
+			thing: {
+				banana: NaN,
+				moreStuff: {
+					something: "foo",
+					answer: meaningOfLifeArray,
+				},
+			},
+		},
+		info: {
+			duplicate: "e",
+			magicNumber: 44,
+			empty: null,
+		},
+	},
+};
+
+function contains (o, v) {
+	for (let i in o) {
+		if (o[i] === v) {
+			return true
+		}
+		else if (Object.getPrototypeOf(o[i]) == Object.getPrototypeOf({})) {
+			// return contains(o[i], v) == false ? 
+		}
+	}
+	return false
+}
+
+function contains2 (o, v) {
+	let entries = Object.entries(o)
+	for (let i = 0; i < entries.length; i++) {
+		if (entries[i] == v) {
+			true
+		}
+		else {
+			if (Object.getPrototypeOf(entries[i]) === Object.getPrototypeOf({})) {
+				return contains2(entries[i], v) == true
+			}
+		}
+	}
+}
+
+function contains3 (o, v) {
+	console.log(o)
+	if (o != null && (o.__proto__ != {}.__proto__)) {
+		console.log(o === v)
+		if (o===v) {
+			return true
+		}
+		// return o[i] === v
+	}
+	else {
+		for (let i in o) {
+			// return contains3(o[i], v)
+			contains3(o[i], v)
+		}
+	}
+}
+
+function contains4 (o, v, t = false) {
+	console.log(o)
+	if (o != null && (o.__proto__ != {}.__proto__)) {
+		if (o===v) {
+			console.log(o === v)
+			return true
+		}
+	
+		// return o[i] === v
+	}
+	
+}
