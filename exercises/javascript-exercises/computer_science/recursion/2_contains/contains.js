@@ -1,18 +1,21 @@
 const contains = function(o, v) {
-	for (let i in o) {
-		console.log(o[i])
-		console.log(o[i] == v)
-		console.log(o[i] === v)
-		if (o[i] === v) {
-			console.log("truth found!")
-			return true
+	let values = Object.values(o)
+
+	let valueArray = []
+
+	for (let [i, value] of values.entries()) {
+		if (values[i] != null && (values[i].__proto__ == {}.__proto__)){
+			valueArray.push(contains(value, v))
 		}
-		else if (Object.getPrototypeOf(o[i]) === Object.getPrototypeOf({})) {
-			console.log(o[i])
-			return contains(o[i], v)
+		else if (Number.isNaN(v)) {
+			if (Number.isNaN(value)) valueArray.push(true)
+		}
+		else {
+			valueArray.push(Object.is(value, v))
 		}
 	}
-	return false
+
+	return valueArray.includes(true)
 };
 
 // Do not edit below this line
