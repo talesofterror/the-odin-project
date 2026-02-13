@@ -388,4 +388,48 @@ function totalIntegers (o) {
 	return count
 }
 
+// ~~~~~~~~~~~~~
+//
+// Array.some() checks if at least one element meets the criteria
+// Array.every() checks if every element meets the criteria
 
+let permutationArray0 = [1, 2, 3]
+let permutationArray1 = [ [1, 2, 3], [2, 3, 1], [1, 3, 2] ]
+
+function checkArrays (a, b) {
+	return a.some( inner => 
+		inner.every ( (value, index) => value == b[index] )
+	)
+}
+
+function fac(n) {
+	return n == 1 ? 1 : n * fac(n-1)
+}
+
+function permutations0 (a) {
+	
+	let finalArray = []
+	
+	if ( fac(a.length) > finalArray.length ) {
+		return finalArray
+	}
+	else if ()
+
+}
+
+/*
+ *
+ * [1, 2, 3]
+ * [2, 1, 3]
+ * [2, 3, 1]
+ * [3, 2, 1]
+ * [1, 3, 2]
+ * [3, 1, 2]
+ * []
+ *
+ * 
+ *
+ * */
+
+
+console.log(`permutation check: ${permutations0(0)}`)
