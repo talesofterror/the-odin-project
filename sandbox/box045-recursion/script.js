@@ -393,11 +393,11 @@ function totalIntegers (o) {
 // Array.some() checks if at least one element meets the criteria
 // Array.every() checks if every element meets the criteria
 
-let permutationArray0 = [1, 2, 3]
-let permutationArray1 = [ [1, 2, 3], [2, 3, 1], [1, 3, 2] ]
+let permutationArray0 = [ [1, 2, 3], [2, 3, 1], [1, 3, 2] ]
+let permutationArray1 = [1, 2, 3]
 
-function checkArrays (a, b) {
-	return a.some( inner => 
+function checkArrays (searchTarget, b) {
+	return searchTarget.some( inner => 
 		inner.every ( (value, index) => value == b[index] )
 	)
 }
@@ -406,18 +406,40 @@ function fac(n) {
 	return n == 1 ? 1 : n * fac(n-1)
 }
 
+function moveIndex (index, a) {
+	let aCopy = a
+	let final = []
+	for (let [i,value] of a.entries()) {
+		let lastIndex = i == a.length-1
+		let next = lastIndex? a[0] : a[i+1]
+		a.splice(i, 1, lastIndex? 0 : next)
+		console.log(a)
+		a.splice(lastIndex ? 0 : i+1, 1, index)
+		console.log(a)
+		final.push([...a])
+	}
+	return final
+}
+
 function permutations0 (a) {
 	
 	let finalArray = []
 	
-	if ( fac(a.length) > finalArray.length ) {
-		return finalArray
+	if (!checkArrays(finalArray, a)) {
+		finalArray.push(a)
 	}
-	else if ()
+
+	for (let [index, value] of a.entries()) {
+		
+	}
 
 }
 
 /*
+ *
+ * let a = [1, 2, 3]
+ * a.toSpliced(0, 1, 2).toSpliced(1, 1, 1)
+ * (3) [2, 1, 3]
  *
  * [1, 2, 3]
  * [2, 1, 3]
@@ -425,11 +447,24 @@ function permutations0 (a) {
  * [3, 2, 1]
  * [1, 3, 2]
  * [3, 1, 2]
- * []
  *
- * 
+ * [1, 2, 3] ///moving the 1
+ * [2, 1, 3]
+ * [2, 3, 1]
+ * [3, 2, 1] /// moving the 2
+ * [3, 1, 2]
+ * [2, 3, 1] x
+ * [2, 1, 3] /// moving the 3 x
+ * [3, 2, 1] x
+ * [2, 3, 1]
+ *
+ * // note on moveIndex: I tried doing final.push(a), but the final array kept
+ * changing during the loop. This was because pushing `a` means a reference
+ * (not a true copy) of a is pushed to final[]. Using the spread operator
+ * (final.push([...a])) pushes a new array in which all the values in a 
+ * (in it's current state) are added. 
  *
  * */
 
 
-console.log(`permutation check: ${permutations0(0)}`)
+// console.log(`permutation check: ${permutations0(0)}`)
