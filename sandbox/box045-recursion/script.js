@@ -319,10 +319,10 @@ function contains4 (o, v) {
 
 function contains5 (o, v) {
 	let values = Object.values(o)
-	console.log(o)
+	// console.log(o)
 
 	for (let [i, value] of values.entries()) {
-		console.log(`index: ${i}, value: ${value}`)
+		// console.log(`index: ${i}, value: ${value}`)
 		if (values[i] === v) {
 			return true
 		}
@@ -338,12 +338,12 @@ function contains5 (o, v) {
 
 function contains6 (o, v) {
 	let values = Object.values(o)
-	console.log(`evaluating: ${values}`)
+	// console.log(`evaluating: ${values}`)
 
 	let valueArray = []
 
 	for (let [i, value] of values.entries()) {
-		console.log(`looping index: ${value}`)
+		// console.log(`looping index: ${value}`)
 		if (values[i] != null && (values[i].__proto__ == {}.__proto__)){
 			valueArray.push(contains6(value, v))
 		} 
@@ -352,8 +352,8 @@ function contains6 (o, v) {
 		}
 	}
 
-	console.log("VALUE ARRAY: ")
-	console.log(valueArray)
+	// console.log("VALUE ARRAY: ")
+	// console.log(valueArray)
 	return valueArray.includes(true)
 }
 
@@ -407,31 +407,70 @@ function fac(n) {
 }
 
 function moveIndex (index, a) {
-	let aCopy = a
 	let final = []
 	for (let [i,value] of a.entries()) {
 		let lastIndex = i == a.length-1
+		if (lastIndex) continue
 		let next = lastIndex? a[0] : a[i+1]
 		a.splice(i, 1, lastIndex? 0 : next)
-		console.log(a)
+		// console.log(a)
 		a.splice(lastIndex ? 0 : i+1, 1, index)
-		console.log(a)
+		// console.log(a)
 		final.push([...a])
 	}
 	return final
 }
 
 function permutations0 (a) {
-	
+
+	let prelimArray = []
 	let finalArray = []
+	if (!checkArrays(prelimArray, a)) { prelimArray.push([...a]) }
+	let lastIndex = prelimArray[prelimArray.length-1]
 	
-	if (!checkArrays(finalArray, a)) {
-		finalArray.push(a)
+	for ( let value of [...lastIndex] ) {
+		prelimArray.push(moveIndex(value, lastIndex))
 	}
 
-	for (let [index, value] of a.entries()) {
-		
+	for ( let [i, v] of prelimArray.entries() ) {
+		if (i == 0) {
+			finalArray.push(v)
+			continue
+		}
+		else {
+			finalArray.push(v)
+		}
 	}
+
+	return finalArray
+
+}
+
+function permutations0 (a) {
+
+	let prelimArray = []
+	let finalArray = []
+	if (!checkArrays(prelimArray, a)) { prelimArray.push([...a]) }
+	let lastIndex = prelimArray[prelimArray.length-1]
+	
+	for ( let value of [...lastIndex] ) {
+		prelimArray.push(moveIndex(value, lastIndex))
+	}
+
+	// console.log(prelimArray)
+
+	for ( let [i, v] of [...prelimArray].entries() ) {
+		if (i == 0) {
+			finalArray.push(v)
+			continue
+		}
+		else {
+			console.log(v)
+			for (let val of v) finalArray.push(val)
+		}
+	}
+
+	return finalArray
 
 }
 
@@ -463,6 +502,14 @@ function permutations0 (a) {
  * (not a true copy) of a is pushed to final[]. Using the spread operator
  * (final.push([...a])) pushes a new array in which all the values in a 
  * (in it's current state) are added. 
+ *
+ *
+ * Base case: 
+ *	fac(initArray) == finalArray.length
+ * Recursive case:
+ * 	!''
+ * Recursive statement: 
+ * 	permutations(finalArray.lastIndex)
  *
  * */
 
