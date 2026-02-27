@@ -446,34 +446,6 @@ function permutations0 (a) {
 
 }
 
-function permutations0 (a) {
-
-	let prelimArray = []
-	let finalArray = []
-	if (!checkArrays(prelimArray, a)) { prelimArray.push([...a]) }
-	let lastIndex = prelimArray[prelimArray.length-1]
-	
-	for ( let value of [...lastIndex] ) {
-		prelimArray.push(moveIndex(value, lastIndex))
-	}
-
-	// console.log(prelimArray)
-
-	for ( let [i, v] of [...prelimArray].entries() ) {
-		if (i == 0) {
-			finalArray.push(v)
-			continue
-		}
-		else {
-			console.log(v)
-			for (let val of v) finalArray.push(val)
-		}
-	}
-
-	return finalArray
-
-}
-
 /*
  *
  * let a = [1, 2, 3]
@@ -515,3 +487,25 @@ function permutations0 (a) {
 
 
 // console.log(`permutation check: ${permutations0(0)}`)
+
+function permutations (a) {
+	
+	if (a.length == 1) {
+		return [[a[0]]]
+	}
+
+	let result = []
+	let currentIndex = a[0]
+	let remainder = permutations(a.slice(1))
+
+	for (let index of remainder) {
+		for (let i = 0; i <= index.length; i++) {
+			let left = index.slice(0,i)
+			let right = index.slice(i)
+			result.push([...left, currentIndex, ...right])
+		}
+	}
+
+	return result
+}
+
