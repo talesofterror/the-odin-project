@@ -10,3 +10,6 @@ loadModule("collatz.js")
 loadModule("contains.js")
 loadModule("total-integers.js")
 loadModule("permutations.js")
+loadModule("pascal.js")
+
+
