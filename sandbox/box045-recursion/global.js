@@ -2,22 +2,31 @@
 
 /*
 
-0 1 0
-0 1 1 0
-0 1 2 1 0
-0 1 3 3 1 0
-0 1 4 6 4 1 0
-0 1 5 10 10 5 1 0
+[0] 0 1 0	
+[1] 0 1 1 0
+[2] 0 1 2 1 0
+[3] 0 1 3 3 1 0
+[4] 0 1 4 6 4 1 0
+[5] 0 1 5 10 10 5 1 0
 
 */
 
-function pascal (n) {
-	
+function pascal (n, tracker = 0) {
+	let result
+	if (n <= 1) {
+		return [1]
+	}
+	else {
+		result = addRight(pascal(n-1), tracker++).filter( (n)=>n!=0 );
+	}
+	return result
 }
 
 function addRight (a) {
   // [1, 2, 3] should == [1, 3, 5, 3]
   // if (a.each( (i) => !Number.isInteger(i))) {return 0}
+	a.push(0)
+	a.splice(0, 0, 0)
   let result = []
   for (let [index, item] of a.entries()) {
     if (index == 0) { result.push(item + 0); result.push(item + a[index+1])}
