@@ -21,4 +21,3 @@
 //   throw new Error('Check fail: Happy path')
 // }
 
-

@@ -1,4 +1,4 @@
-async function loadModule (file) {
+async function loadModule(file) {
   await import("./modules/" + file)
   console.log(file.toUpperCase() + " loaded.")
 }
