@@ -96,4 +96,12 @@ describe("how after each works", ()=> {
 	})
 	afterEach(() => { console.log("This should only run once.") })
 })
+// describe handlers are executed before any of the actual tests.
+// jest runs through all the describe calls, gathering tests and 
+// hooks, and running whatever code there is. It then runs all 
+// the tests and hooks in the order they were encountered. 
 
+// to run only one specific test run test.only or it.only
+
+// different mocking functions: 
+// https://jestjs.io/docs/mock-functions
