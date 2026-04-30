@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 async function loadModule (file) {
   await import("./modules/" + file)
   console.log(file.toUpperCase() + " loaded.")
