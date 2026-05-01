@@ -9,3 +9,25 @@ function fib (n, result = []) {
 		return result
 	}
 }
+
+function merge (array) {
+	if (array.length == 1) {
+		return array
+	}
+	else {
+		let leftHalf = merge(array.splice(Math.floor(array.length/2)))
+		let rightHalf = merge(array)
+		let newArray = []
+
+		for (let i = 0; i < leftHalf.length; i++) {
+			for (let j = 0; j < rightHalf.length; j++) {
+				if (leftHalf[i] < rightHalf[j]) {
+					newArray.unshift(leftHalf[i])
+				}
+				else newArray.unshift(rightHalf[j])
+			}
+		}
+
+		return newArray
+	}
+}
