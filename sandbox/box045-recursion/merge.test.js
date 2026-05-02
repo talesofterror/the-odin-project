@@ -47,6 +47,7 @@ function merge (array) {
 */
 
 it("sorts an array from smallest to biggest", ()=> {
+	console.log("\x1b[35m" + merge([4, 7, 2, 8]) + "\x1b[0m")
 	console.log(merge([4, 7, 2, 8]))
 	expect(merge([4, 7, 2, 8])).toEqual([2, 4, 7, 8])
 	expect(merge([3, 2])).toEqual([2, 3])

@@ -15,19 +15,29 @@ function merge (array) {
 		return array
 	}
 	else {
-		let leftHalf = merge(array.splice(Math.floor(array.length/2)))
-		let rightHalf = merge(array)
+		let rightHalf = merge(array.splice(Math.floor(array.length/2)))
+		let leftHalf = merge(array)
 		let newArray = []
+		let lengthIsOne = rightHalf.length == 1 || leftHalf.length == 1
 
-		for (let i = 0; i < leftHalf.length; i++) {
-			for (let j = 0; j < rightHalf.length; j++) {
-				if (leftHalf[i] < rightHalf[j]) {
-					newArray.unshift(leftHalf[i])
+		for (let i = 0; newArray.length < rightHalf.length + leftHalf.length; i++) {
+			for (let j = 0; j < leftHalf.length; j++) {
+				if (rightHalf[i] < leftHalf[j]) {
+					newArray.unshift(rightHalf[i])
+					if (lengthIsOne) {
+						newArray.push(leftHalf[j])
+					}
 				}
-				else newArray.unshift(rightHalf[j])
+				else {
+					newArray.unshift(leftHalf[j])
+				if (lengthIsOne) {
+						newArray.push(rightHalf[i])
+					}
+				}
 			}
 		}
 
 		return newArray
 	}
 }
+
