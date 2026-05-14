@@ -7,19 +7,28 @@ function makeListItem(data, next = null) {
   }
 }
 
-function list(head) {
+function list(head = null, tail = null) {
   return {
     head: head,
-    tail: head,
+    tail: tail ? tail : head,
     append: function (data) {
-      this.tail.next = makeListItem(data)
-      this.tail = this.tail.next
-    },
+			let newNode = makeListItem(data)
+			if (this.head == null && this.tail == null) {
+				this.head = newNode
+				this.tail = newNode
+			}
+			else {
+				this.tail.next = newNode
+				this.tail = this.tail.next
+			}
+		},
     prepend: function (data) {
-      let newItem = makeListItem(data, this.head)
-      this.head = newItem
+      let newNode = makeListItem(data, this.head)
+      this.head = newNode
+			if (this.tail == null) this.tail = newNode
     },
     size: function (node = this.head, tally = 0) {
+			if (node == null) return 0
       if (node.next == null) {
         return ++tally
       }
@@ -68,16 +77,56 @@ function list(head) {
 			}
 		},
 		toString: function (node = this.head, string = '') {
-			if (node.next != null) {
+			if (this.size() == 0) return string
+			else if (node.next != null) {
 				return this.toString(node.next, string + `( ${node.data} ) -> `)
 			}
 			else { return ` ${string}( ${node.data} ) -> null` }
 		},
 		insertAt: function (index, ...values) {
-
+			let tempList = list()
+			for (let value of values) {
+				tempList.append(value)
+			}
+			function traverse(idx, node, list, i = 0) {
+				if (i == idx) {
+					tempList.tail.next = node.next
+					node.next = tempList.head
+					if (idx == 0) {	list.head = tempList.head	}
+					if (idx == list.size()-1) { list.tail = tempList.tail }
+				}
+				else if (node.next != null) { return traverse(idx, node.next, list, ++i) }
+				else { throw new Error("RangeError") }
+			}
+			traverse(index, this.head, this)
+		},
+		removeAt (index, node = this.head, list = this, tally = 0) {
+			let isSizeOne = list.size() - 1 == 1
+			if (index == 0) {
+				list.head = node.next
+				if (isSizeOne) list.tail = node.next
+			}
+			else if (index != 0 && tally == index-1) {
+				if (index == list.size()-1) { 
+					list.tail = node 
+					node.next = null
+				}
+				else {
+					node.next = node.next.next
+				}
+				if (isSizeOne) list.tail = node.next
+			}
+			else if (node.next != null) {
+				return this.removeAt(index, node.next, list, ++tally)
+			}
+			else {
+				throw new Error("RangeError")
+			}
 		}
 	}
 }
+
+// [0] [1] [2] [3]
 
 
 let list00 = list(makeListItem("first item"))
